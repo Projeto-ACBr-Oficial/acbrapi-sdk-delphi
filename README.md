@@ -1,5 +1,5 @@
 ﻿# ACBr API: SDK para Delphi e Lazarus/FreePascal
-Biblioteca para uso da [ACBr API](https://www.acbrapi.com.br) com [Delphi](https://www.embarcadero.com/products/delphi) e [Lazarus](https://www.lazarus-ide.org)/[FreePascal](https://www.freepascal.org). É importante também consultar a [documentação da API](https://dev.acbrapi.com.br/docs).
+Biblioteca para uso da [ACBr API](https://www.acbr.api.br) com [Delphi](https://www.embarcadero.com/products/delphi) e [Lazarus](https://www.lazarus-ide.org)/[FreePascal](https://www.freepascal.org). É importante também consultar a [documentação da API](https://dev.acbr.api.br/docs).
 
 ## Instalação
 
@@ -16,12 +16,12 @@ uses
 
 ### Obtendo o token de acesso
 
-O [processo de autenticação da ACBr API](https://dev.acbrapi.com.br/docs/autenticacao) envolve dois passos:
+O [processo de autenticação da ACBr API](https://dev.acbr.api.br/docs/autenticacao) envolve dois passos:
 
-* [Obtenção das credenciais](https://dev.acbrapi.com.br/docs/autenticacao#credenciais) (*Client ID* e *Client Secret*)
-* [Geração do token de acesso](https://dev.acbrapi.com.br/docs/autenticacao#token) usando as credenciais obtidas.
+* [Obtenção das credenciais](https://dev.acbr.api.br/docs/autenticacao#credenciais) (*Client ID* e *Client Secret*)
+* [Geração do token de acesso](https://dev.acbr.api.br/docs/autenticacao#token) usando as credenciais obtidas.
 
-O primeiro passo deve ser feito no [console da ACBr API](https://console.acbrapi.com.br), enquanto o segundo você deve fazer manualmente. O SDK do Delphi oferece uma forma fácil de obter esse token a partir das credenciais, da seguinte forma:
+O primeiro passo deve ser feito no [console da ACBr API](https://console.acbr.api.br), enquanto o segundo você deve fazer manualmente. O SDK do Delphi oferece uma forma fácil de obter esse token a partir das credenciais, da seguinte forma:
 
 ```delphi
 var
@@ -31,7 +31,7 @@ var
   DataExpiracao: TDateTime;
 begin
   TokenProvider := TClientCredentialsTokenProvider.Create;
-  TokenProvider.TokenEndpoint := 'https://auth.acbrapi.com.br/oauth/token';
+  TokenProvider.TokenEndpoint := 'https://auth.acbr.api.br/oauth/token';
   TokenProvider.ClientId := '<seu client id>';
   TokenProvider.ClientSecret := '<seu client secret>';
   TokenProvider.Scope := 'empresa cep cnpj nfe nfse nfce cte mdfe';
@@ -55,7 +55,7 @@ var
 
 ### Executando os métodos
 
-Todos os [endpoints da ACBr API](https://dev.acbrapi.com.br/docs/api) estão disponíveis no client, agrupadas por interfaces de acordo com o serviço. Por exemplo, o client disponibiliza interfaces nas propriedades `Nfse` (métodos para emissão de Nfse e outras operações relacionadas), `Nfe` (operações relacionados a NFe), `Cep` (operações para consulta de CEP), e assim por diante.
+Todos os [endpoints da ACBr API](https://dev.acbr.api.br/docs/api) estão disponíveis no client, agrupadas por interfaces de acordo com o serviço. Por exemplo, o client disponibiliza interfaces nas propriedades `Nfse` (métodos para emissão de Nfse e outras operações relacionadas), `Nfe` (operações relacionados a NFe), `Cep` (operações para consulta de CEP), e assim por diante.
 
 O exemplo a seguir faz uma consulta de dados de um CNPJ:
 
@@ -83,9 +83,9 @@ Você pode usar o *code completion* do Delphi para verificar os serviços, méto
 
 Visite os links da ACBr API para saber mais:
 
-* [Site da ACBr API](https://www.acbrapi.com.br/)
-* [Documentação completa](https://dev.acbrapi.com.br/docs/)
-* [Referência da API](https://dev.acbrapi.com.br/docs/api)
+* [Site da ACBr API](https://www.acbr.api.br/)
+* [Documentação completa](https://dev.acbr.api.br/docs/)
+* [Referência da API](https://dev.acbr.api.br/docs/api)
 
 ### Usar Indy como alternativa
 
