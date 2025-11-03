@@ -1438,7 +1438,7 @@ type
     /// posteriormente, uma manifestação conclusiva dentro de um prazo legal.
     /// 
     /// Para facilitar essa gestão e o cumprimento dos prazos legais de manifestação,
-    /// a API da API permite listar as notas que ainda não
+    /// a API permite listar as notas que ainda não
     /// possuem manifestação, ajudando os usuários a identificar rapidamente as
     /// notas que necessitam de ação.
     /// 
@@ -1641,7 +1641,7 @@ type
     /// ID único do e-mail.
     /// 
     /// Esse parâmetro é obtido após o envio do email por qualquer endpoint da
-    /// API da API que realize disparos de email.
+    /// API que realize disparos de email.
     /// 
     /// Exemplos:
     /// * <a href="#tag/Nfe/operation/EnviarEmailNfe">Envio de XML e PDF de NF-e</a>.
@@ -1688,7 +1688,7 @@ type
     /// ID único do e-mail.
     /// 
     /// Esse parâmetro é obtido após o envio do email por qualquer endpoint da
-    /// API da API que realize disparos de email.
+    /// API que realize disparos de email.
     /// 
     /// Exemplos:
     /// * <a href="#tag/Nfe/operation/EnviarEmailNfe">Envio de XML e PDF de NF-e</a>.
@@ -1730,6 +1730,37 @@ type
     /// Cadastre uma nova empresa (emitente ou prestador) à sua conta.
     /// </remarks>
     function CriarEmpresa(Body: TEmpresa): TEmpresa;
+    /// <summary>
+    /// Listar certificados
+    /// </summary>
+    /// <param name="Top">
+    /// Limite no número de objetos a serem retornados pela API, entre 1 e 100.
+    /// </param>
+    /// <param name="Skip">
+    /// Quantidade de objetos que serão ignorados antes da lista começar a ser retornada.
+    /// </param>
+    /// <param name="Inlinecount">
+    /// Inclui no JSON de resposta, na propriedade `@count`, o número total de registros que o filtro retornaria, independente dos filtros de paginação.
+    /// </param>
+    /// <param name="ExpiresIn">
+    /// Filtrar certificados que expiram dentro de X dias.
+    /// 
+    /// Informe um número inteiro correspondente à quantidade de dias até o vencimento.
+    /// Exemplos:
+    ///  - expires_in=30 -&gt; certificados que vencem nos próximos 30 dias.
+    ///  - expires_in=7  -&gt; certificados que vencem nos próximos 7 dias.
+    /// </param>
+    /// <param name="IncludeExpired">
+    /// Indicar se os certificados já vencidos devem ser incluídos no resultado.
+    /// 
+    /// Valores aceitos:
+    ///  - `true`: incluir certificados vencidos.
+    ///  - `false`: exibir apenas certificados válidos.
+    /// </param>
+    /// <remarks>
+    /// Retorna a lista dos certificados associadas à sua conta. Os certificados são retornados ordenados pela data da criação, com as mais recentes aparecendo primeiro.
+    /// </remarks>
+    function ListarCertificados(Top: Integer; Skip: Integer; Inlinecount: Boolean; ExpiresIn: Integer; IncludeExpired: Boolean): TEmpresaCertificadoListagem;
     /// <summary>
     /// Consultar empresa
     /// </summary>
@@ -1985,6 +2016,31 @@ type
     /// </param>
     function ListarEmpresas(Top: Integer; Skip: Integer; Inlinecount: Boolean; CpfCnpj: string): TEmpresaListagem;
     function CriarEmpresa(Body: TEmpresa): TEmpresa;
+    /// <param name="Top">
+    /// Limite no número de objetos a serem retornados pela API, entre 1 e 100.
+    /// </param>
+    /// <param name="Skip">
+    /// Quantidade de objetos que serão ignorados antes da lista começar a ser retornada.
+    /// </param>
+    /// <param name="Inlinecount">
+    /// Inclui no JSON de resposta, na propriedade `@count`, o número total de registros que o filtro retornaria, independente dos filtros de paginação.
+    /// </param>
+    /// <param name="ExpiresIn">
+    /// Filtrar certificados que expiram dentro de X dias.
+    /// 
+    /// Informe um número inteiro correspondente à quantidade de dias até o vencimento.
+    /// Exemplos:
+    ///  - expires_in=30 -&gt; certificados que vencem nos próximos 30 dias.
+    ///  - expires_in=7  -&gt; certificados que vencem nos próximos 7 dias.
+    /// </param>
+    /// <param name="IncludeExpired">
+    /// Indicar se os certificados já vencidos devem ser incluídos no resultado.
+    /// 
+    /// Valores aceitos:
+    ///  - `true`: incluir certificados vencidos.
+    ///  - `false`: exibir apenas certificados válidos.
+    /// </param>
+    function ListarCertificados(Top: Integer; Skip: Integer; Inlinecount: Boolean; ExpiresIn: Integer; IncludeExpired: Boolean): TEmpresaCertificadoListagem;
     /// <param name="CpfCnpj">
     /// CPF ou CNPJ da empresa.
     /// Utilize o valor sem máscara.
@@ -5858,6 +5914,23 @@ begin
   Result := Converter.TEmpresaFromJson(Response.ContentAsString);
 end;
 
+function TEmpresaService.ListarCertificados(Top: Integer; Skip: Integer; Inlinecount: Boolean; ExpiresIn: Integer; IncludeExpired: Boolean): TEmpresaCertificadoListagem;
+var
+  Request: IRestRequest;
+  Response: IRestResponse;
+begin
+  Request := CreateRequest('/empresas/certificados', 'GET');
+  Request.AddQueryParam('$top', IntToStr(Top));
+  Request.AddQueryParam('$skip', IntToStr(Skip));
+  Request.AddQueryParam('$inlinecount', BoolToParam(Inlinecount));
+  Request.AddQueryParam('expires_in', IntToStr(ExpiresIn));
+  Request.AddQueryParam('include_expired', BoolToParam(IncludeExpired));
+  Request.AddHeader('Accept', 'application/json');
+  Response := Request.Execute;
+  CheckError(Response);
+  Result := Converter.TEmpresaCertificadoListagemFromJson(Response.ContentAsString);
+end;
+
 function TEmpresaService.ConsultarEmpresa(CpfCnpj: string): TEmpresa;
 var
   Request: IRestRequest;
@@ -7813,7 +7886,7 @@ end;
 constructor TACBrAPIConfig.Create;
 begin
   inherited Create;
-  BaseUrl := 'https://api.acbrapi.com.br/';
+  BaseUrl := 'https://prod.acbr.api.br/';
 end;
 
 { TACBrAPIClient }
