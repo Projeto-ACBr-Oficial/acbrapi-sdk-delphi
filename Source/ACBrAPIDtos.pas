@@ -1,4 +1,4 @@
-unit ACBrAPIDtos;
+﻿unit ACBrAPIDtos;
 
 {$IFDEF FPC}{$MODE Delphi}{$ENDIF}
 
@@ -1246,8 +1246,8 @@ type
   public
     /// <summary>
     /// Número do Lote de RPS.
-    /// Informe o próximo número do lote RPS a ser utilizado. Após isso, a Nuvem
-    /// Fiscal gerenciará esse campo (a cada novo envio de lote o número é
+    /// Informe o próximo número do lote RPS a ser utilizado. Após isso, a ACBrAPI
+    /// gerenciará esse campo (a cada novo envio de lote o número é
     /// incrementado em + 1). Portanto, basta informá-lo no cadastro da empresa
     /// uma única vez.
     /// </summary>
@@ -1262,8 +1262,8 @@ type
     property serie: string read Fserie write Fserie;
     /// <summary>
     /// Número do RPS.
-    /// Informe o próximo número de RPS a ser utilizado. Após isso, a Nuvem
-    /// Fiscal gerenciará esse campo (a cada novo envio de RPS o número é
+    /// Informe o próximo número de RPS a ser utilizado. Após isso, a ACBrAPI
+    /// gerenciará esse campo (a cada novo envio de RPS o número é
     /// incrementado em + 1). Portanto, basta informá-lo no cadastro da empresa
     /// uma única vez.
     /// </summary>
