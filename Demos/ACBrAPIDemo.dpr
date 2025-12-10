@@ -17,7 +17,9 @@ uses
   OpenApiHttp in '..\Source\OpenApiHttp.pas',
   OpenApiJson in '..\Source\OpenApiJson.pas',
   OpenApiRest in '..\Source\OpenApiRest.pas',
-  OpenApiUtils in '..\Source\OpenApiUtils.pas';
+  OpenApiUtils in '..\Source\OpenApiUtils.pas',
+  Forms.EmitirNfcom in 'Forms.EmitirNfcom.pas' {fmEmitirNfcom},
+  Forms.DetalhesNfcom in 'Forms.DetalhesNfcom.pas' {fmDetalhesNFCom};
 
 {$R *.res}
 
@@ -26,5 +28,7 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TfmMain, fmMain);
+  Application.CreateForm(TfmEmitirNfcom, fmEmitirNfcom);
+  Application.CreateForm(TfmDetalhesNFCom, fmDetalhesNFCom);
   Application.Run;
 end.

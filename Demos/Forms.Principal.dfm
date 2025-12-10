@@ -96,14 +96,28 @@ object fmMain: TfmMain
     ReadOnly = True
     TabOrder = 4
   end
+  object cbAPI: TComboBox
+    Left = 72
+    Top = 8
+    Width = 145
+    Height = 23
+    Style = csDropDownList
+    ItemIndex = 0
+    TabOrder = 5
+    Text = 'Sandbox'
+    OnChange = cbAPIChange
+    Items.Strings = (
+      'Sandbox'
+      'Produ'#231#227'o')
+  end
   object PageControl1: TPageControl
     Left = 8
     Top = 104
     Width = 830
     Height = 458
-    ActivePage = tsConsultas
+    ActivePage = tsNfcom
     Anchors = [akLeft, akTop, akRight, akBottom]
-    TabOrder = 5
+    TabOrder = 6
     object tsConsultas: TTabSheet
       Caption = 'Consultas'
       DesignSize = (
@@ -595,20 +609,172 @@ object fmMain: TfmMain
         end
       end
     end
-  end
-  object cbAPI: TComboBox
-    Left = 72
-    Top = 8
-    Width = 145
-    Height = 23
-    Style = csDropDownList
-    ItemIndex = 0
-    TabOrder = 6
-    Text = 'Sandbox'
-    OnChange = cbAPIChange
-    Items.Strings = (
-      'Sandbox'
-      'Produ'#231#227'o')
+    object tsNfcom: TTabSheet
+      Caption = 'NFCom'
+      ImageIndex = 4
+      object Panel9: TPanel
+        Left = 687
+        Top = 0
+        Width = 135
+        Height = 428
+        Align = alRight
+        BevelOuter = bvNone
+        TabOrder = 0
+        DesignSize = (
+          135
+          428)
+        object btEmitirNfcom: TButton
+          Left = 6
+          Top = 41
+          Width = 129
+          Height = 25
+          Anchors = [akLeft, akTop, akRight]
+          Caption = 'Emitir Nfcom'
+          TabOrder = 0
+          OnClick = btEmitirNfcomClick
+        end
+        object btCancelarNfcom: TButton
+          Left = 6
+          Top = 103
+          Width = 129
+          Height = 25
+          Anchors = [akLeft, akTop, akRight]
+          Caption = 'Cancelar'
+          TabOrder = 1
+          OnClick = btCancelarNfcomClick
+        end
+        object btVerDetalhesNfcom: TButton
+          Left = 6
+          Top = 72
+          Width = 129
+          Height = 25
+          Anchors = [akLeft, akTop, akRight]
+          Caption = 'Ver Detalhes'
+          TabOrder = 2
+          OnClick = btVerDetalhesNfcomClick
+        end
+        object btDownloadXmlNfcom: TButton
+          Left = 6
+          Top = 134
+          Width = 129
+          Height = 25
+          Anchors = [akLeft, akTop, akRight]
+          Caption = 'Baixar XML'
+          TabOrder = 3
+          OnClick = btDownloadXmlNfcomClick
+        end
+        object btDownloadPdfNfcom: TButton
+          Left = 6
+          Top = 165
+          Width = 129
+          Height = 25
+          Anchors = [akLeft, akTop, akRight]
+          Caption = 'Baixar DANfcom'
+          TabOrder = 4
+          OnClick = btDownloadPdfNfcomClick
+        end
+      end
+      object Panel10: TPanel
+        Left = 0
+        Top = 0
+        Width = 687
+        Height = 428
+        Align = alClient
+        BevelOuter = bvNone
+        TabOrder = 1
+        object lvNfcoms: TListView
+          Left = 0
+          Top = 41
+          Width = 687
+          Height = 387
+          Align = alClient
+          Columns = <
+            item
+              Caption = 'ID'
+            end
+            item
+              Caption = 'N'#176' Nota'
+              Width = 75
+            end
+            item
+              Caption = 'S'#233'rie'
+              Width = 75
+            end
+            item
+              Caption = 'Situa'#231#227'o'
+              Width = 100
+            end
+            item
+              Caption = 'Data Emiss'#227'o'
+              Width = 125
+            end
+            item
+              AutoSize = True
+              Caption = 'Chave'
+            end
+            item
+              Alignment = taRightJustify
+              Caption = 'Valor'
+              Width = 100
+            end>
+          RowSelect = True
+          TabOrder = 0
+          ViewStyle = vsReport
+        end
+        object Panel11: TPanel
+          Left = 0
+          Top = 0
+          Width = 687
+          Height = 41
+          Align = alTop
+          BevelOuter = bvNone
+          TabOrder = 1
+          object Label10: TLabel
+            Left = 8
+            Top = 13
+            Width = 30
+            Height = 15
+            Caption = 'CNPJ:'
+          end
+          object btListaNfcoms: TButton
+            Left = 342
+            Top = 10
+            Width = 96
+            Height = 25
+            Caption = 'Listar Notas'
+            TabOrder = 0
+            OnClick = btListaNfcomsClick
+          end
+          object edNfcomCnpj: TEdit
+            Left = 44
+            Top = 10
+            Width = 145
+            Height = 23
+            TabOrder = 1
+          end
+          object cbNfcomAmbiente: TComboBox
+            Left = 195
+            Top = 10
+            Width = 139
+            Height = 23
+            Style = csDropDownList
+            TabOrder = 2
+            Items.Strings = (
+              'homologacao'
+              'producao')
+          end
+          object btConsultarStatusSEFAZNfcom: TButton
+            Left = 444
+            Top = 10
+            Width = 85
+            Height = 25
+            Caption = 'Status SEFAZ'
+            TabOrder = 3
+            OnClick = btConsultarStatusSEFAZNfcomClick
+          end
+        end
+      end
+    end
   end
   object btListarCotas: TButton
     Left = 718

@@ -13,8 +13,10 @@ uses
   Forms.ConfigNfce,
   Forms.DetalhesNfse,
   Forms.DetalhesNfce,
+  Forms.DetalhesNfcom,
   Forms.EmitirNfse,
-  Forms.EmitirNfce;
+  Forms.EmitirNfce,
+  Forms.EmitirNfcom;
 
 type
   TfmMain = class(TForm)
@@ -27,6 +29,8 @@ type
     btToken: TButton;
     Label6: TLabel;
     edExpiracao: TEdit;
+    cbAPI: TComboBox;
+    Label9: TLabel;
     PageControl1: TPageControl;
     tsConsultas: TTabSheet;
     Label2: TLabel;
@@ -38,33 +42,35 @@ type
     btConsultarCep: TButton;
     tsEmpresas: TTabSheet;
     Panel1: TPanel;
-    Panel2: TPanel;
-    lvEmpresas: TListView;
     btAtualizarEmpresas: TButton;
     btCriarEmpresa: TButton;
     btAlterarEmpresa: TButton;
     btCertificado: TButton;
-    tsNfse: TTabSheet;
     btConfigNFSe: TButton;
+    btListarNfse: TButton;
+    Button1: TButton;
+    Button2: TButton;
+    Panel2: TPanel;
+    lvEmpresas: TListView;
+    tsNfse: TTabSheet;
     Panel4: TPanel;
     btEmitirNfse: TButton;
+    btCancelarNfse: TButton;
+    btVerDetalhesNfse: TButton;
     Panel3: TPanel;
     lvNfses: TListView;
     Panel5: TPanel;
+    Label7: TLabel;
     btListaNfses: TButton;
     edNfseCnpj: TEdit;
-    Label7: TLabel;
-    btCancelarNfse: TButton;
-    btVerDetalhesNfse: TButton;
-    btListarNfse: TButton;
     cbNfseAmbiente: TComboBox;
-    Button1: TButton;
-    Button2: TButton;
     tsNfce: TTabSheet;
     Panel6: TPanel;
     btEmitirNfce: TButton;
     btCancelarNfce: TButton;
     btVerDetalhesNfce: TButton;
+    btDownloadXmlNfce: TButton;
+    btDownloadPdfNfce: TButton;
     Panel7: TPanel;
     lvNfces: TListView;
     Panel8: TPanel;
@@ -72,13 +78,24 @@ type
     btListaNfces: TButton;
     edNfceCnpj: TEdit;
     cbNfceAmbiente: TComboBox;
-    cbAPI: TComboBox;
-    Label9: TLabel;
-    btDownloadXmlNfce: TButton;
-    btDownloadPdfNfce: TButton;
     btConsultarStatusSefaz: TButton;
-    btListarCotas: TButton;
     btInutilizarNumeracaoNfce: TButton;
+    tsNfcom: TTabSheet;
+    Panel9: TPanel;
+    btEmitirNfcom: TButton;
+    btCancelarNfcom: TButton;
+    btVerDetalhesNfcom: TButton;
+    btDownloadXmlNfcom: TButton;
+    btDownloadPdfNfcom: TButton;
+    Panel10: TPanel;
+    lvNfcoms: TListView;
+    Panel11: TPanel;
+    Label10: TLabel;
+    btListaNfcoms: TButton;
+    edNfcomCnpj: TEdit;
+    cbNfcomAmbiente: TComboBox;
+    btConsultarStatusSEFAZNfcom: TButton;
+    btListarCotas: TButton;
     procedure FormCreate(Sender: TObject);
     procedure btConsultarCnpjClick(Sender: TObject);
     procedure btConsultarCepClick(Sender: TObject);
@@ -108,6 +125,14 @@ type
     procedure lvEmpresasDblClick(Sender: TObject);
     procedure lvNfcesDblClick(Sender: TObject);
     procedure lvNfsesDblClick(Sender: TObject);
+    procedure btListaNfcomsClick(Sender: TObject);
+    procedure btConsultarStatusSEFAZNfcomClick(Sender: TObject);
+    procedure btInutilizarNumeracaoNfcomClick(Sender: TObject);
+    procedure btEmitirNfcomClick(Sender: TObject);
+    procedure btCancelarNfcomClick(Sender: TObject);
+    procedure btDownloadXmlNfcomClick(Sender: TObject);
+    procedure btDownloadPdfNfcomClick(Sender: TObject);
+    procedure btVerDetalhesNfcomClick(Sender: TObject);
   private
     Client: IACBrAPIClient;
     TokenProvider: IClientCredencialsTokenProvider;
@@ -115,10 +140,12 @@ type
     function BaseUrl: string;
     function AmbienteNfse: string;
     function AmbienteNfce: string;
+    function AmbienteNfcom: string;
     procedure Log(const Msg: string);
     function CnpjSelecionado: string;
     function NfseSelecionada: string;
     function NfceSelecionada: string;
+    function NfcomSelecionada: string;
   public
   end;
 
@@ -197,6 +224,13 @@ begin
   if cbNfceAmbiente.ItemIndex = -1 then
     cbNfceAmbiente.ItemIndex := 0;
   Result := cbNfceAmbiente.Text;
+end;
+
+function TfmMain.AmbienteNfcom: string;
+begin
+  if cbNfcomAmbiente.ItemIndex = -1 then
+    cbNfcomAmbiente.ItemIndex := 0;
+  Result := cbNfseAmbiente.Text;
 end;
 
 function TfmMain.AmbienteNfse: string;
@@ -290,6 +324,43 @@ begin
   end;
 end;
 
+procedure TfmMain.btCancelarNfcomClick(Sender: TObject);
+var
+  Cancelamento: TDfeCancelamento;
+  PedidoCancelamento: TNfcomPedidoCancelamento;
+  Xml: TBytes;
+begin
+  if NfcomSelecionada = '' then
+    Exit;
+
+  if MessageDlg('Tem certeza que deseja cancelar a nota ' + NfcomSelecionada, mtConfirmation, [mbOk, mbCancel], 0, mbCancel) <> mrOk then
+    Exit;
+
+  PedidoCancelamento := TNfcomPedidoCancelamento.Create;
+  try
+    PedidoCancelamento.justificativa := 'Nota fiscal emitida com erro de preenchimento';
+
+    Cancelamento := Client.Nfcom.CancelarNfcom(PedidoCancelamento, NfcomSelecionada);
+    try
+      ShowMessage(Format('Status do cancelamento: %s' + sLineBreak + '%d: %s',
+        [Cancelamento.status, Cancelamento.codigo_status, Cancelamento.motivo_status]));
+
+      if Cancelamento.status = 'registrado' then
+      begin
+        Xml := Client.Nfcom.BaixarXmlCancelamentoNfcom(NfcomSelecionada);
+
+        TFile.WriteAllBytes('cancelamento-nfcom.xml', Xml);
+
+        ShellExecute(Application.Handle, 'open', PChar('cancelamento-nfcom.xml'), nil, nil, SW_SHOW);
+      end;
+    finally
+      Cancelamento.Free;
+    end;
+  finally
+    PedidoCancelamento.Free;
+  end;
+end;
+
 procedure TfmMain.btCancelarNfseClick(Sender: TObject);
 var
   Cancelamento: TNfseCancelamento;
@@ -333,6 +404,22 @@ begin
   end;
 end;
 
+procedure TfmMain.btConsultarStatusSEFAZNfcomClick(Sender: TObject);
+var
+  Status: TDfeSefazStatus;
+begin
+  Status := Client.Nfcom.ConsultarStatusSefazNfcom(edNfcomCnpj.Text, '');
+  try
+    ShowMessage(Format(
+      'Autorizador: %s' + sLineBreak +
+      'Código: %d' + sLineBreak +
+      'Motivo: %s',
+      [Status.autorizador, Status.codigo_status, Status.motivo_status]));
+  finally
+    Status.Free;
+  end;
+end;
+
 procedure TfmMain.btCriarEmpresaClick(Sender: TObject);
 var
   Empresa: TEmpresa;
@@ -362,6 +449,18 @@ begin
   ShellExecute(Application.Handle, 'open', PChar('danfce.pdf'), nil, nil, SW_SHOW);
 end;
 
+procedure TfmMain.btDownloadPdfNfcomClick(Sender: TObject);
+var
+  Pdf: TBytes;
+begin
+  if NfcomSelecionada = '' then
+    Exit;
+
+  Pdf := Client.Nfcom.BaixarPdfNfcom(NfcomSelecionada, True);
+  TFile.WriteAllBytes('danfcom.pdf', Pdf);
+  ShellExecute(Application.Handle, 'open', PChar('danfcom.pdf'), nil, nil, SW_SHOW);
+end;
+
 procedure TfmMain.btDownloadXmlNfceClick(Sender: TObject);
 var
   Xml: TBytes;
@@ -373,9 +472,26 @@ begin
   ShellExecute(Application.Handle, 'open', PChar('nfce.xml'), nil, nil, SW_SHOW);
 end;
 
+procedure TfmMain.btDownloadXmlNfcomClick(Sender: TObject);
+var
+  Xml: TBytes;
+begin
+  if NfcomSelecionada = '' then
+    Exit;
+
+  Xml := Client.Nfcom.BaixarXmlNfcom(NfcomSelecionada);
+  TFile.WriteAllBytes('nfcom.xml', Xml);
+  ShellExecute(Application.Handle, 'open', PChar('nfcom.xml'), nil, nil, SW_SHOW);
+end;
+
 procedure TfmMain.btEmitirNfceClick(Sender: TObject);
 begin
   TfmEmitirNfce.Emitir(Client, AmbienteNfce);
+end;
+
+procedure TfmMain.btEmitirNfcomClick(Sender: TObject);
+begin
+  TfmEmitirNfcom.Emitir(Client, AmbienteNfcom);
 end;
 
 procedure TfmMain.btEmitirNfseClick(Sender: TObject);
@@ -447,6 +563,11 @@ begin
   end;
 end;
 
+procedure TfmMain.btInutilizarNumeracaoNfcomClick(Sender: TObject);
+begin
+  //NFCOM NÃO TEM INUTILIZAÇÃO
+end;
+
 procedure TfmMain.btListaNfcesClick(Sender: TObject);
 var
   Notas: TDfeListagem;
@@ -457,6 +578,35 @@ begin
     AmbienteNfce, '', '');
   try
     lvNfces.Clear;
+    for Nota in Notas.data do
+    begin
+      Item := lvNfces.Items.Add;
+      Item.Caption := Nota.id;
+      Item.SubItems.Add(IntToStr(Nota.numero));
+      Item.SubItems.Add(IntToStr(Nota.serie));
+      Item.SubItems.Add(Nota.status);
+      if Nota.data_emissaoHasValue then
+        Item.SubItems.Add(FormatDateTime('dd/mm/yyyy HH:nn:ss', Nota.data_emissao))
+      else
+        Item.SubItems.Add('');
+      Item.SubItems.Add(Nota.chave);
+      Item.SubItems.Add(FormatFloat('"R$" #,0.00', Nota.valor_total));
+    end;
+  finally
+    Notas.Free;
+  end;
+end;
+
+procedure TfmMain.btListaNfcomsClick(Sender: TObject);
+var
+  Notas: TDfeListagem;
+  Nota: TDfe;
+  Item: TListItem;
+begin
+  Notas := Client.Nfcom.ListarNfcom(30, 0, False, edNfcomCnpj.Text, '',
+    AmbienteNfse, '', '');
+  try
+    lvNfcoms.Clear;
     for Nota in Notas.data do
     begin
       Item := lvNfces.Items.Add;
@@ -521,6 +671,18 @@ begin
     TfmDetalhesNfce.Visualizar(Nfce);
   finally
     Nfce.Free;
+  end;
+end;
+
+procedure TfmMain.btVerDetalhesNfcomClick(Sender: TObject);
+var
+  Nfcom: TDfe;
+begin
+  Nfcom := Client.Nfcom.ConsultarNfcom(NfcomSelecionada);
+  try
+    TfmDetalhesNfcom.Visualizar(Nfcom);
+  finally
+    Nfcom.Free;
   end;
 end;
 
@@ -617,6 +779,14 @@ function TfmMain.NfceSelecionada: string;
 begin
   if lvNfces.Selected <> nil then
     Result := lvNfces.Selected.Caption
+  else
+    Result := '';
+end;
+
+function TfmMain.NfcomSelecionada: string;
+begin
+  if lvNfcoms.Selected <> nil then
+    Result := lvNfcoms.Selected.Caption
   else
     Result := '';
 end;
