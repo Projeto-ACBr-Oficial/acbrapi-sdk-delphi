@@ -749,7 +749,7 @@ begin
   Client := TACBrAPIClient.Create;
   Client.Config.BaseUrl := BaseUrl;
   TokenProvider := TClientCredentialsTokenProvider.Create;
-  TokenProvider.TokenEndpoint := 'https://auth.acbr.api.br/oauth/token';
+  TokenProvider.TokenEndpoint := 'https://auth.acbr.api.br/realms/ACBrAPI/protocol/openid-connect/token';
 end;
 
 procedure TfmMain.Log(const Msg: string);
