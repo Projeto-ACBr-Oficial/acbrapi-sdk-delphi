@@ -45,8 +45,12 @@ type
     /// </param>
     /// <remarks>
     /// **Informações adicionais**:
-    /// - Cota: <a href="/docs/limites#cep-consultas">cep-consultas</a>
-    /// - Consumo: 1 unidade requisição.
+    /// - Consumo: 0,1 unidade requisição.
+    /// - Em sandbox, a consulta é permitida somente para os seguintes CEP:
+    ///   `18270000` Tatuí/SP
+    ///   `01310300` São Paulo/SP
+    ///   `22010000` Rio de Janeiro/RJ
+    ///   `80020130` Curitiba/PR
     /// </remarks>
     function ConsultarCep(Cep: string): TCepEndereco;
   end;
@@ -90,8 +94,8 @@ type
     /// Somente serão retornados estabelecimentos com situação cadastral "Ativa".
     /// 
     /// **Informações adicionais**:
-    /// - Cota: <a href="/docs/limites#cnpj-listagem">cnpj-listagem</a>
-    /// - Consumo: 1 unidade por estabelecimento listado ou requisição.
+    /// - Consumo: 0,1 unidade por estabelecimento listado ou requisição.
+    /// - Em sandbox, a consulta de listagem de CNPJ não é permitida.
     /// </remarks>
     function ListarCnpj(Top: Integer; Skip: Integer; Inlinecount: Boolean; CnaePrincipal: string; Municipio: string; NaturezaJuridica: string): TCnpjListagem;
     /// <summary>
@@ -102,8 +106,12 @@ type
     /// </param>
     /// <remarks>
     /// **Informações adicionais**:
-    /// - Cota: <a href="/docs/limites#cnpj-consultas">cnpj-consultas</a>
-    /// - Consumo: 1 unidade por requisição.
+    /// - Consumo: 0,1 unidade por requisição.
+    /// - Em sandbox, a consulta é permitida somente para os seguintes CNPJ:
+    ///   `18760540000139`
+    ///   `00038166000105`
+    ///   `00394460000141`
+    ///   `29979036000140`
     /// </remarks>
     function ConsultarCnpj(Cnpj: string): TCnpjEmpresa;
   end;
@@ -141,9 +149,13 @@ type
   IContaService = interface(IInvokable)
     ['{E92E7424-BA3B-46A5-89A5-BD5569788EE2}']
     /// <summary>
-    /// Consultar os limites de uso e consumo de todas as cotas existentes.
+    /// Consultar os limites de uso e consumo das cotas disponíveis, exceto a cota de créditos pré-pagos.
     /// </summary>
     function ListarCotasConta: TContaCotaListagem;
+    /// <summary>
+    /// Consultar o resumo da cota de créditos pré-pagos.
+    /// </summary>
+    function ConsultarCotaPrePago: TContaCotaPrePago;
     /// <summary>
     /// Consultar o limite de uso e o consumo de uma cota específica.
     /// </summary>
@@ -151,15 +163,21 @@ type
     /// Nome da cota a ser consultada.
     /// </param>
     function ConsultarCotaConta(Nome: string): TContaCota;
+    /// <summary>
+    /// Consultar o extrato de movimentação de créditos do tenant atual.
+    /// </summary>
+    function ListarExtratoCreditosConta(DataInicial: string; DataFinal: string; Top: Integer; Skip: Integer; Limit: Integer): TContaExtratoCreditoListagem;
   end;
   
   TContaService = class(TRestService, IContaService)
   public
     function ListarCotasConta: TContaCotaListagem;
+    function ConsultarCotaPrePago: TContaCotaPrePago;
     /// <param name="Nome">
     /// Nome da cota a ser consultada.
     /// </param>
     function ConsultarCotaConta(Nome: string): TContaCota;
+    function ListarExtratoCreditosConta(DataInicial: string; DataFinal: string; Top: Integer; Skip: Integer; Limit: Integer): TContaExtratoCreditoListagem;
   end;
   
   /// <summary>
@@ -207,7 +225,6 @@ type
     /// </summary>
     /// <remarks>
     /// **Informações adicionais**:
-    /// - Cota: <a href="/docs/limites#dfe-eventos">dfe-eventos</a>
     /// - Consumo: 1 unidade por requisição.
     /// </remarks>
     function EmitirCte(Body: TCtePedidoEmissao): TDfe;
@@ -231,6 +248,10 @@ type
     /// <param name="Id">
     /// ID único do evento gerado pela API.
     /// </param>
+    /// <remarks>
+    /// **Informações adicionais**:
+    /// - Consumo: Primeira requisição isenta, posteriores 1 unidade por requisição.
+    /// </remarks>
     function BaixarXmlEventoCte(Id: string): TBytes;
     /// <summary>
     /// Consulta do Status do Serviço na SEFAZ Autorizadora
@@ -257,7 +278,6 @@ type
     /// </summary>
     /// <remarks>
     /// **Informações adicionais**:
-    /// - Cota: <a href="/docs/limites#dfe-eventos">dfe-eventos</a>
     /// - Consumo: 1 unidade por requisição.
     /// </remarks>
     function EmitirCteSimp(Body: TCteSimpPedidoEmissao): TDfe;
@@ -286,7 +306,6 @@ type
     /// </param>
     /// <remarks>
     /// **Informações adicionais**:
-    /// - Cota: <a href="/docs/limites#dfe-eventos">dfe-eventos</a>
     /// - Consumo: 1 unidade por requisição.
     /// </remarks>
     function CancelarCte(Body: TCtePedidoCancelamento; Id: string): TDfeCancelamento;
@@ -303,6 +322,10 @@ type
     /// <param name="Id">
     /// ID único do CT-e gerado pela API.
     /// </param>
+    /// <remarks>
+    /// **Informações adicionais**:
+    /// - Consumo: Primeira requisição isenta, posteriores 1 unidade por requisição.
+    /// </remarks>
     function BaixarXmlCancelamentoCte(Id: string): TBytes;
     /// <summary>
     /// Consultar a solicitação de correção do CT-e
@@ -321,7 +344,6 @@ type
     /// É possível enviar até 20 correções diferentes, sendo que será válido sempre a última correção enviada.
     /// 
     /// **Informações adicionais**:
-    /// - Cota: <a href="/docs/limites#dfe-eventos">dfe-eventos</a>
     /// - Consumo: 1 unidade por requisição.
     /// </remarks>
     function CriarCartaCorrecaoCte(Body: TCtePedidoCartaCorrecao; Id: string): TCteCartaCorrecao;
@@ -338,6 +360,10 @@ type
     /// <param name="Id">
     /// ID único do CT-e gerado pela API.
     /// </param>
+    /// <remarks>
+    /// **Informações adicionais**:
+    /// - Consumo: Primeira requisição isenta, posteriores 1 unidade por requisição.
+    /// </remarks>
     function BaixarXmlCartaCorrecaoCte(Id: string): TBytes;
     /// <summary>
     /// Baixar PDF do DACTE
@@ -364,7 +390,6 @@ type
     /// * Sincronizar todos os eventos de Cancelamento e Carta de Correção de um CT-e que porventura não tenham sido feitos a partir da API.
     /// 
     /// **Informações adicionais**:
-    /// - Cota: <a href="/docs/limites#dfe-eventos">dfe-eventos</a>
     /// - Consumo: 1 unidade por evento sincronizado ou requisição.
     /// </remarks>
     function SincronizarCte(Id: string): TDfeSincronizacao;
@@ -378,6 +403,9 @@ type
     /// Utilize esse endpoint para obter o XML do conhecimento enviado para a SEFAZ, complementado com a informação do protocolo de autorização de uso (TAG raiz `cteProc`).
     /// 
     /// O XML só estará disponível nesse endpoint caso o conhecimento tenha sido autorizado pela SEFAZ. Para obter o XML nos demais casos, utilize o endpoint `GET /cte/{id}/xml/conhecimento`.
+    /// 
+    /// **Informações adicionais**:
+    /// - Consumo: Primeira requisição isenta, posteriores 1 unidade por requisição.
     /// </remarks>
     function BaixarXmlCte(Id: string): TBytes;
     /// <summary>
@@ -390,6 +418,9 @@ type
     /// Utilize esse endpoint para obter o XML do conhecimento enviado para a SEFAZ.
     /// 
     /// O XML estará disponível nesse endpoint mesmo em casos que o conhecimento tenha sido rejeitado.
+    /// 
+    /// **Informações adicionais**:
+    /// - Consumo: Primeira requisição isenta, posteriores 1 unidade por requisição.
     /// </remarks>
     function BaixarXmlCteConhecimento(Id: string): TBytes;
     /// <summary>
@@ -398,6 +429,10 @@ type
     /// <param name="Id">
     /// ID único da CT-e gerado pela API.
     /// </param>
+    /// <remarks>
+    /// **Informações adicionais**:
+    /// - Consumo: Primeira requisição isenta, posteriores 1 unidade por requisição.
+    /// </remarks>
     function BaixarXmlCteProtocolo(Id: string): TBytes;
   end;
   
@@ -564,7 +599,6 @@ type
     /// </summary>
     /// <remarks>
     /// **Informações adicionais**:
-    /// - Cota: <a href="/docs/limites#dfe-eventos">dfe-eventos</a>
     /// - Consumo: 1 unidade por requisição.
     /// </remarks>
     function EmitirCteOs(Body: TCteOsPedidoEmissao): TDfe;
@@ -588,6 +622,10 @@ type
     /// <param name="Id">
     /// ID único do evento gerado pela API.
     /// </param>
+    /// <remarks>
+    /// **Informações adicionais**:
+    /// - Consumo: Primeira requisição isenta, posteriores 1 unidade por requisição.
+    /// </remarks>
     function BaixarXmlEventoCteOs(Id: string): TBytes;
     /// <summary>
     /// Consulta do Status do Serviço na SEFAZ Autorizadora
@@ -634,7 +672,6 @@ type
     /// </param>
     /// <remarks>
     /// **Informações adicionais**:
-    /// - Cota: <a href="/docs/limites#dfe-eventos">dfe-eventos</a>
     /// - Consumo: 1 unidade por requisição.
     /// </remarks>
     function CancelarCteOs(Body: TCteOsPedidoCancelamento; Id: string): TDfeCancelamento;
@@ -651,6 +688,10 @@ type
     /// <param name="Id">
     /// ID único do CT-e OS gerado pela API.
     /// </param>
+    /// <remarks>
+    /// **Informações adicionais**:
+    /// - Consumo: Primeira requisição isenta, posteriores 1 unidade por requisição.
+    /// </remarks>
     function BaixarXmlCancelamentoCteOs(Id: string): TBytes;
     /// <summary>
     /// Consultar a solicitação de correção do CT-e OS
@@ -669,7 +710,6 @@ type
     /// É possível enviar até 20 correções diferentes, sendo que será válido sempre a última correção enviada.
     /// 
     /// **Informações adicionais**:
-    /// - Cota: <a href="/docs/limites#dfe-eventos">dfe-eventos</a>
     /// - Consumo: 1 unidade por requisição.
     /// </remarks>
     function CriarCartaCorrecaoCteOs(Body: TCteOsPedidoCartaCorrecao; Id: string): TCteOsCartaCorrecao;
@@ -686,6 +726,10 @@ type
     /// <param name="Id">
     /// ID único do CT-e OS gerado pela API.
     /// </param>
+    /// <remarks>
+    /// **Informações adicionais**:
+    /// - Consumo: Primeira requisição isenta, posteriores 1 unidade por requisição.
+    /// </remarks>
     function BaixarXmlCartaCorrecaoCteOs(Id: string): TBytes;
     /// <summary>
     /// Baixar PDF do DACTE
@@ -712,7 +756,6 @@ type
     /// * Sincronizar todos os eventos de Cancelamento e Carta de Correção de um CT-e OS que porventura não tenham sido feitos a partir da API.
     /// 
     /// **Informações adicionais**:
-    /// - Cota: <a href="/docs/limites#dfe-eventos">dfe-eventos</a>
     /// - Consumo: 1 unidade por evento sincronizado ou requisição.
     /// </remarks>
     function SincronizarCteOs(Id: string): TDfeSincronizacao;
@@ -726,6 +769,9 @@ type
     /// Utilize esse endpoint para obter o XML do conhecimento enviado para a SEFAZ, complementado com a informação do protocolo de autorização de uso (TAG raiz `cteProc`).
     /// 
     /// O XML só estará disponível nesse endpoint caso o conhecimento tenha sido autorizado pela SEFAZ. Para obter o XML nos demais casos, utilize o endpoint `GET /cteos/{id}/xml/conhecimento`.
+    /// 
+    /// **Informações adicionais**:
+    /// - Consumo: Primeira requisição isenta, posteriores 1 unidade por requisição.
     /// </remarks>
     function BaixarXmlCteOs(Id: string): TBytes;
     /// <summary>
@@ -738,6 +784,9 @@ type
     /// Utilize esse endpoint para obter o XML do conhecimento enviado para a SEFAZ.
     /// 
     /// O XML estará disponível nesse endpoint mesmo em casos que o conhecimento tenha sido rejeitado.
+    /// 
+    /// **Informações adicionais**:
+    /// - Consumo: Primeira requisição isenta, posteriores 1 unidade por requisição.
     /// </remarks>
     function BaixarXmlCteOsConhecimento(Id: string): TBytes;
     /// <summary>
@@ -746,6 +795,10 @@ type
     /// <param name="Id">
     /// ID único da CT-e OS gerado pela API.
     /// </param>
+    /// <remarks>
+    /// **Informações adicionais**:
+    /// - Consumo: Primeira requisição isenta, posteriores 1 unidade por requisição.
+    /// </remarks>
     function BaixarXmlCteOsProtocolo(Id: string): TBytes;
   end;
   
@@ -911,7 +964,6 @@ type
     /// </summary>
     /// <remarks>
     /// **Informações adicionais**:
-    /// - Cota: <a href="/docs/limites#dfe-eventos">dfe-eventos</a>
     /// - Consumo: 1 unidade por requisição.
     /// </remarks>
     function EmitirDce(Body: TDcePedidoEmissao): TDfe;
@@ -960,7 +1012,6 @@ type
     /// </param>
     /// <remarks>
     /// **Informações adicionais**:
-    /// - Cota: <a href="/docs/limites#dfe-eventos">dfe-eventos</a>
     /// - Consumo: 1 unidade por requisição.
     /// </remarks>
     function CancelarDce(Body: TDcePedidoCancelamento; Id: string): TDfeCancelamento;
@@ -970,6 +1021,10 @@ type
     /// <param name="Id">
     /// ID único da DC-e gerada pela API.
     /// </param>
+    /// <remarks>
+    /// **Informações adicionais**:
+    /// - Consumo: Primeira requisição isenta, posteriores 1 unidade por requisição.
+    /// </remarks>
     function BaixarXmlCancelamentoDce(Id: string): TBytes;
     /// <summary>
     /// Baixar PDF do DACE
@@ -988,6 +1043,9 @@ type
     /// Utilize esse endpoint para obter o XML da DC-e enviada para a SEFAZ, complementado com a informação do protocolo de autorização de uso (TAG raiz `dceProc`).
     /// 
     /// O XML só estará disponível nesse endpoint caso a DC-e tenha sido autorizada pela SEFAZ. Para obter o XML nos demais casos, utilize o endpoint `GET /dce/{id}/xml/declaracao`.
+    /// 
+    /// **Informações adicionais**:
+    /// - Consumo: Primeira requisição isenta, posteriores 1 unidade por requisição.
     /// </remarks>
     function BaixarXmlDce(Id: string): TBytes;
     /// <summary>
@@ -1000,6 +1058,9 @@ type
     /// Utilize esse endpoint para obter o XML da DC-e enviada para a SEFAZ.
     /// 
     /// O XML estará disponível nesse endpoint mesmo em casos que a declaração tenha sido rejeitada.
+    /// 
+    /// **Informações adicionais**:
+    /// - Consumo: Primeira requisição isenta, posteriores 1 unidade por requisição.
     /// </remarks>
     function BaixarXmlDceDeclaracao(Id: string): TBytes;
     /// <summary>
@@ -1008,6 +1069,10 @@ type
     /// <param name="Id">
     /// ID único da DC-e gerada pela API.
     /// </param>
+    /// <remarks>
+    /// **Informações adicionais**:
+    /// - Consumo: Primeira requisição isenta, posteriores 1 unidade por requisição.
+    /// </remarks>
     function BaixarXmlDceProtocolo(Id: string): TBytes;
   end;
   
@@ -1258,7 +1323,6 @@ type
     /// processamento (concluido ou erro).
     /// 
     /// **Informações adicionais**:
-    /// - Cota: <a href="/docs/limites#dfe-eventos">dfe-eventos</a>
     /// - Consumo: 1 unidade por documento distribuído (retornado) ou requisição.
     /// </remarks>
     function GerarDistribuicaoNfe(Body: TDistribuicaoNfePedido): TDistribuicaoNfe;
@@ -1335,6 +1399,9 @@ type
     /// </param>
     /// <remarks>
     /// Utilize esse endpoint para obter o XML das informações resumidas ou documento fiscal de interesse da pessoa ou empresa interessada.
+    /// 
+    /// **Informações adicionais**:
+    /// - Consumo: Primeira requisição isenta, posteriores 1 unidade por requisição.
     /// </remarks>
     function BaixarXmlDocumentoDistribuicaoNfe(Id: string): TBytes;
     /// <summary>
@@ -1383,7 +1450,6 @@ type
     /// * **Operação não Realizada (210240)**: Manifestação do destinatário reconhecendo sua participação na operação descrita na NF-e, mas declarando que a operação não ocorreu ou não se efetivou como informado nesta NF-e.
     /// 
     /// **Informações adicionais**:
-    /// - Cota: <a href="/docs/limites#dfe-eventos">dfe-eventos</a>
     /// - Consumo: 1 unidade por requisição.
     /// </remarks>
     function ManifestarNfe(Body: TDistribuicaoNfePedidoManifestacao): TDistribuicaoNfeEvento;
@@ -1719,10 +1785,20 @@ type
     /// 
     /// *Utilize o valor sem máscara*.
     /// </param>
+    /// <param name="NomeRazaoSocial">
+    /// Filtrar pelo nome ou razão social da empresa.
+    /// 
+    /// Esse filtro realiza uma correspondência pelo início do texto,
+    /// retornando apenas empresas cujo nome ou razão social começam com
+    /// o valor informado.
+    /// 
+    /// *Caso o filtro pelo CPF ou CNPJ também seja informado na requisição,
+    /// este filtro é ignorado*.
+    /// </param>
     /// <remarks>
     /// Retorna a lista das empresas associadas à sua conta. As empresas são retornadas ordenadas pela data da criação, com as mais recentes aparecendo primeiro.
     /// </remarks>
-    function ListarEmpresas(Top: Integer; Skip: Integer; Inlinecount: Boolean; CpfCnpj: string): TEmpresaListagem;
+    function ListarEmpresas(Top: Integer; Skip: Integer; Inlinecount: Boolean; CpfCnpj: string; NomeRazaoSocial: string): TEmpresaListagem;
     /// <summary>
     /// Cadastrar empresa
     /// </summary>
@@ -2014,7 +2090,17 @@ type
     /// 
     /// *Utilize o valor sem máscara*.
     /// </param>
-    function ListarEmpresas(Top: Integer; Skip: Integer; Inlinecount: Boolean; CpfCnpj: string): TEmpresaListagem;
+    /// <param name="NomeRazaoSocial">
+    /// Filtrar pelo nome ou razão social da empresa.
+    /// 
+    /// Esse filtro realiza uma correspondência pelo início do texto,
+    /// retornando apenas empresas cujo nome ou razão social começam com
+    /// o valor informado.
+    /// 
+    /// *Caso o filtro pelo CPF ou CNPJ também seja informado na requisição,
+    /// este filtro é ignorado*.
+    /// </param>
+    function ListarEmpresas(Top: Integer; Skip: Integer; Inlinecount: Boolean; CpfCnpj: string; NomeRazaoSocial: string): TEmpresaListagem;
     function CriarEmpresa(Body: TEmpresa): TEmpresa;
     /// <param name="Top">
     /// Limite no número de objetos a serem retornados pela API, entre 1 e 100.
@@ -2223,7 +2309,6 @@ type
     /// </summary>
     /// <remarks>
     /// **Informações adicionais**:
-    /// - Cota: <a href="/docs/limites#dfe-eventos">dfe-eventos</a>
     /// - Consumo: 1 unidade por requisição.
     /// </remarks>
     function EmitirMdfe(Body: TMdfePedidoEmissao): TDfe;
@@ -2247,6 +2332,10 @@ type
     /// <param name="Id">
     /// ID único do evento gerado pela API.
     /// </param>
+    /// <remarks>
+    /// **Informações adicionais**:
+    /// - Consumo: Primeira requisição isenta, posteriores 1 unidade por requisição.
+    /// </remarks>
     function BaixarXmlEventoMdfe(Id: string): TBytes;
     /// <summary>
     /// Listar lotes de MDF-e
@@ -2278,7 +2367,6 @@ type
     /// </summary>
     /// <remarks>
     /// **Informações adicionais**:
-    /// - Cota: <a href="/docs/limites#dfe-eventos">dfe-eventos</a>
     /// - Consumo: 1 unidade por MDF-e.
     /// </remarks>
     function EmitirLoteMdfe(Body: TMdfePedidoEmissaoLote): TDfeLote;
@@ -2348,7 +2436,6 @@ type
     /// </param>
     /// <remarks>
     /// **Informações adicionais**:
-    /// - Cota: <a href="/docs/limites#dfe-eventos">dfe-eventos</a>
     /// - Consumo: 1 unidade por requisição.
     /// </remarks>
     function CancelarMdfe(Body: TMdfePedidoCancelamento; Id: string): TDfeCancelamento;
@@ -2365,6 +2452,10 @@ type
     /// <param name="Id">
     /// ID único do MDF-e gerado pela API.
     /// </param>
+    /// <remarks>
+    /// **Informações adicionais**:
+    /// - Consumo: Primeira requisição isenta, posteriores 1 unidade por requisição.
+    /// </remarks>
     function BaixarXmlCancelamentoMdfe(Id: string): TBytes;
     /// <summary>
     /// Consultar encerramento do MDF-e
@@ -2381,7 +2472,6 @@ type
     /// </param>
     /// <remarks>
     /// **Informações adicionais**:
-    /// - Cota: <a href="/docs/limites#dfe-eventos">dfe-eventos</a>
     /// - Consumo: 1 unidade por requisição.
     /// </remarks>
     function EncerrarMdfe(Body: TMdfePedidoEncerramento; Id: string): TMdfeEncerramento;
@@ -2398,6 +2488,10 @@ type
     /// <param name="Id">
     /// ID único do MDF-e gerado pela API.
     /// </param>
+    /// <remarks>
+    /// **Informações adicionais**:
+    /// - Consumo: Primeira requisição isenta, posteriores 1 unidade por requisição.
+    /// </remarks>
     function BaixarXmlEncerramentoMdfe(Id: string): TBytes;
     /// <summary>
     /// Incluir um condutor em um MDF-e autorizado
@@ -2407,7 +2501,6 @@ type
     /// </param>
     /// <remarks>
     /// **Informações adicionais**:
-    /// - Cota: <a href="/docs/limites#dfe-eventos">dfe-eventos</a>
     /// - Consumo: 1 unidade por requisição.
     /// </remarks>
     function IncluirCondutorMdfe(Body: TMdfePedidoInclusaoCondutor; Id: string): TMdfeInclusaoCondutor;
@@ -2419,7 +2512,6 @@ type
     /// </param>
     /// <remarks>
     /// **Informações adicionais**:
-    /// - Cota: <a href="/docs/limites#dfe-eventos">dfe-eventos</a>
     /// - Consumo: 1 unidade por requisição.
     /// </remarks>
     function IncluirDfeMdfe(Body: TMdfePedidoInclusaoDfe; Id: string): TMdfeInclusaoDfe;
@@ -2448,7 +2540,6 @@ type
     /// * Sincronizar todos os eventos de Cancelamento, Encerramento, Inclusão de condutor e Inclusão de DF-e de um manifesto que porventura não tenham sido feitos a partir da API.
     /// 
     /// **Informações adicionais**:
-    /// - Cota: <a href="/docs/limites#dfe-eventos">dfe-eventos</a>
     /// - Consumo: 1 unidade por evento sincronizado ou requisição.
     /// </remarks>
     function SincronizarMdfe(Id: string): TDfeSincronizacao;
@@ -2462,6 +2553,9 @@ type
     /// Utilize esse endpoint para obter o XML do manifesto enviado para a SEFAZ, complementado com a informação do protocolo de autorização ou denegação de uso (TAG raiz `mdfeProc`).
     /// 
     /// O XML só estará disponível nesse endpoint caso o manifesto tenha sido autorizado ou denegado pela SEFAZ. Para obter o XML nos demais casos, utilize o endpoint `GET /mdfe/{id}/xml/manifesto`.
+    /// 
+    /// **Informações adicionais**:
+    /// - Consumo: Primeira requisição isenta, posteriores 1 unidade por requisição.
     /// </remarks>
     function BaixarXmlMdfe(Id: string): TBytes;
     /// <summary>
@@ -2474,6 +2568,9 @@ type
     /// Utilize esse endpoint para obter o XML do manifesto enviado para a SEFAZ.
     /// 
     /// O XML estará disponível nesse endpoint mesmo em casos que o manifesto tenha sido rejeitado.
+    /// 
+    /// **Informações adicionais**:
+    /// - Consumo: Primeira requisição isenta, posteriores 1 unidade por requisição.
     /// </remarks>
     function BaixarXmlMdfeManifesto(Id: string): TBytes;
     /// <summary>
@@ -2482,6 +2579,10 @@ type
     /// <param name="Id">
     /// ID único da MDF-e gerado pela API.
     /// </param>
+    /// <remarks>
+    /// **Informações adicionais**:
+    /// - Consumo: Primeira requisição isenta, posteriores 1 unidade por requisição.
+    /// </remarks>
     function BaixarXmlMdfeProtocolo(Id: string): TBytes;
   end;
   
@@ -2687,7 +2788,6 @@ type
     /// </summary>
     /// <remarks>
     /// **Informações adicionais**:
-    /// - Cota: <a href="/docs/limites#dfe-eventos">dfe-eventos</a>
     /// - Consumo: 1 unidade por requisição.
     /// </remarks>
     function EmitirNfce(Body: TNfePedidoEmissao): TDfe;
@@ -2730,13 +2830,16 @@ type
     /// <param name="Id">
     /// ID único do evento gerado pela API.
     /// </param>
+    /// <remarks>
+    /// **Informações adicionais**:
+    /// - Consumo: Primeira requisição isenta, posteriores 1 unidade por requisição.
+    /// </remarks>
     function BaixarXmlEventoNfce(Id: string): TBytes;
     /// <summary>
     /// Inutilizar uma sequência de numeração de NFC-e
     /// </summary>
     /// <remarks>
     /// **Informações adicionais**:
-    /// - Cota: <a href="/docs/limites#dfe-eventos">dfe-eventos</a>
     /// - Consumo: 1 unidade por requisição.
     /// </remarks>
     function InutilizarNumeracaoNfce(Body: TDfePedidoInutilizacao): TDfeInutilizacao;
@@ -2760,6 +2863,10 @@ type
     /// <param name="Id">
     /// ID único do evento gerado pela API.
     /// </param>
+    /// <remarks>
+    /// **Informações adicionais**:
+    /// - Consumo: Primeira requisição isenta, posteriores 1 unidade por requisição.
+    /// </remarks>
     function BaixarXmlInutilizacaoNfce(Id: string): TBytes;
     /// <summary>
     /// Listar lotes de NFC-e
@@ -2791,7 +2898,6 @@ type
     /// </summary>
     /// <remarks>
     /// **Informações adicionais**:
-    /// - Cota: <a href="/docs/limites#dfe-eventos">dfe-eventos</a>
     /// - Consumo: 1 unidade por NFC-e.
     /// </remarks>
     function EmitirLoteNfce(Body: TNfePedidoEmissaoLote): TDfeLote;
@@ -2878,7 +2984,6 @@ type
     /// **Atenção**: O DANFE gerado por este endpoint é apenas para fins de visualização e não possui valor fiscal. Para a emissão de uma NF-e com valor fiscal, utilize o processo de emissão padrão descrito na documentação.
     /// 
     /// **Informações adicionais**:
-    /// - Cota: <a href="/docs/limites#dfe-eventos">dfe-eventos</a>
     /// - Consumo: 1 unidade por requisição.
     /// </remarks>
     function BaixarPreviaPdfNfce(Body: TNfePedidoEmissao; Logotipo: Boolean; NomeFantasia: Boolean; MensagemRodape: string; Resumido: Boolean; QrcodeLateral: Boolean; Largura: Integer; Margem: string): TBytes;
@@ -2893,7 +2998,6 @@ type
     /// **Atenção**: O XML gerado por este endpoint é apenas para fins de visualização e não possui valor fiscal. Para a emissão de uma NF-e com valor fiscal, utilize o processo de emissão padrão descrito na documentação.
     /// 
     /// **Informações adicionais**:
-    /// - Cota: <a href="/docs/limites#dfe-eventos">dfe-eventos</a>
     /// - Consumo: 1 unidade por requisição.
     /// </remarks>
     function BaixarPreviaXmlNfce(Body: TNfePedidoEmissao): TBytes;
@@ -2942,7 +3046,6 @@ type
     /// </param>
     /// <remarks>
     /// **Informações adicionais**:
-    /// - Cota: <a href="/docs/limites#dfe-eventos">dfe-eventos</a>
     /// - Consumo: 1 unidade por requisição.
     /// </remarks>
     function CancelarNfce(Body: TNfePedidoCancelamento; Id: string): TDfeCancelamento;
@@ -2959,6 +3062,10 @@ type
     /// <param name="Id">
     /// ID único da NFC-e gerado pela API.
     /// </param>
+    /// <remarks>
+    /// **Informações adicionais**:
+    /// - Consumo: Primeira requisição isenta, posteriores 1 unidade por requisição.
+    /// </remarks>
     function BaixarXmlCancelamentoNfce(Id: string): TBytes;
     /// <summary>
     /// Enviar e-mail
@@ -2966,14 +3073,75 @@ type
     /// <param name="Id">
     /// ID único da NFC-e gerado pela API.
     /// </param>
+    /// <param name="Logotipo">
+    /// Imprime o documento com logotipo, desde que esteja cadastrado na empresa.
+    /// </param>
+    /// <param name="NomeFantasia">
+    /// Exibe o nome fantasia do emitente, desde que esteja presente no XML da nota.
+    /// </param>
+    /// <param name="MensagemRodape">
+    /// Imprime mensagem no rodapé do documento.
+    /// 
+    /// O caractere `|` (pipe) poderá ser utilizado para definir a quantidade e o alinhamento das mensagens.
+    /// 
+    /// **Exemplos de Uso:**
+    /// * `"esquerda"`
+    /// * `"esquerda|centro"`
+    /// * `"esquerda|centro|direita"`
+    /// * `"|centro"`, `"|centro|"`
+    /// * `"|centro|direita"`
+    /// * `"||direita"`
+    /// * `"esquerda||direita"`
+    /// </param>
+    /// <param name="Resumido">
+    /// Poderá ser impresso apenas o DANFE NFC-e resumido ou ecológico, sem o detalhamento dos itens da venda, desde que a Unidade Federada permita esta opção em sua legislação e o consumidor assim o solicite.
+    /// </param>
+    /// <param name="QrcodeLateral">
+    /// Imprime o QRCode na lateral do DANFE NFC-e.
+    /// 
+    /// *Disponível apenas para DANFE com 80 milímetros de largura*.
+    /// </param>
+    /// <param name="Largura">
+    /// Largura do DANFE NFC-e (em milímetros).
+    /// </param>
+    /// <param name="Margem">
+    /// Define as margens do DANFE NFC-e (em milímetros).
+    /// 
+    /// Essa propriedade pode ser especificada usando um, dois, três ou quatro valores (separados por vírgulas). Cada valor deve ser um número entre `0` e `9`.
+    /// * Quando **um** valor é especificado, a mesma margem é aplicada para **todos os quatro lados**.
+    /// * Quando **dois** valores são especificados, a primeira margem é aplicada aos **lados esquerdo e direito**, e a segunda aos **lados superior e inferior**.
+    /// * Quando **três** valores são especificados, a primeira margem é aplicada ao **lado esquerdo**, a segunda aos **lados superior e inferior**, e a terceira ao **lado direito**.
+    /// * Quando **quatro** valores são especificados, as margens são aplicadas aos lados **esquerdo**, **superior**, **direito** e **inferior**, nesta ordem (sentido horário).
+    /// 
+    /// **Exemplos de uso**:
+    /// * `margem=1`
+    ///   - Margem esquerda: 1mm
+    ///   - Margem superior: 1mm
+    ///   - Margem direita: 1mm
+    ///   - Margem inferior: 1mm
+    /// * `margem=1,2`
+    ///   - Margem esquerda: 1mm
+    ///   - Margem superior: 2mm
+    ///   - Margem direita: 1mm
+    ///   - Margem inferior: 2mm
+    /// * `margem=1,2,3`
+    ///   - Margem esquerda: 1mm
+    ///   - Margem superior: 2mm
+    ///   - Margem direita: 3mm
+    ///   - Margem inferior: 2mm
+    /// * `margem=1,2,3,4`
+    ///   - Margem esquerda: 1mm
+    ///   - Margem superior: 2mm
+    ///   - Margem direita: 3mm
+    ///   - Margem inferior: 4mm
+    /// </param>
     /// <remarks>
     /// Envia o XML e PDF da nota via email.
     /// 
     /// **Informações adicionais**:
-    /// - Cota: <a href="/docs/limites#dfe-eventos">dfe-eventos</a>
     /// - Consumo: 1 unidade por requisição.
     /// </remarks>
-    function EnviarEmailNfce(Body: TDfePedidoEnvioEmail; Id: string): TEmailStatusResponse;
+    function EnviarEmailNfce(Body: TDfePedidoEnvioEmail; Id: string; Logotipo: Boolean; NomeFantasia: Boolean; MensagemRodape: string; Resumido: Boolean; QrcodeLateral: Boolean; Largura: Integer; Margem: string): TEmailStatusResponse;
     /// <summary>
     /// Comandos ESC/POS para impressão do DANFCE
     /// </summary>
@@ -3097,7 +3265,6 @@ type
     /// * Sincronizar todos os eventos de Cancelamento, Carta de Correção e EPEC de uma nota que porventura não tenham sido feitos a partir da API.
     /// 
     /// **Informações adicionais**:
-    /// - Cota: <a href="/docs/limites#dfe-eventos">dfe-eventos</a>
     /// - Consumo: 1 unidade por evento sincronizado ou requisição.
     /// </remarks>
     function SincronizarNfce(Id: string): TDfeSincronizacao;
@@ -3111,6 +3278,9 @@ type
     /// Utilize esse endpoint para obter o XML da nota enviado para a SEFAZ, complementado com a informação do protocolo de autorização ou denegação de uso (TAG raiz `nfeProc`).
     /// 
     /// O XML só estará disponível nesse endpoint caso a nota tenha sido autorizada ou denegada pela SEFAZ. Para obter o XML nos demais casos, utilize o endpoint `GET /nfce/{id}/xml/nota`.
+    /// 
+    /// **Informações adicionais**:
+    /// - Consumo: Primeira requisição isenta, posteriores 1 unidade por requisição.
     /// </remarks>
     function BaixarXmlNfce(Id: string): TBytes;
     /// <summary>
@@ -3123,6 +3293,9 @@ type
     /// Utilize esse endpoint para obter o XML da nota enviado para a SEFAZ.
     /// 
     /// O XML estará disponível nesse endpoint mesmo em casos que a nota tenha sido rejeitada.
+    /// 
+    /// **Informações adicionais**:
+    /// - Consumo: Primeira requisição isenta, posteriores 1 unidade por requisição.
     /// </remarks>
     function BaixarXmlNfceNota(Id: string): TBytes;
     /// <summary>
@@ -3131,6 +3304,10 @@ type
     /// <param name="Id">
     /// ID único da NFC-e gerado pela API.
     /// </param>
+    /// <remarks>
+    /// **Informações adicionais**:
+    /// - Consumo: Primeira requisição isenta, posteriores 1 unidade por requisição.
+    /// </remarks>
     function BaixarXmlNfceProtocolo(Id: string): TBytes;
   end;
   
@@ -3327,7 +3504,69 @@ type
     /// <param name="Id">
     /// ID único da NFC-e gerado pela API.
     /// </param>
-    function EnviarEmailNfce(Body: TDfePedidoEnvioEmail; Id: string): TEmailStatusResponse;
+    /// <param name="Logotipo">
+    /// Imprime o documento com logotipo, desde que esteja cadastrado na empresa.
+    /// </param>
+    /// <param name="NomeFantasia">
+    /// Exibe o nome fantasia do emitente, desde que esteja presente no XML da nota.
+    /// </param>
+    /// <param name="MensagemRodape">
+    /// Imprime mensagem no rodapé do documento.
+    /// 
+    /// O caractere `|` (pipe) poderá ser utilizado para definir a quantidade e o alinhamento das mensagens.
+    /// 
+    /// **Exemplos de Uso:**
+    /// * `"esquerda"`
+    /// * `"esquerda|centro"`
+    /// * `"esquerda|centro|direita"`
+    /// * `"|centro"`, `"|centro|"`
+    /// * `"|centro|direita"`
+    /// * `"||direita"`
+    /// * `"esquerda||direita"`
+    /// </param>
+    /// <param name="Resumido">
+    /// Poderá ser impresso apenas o DANFE NFC-e resumido ou ecológico, sem o detalhamento dos itens da venda, desde que a Unidade Federada permita esta opção em sua legislação e o consumidor assim o solicite.
+    /// </param>
+    /// <param name="QrcodeLateral">
+    /// Imprime o QRCode na lateral do DANFE NFC-e.
+    /// 
+    /// *Disponível apenas para DANFE com 80 milímetros de largura*.
+    /// </param>
+    /// <param name="Largura">
+    /// Largura do DANFE NFC-e (em milímetros).
+    /// </param>
+    /// <param name="Margem">
+    /// Define as margens do DANFE NFC-e (em milímetros).
+    /// 
+    /// Essa propriedade pode ser especificada usando um, dois, três ou quatro valores (separados por vírgulas). Cada valor deve ser um número entre `0` e `9`.
+    /// * Quando **um** valor é especificado, a mesma margem é aplicada para **todos os quatro lados**.
+    /// * Quando **dois** valores são especificados, a primeira margem é aplicada aos **lados esquerdo e direito**, e a segunda aos **lados superior e inferior**.
+    /// * Quando **três** valores são especificados, a primeira margem é aplicada ao **lado esquerdo**, a segunda aos **lados superior e inferior**, e a terceira ao **lado direito**.
+    /// * Quando **quatro** valores são especificados, as margens são aplicadas aos lados **esquerdo**, **superior**, **direito** e **inferior**, nesta ordem (sentido horário).
+    /// 
+    /// **Exemplos de uso**:
+    /// * `margem=1`
+    ///   - Margem esquerda: 1mm
+    ///   - Margem superior: 1mm
+    ///   - Margem direita: 1mm
+    ///   - Margem inferior: 1mm
+    /// * `margem=1,2`
+    ///   - Margem esquerda: 1mm
+    ///   - Margem superior: 2mm
+    ///   - Margem direita: 1mm
+    ///   - Margem inferior: 2mm
+    /// * `margem=1,2,3`
+    ///   - Margem esquerda: 1mm
+    ///   - Margem superior: 2mm
+    ///   - Margem direita: 3mm
+    ///   - Margem inferior: 2mm
+    /// * `margem=1,2,3,4`
+    ///   - Margem esquerda: 1mm
+    ///   - Margem superior: 2mm
+    ///   - Margem direita: 3mm
+    ///   - Margem inferior: 4mm
+    /// </param>
+    function EnviarEmailNfce(Body: TDfePedidoEnvioEmail; Id: string; Logotipo: Boolean; NomeFantasia: Boolean; MensagemRodape: string; Resumido: Boolean; QrcodeLateral: Boolean; Largura: Integer; Margem: string): TEmailStatusResponse;
     /// <param name="Id">
     /// ID único da NFC-e gerado pela API.
     /// </param>
@@ -3488,7 +3727,6 @@ type
     /// </summary>
     /// <remarks>
     /// **Informações adicionais**:
-    /// - Cota: <a href="/docs/limites#dfe-eventos">dfe-eventos</a>
     /// - Consumo: 1 unidade por requisição.
     /// </remarks>
     function EmitirNfcom(Body: TNfcomPedidoEmissao): TDfe;
@@ -3537,7 +3775,6 @@ type
     /// </param>
     /// <remarks>
     /// **Informações adicionais**:
-    /// - Cota: <a href="/docs/limites#dfe-eventos">dfe-eventos</a>
     /// - Consumo: 1 unidade por requisição.
     /// </remarks>
     function CancelarNfcom(Body: TNfcomPedidoCancelamento; Id: string): TDfeCancelamento;
@@ -3547,6 +3784,10 @@ type
     /// <param name="Id">
     /// ID único da NFCom gerada pela API.
     /// </param>
+    /// <remarks>
+    /// **Informações adicionais**:
+    /// - Consumo: Primeira requisição isenta, posteriores 1 unidade por requisição.
+    /// </remarks>
     function BaixarXmlCancelamentoNfcom(Id: string): TBytes;
     /// <summary>
     /// Baixar PDF do DANFE-COM
@@ -3568,6 +3809,9 @@ type
     /// Utilize esse endpoint para obter o XML da nota enviada para a SEFAZ, complementado com a informação do protocolo de autorização de uso (TAG raiz `nfcomProc`).
     /// 
     /// O XML só estará disponível nesse endpoint caso a nota tenha sido autorizada pela SEFAZ. Para obter o XML nos demais casos, utilize o endpoint `GET /nfcom/{id}/xml/nota`.
+    /// 
+    /// **Informações adicionais**:
+    /// - Consumo: Primeira requisição isenta, posteriores 1 unidade por requisição.
     /// </remarks>
     function BaixarXmlNfcom(Id: string): TBytes;
     /// <summary>
@@ -3580,6 +3824,9 @@ type
     /// Utilize esse endpoint para obter o XML da nota enviada para a SEFAZ.
     /// 
     /// O XML estará disponível nesse endpoint mesmo em casos que a nota tenha sido rejeitada.
+    /// 
+    /// **Informações adicionais**:
+    /// - Consumo: Primeira requisição isenta, posteriores 1 unidade por requisição.
     /// </remarks>
     function BaixarXmlNfcomNota(Id: string): TBytes;
     /// <summary>
@@ -3588,6 +3835,10 @@ type
     /// <param name="Id">
     /// ID único da NFCom gerada pela API.
     /// </param>
+    /// <remarks>
+    /// **Informações adicionais**:
+    /// - Consumo: Primeira requisição isenta, posteriores 1 unidade por requisição.
+    /// </remarks>
     function BaixarXmlNfcomProtocolo(Id: string): TBytes;
   end;
   
@@ -3738,7 +3989,6 @@ type
     /// seja retornado um status indicando o fim da emissão.
     /// 
     /// **Informações adicionais**:
-    /// - Cota: <a href="/docs/limites#dfe-eventos">dfe-eventos</a>
     /// - Consumo: 1 unidade por requisição.
     /// </remarks>
     function EmitirNfe(Body: TNfePedidoEmissao): TDfe;
@@ -3772,7 +4022,6 @@ type
     /// Consulta o Cadastro Centralizado de Contribuintes (CCC) do ICMS da unidade federada.
     /// 
     /// **Informações adicionais**:
-    /// - Cota: <a href="/docs/limites#dfe-eventos">dfe-eventos</a>
     /// - Consumo: 1 unidade por requisição.
     /// </remarks>
     function ConsultarContribuinteNfe(CpfCnpj: string; Uf: string; Argumento: string; Documento: string): TDfeContribuinteInfCons;
@@ -3815,13 +4064,16 @@ type
     /// <param name="Id">
     /// ID único do evento gerado pela API.
     /// </param>
+    /// <remarks>
+    /// **Informações adicionais**:
+    /// - Consumo: Primeira requisição isenta, posteriores 1 unidade por requisição.
+    /// </remarks>
     function BaixarXmlEventoNfe(Id: string): TBytes;
     /// <summary>
     /// Inutilizar uma sequência de numeração de NF-e
     /// </summary>
     /// <remarks>
     /// **Informações adicionais**:
-    /// - Cota: <a href="/docs/limites#dfe-eventos">dfe-eventos</a>
     /// - Consumo: 1 unidade por requisição.
     /// </remarks>
     function InutilizarNumeracaoNfe(Body: TDfePedidoInutilizacao): TDfeInutilizacao;
@@ -3845,6 +4097,10 @@ type
     /// <param name="Id">
     /// ID único do evento gerado pela API.
     /// </param>
+    /// <remarks>
+    /// **Informações adicionais**:
+    /// - Consumo: Primeira requisição isenta, posteriores 1 unidade por requisição.
+    /// </remarks>
     function BaixarXmlInutilizacaoNfe(Id: string): TBytes;
     /// <summary>
     /// Listar lotes de NF-e
@@ -3876,7 +4132,6 @@ type
     /// </summary>
     /// <remarks>
     /// **Informações adicionais**:
-    /// - Cota: <a href="/docs/limites#dfe-eventos">dfe-eventos</a>
     /// - Consumo: 1 unidade por NF-e.
     /// </remarks>
     function EmitirLoteNfe(Body: TNfePedidoEmissaoLote): TDfeLote;
@@ -3934,7 +4189,6 @@ type
     /// **Atenção**: O DANFE gerado por este endpoint é apenas para fins de visualização e não possui valor fiscal. Para a emissão de uma NF-e com valor fiscal, utilize o processo de emissão padrão descrito na documentação.
     /// 
     /// **Informações adicionais**:
-    /// - Cota: <a href="/docs/limites#dfe-eventos">dfe-eventos</a>
     /// - Consumo: 1 unidade por requisição.
     /// </remarks>
     function BaixarPreviaPdfNfe(Body: TNfePedidoEmissao; Logotipo: Boolean; NomeFantasia: Boolean; Formato: string; MensagemRodape: string; Canhoto: Boolean): TBytes;
@@ -3949,7 +4203,6 @@ type
     /// **Atenção**: O XML gerado por este endpoint é apenas para fins de visualização e não possui valor fiscal. Para a emissão de uma NF-e com valor fiscal, utilize o processo de emissão padrão descrito na documentação.
     /// 
     /// **Informações adicionais**:
-    /// - Cota: <a href="/docs/limites#dfe-eventos">dfe-eventos</a>
     /// - Consumo: 1 unidade por requisição.
     /// </remarks>
     function BaixarPreviaXmlNfe(Body: TNfePedidoEmissao): TBytes;
@@ -3998,7 +4251,6 @@ type
     /// </param>
     /// <remarks>
     /// **Informações adicionais**:
-    /// - Cota: <a href="/docs/limites#dfe-eventos">dfe-eventos</a>
     /// - Consumo: 1 unidade por requisição.
     /// </remarks>
     function CancelarNfe(Body: TNfePedidoCancelamento; Id: string): TDfeCancelamento;
@@ -4015,6 +4267,10 @@ type
     /// <param name="Id">
     /// ID único da NF-e gerado pela API.
     /// </param>
+    /// <remarks>
+    /// **Informações adicionais**:
+    /// - Consumo: Primeira requisição isenta, posteriores 1 unidade por requisição.
+    /// </remarks>
     function BaixarXmlCancelamentoNfe(Id: string): TBytes;
     /// <summary>
     /// Consultar a solicitação de correção da NF-e
@@ -4036,7 +4292,6 @@ type
     /// É possível enviar até 20 correções diferentes, sendo que será válido sempre a última correção enviada.
     /// 
     /// **Informações adicionais**:
-    /// - Cota: <a href="/docs/limites#dfe-eventos">dfe-eventos</a>
     /// - Consumo: 1 unidade por requisição.
     /// </remarks>
     function CriarCartaCorrecaoNfe(Body: TNfePedidoCartaCorrecao; Id: string): TDfeCartaCorrecao;
@@ -4053,6 +4308,10 @@ type
     /// <param name="Id">
     /// ID único da NF-e gerado pela API.
     /// </param>
+    /// <remarks>
+    /// **Informações adicionais**:
+    /// - Consumo: Primeira requisição isenta, posteriores 1 unidade por requisição.
+    /// </remarks>
     function BaixarXmlCartaCorrecaoNfe(Id: string): TBytes;
     /// <summary>
     /// Enviar e-mail
@@ -4060,14 +4319,46 @@ type
     /// <param name="Id">
     /// ID único da NF-e gerado pela API.
     /// </param>
+    /// <param name="Logotipo">
+    /// Imprime o documento com logotipo, desde que esteja cadastrado na empresa.
+    /// </param>
+    /// <param name="NomeFantasia">
+    /// Exibe o nome fantasia do emitente, desde que esteja presente no XML da nota.
+    /// </param>
+    /// <param name="Formato">
+    /// Formato de impressão do DANFE.
+    /// 
+    /// Valores disponíveis:
+    /// - `padrao`: será utilizado o formato definido no XML da NF-e (tag "tpImp");
+    /// - `retrato`: tamanho A4 em modo retrato;
+    /// - `paisagem`: tamanho A4 em modo paisagem;
+    /// - `simplificado`: formato simplificado utilizado nas operações realizadas fora do estabelecimento (Anexo II do MOC, item 3.11);
+    /// - `etiqueta`: formato simplificado utilizado nas operações em comércio eletrônico (Anexo II do MOC, item 3.12 e NT 2020.004).
+    /// </param>
+    /// <param name="MensagemRodape">
+    /// Imprime mensagem no rodapé do documento.
+    /// 
+    /// O caractere `|` (pipe) poderá ser utilizado para definir a quantidade e o alinhamento das mensagens.
+    /// 
+    /// **Exemplos de Uso:**
+    /// * `"esquerda"`
+    /// * `"esquerda|centro"`
+    /// * `"esquerda|centro|direita"`
+    /// * `"|centro"`, `"|centro|"`
+    /// * `"|centro|direita"`
+    /// * `"||direita"`
+    /// * `"esquerda||direita"`
+    /// </param>
+    /// <param name="Canhoto">
+    /// Imprime o documento com o bloco de canhoto.
+    /// </param>
     /// <remarks>
     /// Envia o XML e PDF da nota via email.
     /// 
     /// **Informações adicionais**:
-    /// - Cota: <a href="/docs/limites#dfe-eventos">dfe-eventos</a>
     /// - Consumo: 1 unidade por requisição.
     /// </remarks>
-    function EnviarEmailNfe(Body: TDfePedidoEnvioEmail; Id: string): TEmailStatusResponse;
+    function EnviarEmailNfe(Body: TDfePedidoEnvioEmail; Id: string; Logotipo: Boolean; NomeFantasia: Boolean; Formato: string; MensagemRodape: string; Canhoto: Boolean): TEmailStatusResponse;
     /// <summary>
     /// Baixar PDF do DANFE
     /// </summary>
@@ -4123,7 +4414,6 @@ type
     /// * Sincronizar todos os eventos de Cancelamento, Carta de Correção e EPEC de uma nota que porventura não tenham sido feitos a partir da API.
     /// 
     /// **Informações adicionais**:
-    /// - Cota: <a href="/docs/limites#dfe-eventos">dfe-eventos</a>
     /// - Consumo: 1 unidade por evento sincronizado ou requisição.
     /// </remarks>
     function SincronizarNfe(Id: string): TDfeSincronizacao;
@@ -4137,6 +4427,9 @@ type
     /// Utilize esse endpoint para obter o XML da nota enviado para a SEFAZ, complementado com a informação do protocolo de autorização ou denegação de uso (TAG raiz `nfeProc`).
     /// 
     /// O XML só estará disponível nesse endpoint caso a nota tenha sido autorizada ou denegada pela SEFAZ. Para obter o XML nos demais casos, utilize o endpoint `GET /nfe/{id}/xml/nota`.
+    /// 
+    /// **Informações adicionais**:
+    /// - Consumo: Primeira requisição isenta, posteriores 1 unidade por requisição.
     /// </remarks>
     function BaixarXmlNfe(Id: string): TBytes;
     /// <summary>
@@ -4149,6 +4442,9 @@ type
     /// Utilize esse endpoint para obter o XML da nota enviado para a SEFAZ.
     /// 
     /// O XML estará disponível nesse endpoint mesmo em casos que a nota tenha sido rejeitada.
+    /// 
+    /// **Informações adicionais**:
+    /// - Consumo: Primeira requisição isenta, posteriores 1 unidade por requisição.
     /// </remarks>
     function BaixarXmlNfeNota(Id: string): TBytes;
     /// <summary>
@@ -4157,6 +4453,10 @@ type
     /// <param name="Id">
     /// ID único da NF-e gerado pela API.
     /// </param>
+    /// <remarks>
+    /// **Informações adicionais**:
+    /// - Consumo: Primeira requisição isenta, posteriores 1 unidade por requisição.
+    /// </remarks>
     function BaixarXmlNfeProtocolo(Id: string): TBytes;
   end;
   
@@ -4367,7 +4667,40 @@ type
     /// <param name="Id">
     /// ID único da NF-e gerado pela API.
     /// </param>
-    function EnviarEmailNfe(Body: TDfePedidoEnvioEmail; Id: string): TEmailStatusResponse;
+    /// <param name="Logotipo">
+    /// Imprime o documento com logotipo, desde que esteja cadastrado na empresa.
+    /// </param>
+    /// <param name="NomeFantasia">
+    /// Exibe o nome fantasia do emitente, desde que esteja presente no XML da nota.
+    /// </param>
+    /// <param name="Formato">
+    /// Formato de impressão do DANFE.
+    /// 
+    /// Valores disponíveis:
+    /// - `padrao`: será utilizado o formato definido no XML da NF-e (tag "tpImp");
+    /// - `retrato`: tamanho A4 em modo retrato;
+    /// - `paisagem`: tamanho A4 em modo paisagem;
+    /// - `simplificado`: formato simplificado utilizado nas operações realizadas fora do estabelecimento (Anexo II do MOC, item 3.11);
+    /// - `etiqueta`: formato simplificado utilizado nas operações em comércio eletrônico (Anexo II do MOC, item 3.12 e NT 2020.004).
+    /// </param>
+    /// <param name="MensagemRodape">
+    /// Imprime mensagem no rodapé do documento.
+    /// 
+    /// O caractere `|` (pipe) poderá ser utilizado para definir a quantidade e o alinhamento das mensagens.
+    /// 
+    /// **Exemplos de Uso:**
+    /// * `"esquerda"`
+    /// * `"esquerda|centro"`
+    /// * `"esquerda|centro|direita"`
+    /// * `"|centro"`, `"|centro|"`
+    /// * `"|centro|direita"`
+    /// * `"||direita"`
+    /// * `"esquerda||direita"`
+    /// </param>
+    /// <param name="Canhoto">
+    /// Imprime o documento com o bloco de canhoto.
+    /// </param>
+    function EnviarEmailNfe(Body: TDfePedidoEnvioEmail; Id: string; Logotipo: Boolean; NomeFantasia: Boolean; Formato: string; MensagemRodape: string; Canhoto: Boolean): TEmailStatusResponse;
     /// <param name="Id">
     /// ID único da NF-e gerado pela API.
     /// </param>
@@ -4468,7 +4801,6 @@ type
     /// </summary>
     /// <remarks>
     /// **Informações adicionais**:
-    /// - Cota: <a href="/docs/limites#dfe-eventos">dfe-eventos</a>
     /// - Consumo: 1 unidade por requisição.
     /// </remarks>
     function EmitirNfse(Body: TNfsePedidoEmissao): TNfse;
@@ -4494,7 +4826,6 @@ type
     /// </summary>
     /// <remarks>
     /// **Informações adicionais**:
-    /// - Cota: <a href="/docs/limites#dfe-eventos">dfe-eventos</a>
     /// - Consumo: 1 unidade por requisição.
     /// </remarks>
     function EmitirNfseDps(Body: TNfseDpsPedidoEmissao): TNfse;
@@ -4503,7 +4834,6 @@ type
     /// </summary>
     /// <remarks>
     /// **Informações adicionais**:
-    /// - Cota: <a href="/docs/limites#dfe-eventos">dfe-eventos</a>
     /// - Consumo: 1 unidade por NFS-e.
     /// </remarks>
     function EmitirLoteNfseDps(Body: TNfseLoteDpsPedidoEmissao): TRpsLote;
@@ -4537,7 +4867,6 @@ type
     /// </summary>
     /// <remarks>
     /// **Informações adicionais**:
-    /// - Cota: <a href="/docs/limites#dfe-eventos">dfe-eventos</a>
     /// - Consumo: 1 unidade por NFS-e.
     /// </remarks>
     function EmitirLoteNfse(Body: TRpsPedidoEmissaoLote): TRpsLote;
@@ -4557,6 +4886,10 @@ type
     /// <param name="Id">
     /// ID único da NFS-e gerado pela API.
     /// </param>
+    /// <remarks>
+    /// **Informações adicionais**:
+    /// - Consumo: Primeira requisição isenta, posteriores 1 unidade por requisição.
+    /// </remarks>
     function BaixarXmlCancelamentoNfse(Id: string): TBytes;
     /// <summary>
     /// Consultar NFS-e
@@ -4583,7 +4916,6 @@ type
     /// </param>
     /// <remarks>
     /// **Informações adicionais**:
-    /// - Cota: <a href="/docs/limites#dfe-eventos">dfe-eventos</a>
     /// - Consumo: 1 unidade por requisição.
     /// </remarks>
     function CancelarNfse(Body: TNfsePedidoCancelamento; Id: string): TNfseCancelamento;
@@ -4628,7 +4960,6 @@ type
     /// * Sincronizar uma nota que se encontra com o status `autorizada`na API, mas está cancelada na prefeitura.
     /// 
     /// **Informações adicionais**:
-    /// - Cota: <a href="/docs/limites#dfe-eventos">dfe-eventos</a>
     /// - Consumo: 1 unidade por evento sincronizado ou requisição.
     /// </remarks>
     function SincronizarNfse(Body: TNfsePedidoSincronizacao; Id: string): TNfseSincronizacao;
@@ -4638,6 +4969,10 @@ type
     /// <param name="Id">
     /// ID único da NFS-e gerado pela API.
     /// </param>
+    /// <remarks>
+    /// **Informações adicionais**:
+    /// - Consumo: Primeira requisição isenta, posteriores 1 unidade por requisição.
+    /// </remarks>
     function BaixarXmlNfse(Id: string): TBytes;
     /// <summary>
     /// Baixar XML da DPS
@@ -4645,6 +4980,10 @@ type
     /// <param name="Id">
     /// ID único da NFS-e gerado pela API.
     /// </param>
+    /// <remarks>
+    /// **Informações adicionais**:
+    /// - Consumo: Primeira requisição isenta, posteriores 1 unidade por requisição.
+    /// </remarks>
     function BaixarXmlDps(Id: string): TBytes;
   end;
   
@@ -4870,7 +5209,7 @@ begin
   Request := CreateRequest('/cep/{Cep}', 'GET');
   Request.AddUrlParam('Cep', Cep);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TCepEnderecoFromJson(Response.ContentAsString);
 end;
@@ -4890,7 +5229,7 @@ begin
   Request.AddQueryParam('municipio', Municipio);
   Request.AddQueryParam('natureza_juridica', NaturezaJuridica);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TCnpjListagemFromJson(Response.ContentAsString);
 end;
@@ -4903,7 +5242,7 @@ begin
   Request := CreateRequest('/cnpj/{Cnpj}', 'GET');
   Request.AddUrlParam('Cnpj', Cnpj);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TCnpjEmpresaFromJson(Response.ContentAsString);
 end;
@@ -4917,9 +5256,21 @@ var
 begin
   Request := CreateRequest('/conta/cotas', 'GET');
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TContaCotaListagemFromJson(Response.ContentAsString);
+end;
+
+function TContaService.ConsultarCotaPrePago: TContaCotaPrePago;
+var
+  Request: IRestRequest;
+  Response: IRestResponse;
+begin
+  Request := CreateRequest('/conta/cotas/prepago', 'GET');
+  Request.AddHeader('Accept', 'application/json');
+  Response := ExecuteRequest(Request);
+  CheckError(Response);
+  Result := Converter.TContaCotaPrePagoFromJson(Response.ContentAsString);
 end;
 
 function TContaService.ConsultarCotaConta(Nome: string): TContaCota;
@@ -4930,9 +5281,26 @@ begin
   Request := CreateRequest('/conta/cotas/{nome}', 'GET');
   Request.AddUrlParam('nome', Nome);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TContaCotaFromJson(Response.ContentAsString);
+end;
+
+function TContaService.ListarExtratoCreditosConta(DataInicial: string; DataFinal: string; Top: Integer; Skip: Integer; Limit: Integer): TContaExtratoCreditoListagem;
+var
+  Request: IRestRequest;
+  Response: IRestResponse;
+begin
+  Request := CreateRequest('/conta/extrato', 'GET');
+  Request.AddQueryParam('data_inicial', DataInicial);
+  Request.AddQueryParam('data_final', DataFinal);
+  Request.AddQueryParam('top', IntToStr(Top));
+  Request.AddQueryParam('skip', IntToStr(Skip));
+  Request.AddQueryParam('limit', IntToStr(Limit));
+  Request.AddHeader('Accept', 'application/json');
+  Response := ExecuteRequest(Request);
+  CheckError(Response);
+  Result := Converter.TContaExtratoCreditoListagemFromJson(Response.ContentAsString);
 end;
 
 { TCteService }
@@ -4952,7 +5320,7 @@ begin
   Request.AddQueryParam('chave', Chave);
   Request.AddQueryParam('serie', Serie);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeListagemFromJson(Response.ContentAsString);
 end;
@@ -4966,7 +5334,7 @@ begin
   Request.AddBody(Converter.TCtePedidoEmissaoToJson(Body));
   Request.AddHeader('Content-Type', 'application/json');
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeFromJson(Response.ContentAsString);
 end;
@@ -4979,7 +5347,7 @@ begin
   Request := CreateRequest('/cte/eventos/{id}', 'GET');
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeEventoFromJson(Response.ContentAsString);
 end;
@@ -4991,7 +5359,7 @@ var
 begin
   Request := CreateRequest('/cte/eventos/{id}/pdf', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -5003,7 +5371,7 @@ var
 begin
   Request := CreateRequest('/cte/eventos/{id}/xml', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -5017,7 +5385,7 @@ begin
   Request.AddQueryParam('cpf_cnpj', CpfCnpj);
   Request.AddQueryParam('autorizador', Autorizador);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeSefazStatusFromJson(Response.ContentAsString);
 end;
@@ -5031,7 +5399,7 @@ begin
   Request.AddBody(Converter.TCteSimpPedidoEmissaoToJson(Body));
   Request.AddHeader('Content-Type', 'application/json');
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeFromJson(Response.ContentAsString);
 end;
@@ -5044,7 +5412,7 @@ begin
   Request := CreateRequest('/cte/{id}', 'GET');
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeFromJson(Response.ContentAsString);
 end;
@@ -5057,7 +5425,7 @@ begin
   Request := CreateRequest('/cte/{id}/cancelamento', 'GET');
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeCancelamentoFromJson(Response.ContentAsString);
 end;
@@ -5072,7 +5440,7 @@ begin
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Content-Type', 'application/json');
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeCancelamentoFromJson(Response.ContentAsString);
 end;
@@ -5084,7 +5452,7 @@ var
 begin
   Request := CreateRequest('/cte/{id}/cancelamento/pdf', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -5096,7 +5464,7 @@ var
 begin
   Request := CreateRequest('/cte/{id}/cancelamento/xml', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -5109,7 +5477,7 @@ begin
   Request := CreateRequest('/cte/{id}/carta-correcao', 'GET');
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TCteCartaCorrecaoFromJson(Response.ContentAsString);
 end;
@@ -5124,7 +5492,7 @@ begin
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Content-Type', 'application/json');
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TCteCartaCorrecaoFromJson(Response.ContentAsString);
 end;
@@ -5136,7 +5504,7 @@ var
 begin
   Request := CreateRequest('/cte/{id}/carta-correcao/pdf', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -5148,7 +5516,7 @@ var
 begin
   Request := CreateRequest('/cte/{id}/carta-correcao/xml', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -5161,7 +5529,7 @@ begin
   Request := CreateRequest('/cte/{id}/pdf', 'GET');
   Request.AddUrlParam('id', Id);
   Request.AddQueryParam('logotipo', BoolToParam(Logotipo));
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -5174,7 +5542,7 @@ begin
   Request := CreateRequest('/cte/{id}/sincronizar', 'POST');
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeSincronizacaoFromJson(Response.ContentAsString);
 end;
@@ -5186,7 +5554,7 @@ var
 begin
   Request := CreateRequest('/cte/{id}/xml', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -5198,7 +5566,7 @@ var
 begin
   Request := CreateRequest('/cte/{id}/xml/conhecimento', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -5210,7 +5578,7 @@ var
 begin
   Request := CreateRequest('/cte/{id}/xml/protocolo', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -5232,7 +5600,7 @@ begin
   Request.AddQueryParam('chave', Chave);
   Request.AddQueryParam('serie', Serie);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeListagemFromJson(Response.ContentAsString);
 end;
@@ -5246,7 +5614,7 @@ begin
   Request.AddBody(Converter.TCteOsPedidoEmissaoToJson(Body));
   Request.AddHeader('Content-Type', 'application/json');
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeFromJson(Response.ContentAsString);
 end;
@@ -5259,7 +5627,7 @@ begin
   Request := CreateRequest('/cteos/eventos/{id}', 'GET');
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeEventoFromJson(Response.ContentAsString);
 end;
@@ -5271,7 +5639,7 @@ var
 begin
   Request := CreateRequest('/cteos/eventos/{id}/pdf', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -5283,7 +5651,7 @@ var
 begin
   Request := CreateRequest('/cteos/eventos/{id}/xml', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -5297,7 +5665,7 @@ begin
   Request.AddQueryParam('cpf_cnpj', CpfCnpj);
   Request.AddQueryParam('autorizador', Autorizador);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeSefazStatusFromJson(Response.ContentAsString);
 end;
@@ -5310,7 +5678,7 @@ begin
   Request := CreateRequest('/cteos/{id}', 'GET');
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeFromJson(Response.ContentAsString);
 end;
@@ -5323,7 +5691,7 @@ begin
   Request := CreateRequest('/cteos/{id}/cancelamento', 'GET');
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeCancelamentoFromJson(Response.ContentAsString);
 end;
@@ -5338,7 +5706,7 @@ begin
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Content-Type', 'application/json');
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeCancelamentoFromJson(Response.ContentAsString);
 end;
@@ -5350,7 +5718,7 @@ var
 begin
   Request := CreateRequest('/cteos/{id}/cancelamento/pdf', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -5362,7 +5730,7 @@ var
 begin
   Request := CreateRequest('/cteos/{id}/cancelamento/xml', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -5375,7 +5743,7 @@ begin
   Request := CreateRequest('/cteos/{id}/carta-correcao', 'GET');
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TCteOsCartaCorrecaoFromJson(Response.ContentAsString);
 end;
@@ -5390,7 +5758,7 @@ begin
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Content-Type', 'application/json');
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TCteOsCartaCorrecaoFromJson(Response.ContentAsString);
 end;
@@ -5402,7 +5770,7 @@ var
 begin
   Request := CreateRequest('/cteos/{id}/carta-correcao/pdf', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -5414,7 +5782,7 @@ var
 begin
   Request := CreateRequest('/cteos/{id}/carta-correcao/xml', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -5427,7 +5795,7 @@ begin
   Request := CreateRequest('/cteos/{id}/pdf', 'GET');
   Request.AddUrlParam('id', Id);
   Request.AddQueryParam('logotipo', BoolToParam(Logotipo));
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -5440,7 +5808,7 @@ begin
   Request := CreateRequest('/cteos/{id}/sincronizar', 'POST');
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeSincronizacaoFromJson(Response.ContentAsString);
 end;
@@ -5452,7 +5820,7 @@ var
 begin
   Request := CreateRequest('/cteos/{id}/xml', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -5464,7 +5832,7 @@ var
 begin
   Request := CreateRequest('/cteos/{id}/xml/conhecimento', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -5476,7 +5844,7 @@ var
 begin
   Request := CreateRequest('/cteos/{id}/xml/protocolo', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -5498,7 +5866,7 @@ begin
   Request.AddQueryParam('chave', Chave);
   Request.AddQueryParam('serie', Serie);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeListagemFromJson(Response.ContentAsString);
 end;
@@ -5512,7 +5880,7 @@ begin
   Request.AddBody(Converter.TDcePedidoEmissaoToJson(Body));
   Request.AddHeader('Content-Type', 'application/json');
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeFromJson(Response.ContentAsString);
 end;
@@ -5526,7 +5894,7 @@ begin
   Request.AddQueryParam('cpf_cnpj', CpfCnpj);
   Request.AddQueryParam('autorizador', Autorizador);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeSefazStatusFromJson(Response.ContentAsString);
 end;
@@ -5539,7 +5907,7 @@ begin
   Request := CreateRequest('/dce/{id}', 'GET');
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeFromJson(Response.ContentAsString);
 end;
@@ -5552,7 +5920,7 @@ begin
   Request := CreateRequest('/dce/{id}/cancelamento', 'GET');
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeCancelamentoFromJson(Response.ContentAsString);
 end;
@@ -5567,7 +5935,7 @@ begin
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Content-Type', 'application/json');
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeCancelamentoFromJson(Response.ContentAsString);
 end;
@@ -5579,7 +5947,7 @@ var
 begin
   Request := CreateRequest('/dce/{id}/cancelamento/xml', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -5591,7 +5959,7 @@ var
 begin
   Request := CreateRequest('/dce/{id}/pdf', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -5603,7 +5971,7 @@ var
 begin
   Request := CreateRequest('/dce/{id}/xml', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -5615,7 +5983,7 @@ var
 begin
   Request := CreateRequest('/dce/{id}/xml/declaracao', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -5627,7 +5995,7 @@ var
 begin
   Request := CreateRequest('/dce/{id}/xml/protocolo', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -5641,7 +6009,7 @@ var
 begin
   Request := CreateRequest('/debug/http-requests/{id}/request-content', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -5653,7 +6021,7 @@ var
 begin
   Request := CreateRequest('/debug/http-requests/{id}/response-content', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -5666,7 +6034,7 @@ begin
   Request := CreateRequest('/debug/{id}', 'GET');
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeDebugFromJson(Response.ContentAsString);
 end;
@@ -5678,7 +6046,7 @@ var
 begin
   Request := CreateRequest('/debug/{id}/original-payload', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -5697,7 +6065,7 @@ begin
   Request.AddQueryParam('cpf_cnpj', CpfCnpj);
   Request.AddQueryParam('ambiente', Ambiente);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDistribuicaoNfeListagemFromJson(Response.ContentAsString);
 end;
@@ -5711,7 +6079,7 @@ begin
   Request.AddBody(Converter.TDistribuicaoNfePedidoToJson(Body));
   Request.AddHeader('Content-Type', 'application/json');
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDistribuicaoNfeFromJson(Response.ContentAsString);
 end;
@@ -5732,7 +6100,7 @@ begin
   Request.AddQueryParam('forma_distribuicao', FormaDistribuicao);
   Request.AddQueryParam('chave_acesso', ChaveAcesso);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDistribuicaoNfeDocumentoListagemFromJson(Response.ContentAsString);
 end;
@@ -5745,7 +6113,7 @@ begin
   Request := CreateRequest('/distribuicao/nfe/documentos/{id}', 'GET');
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDistribuicaoNfeDocumentoFromJson(Response.ContentAsString);
 end;
@@ -5757,7 +6125,7 @@ var
 begin
   Request := CreateRequest('/distribuicao/nfe/documentos/{id}/pdf', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -5769,7 +6137,7 @@ var
 begin
   Request := CreateRequest('/distribuicao/nfe/documentos/{id}/xml', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -5786,7 +6154,7 @@ begin
   Request.AddQueryParam('cpf_cnpj', CpfCnpj);
   Request.AddQueryParam('ambiente', Ambiente);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TManifestacaoNfeListagemFromJson(Response.ContentAsString);
 end;
@@ -5800,7 +6168,7 @@ begin
   Request.AddBody(Converter.TDistribuicaoNfePedidoManifestacaoToJson(Body));
   Request.AddHeader('Content-Type', 'application/json');
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDistribuicaoNfeEventoFromJson(Response.ContentAsString);
 end;
@@ -5813,7 +6181,7 @@ begin
   Request := CreateRequest('/distribuicao/nfe/manifestacoes/{id}', 'GET');
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDistribuicaoNfeEventoFromJson(Response.ContentAsString);
 end;
@@ -5831,7 +6199,7 @@ begin
   Request.AddQueryParam('ambiente', Ambiente);
   Request.AddQueryParam('conclusiva', BoolToParam(Conclusiva));
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDistribuicaoNfeNotaListagemFromJson(Response.ContentAsString);
 end;
@@ -5844,7 +6212,7 @@ begin
   Request := CreateRequest('/distribuicao/nfe/{id}', 'GET');
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDistribuicaoNfeFromJson(Response.ContentAsString);
 end;
@@ -5864,7 +6232,7 @@ begin
   Request.AddQueryParam('undelivered', BoolToParam(Undelivered));
   Request.AddQueryParam('email', Email);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TEmailListagemFromJson(Response.ContentAsString);
 end;
@@ -5877,14 +6245,14 @@ begin
   Request := CreateRequest('/emails/{id}', 'GET');
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TEmailFromJson(Response.ContentAsString);
 end;
 
 { TEmpresaService }
 
-function TEmpresaService.ListarEmpresas(Top: Integer; Skip: Integer; Inlinecount: Boolean; CpfCnpj: string): TEmpresaListagem;
+function TEmpresaService.ListarEmpresas(Top: Integer; Skip: Integer; Inlinecount: Boolean; CpfCnpj: string; NomeRazaoSocial: string): TEmpresaListagem;
 var
   Request: IRestRequest;
   Response: IRestResponse;
@@ -5894,8 +6262,9 @@ begin
   Request.AddQueryParam('$skip', IntToStr(Skip));
   Request.AddQueryParam('$inlinecount', BoolToParam(Inlinecount));
   Request.AddQueryParam('cpf_cnpj', CpfCnpj);
+  Request.AddQueryParam('nome_razao_social', NomeRazaoSocial);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TEmpresaListagemFromJson(Response.ContentAsString);
 end;
@@ -5909,7 +6278,7 @@ begin
   Request.AddBody(Converter.TEmpresaToJson(Body));
   Request.AddHeader('Content-Type', 'application/json');
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TEmpresaFromJson(Response.ContentAsString);
 end;
@@ -5926,7 +6295,7 @@ begin
   Request.AddQueryParam('expires_in', IntToStr(ExpiresIn));
   Request.AddQueryParam('include_expired', BoolToParam(IncludeExpired));
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TEmpresaCertificadoListagemFromJson(Response.ContentAsString);
 end;
@@ -5939,7 +6308,7 @@ begin
   Request := CreateRequest('/empresas/{cpf_cnpj}', 'GET');
   Request.AddUrlParam('cpf_cnpj', CpfCnpj);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TEmpresaFromJson(Response.ContentAsString);
 end;
@@ -5954,7 +6323,7 @@ begin
   Request.AddUrlParam('cpf_cnpj', CpfCnpj);
   Request.AddHeader('Content-Type', 'application/json');
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TEmpresaFromJson(Response.ContentAsString);
 end;
@@ -5966,7 +6335,7 @@ var
 begin
   Request := CreateRequest('/empresas/{cpf_cnpj}', 'DELETE');
   Request.AddUrlParam('cpf_cnpj', CpfCnpj);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
 end;
 
@@ -5978,7 +6347,7 @@ begin
   Request := CreateRequest('/empresas/{cpf_cnpj}/certificado', 'GET');
   Request.AddUrlParam('cpf_cnpj', CpfCnpj);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TEmpresaCertificadoFromJson(Response.ContentAsString);
 end;
@@ -5993,7 +6362,7 @@ begin
   Request.AddUrlParam('cpf_cnpj', CpfCnpj);
   Request.AddHeader('Content-Type', 'application/json');
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TEmpresaCertificadoFromJson(Response.ContentAsString);
 end;
@@ -6005,7 +6374,7 @@ var
 begin
   Request := CreateRequest('/empresas/{cpf_cnpj}/certificado', 'DELETE');
   Request.AddUrlParam('cpf_cnpj', CpfCnpj);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
 end;
 
@@ -6017,7 +6386,7 @@ begin
   Request := CreateRequest('/empresas/{cpf_cnpj}/cte', 'GET');
   Request.AddUrlParam('cpf_cnpj', CpfCnpj);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TEmpresaConfigCteFromJson(Response.ContentAsString);
 end;
@@ -6032,7 +6401,7 @@ begin
   Request.AddUrlParam('cpf_cnpj', CpfCnpj);
   Request.AddHeader('Content-Type', 'application/json');
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TEmpresaConfigCteFromJson(Response.ContentAsString);
 end;
@@ -6045,7 +6414,7 @@ begin
   Request := CreateRequest('/empresas/{cpf_cnpj}/cteos', 'GET');
   Request.AddUrlParam('cpf_cnpj', CpfCnpj);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TEmpresaConfigCteOsFromJson(Response.ContentAsString);
 end;
@@ -6060,7 +6429,7 @@ begin
   Request.AddUrlParam('cpf_cnpj', CpfCnpj);
   Request.AddHeader('Content-Type', 'application/json');
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TEmpresaConfigCteOsFromJson(Response.ContentAsString);
 end;
@@ -6073,7 +6442,7 @@ begin
   Request := CreateRequest('/empresas/{cpf_cnpj}/dce', 'GET');
   Request.AddUrlParam('cpf_cnpj', CpfCnpj);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TEmpresaConfigDceFromJson(Response.ContentAsString);
 end;
@@ -6088,7 +6457,7 @@ begin
   Request.AddUrlParam('cpf_cnpj', CpfCnpj);
   Request.AddHeader('Content-Type', 'application/json');
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TEmpresaConfigDceFromJson(Response.ContentAsString);
 end;
@@ -6101,7 +6470,7 @@ begin
   Request := CreateRequest('/empresas/{cpf_cnpj}/distnfe', 'GET');
   Request.AddUrlParam('cpf_cnpj', CpfCnpj);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TEmpresaConfigDistribuicaoNfeFromJson(Response.ContentAsString);
 end;
@@ -6116,7 +6485,7 @@ begin
   Request.AddUrlParam('cpf_cnpj', CpfCnpj);
   Request.AddHeader('Content-Type', 'application/json');
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TEmpresaConfigDistribuicaoNfeFromJson(Response.ContentAsString);
 end;
@@ -6128,7 +6497,7 @@ var
 begin
   Request := CreateRequest('/empresas/{cpf_cnpj}/logotipo', 'GET');
   Request.AddUrlParam('cpf_cnpj', CpfCnpj);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -6141,7 +6510,7 @@ begin
   Request := CreateRequest('/empresas/{cpf_cnpj}/logotipo', 'PUT');
   raise Exception.Create('Form param ''Input'' not supported');
   Request.AddUrlParam('cpf_cnpj', CpfCnpj);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
 end;
 
@@ -6152,7 +6521,7 @@ var
 begin
   Request := CreateRequest('/empresas/{cpf_cnpj}/logotipo', 'DELETE');
   Request.AddUrlParam('cpf_cnpj', CpfCnpj);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
 end;
 
@@ -6164,7 +6533,7 @@ begin
   Request := CreateRequest('/empresas/{cpf_cnpj}/mdfe', 'GET');
   Request.AddUrlParam('cpf_cnpj', CpfCnpj);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TEmpresaConfigMdfeFromJson(Response.ContentAsString);
 end;
@@ -6179,7 +6548,7 @@ begin
   Request.AddUrlParam('cpf_cnpj', CpfCnpj);
   Request.AddHeader('Content-Type', 'application/json');
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TEmpresaConfigMdfeFromJson(Response.ContentAsString);
 end;
@@ -6192,7 +6561,7 @@ begin
   Request := CreateRequest('/empresas/{cpf_cnpj}/nfce', 'GET');
   Request.AddUrlParam('cpf_cnpj', CpfCnpj);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TEmpresaConfigNfceFromJson(Response.ContentAsString);
 end;
@@ -6207,7 +6576,7 @@ begin
   Request.AddUrlParam('cpf_cnpj', CpfCnpj);
   Request.AddHeader('Content-Type', 'application/json');
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TEmpresaConfigNfceFromJson(Response.ContentAsString);
 end;
@@ -6220,7 +6589,7 @@ begin
   Request := CreateRequest('/empresas/{cpf_cnpj}/nfcom', 'GET');
   Request.AddUrlParam('cpf_cnpj', CpfCnpj);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TEmpresaConfigNfcomFromJson(Response.ContentAsString);
 end;
@@ -6235,7 +6604,7 @@ begin
   Request.AddUrlParam('cpf_cnpj', CpfCnpj);
   Request.AddHeader('Content-Type', 'application/json');
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TEmpresaConfigNfcomFromJson(Response.ContentAsString);
 end;
@@ -6248,7 +6617,7 @@ begin
   Request := CreateRequest('/empresas/{cpf_cnpj}/nfe', 'GET');
   Request.AddUrlParam('cpf_cnpj', CpfCnpj);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TEmpresaConfigNfeFromJson(Response.ContentAsString);
 end;
@@ -6263,7 +6632,7 @@ begin
   Request.AddUrlParam('cpf_cnpj', CpfCnpj);
   Request.AddHeader('Content-Type', 'application/json');
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TEmpresaConfigNfeFromJson(Response.ContentAsString);
 end;
@@ -6276,7 +6645,7 @@ begin
   Request := CreateRequest('/empresas/{cpf_cnpj}/nfse', 'GET');
   Request.AddUrlParam('cpf_cnpj', CpfCnpj);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TEmpresaConfigNfseFromJson(Response.ContentAsString);
 end;
@@ -6291,7 +6660,7 @@ begin
   Request.AddUrlParam('cpf_cnpj', CpfCnpj);
   Request.AddHeader('Content-Type', 'application/json');
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TEmpresaConfigNfseFromJson(Response.ContentAsString);
 end;
@@ -6313,7 +6682,7 @@ begin
   Request.AddQueryParam('chave', Chave);
   Request.AddQueryParam('serie', Serie);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeListagemFromJson(Response.ContentAsString);
 end;
@@ -6327,7 +6696,7 @@ begin
   Request.AddBody(Converter.TMdfePedidoEmissaoToJson(Body));
   Request.AddHeader('Content-Type', 'application/json');
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeFromJson(Response.ContentAsString);
 end;
@@ -6340,7 +6709,7 @@ begin
   Request := CreateRequest('/mdfe/eventos/{id}', 'GET');
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeEventoFromJson(Response.ContentAsString);
 end;
@@ -6352,7 +6721,7 @@ var
 begin
   Request := CreateRequest('/mdfe/eventos/{id}/pdf', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -6364,7 +6733,7 @@ var
 begin
   Request := CreateRequest('/mdfe/eventos/{id}/xml', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -6382,7 +6751,7 @@ begin
   Request.AddQueryParam('referencia', Referencia);
   Request.AddQueryParam('ambiente', Ambiente);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeLoteListagemFromJson(Response.ContentAsString);
 end;
@@ -6396,7 +6765,7 @@ begin
   Request.AddBody(Converter.TMdfePedidoEmissaoLoteToJson(Body));
   Request.AddHeader('Content-Type', 'application/json');
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeLoteFromJson(Response.ContentAsString);
 end;
@@ -6409,7 +6778,7 @@ begin
   Request := CreateRequest('/mdfe/lotes/{id}', 'GET');
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeLoteFromJson(Response.ContentAsString);
 end;
@@ -6422,7 +6791,7 @@ begin
   Request := CreateRequest('/mdfe/nao-encerrados', 'GET');
   Request.AddQueryParam('cpf_cnpj', CpfCnpj);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TMdfeNaoEncerradosFromJson(Response.ContentAsString);
 end;
@@ -6436,7 +6805,7 @@ begin
   Request.AddQueryParam('cpf_cnpj', CpfCnpj);
   Request.AddQueryParam('autorizador', Autorizador);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeSefazStatusFromJson(Response.ContentAsString);
 end;
@@ -6449,7 +6818,7 @@ begin
   Request := CreateRequest('/mdfe/{id}', 'GET');
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeFromJson(Response.ContentAsString);
 end;
@@ -6462,7 +6831,7 @@ begin
   Request := CreateRequest('/mdfe/{id}/cancelamento', 'GET');
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeCancelamentoFromJson(Response.ContentAsString);
 end;
@@ -6477,7 +6846,7 @@ begin
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Content-Type', 'application/json');
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeCancelamentoFromJson(Response.ContentAsString);
 end;
@@ -6489,7 +6858,7 @@ var
 begin
   Request := CreateRequest('/mdfe/{id}/cancelamento/pdf', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -6501,7 +6870,7 @@ var
 begin
   Request := CreateRequest('/mdfe/{id}/cancelamento/xml', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -6514,7 +6883,7 @@ begin
   Request := CreateRequest('/mdfe/{id}/encerramento', 'GET');
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TMdfeEncerramentoFromJson(Response.ContentAsString);
 end;
@@ -6529,7 +6898,7 @@ begin
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Content-Type', 'application/json');
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TMdfeEncerramentoFromJson(Response.ContentAsString);
 end;
@@ -6541,7 +6910,7 @@ var
 begin
   Request := CreateRequest('/mdfe/{id}/encerramento/pdf', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -6553,7 +6922,7 @@ var
 begin
   Request := CreateRequest('/mdfe/{id}/encerramento/xml', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -6568,7 +6937,7 @@ begin
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Content-Type', 'application/json');
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TMdfeInclusaoCondutorFromJson(Response.ContentAsString);
 end;
@@ -6583,7 +6952,7 @@ begin
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Content-Type', 'application/json');
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TMdfeInclusaoDfeFromJson(Response.ContentAsString);
 end;
@@ -6596,7 +6965,7 @@ begin
   Request := CreateRequest('/mdfe/{id}/pdf', 'GET');
   Request.AddUrlParam('id', Id);
   Request.AddQueryParam('logotipo', BoolToParam(Logotipo));
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -6609,7 +6978,7 @@ begin
   Request := CreateRequest('/mdfe/{id}/sincronizar', 'POST');
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeSincronizacaoFromJson(Response.ContentAsString);
 end;
@@ -6621,7 +6990,7 @@ var
 begin
   Request := CreateRequest('/mdfe/{id}/xml', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -6633,7 +7002,7 @@ var
 begin
   Request := CreateRequest('/mdfe/{id}/xml/manifesto', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -6645,7 +7014,7 @@ var
 begin
   Request := CreateRequest('/mdfe/{id}/xml/protocolo', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -6667,7 +7036,7 @@ begin
   Request.AddQueryParam('chave', Chave);
   Request.AddQueryParam('serie', Serie);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeListagemFromJson(Response.ContentAsString);
 end;
@@ -6681,7 +7050,7 @@ begin
   Request.AddBody(Converter.TNfePedidoEmissaoToJson(Body));
   Request.AddHeader('Content-Type', 'application/json');
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeFromJson(Response.ContentAsString);
 end;
@@ -6697,7 +7066,7 @@ begin
   Request.AddQueryParam('$inlinecount', BoolToParam(Inlinecount));
   Request.AddQueryParam('dfe_id', DfeId);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeEventoListagemFromJson(Response.ContentAsString);
 end;
@@ -6710,7 +7079,7 @@ begin
   Request := CreateRequest('/nfce/eventos/{id}', 'GET');
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeEventoFromJson(Response.ContentAsString);
 end;
@@ -6722,7 +7091,7 @@ var
 begin
   Request := CreateRequest('/nfce/eventos/{id}/pdf', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -6734,7 +7103,7 @@ var
 begin
   Request := CreateRequest('/nfce/eventos/{id}/xml', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -6748,7 +7117,7 @@ begin
   Request.AddBody(Converter.TDfePedidoInutilizacaoToJson(Body));
   Request.AddHeader('Content-Type', 'application/json');
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeInutilizacaoFromJson(Response.ContentAsString);
 end;
@@ -6761,7 +7130,7 @@ begin
   Request := CreateRequest('/nfce/inutilizacoes/{id}', 'GET');
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeInutilizacaoFromJson(Response.ContentAsString);
 end;
@@ -6773,7 +7142,7 @@ var
 begin
   Request := CreateRequest('/nfce/inutilizacoes/{id}/pdf', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -6785,7 +7154,7 @@ var
 begin
   Request := CreateRequest('/nfce/inutilizacoes/{id}/xml', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -6803,7 +7172,7 @@ begin
   Request.AddQueryParam('referencia', Referencia);
   Request.AddQueryParam('ambiente', Ambiente);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeLoteListagemFromJson(Response.ContentAsString);
 end;
@@ -6817,7 +7186,7 @@ begin
   Request.AddBody(Converter.TNfePedidoEmissaoLoteToJson(Body));
   Request.AddHeader('Content-Type', 'application/json');
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeLoteFromJson(Response.ContentAsString);
 end;
@@ -6830,7 +7199,7 @@ begin
   Request := CreateRequest('/nfce/lotes/{id}', 'GET');
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeLoteFromJson(Response.ContentAsString);
 end;
@@ -6850,7 +7219,7 @@ begin
   Request.AddQueryParam('largura', IntToStr(Largura));
   Request.AddQueryParam('margem', Margem);
   Request.AddHeader('Content-Type', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -6863,7 +7232,7 @@ begin
   Request := CreateRequest('/nfce/previa/xml', 'POST');
   Request.AddBody(Converter.TNfePedidoEmissaoToJson(Body));
   Request.AddHeader('Content-Type', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -6877,7 +7246,7 @@ begin
   Request.AddQueryParam('cpf_cnpj', CpfCnpj);
   Request.AddQueryParam('autorizador', Autorizador);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeSefazStatusFromJson(Response.ContentAsString);
 end;
@@ -6890,7 +7259,7 @@ begin
   Request := CreateRequest('/nfce/{id}', 'GET');
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeFromJson(Response.ContentAsString);
 end;
@@ -6903,7 +7272,7 @@ begin
   Request := CreateRequest('/nfce/{id}/cancelamento', 'GET');
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeCancelamentoFromJson(Response.ContentAsString);
 end;
@@ -6918,7 +7287,7 @@ begin
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Content-Type', 'application/json');
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeCancelamentoFromJson(Response.ContentAsString);
 end;
@@ -6930,7 +7299,7 @@ var
 begin
   Request := CreateRequest('/nfce/{id}/cancelamento/pdf', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -6942,12 +7311,12 @@ var
 begin
   Request := CreateRequest('/nfce/{id}/cancelamento/xml', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
 
-function TNfceService.EnviarEmailNfce(Body: TDfePedidoEnvioEmail; Id: string): TEmailStatusResponse;
+function TNfceService.EnviarEmailNfce(Body: TDfePedidoEnvioEmail; Id: string; Logotipo: Boolean; NomeFantasia: Boolean; MensagemRodape: string; Resumido: Boolean; QrcodeLateral: Boolean; Largura: Integer; Margem: string): TEmailStatusResponse;
 var
   Request: IRestRequest;
   Response: IRestResponse;
@@ -6955,9 +7324,16 @@ begin
   Request := CreateRequest('/nfce/{id}/email', 'POST');
   Request.AddBody(Converter.TDfePedidoEnvioEmailToJson(Body));
   Request.AddUrlParam('id', Id);
+  Request.AddQueryParam('logotipo', BoolToParam(Logotipo));
+  Request.AddQueryParam('nome_fantasia', BoolToParam(NomeFantasia));
+  Request.AddQueryParam('mensagem_rodape', MensagemRodape);
+  Request.AddQueryParam('resumido', BoolToParam(Resumido));
+  Request.AddQueryParam('qrcode_lateral', BoolToParam(QrcodeLateral));
+  Request.AddQueryParam('largura', IntToStr(Largura));
+  Request.AddQueryParam('margem', Margem);
   Request.AddHeader('Content-Type', 'application/json');
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TEmailStatusResponseFromJson(Response.ContentAsString);
 end;
@@ -6972,7 +7348,7 @@ begin
   Request.AddQueryParam('modelo', IntToStr(Modelo));
   Request.AddQueryParam('colunas', IntToStr(Colunas));
   Request.AddQueryParam('qrcode_lateral', BoolToParam(QrcodeLateral));
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -6991,7 +7367,7 @@ begin
   Request.AddQueryParam('qrcode_lateral', BoolToParam(QrcodeLateral));
   Request.AddQueryParam('largura', IntToStr(Largura));
   Request.AddQueryParam('margem', Margem);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -7004,7 +7380,7 @@ begin
   Request := CreateRequest('/nfce/{id}/sincronizar', 'POST');
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeSincronizacaoFromJson(Response.ContentAsString);
 end;
@@ -7016,7 +7392,7 @@ var
 begin
   Request := CreateRequest('/nfce/{id}/xml', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -7028,7 +7404,7 @@ var
 begin
   Request := CreateRequest('/nfce/{id}/xml/nota', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -7040,7 +7416,7 @@ var
 begin
   Request := CreateRequest('/nfce/{id}/xml/protocolo', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -7062,7 +7438,7 @@ begin
   Request.AddQueryParam('chave', Chave);
   Request.AddQueryParam('serie', Serie);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeListagemFromJson(Response.ContentAsString);
 end;
@@ -7076,7 +7452,7 @@ begin
   Request.AddBody(Converter.TNfcomPedidoEmissaoToJson(Body));
   Request.AddHeader('Content-Type', 'application/json');
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeFromJson(Response.ContentAsString);
 end;
@@ -7090,7 +7466,7 @@ begin
   Request.AddQueryParam('cpf_cnpj', CpfCnpj);
   Request.AddQueryParam('autorizador', Autorizador);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeSefazStatusFromJson(Response.ContentAsString);
 end;
@@ -7103,7 +7479,7 @@ begin
   Request := CreateRequest('/nfcom/{id}', 'GET');
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeFromJson(Response.ContentAsString);
 end;
@@ -7116,7 +7492,7 @@ begin
   Request := CreateRequest('/nfcom/{id}/cancelamento', 'GET');
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeCancelamentoFromJson(Response.ContentAsString);
 end;
@@ -7131,7 +7507,7 @@ begin
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Content-Type', 'application/json');
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeCancelamentoFromJson(Response.ContentAsString);
 end;
@@ -7143,7 +7519,7 @@ var
 begin
   Request := CreateRequest('/nfcom/{id}/cancelamento/xml', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -7156,7 +7532,7 @@ begin
   Request := CreateRequest('/nfcom/{id}/pdf', 'GET');
   Request.AddUrlParam('id', Id);
   Request.AddQueryParam('logotipo', BoolToParam(Logotipo));
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -7168,7 +7544,7 @@ var
 begin
   Request := CreateRequest('/nfcom/{id}/xml', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -7180,7 +7556,7 @@ var
 begin
   Request := CreateRequest('/nfcom/{id}/xml/nota', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -7192,7 +7568,7 @@ var
 begin
   Request := CreateRequest('/nfcom/{id}/xml/protocolo', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -7214,7 +7590,7 @@ begin
   Request.AddQueryParam('chave', Chave);
   Request.AddQueryParam('serie', Serie);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeListagemFromJson(Response.ContentAsString);
 end;
@@ -7228,7 +7604,7 @@ begin
   Request.AddBody(Converter.TNfePedidoEmissaoToJson(Body));
   Request.AddHeader('Content-Type', 'application/json');
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeFromJson(Response.ContentAsString);
 end;
@@ -7244,7 +7620,7 @@ begin
   Request.AddQueryParam('argumento', Argumento);
   Request.AddQueryParam('documento', Documento);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeContribuinteInfConsFromJson(Response.ContentAsString);
 end;
@@ -7260,7 +7636,7 @@ begin
   Request.AddQueryParam('$inlinecount', BoolToParam(Inlinecount));
   Request.AddQueryParam('dfe_id', DfeId);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeEventoListagemFromJson(Response.ContentAsString);
 end;
@@ -7273,7 +7649,7 @@ begin
   Request := CreateRequest('/nfe/eventos/{id}', 'GET');
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeEventoFromJson(Response.ContentAsString);
 end;
@@ -7285,7 +7661,7 @@ var
 begin
   Request := CreateRequest('/nfe/eventos/{id}/pdf', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -7297,7 +7673,7 @@ var
 begin
   Request := CreateRequest('/nfe/eventos/{id}/xml', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -7311,7 +7687,7 @@ begin
   Request.AddBody(Converter.TDfePedidoInutilizacaoToJson(Body));
   Request.AddHeader('Content-Type', 'application/json');
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeInutilizacaoFromJson(Response.ContentAsString);
 end;
@@ -7324,7 +7700,7 @@ begin
   Request := CreateRequest('/nfe/inutilizacoes/{id}', 'GET');
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeInutilizacaoFromJson(Response.ContentAsString);
 end;
@@ -7336,7 +7712,7 @@ var
 begin
   Request := CreateRequest('/nfe/inutilizacoes/{id}/pdf', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -7348,7 +7724,7 @@ var
 begin
   Request := CreateRequest('/nfe/inutilizacoes/{id}/xml', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -7366,7 +7742,7 @@ begin
   Request.AddQueryParam('referencia', Referencia);
   Request.AddQueryParam('ambiente', Ambiente);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeLoteListagemFromJson(Response.ContentAsString);
 end;
@@ -7380,7 +7756,7 @@ begin
   Request.AddBody(Converter.TNfePedidoEmissaoLoteToJson(Body));
   Request.AddHeader('Content-Type', 'application/json');
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeLoteFromJson(Response.ContentAsString);
 end;
@@ -7393,7 +7769,7 @@ begin
   Request := CreateRequest('/nfe/lotes/{id}', 'GET');
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeLoteFromJson(Response.ContentAsString);
 end;
@@ -7411,7 +7787,7 @@ begin
   Request.AddQueryParam('mensagem_rodape', MensagemRodape);
   Request.AddQueryParam('canhoto', BoolToParam(Canhoto));
   Request.AddHeader('Content-Type', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -7424,7 +7800,7 @@ begin
   Request := CreateRequest('/nfe/previa/xml', 'POST');
   Request.AddBody(Converter.TNfePedidoEmissaoToJson(Body));
   Request.AddHeader('Content-Type', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -7438,7 +7814,7 @@ begin
   Request.AddQueryParam('cpf_cnpj', CpfCnpj);
   Request.AddQueryParam('autorizador', Autorizador);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeSefazStatusFromJson(Response.ContentAsString);
 end;
@@ -7451,7 +7827,7 @@ begin
   Request := CreateRequest('/nfe/{id}', 'GET');
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeFromJson(Response.ContentAsString);
 end;
@@ -7464,7 +7840,7 @@ begin
   Request := CreateRequest('/nfe/{id}/cancelamento', 'GET');
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeCancelamentoFromJson(Response.ContentAsString);
 end;
@@ -7479,7 +7855,7 @@ begin
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Content-Type', 'application/json');
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeCancelamentoFromJson(Response.ContentAsString);
 end;
@@ -7491,7 +7867,7 @@ var
 begin
   Request := CreateRequest('/nfe/{id}/cancelamento/pdf', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -7503,7 +7879,7 @@ var
 begin
   Request := CreateRequest('/nfe/{id}/cancelamento/xml', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -7516,7 +7892,7 @@ begin
   Request := CreateRequest('/nfe/{id}/carta-correcao', 'GET');
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeCartaCorrecaoFromJson(Response.ContentAsString);
 end;
@@ -7531,7 +7907,7 @@ begin
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Content-Type', 'application/json');
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeCartaCorrecaoFromJson(Response.ContentAsString);
 end;
@@ -7543,7 +7919,7 @@ var
 begin
   Request := CreateRequest('/nfe/{id}/carta-correcao/pdf', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -7555,12 +7931,12 @@ var
 begin
   Request := CreateRequest('/nfe/{id}/carta-correcao/xml', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
 
-function TNfeService.EnviarEmailNfe(Body: TDfePedidoEnvioEmail; Id: string): TEmailStatusResponse;
+function TNfeService.EnviarEmailNfe(Body: TDfePedidoEnvioEmail; Id: string; Logotipo: Boolean; NomeFantasia: Boolean; Formato: string; MensagemRodape: string; Canhoto: Boolean): TEmailStatusResponse;
 var
   Request: IRestRequest;
   Response: IRestResponse;
@@ -7568,9 +7944,14 @@ begin
   Request := CreateRequest('/nfe/{id}/email', 'POST');
   Request.AddBody(Converter.TDfePedidoEnvioEmailToJson(Body));
   Request.AddUrlParam('id', Id);
+  Request.AddQueryParam('logotipo', BoolToParam(Logotipo));
+  Request.AddQueryParam('nome_fantasia', BoolToParam(NomeFantasia));
+  Request.AddQueryParam('formato', Formato);
+  Request.AddQueryParam('mensagem_rodape', MensagemRodape);
+  Request.AddQueryParam('canhoto', BoolToParam(Canhoto));
   Request.AddHeader('Content-Type', 'application/json');
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TEmailStatusResponseFromJson(Response.ContentAsString);
 end;
@@ -7587,7 +7968,7 @@ begin
   Request.AddQueryParam('formato', Formato);
   Request.AddQueryParam('mensagem_rodape', MensagemRodape);
   Request.AddQueryParam('canhoto', BoolToParam(Canhoto));
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -7600,7 +7981,7 @@ begin
   Request := CreateRequest('/nfe/{id}/sincronizar', 'POST');
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TDfeSincronizacaoFromJson(Response.ContentAsString);
 end;
@@ -7612,7 +7993,7 @@ var
 begin
   Request := CreateRequest('/nfe/{id}/xml', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -7624,7 +8005,7 @@ var
 begin
   Request := CreateRequest('/nfe/{id}/xml/nota', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -7636,7 +8017,7 @@ var
 begin
   Request := CreateRequest('/nfe/{id}/xml/protocolo', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -7658,7 +8039,7 @@ begin
   Request.AddQueryParam('chave', Chave);
   Request.AddQueryParam('serie', Serie);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TNfseListagemFromJson(Response.ContentAsString);
 end;
@@ -7672,7 +8053,7 @@ begin
   Request.AddBody(Converter.TNfsePedidoEmissaoToJson(Body));
   Request.AddHeader('Content-Type', 'application/json');
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TNfseFromJson(Response.ContentAsString);
 end;
@@ -7684,7 +8065,7 @@ var
 begin
   Request := CreateRequest('/nfse/cidades', 'GET');
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TNfseCidadesAtendidasFromJson(Response.ContentAsString);
 end;
@@ -7697,7 +8078,7 @@ begin
   Request := CreateRequest('/nfse/cidades/{codigo_ibge}', 'GET');
   Request.AddUrlParam('codigo_ibge', CodigoIbge);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TNfseCidadeMetadadosFromJson(Response.ContentAsString);
 end;
@@ -7711,7 +8092,7 @@ begin
   Request.AddBody(Converter.TNfseDpsPedidoEmissaoToJson(Body));
   Request.AddHeader('Content-Type', 'application/json');
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TNfseFromJson(Response.ContentAsString);
 end;
@@ -7725,7 +8106,7 @@ begin
   Request.AddBody(Converter.TNfseLoteDpsPedidoEmissaoToJson(Body));
   Request.AddHeader('Content-Type', 'application/json');
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TRpsLoteFromJson(Response.ContentAsString);
 end;
@@ -7743,7 +8124,7 @@ begin
   Request.AddQueryParam('referencia', Referencia);
   Request.AddQueryParam('ambiente', Ambiente);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TRpsLoteListagemFromJson(Response.ContentAsString);
 end;
@@ -7757,7 +8138,7 @@ begin
   Request.AddBody(Converter.TRpsPedidoEmissaoLoteToJson(Body));
   Request.AddHeader('Content-Type', 'application/json');
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TRpsLoteFromJson(Response.ContentAsString);
 end;
@@ -7770,7 +8151,7 @@ begin
   Request := CreateRequest('/nfse/lotes/{id}', 'GET');
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TRpsLoteFromJson(Response.ContentAsString);
 end;
@@ -7782,7 +8163,7 @@ var
 begin
   Request := CreateRequest('/nfse/{Id}/cancelamento/xml', 'GET');
   Request.AddUrlParam('Id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -7795,7 +8176,7 @@ begin
   Request := CreateRequest('/nfse/{id}', 'GET');
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TNfseFromJson(Response.ContentAsString);
 end;
@@ -7808,7 +8189,7 @@ begin
   Request := CreateRequest('/nfse/{id}/cancelamento', 'GET');
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TNfseCancelamentoFromJson(Response.ContentAsString);
 end;
@@ -7823,7 +8204,7 @@ begin
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Content-Type', 'application/json');
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TNfseCancelamentoFromJson(Response.ContentAsString);
 end;
@@ -7837,7 +8218,7 @@ begin
   Request.AddUrlParam('id', Id);
   Request.AddQueryParam('logotipo', BoolToParam(Logotipo));
   Request.AddQueryParam('mensagem_rodape', MensagemRodape);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -7852,7 +8233,7 @@ begin
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Content-Type', 'application/json');
   Request.AddHeader('Accept', 'application/json');
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TNfseSincronizacaoFromJson(Response.ContentAsString);
 end;
@@ -7864,7 +8245,7 @@ var
 begin
   Request := CreateRequest('/nfse/{id}/xml', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;
@@ -7876,7 +8257,7 @@ var
 begin
   Request := CreateRequest('/nfse/{id}/xml/dps', 'GET');
   Request.AddUrlParam('id', Id);
-  Response := Request.Execute;
+  Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;
 end;

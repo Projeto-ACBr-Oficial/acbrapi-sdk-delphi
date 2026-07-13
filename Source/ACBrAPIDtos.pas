@@ -1,4 +1,4 @@
-﻿unit ACBrAPIDtos;
+unit ACBrAPIDtos;
 
 {$IFDEF FPC}{$MODE Delphi}{$ENDIF}
 
@@ -33,6 +33,7 @@ type
   TDfeSefazStatus = class;
   TCteOsSefazInfPercursoOS = class;
   TCteOsSefazInfPercursoOSList = class;
+  stringList = class;
   TCteOsSefazCompraGovReduzidoOS = class;
   TCteOsSefazIdeOS = class;
   TCteOsSefazObsContOS = class;
@@ -61,13 +62,17 @@ type
   TCteOsSefazRedOS = class;
   TCteOsSefazGIBSUFOS = class;
   TCteOsSefazGIBSMunOS = class;
+  TCteOsSefazALCZFMCBSOS = class;
   TCteOsSefazGCBSOS = class;
   TCteOsSefazTribRegularOS = class;
-  TCteOsSefazCredPresOS = class;
   TCteOsSefazTribCompraGovOS = class;
   TCteOsSefazCIBSOS = class;
+  TCteOsSefazEstornoCredOS = class;
   TCteOsSefazTribCTeOS = class;
   TCteOsSefazInfCteImpOS = class;
+  TCteOsSefazPagamentoRTCOS = class;
+  TCteOsSefazPagamentoRTCOSList = class;
+  TCteOsSefazPgtoVincOS = class;
   TCteOsSefazInfQOS = class;
   TCteOsSefazInfServicoOS = class;
   TCteOsSefazInfDocRefOS = class;
@@ -94,6 +99,7 @@ type
   TCteOsSefazAutXMLOS = class;
   TCteOsSefazAutXMLOSList = class;
   TCteOsSefazRespTecOS = class;
+  TCteOsSefazGPagAntecipadoOS = class;
   TCteOsSefazInfCteOS = class;
   TCteOsSefazInfCTeSuplOS = class;
   TCteOsPedidoEmissao = class;
@@ -110,7 +116,6 @@ type
   TCteOsCartaCorrecao = class;
   TDfeEvento = class;
   TDfeSincronizacao = class;
-  stringList = class;
   TNfseCidadesAtendidas = class;
   TNfseCidadeMetadados = class;
   TRpsIdentificacaoPrestador = class;
@@ -146,12 +151,12 @@ type
   TLocPrest = class;
   TCServ = class;
   TComExterior = class;
-  TLocacaoSublocacao = class;
   TEnderExtSimples = class;
-  TEnderecoSimples = class;
+  TEnderObraEvento = class;
   TInfoObra = class;
+  TEnderecoSimples = class;
   TAtvEvento = class;
-  TExploracaoRodoviaria = class;
+  TInfoItemPed = class;
   TInfoCompl = class;
   TServ = class;
   TVServPrest = class;
@@ -163,8 +168,8 @@ type
   TDocDedRedList = class;
   TListaDocDedRed = class;
   TInfoDedRed = class;
-  TBeneficioMunicipal = class;
   TExigSuspensa = class;
+  TBeneficioMunicipal = class;
   TTribMunicipal = class;
   TTribOutrosPisCofins = class;
   TTribFederal = class;
@@ -173,6 +178,22 @@ type
   TTribTotal = class;
   TInfoTributacao = class;
   TInfoValores = class;
+  TInfoRefNFSe = class;
+  TRTCInfoDest = class;
+  TRTCInfoImovel = class;
+  TRTCListaDocDFe = class;
+  TRTCListaDocFiscalOutro = class;
+  TRTCListaDocOutro = class;
+  TRTCListaDocFornec = class;
+  TRTCListaDoc = class;
+  TRTCListaDocList = class;
+  TRTCInfoReeRepRes = class;
+  TRTCInfoTributosTribRegular = class;
+  TRTCInfoTributosDif = class;
+  TRTCInfoTributosSitClas = class;
+  TRTCInfoTributosIBSCBS = class;
+  TRTCInfoValoresIBSCBS = class;
+  TRTCInfoIBSCBS = class;
   TInfDPS = class;
   TNfseDpsPedidoEmissao = class;
   TNfseDpsPedidoEmissaoList = class;
@@ -251,6 +272,7 @@ type
   TNfcomSefazGSub = class;
   TNfcomSefazGCofatGNF = class;
   TNfcomSefazGCofat = class;
+  TNfcomSefazGPagAntecipado = class;
   TNfcomSefazProd = class;
   TNfcomSefazICMS00 = class;
   TNfcomSefazICMS20 = class;
@@ -270,11 +292,12 @@ type
   TNfcomSefazRed = class;
   TNfcomSefazGIBSUF = class;
   TNfcomSefazGIBSMun = class;
+  TNfcomSefazALCZFMCBS = class;
   TNfcomSefazGCBS = class;
   TNfcomSefazTribRegular = class;
-  TNfcomSefazCredPres = class;
   TNfcomSefazTribCompraGov = class;
   TNfcomSefazCIBS = class;
+  TNfcomSefazEstornoCred = class;
   TNfcomSefazTribNFCom = class;
   TNfcomSefazImposto = class;
   TNfcomSefazGProc = class;
@@ -283,12 +306,16 @@ type
   TNfcomSefazGRessarc = class;
   TNfcomSefazDet = class;
   TNfcomSefazDetList = class;
+  TNfcomSefazPagamentoRTC = class;
+  TNfcomSefazPagamentoRTCList = class;
+  TNfcomSefazPgtoVinc = class;
   TNfcomSefazICMSTot = class;
   TNfcomSefazVRetTribTot = class;
   TNfcomSefazGIBSGIBSUF = class;
   TNfcomSefazGIBSGIBSMun = class;
   TNfcomSefazGIBS = class;
   TNfcomSefazIBSCBSTotGCBS = class;
+  TNfcomSefazGEstornoCred = class;
   TNfcomSefazIBSCBSTot = class;
   TNfcomSefazTotal = class;
   TNfcomSefazGFidelidade = class;
@@ -305,10 +332,15 @@ type
   TContaCota = class;
   TContaCotaList = class;
   TContaCotaListagem = class;
+  TContaCotaPrePago = class;
+  TContaExtratoCredito = class;
+  TContaExtratoCreditoList = class;
+  TContaExtratoCreditoListagem = class;
   TCteSefazToma3 = class;
   TCteSefazEndereco = class;
   TCteSefazToma4 = class;
   TCteSefazCompraGovReduzido = class;
+  TCteSefazGPagAntecipado = class;
   TCteSefazIde = class;
   TCteSefazPass = class;
   TCteSefazPassList = class;
@@ -348,13 +380,17 @@ type
   TCteSefazRed = class;
   TCteSefazGIBSUF = class;
   TCteSefazGIBSMun = class;
+  TCteSefazALCZFMCBS = class;
   TCteSefazGCBS = class;
   TCteSefazTribRegular = class;
-  TCteSefazCredPres = class;
   TCteSefazTribCompraGov = class;
   TCteSefazCIBS = class;
+  TCteSefazEstornoCred = class;
   TCteSefazTribCTe = class;
   TCteSefazInfCteImp = class;
+  TCteSefazPagamentoRTC = class;
+  TCteSefazPagamentoRTCList = class;
+  TCteSefazPgtoVinc = class;
   TCteSefazInfQ = class;
   TCteSefazInfQList = class;
   TCteSefazInfCarga = class;
@@ -438,6 +474,7 @@ type
   TCteSefazInfCTeSupl = class;
   TCtePedidoEmissao = class;
   TCteSimpSefazCompraGovReduzidoSimp = class;
+  TCteSimpSefazGPagAntecipadoSimp = class;
   TCteSimpSefazIdeSimp = class;
   TCteSimpSefazPassSimp = class;
   TCteSimpSefazPassSimpList = class;
@@ -523,13 +560,17 @@ type
   TCteSimpSefazRedSimp = class;
   TCteSimpSefazGIBSUFSimp = class;
   TCteSimpSefazGIBSMunSimp = class;
+  TCteSimpSefazALCZFMCBSSimp = class;
   TCteSimpSefazGCBSSimp = class;
   TCteSimpSefazTribRegularSimp = class;
-  TCteSimpSefazCredPresSimp = class;
   TCteSimpSefazTribCompraGovSimp = class;
   TCteSimpSefazCIBSSimp = class;
+  TCteSimpSefazEstornoCredSimp = class;
   TCteSimpSefazTribCTeSimp = class;
   TCteSimpSefazInfCteImpSimp = class;
+  TCteSimpSefazPagamentoRTCSimp = class;
+  TCteSimpSefazPagamentoRTCSimpList = class;
+  TCteSimpSefazPgtoVincSimp = class;
   TCteSimpSefazTotalSimp = class;
   TCteSimpSefazAutXMLSimp = class;
   TCteSimpSefazAutXMLSimpList = class;
@@ -747,7 +788,6 @@ type
   TNfeSefazGIBSMun = class;
   TNfeSefazGCBS = class;
   TNfeSefazTribRegular = class;
-  TNfeSefazCredPres = class;
   TNfeSefazTribCompraGov = class;
   TNfeSefazCIBS = class;
   TNfeSefazGMonoPadrao = class;
@@ -756,6 +796,10 @@ type
   TNfeSefazGMonoDif = class;
   TNfeSefazMonofasia = class;
   TNfeSefazTransfCred = class;
+  TNfeSefazAjusteCompet = class;
+  TNfeSefazEstornoCred = class;
+  TNfeSefazCredPres = class;
+  TNfeSefazCredPresOper = class;
   TNfeSefazCredPresIBSZFM = class;
   TNfeSefazTribNFe = class;
   TNfeSefazImposto = class;
@@ -776,6 +820,7 @@ type
   TNfeSefazGIBS = class;
   TNfeSefazIBSCBSMonoTotGCBS = class;
   TNfeSefazGMono = class;
+  TNfeSefazGEstornoCred = class;
   TNfeSefazIBSCBSMonoTot = class;
   TNfeSefazTotal = class;
   TNfeSefazTransporta = class;
@@ -816,6 +861,9 @@ type
   TNfeSefazDefensivoList = class;
   TNfeSefazGuiaTransito = class;
   TNfeSefazAgropecuario = class;
+  TNfeSefazRSAKeyValueType = class;
+  TNfeSefazPAASignature = class;
+  TNfeSefazInfPAA = class;
   TNfeSefazInfNFe = class;
   TNfeSefazInfNFeSupl = class;
   TNfePedidoEmissao = class;
@@ -1246,8 +1294,8 @@ type
   public
     /// <summary>
     /// Número do Lote de RPS.
-    /// Informe o próximo número do lote RPS a ser utilizado. Após isso, a ACBrAPI
-    /// gerenciará esse campo (a cada novo envio de lote o número é
+    /// Informe o próximo número do lote RPS a ser utilizado. Após isso, a Nuvem
+    /// Fiscal gerenciará esse campo (a cada novo envio de lote o número é
     /// incrementado em + 1). Portanto, basta informá-lo no cadastro da empresa
     /// uma única vez.
     /// </summary>
@@ -1262,8 +1310,8 @@ type
     property serie: string read Fserie write Fserie;
     /// <summary>
     /// Número do RPS.
-    /// Informe o próximo número de RPS a ser utilizado. Após isso, a ACBrAPI
-    /// gerenciará esse campo (a cada novo envio de RPS o número é
+    /// Informe o próximo número de RPS a ser utilizado. Após isso, a Nuvem
+    /// Fiscal gerenciará esse campo (a cada novo envio de RPS o número é
     /// incrementado em + 1). Portanto, basta informá-lo no cadastro da empresa
     /// uma única vez.
     /// </summary>
@@ -1551,6 +1599,9 @@ type
   TCteOsSefazInfPercursoOSList = class(TObjectList<TCteOsSefazInfPercursoOS>)
   end;
   
+  stringList = class(TList<string>)
+  end;
+  
   /// <summary>
   /// Grupo de Compras Governamentais.
   /// </summary>
@@ -1558,19 +1609,40 @@ type
   private
     FtpEnteGov: Integer;
     FpRedutor: Double;
+    FtpOperGov: Integer;
+    FrefDFeAnt: stringList;
+    procedure SetrefDFeAnt(const Value: stringList);
   public
+    destructor Destroy; override;
     /// <summary>
     /// Para administração pública direta e suas autarquias e fundações:
     /// * 1 - União
     /// * 2 - Estados
     /// * 3 - Distrito Federal
     /// * 4 - Municípios
+    /// * 5 - Consórcio Público
+    /// * 6 - Comitê Gestor do IBS
     /// </summary>
     property tpEnteGov: Integer read FtpEnteGov write FtpEnteGov;
     /// <summary>
-    /// Percentual de redução de aliquota em compra goverrnamental.
+    /// Percentual de redução de aliquota em compra governamental.
     /// </summary>
     property pRedutor: Double read FpRedutor write FpRedutor;
+    /// <summary>
+    /// Tipo da operação com ente governamental:
+    /// * 1 - Fornecimento com pagamento posterior
+    /// * 2 - Recebimento do pagamento com fornecimento já realizado
+    /// * 3 - Fornecimento com pagamento já realizado
+    /// * 4 - Recebimento do pagamento com fornecimento posterior
+    /// </summary>
+    property tpOperGov: Integer read FtpOperGov write FtpOperGov;
+    /// <summary>
+    /// Chave de acesso do documento fiscal anterior.
+    /// Deverá ser informado para tpOperGov 2 e 3 e vedado para os tipos 1 e 4.
+    /// No caso do toOperGov 2 aceitará apenas uma chave referenciada, no tipo 3 poderá aceitar múltiplas chaves
+    /// Obs: a chave de acesso deverá ser de um emitente com o mesmo CNPJ base.
+    /// </summary>
+    property refDFeAnt: stringList read FrefDFeAnt write SetrefDFeAnt;
   end;
   
   /// <summary>
@@ -1717,10 +1789,9 @@ type
     /// </summary>
     property tpCTe: Integer read FtpCTe write FtpCTe;
     /// <summary>
-    /// Identificador do processo de emissão do CT-e OS.
-    /// Preencher com:
-    /// * 0 - emissão de CT-e com aplicativo do contribuinte
-    /// * 3 - emissão CT-e pelo contribuinte com aplicativo fornecido pelo Fisco
+    /// Identificador do processo de emissão do CTe OS.
+    /// Preencher com: 								0 - emissão de CTe com aplicativo do contribuinte
+    /// * 3 - emissão CTe pelo contribuinte com aplicativo fornecido pelo Fisco
     /// </summary>
     property procEmi: Integer read FprocEmi write FprocEmi;
     /// <summary>
@@ -2039,6 +2110,8 @@ type
     FenderEmit: TCteOsSefazEndeEmiOS;
     FCRT: Integer;
     FCRTHasValue: Boolean;
+    FISUFEmit: string;
+    FISUFEmitHasValue: Boolean;
     procedure SetCNPJ(const Value: string);
     procedure SetIE(const Value: string);
     procedure SetIEST(const Value: string);
@@ -2046,6 +2119,7 @@ type
     procedure SetxFant(const Value: string);
     procedure SetenderEmit(const Value: TCteOsSefazEndeEmiOS);
     procedure SetCRT(const Value: Integer);
+    procedure SetISUFEmit(const Value: string);
   public
     destructor Destroy; override;
     /// <summary>
@@ -2094,6 +2168,12 @@ type
     /// </summary>
     property CRT: Integer read FCRT write SetCRT;
     property CRTHasValue: Boolean read FCRTHasValue write FCRTHasValue;
+    /// <summary>
+    /// Inscrição do emitente da Suframa.
+    /// Informar o número do Cadastro do emitente na Suframa. Campo obrigatório nas operações que se beneficiam de incentivos fiscais existentes nas áreas sob controle da SUFRAMA com alíquota zero da CBS referente aos arts. 451 e 466 da LC 214/25.
+    /// </summary>
+    property ISUFEmit: string read FISUFEmit write SetISUFEmit;
+    property ISUFEmitHasValue: Boolean read FISUFEmitHasValue write FISUFEmitHasValue;
   end;
   
   /// <summary>
@@ -2682,11 +2762,18 @@ type
   /// </summary>
   TCteOsSefazDevTribOS = class
   private
+    FpDevTrib: Double;
+    FpDevTribHasValue: Boolean;
     FvDevTrib: Double;
+    procedure SetpDevTrib(const Value: Double);
   public
     /// <summary>
-    /// Valor do tributo devolvido. No fornecimento de energia elétrica, água, esgoto e
-    /// gás natural e em outras hipóteses definidas no regulamento.
+    /// Percentual de devolução do tributo, conforme LC 214/25 art. 118.
+    /// </summary>
+    property pDevTrib: Double read FpDevTrib write SetpDevTrib;
+    property pDevTribHasValue: Boolean read FpDevTribHasValue write FpDevTribHasValue;
+    /// <summary>
+    /// Valor do tributo devolvido. (“cashback” de desconto na própria Nota Fiscal / Fatura).
     /// </summary>
     property vDevTrib: Double read FvDevTrib write FvDevTrib;
   end;
@@ -2704,7 +2791,7 @@ type
     /// </summary>
     property pRedAliq: Double read FpRedAliq write FpRedAliq;
     /// <summary>
-    /// Aliquota Efetiva que será aplicada a Base de Calculo.
+    /// Aliquota Efetiva que será aplicada a Base de Calculo (em percentual).
     /// </summary>
     property pAliqEfet: Double read FpAliqEfet write FpAliqEfet;
   end;
@@ -2725,7 +2812,7 @@ type
   public
     destructor Destroy; override;
     /// <summary>
-    /// Aliquota do IBS de competência das UF.
+    /// Aliquota do IBS de competência das UF (em percentual).
     /// </summary>
     property pIBSUF: Double read FpIBSUF write FpIBSUF;
     property gDif: TCteOsSefazDifOS read FgDif write SetgDif;
@@ -2753,7 +2840,7 @@ type
   public
     destructor Destroy; override;
     /// <summary>
-    /// Aliquota do IBS Municipal.
+    /// Aliquota do IBS Municipal (em percentual).
     /// </summary>
     property pIBSMun: Double read FpIBSMun write FpIBSMun;
     property gDif: TCteOsSefazDifOS read FgDif write SetgDif;
@@ -2766,6 +2853,27 @@ type
   end;
   
   /// <summary>
+  /// Grupo de operações em áreas incentivadas (ALC/ZFM) - CBS (alíquota zero).
+  /// Grupo de informações para identificação de operações em áreas incentivadas (ALC/ZFM) com alíquota zero da CBS, conforme arts. 451 e 466 da LC 214/2025, quando fornecedor e destinatário estiverem nessas áreas, distinguindo a existência de processo aprovado na Suframa.
+  /// </summary>
+  TCteOsSefazALCZFMCBSOS = class
+  private
+    FpAliqEfetRegCBS: Double;
+    FvTribRegCBS: Double;
+  public
+    /// <summary>
+    /// Percentual efetivo sem a redução.
+    /// Alíquota efetiva de referência da CBS aplicável à operação fora de áreas ou regimes incentivados.
+    /// </summary>
+    property pAliqEfetRegCBS: Double read FpAliqEfetRegCBS write FpAliqEfetRegCBS;
+    /// <summary>
+    /// Valor efetivo sem a redução.
+    /// Valor da CBS calculado para a operação fora de áreas ou regimes incentivado.
+    /// </summary>
+    property vTribRegCBS: Double read FvTribRegCBS write FvTribRegCBS;
+  end;
+  
+  /// <summary>
   /// Grupo de Tributação da CBS.
   /// </summary>
   TCteOsSefazGCBSOS = class
@@ -2774,19 +2882,22 @@ type
     FgDif: TCteOsSefazDifOS;
     FgDevTrib: TCteOsSefazDevTribOS;
     FgRed: TCteOsSefazRedOS;
+    FgALCZFMCBS: TCteOsSefazALCZFMCBSOS;
     FvCBS: Double;
     procedure SetgDif(const Value: TCteOsSefazDifOS);
     procedure SetgDevTrib(const Value: TCteOsSefazDevTribOS);
     procedure SetgRed(const Value: TCteOsSefazRedOS);
+    procedure SetgALCZFMCBS(const Value: TCteOsSefazALCZFMCBSOS);
   public
     destructor Destroy; override;
     /// <summary>
-    /// Aliquota da CBS.
+    /// Aliquota da CBS (em percentual).
     /// </summary>
     property pCBS: Double read FpCBS write FpCBS;
     property gDif: TCteOsSefazDifOS read FgDif write SetgDif;
     property gDevTrib: TCteOsSefazDevTribOS read FgDevTrib write SetgDevTrib;
     property gRed: TCteOsSefazRedOS read FgRed write SetgRed;
+    property gALCZFMCBS: TCteOsSefazALCZFMCBSOS read FgALCZFMCBS write SetgALCZFMCBS;
     /// <summary>
     /// Valor da CBS.
     /// </summary>
@@ -2849,40 +2960,6 @@ type
   end;
   
   /// <summary>
-  /// Grupo de Informações do Crédito Presumido referente ao IBS, quando aproveitado pelo emitente do documento.
-  /// </summary>
-  TCteOsSefazCredPresOS = class
-  private
-    FcCredPres: string;
-    FpCredPres: Double;
-    FvCredPres: Double;
-    FvCredPresHasValue: Boolean;
-    FvCredPresCondSus: Double;
-    FvCredPresCondSusHasValue: Boolean;
-    procedure SetvCredPres(const Value: Double);
-    procedure SetvCredPresCondSus(const Value: Double);
-  public
-    /// <summary>
-    /// Usar tabela Cred Presumido, para o emitente da nota.
-    /// </summary>
-    property cCredPres: string read FcCredPres write FcCredPres;
-    /// <summary>
-    /// Percentual do Crédito Presumido.
-    /// </summary>
-    property pCredPres: Double read FpCredPres write FpCredPres;
-    /// <summary>
-    /// Valor do Crédito Presumido.
-    /// </summary>
-    property vCredPres: Double read FvCredPres write SetvCredPres;
-    property vCredPresHasValue: Boolean read FvCredPresHasValue write FvCredPresHasValue;
-    /// <summary>
-    /// Valor do Crédito Presumido Condição Suspensiva, preencher apenas para cCredPres que possui indicação de Condição Suspensiva.
-    /// </summary>
-    property vCredPresCondSus: Double read FvCredPresCondSus write SetvCredPresCondSus;
-    property vCredPresCondSusHasValue: Boolean read FvCredPresCondSusHasValue write FvCredPresCondSusHasValue;
-  end;
-  
-  /// <summary>
   /// Grupo de informações da composição do valor do IBS e da CBS em compras governamental.
   /// </summary>
   TCteOsSefazTribCompraGovOS = class
@@ -2928,15 +3005,11 @@ type
     FvIBS: Double;
     FgCBS: TCteOsSefazGCBSOS;
     FgTribRegular: TCteOsSefazTribRegularOS;
-    FgIBSCredPres: TCteOsSefazCredPresOS;
-    FgCBSCredPres: TCteOsSefazCredPresOS;
     FgTribCompraGov: TCteOsSefazTribCompraGovOS;
     procedure SetgIBSUF(const Value: TCteOsSefazGIBSUFOS);
     procedure SetgIBSMun(const Value: TCteOsSefazGIBSMunOS);
     procedure SetgCBS(const Value: TCteOsSefazGCBSOS);
     procedure SetgTribRegular(const Value: TCteOsSefazTribRegularOS);
-    procedure SetgIBSCredPres(const Value: TCteOsSefazCredPresOS);
-    procedure SetgCBSCredPres(const Value: TCteOsSefazCredPresOS);
     procedure SetgTribCompraGov(const Value: TCteOsSefazTribCompraGovOS);
   public
     constructor Create;
@@ -2948,14 +3021,30 @@ type
     property gIBSUF: TCteOsSefazGIBSUFOS read FgIBSUF write SetgIBSUF;
     property gIBSMun: TCteOsSefazGIBSMunOS read FgIBSMun write SetgIBSMun;
     /// <summary>
-    /// Valor do IBS (soma de vIBSUF e vIBSMun).
+    /// Valor do IBS.
     /// </summary>
     property vIBS: Double read FvIBS write FvIBS;
     property gCBS: TCteOsSefazGCBSOS read FgCBS write SetgCBS;
     property gTribRegular: TCteOsSefazTribRegularOS read FgTribRegular write SetgTribRegular;
-    property gIBSCredPres: TCteOsSefazCredPresOS read FgIBSCredPres write SetgIBSCredPres;
-    property gCBSCredPres: TCteOsSefazCredPresOS read FgCBSCredPres write SetgCBSCredPres;
     property gTribCompraGov: TCteOsSefazTribCompraGovOS read FgTribCompraGov write SetgTribCompraGov;
+  end;
+  
+  /// <summary>
+  /// Informado conforme indicador no cClassTrib.
+  /// </summary>
+  TCteOsSefazEstornoCredOS = class
+  private
+    FvIBSEstCred: Double;
+    FvCBSEstCred: Double;
+  public
+    /// <summary>
+    /// Valor do IBS a ser estornado.
+    /// </summary>
+    property vIBSEstCred: Double read FvIBSEstCred write FvIBSEstCred;
+    /// <summary>
+    /// Valor da CBS a ser estornada.
+    /// </summary>
+    property vCBSEstCred: Double read FvCBSEstCred write FvCBSEstCred;
   end;
   
   /// <summary>
@@ -2966,9 +3055,14 @@ type
     FCST: string;
     FcClassTrib: string;
     FcClassTribHasValue: Boolean;
+    FindDoacao: Integer;
+    FindDoacaoHasValue: Boolean;
     FgIBSCBS: TCteOsSefazCIBSOS;
+    FgEstornoCred: TCteOsSefazEstornoCredOS;
     procedure SetcClassTrib(const Value: string);
+    procedure SetindDoacao(const Value: Integer);
     procedure SetgIBSCBS(const Value: TCteOsSefazCIBSOS);
+    procedure SetgEstornoCred(const Value: TCteOsSefazEstornoCredOS);
   public
     destructor Destroy; override;
     /// <summary>
@@ -2977,7 +3071,10 @@ type
     property CST: string read FCST write FCST;
     property cClassTrib: string read FcClassTrib write SetcClassTrib;
     property cClassTribHasValue: Boolean read FcClassTribHasValue write FcClassTribHasValue;
+    property indDoacao: Integer read FindDoacao write SetindDoacao;
+    property indDoacaoHasValue: Boolean read FindDoacaoHasValue write FindDoacaoHasValue;
     property gIBSCBS: TCteOsSefazCIBSOS read FgIBSCBS write SetgIBSCBS;
+    property gEstornoCred: TCteOsSefazEstornoCredOS read FgEstornoCred write SetgEstornoCred;
   end;
   
   /// <summary>
@@ -3026,6 +3123,57 @@ type
     /// </summary>
     property vTotDFe: Double read FvTotDFe write SetvTotDFe;
     property vTotDFeHasValue: Boolean read FvTotDFeHasValue write FvTotDFeHasValue;
+  end;
+  
+  /// <summary>
+  /// Dados de cada pagamento previsto.
+  /// </summary>
+  TCteOsSefazPagamentoRTCOS = class
+  private
+    FnPag: string;
+    FidTransacao: string;
+    FtpMeioPgto: string;
+    FCNPJReceb: string;
+    FCNPJBasePSP: string;
+  public
+    /// <summary>
+    /// Número sequencial do pagamento.
+    /// </summary>
+    property nPag: string read FnPag write FnPag;
+    /// <summary>
+    /// ID específico da transação financeira conforme o meio de pagamento.
+    /// </summary>
+    property idTransacao: string read FidTransacao write FidTransacao;
+    /// <summary>
+    /// (Meio de pagamento utilizado (ver IT DFe 2026.001).
+    /// </summary>
+    property tpMeioPgto: string read FtpMeioPgto write FtpMeioPgto;
+    /// <summary>
+    /// CNPJ do recebedor do pagamento.
+    /// Informar zeros não significativos.
+    /// </summary>
+    property CNPJReceb: string read FCNPJReceb write FCNPJReceb;
+    /// <summary>
+    /// CNPJ base da instituição financeira.
+    /// Informar zeros não significativos.
+    /// </summary>
+    property CNPJBasePSP: string read FCNPJBasePSP write FCNPJBasePSP;
+  end;
+  
+  TCteOsSefazPagamentoRTCOSList = class(TObjectList<TCteOsSefazPagamentoRTCOS>)
+  end;
+  
+  /// <summary>
+  /// Grupo de informações da vínculação com a transação de pagamento.
+  /// </summary>
+  TCteOsSefazPgtoVincOS = class
+  private
+    Fpgto: TCteOsSefazPagamentoRTCOSList;
+    procedure Setpgto(const Value: TCteOsSefazPagamentoRTCOSList);
+  public
+    constructor Create;
+    destructor Destroy; override;
+    property pgto: TCteOsSefazPagamentoRTCOSList read Fpgto write Setpgto;
   end;
   
   /// <summary>
@@ -3647,6 +3795,22 @@ type
   end;
   
   /// <summary>
+  /// Grupo de antecipação de pagamento.
+  /// Informado para abater as parcelas de antecipação de
+  /// pagamento, conforme Art. 10. § 4º.
+  /// </summary>
+  TCteOsSefazGPagAntecipadoOS = class
+  private
+    FchCTePagAnt: string;
+  public
+    /// <summary>
+    /// Chave de acesso do CTe de antecipação de pagamento.
+    /// Referência a CTe emitido anteriormente, referente a pagamento antecipado.
+    /// </summary>
+    property chCTePagAnt: string read FchCTePagAnt write FchCTePagAnt;
+  end;
+  
+  /// <summary>
   /// Informações do CT-e Outros Serviços.
   /// </summary>
   TCteOsSefazInfCteOS = class
@@ -3660,10 +3824,14 @@ type
     Ftoma: TCteOsSefazTomaOS;
     FvPrest: TCteOsSefazVPrestOS;
     Fimp: TCteOsSefazInfCteImpOS;
+    FpgtoVinc: TCteOsSefazPgtoVincOS;
     FinfCTeNorm: TCteOsSefazInfCTeNormOS;
     FinfCteComp: TCteOsSefazInfCteCompOSList;
     FautXML: TCteOsSefazAutXMLOSList;
     FinfRespTec: TCteOsSefazRespTecOS;
+    FtpPagAnt: Integer;
+    FtpPagAntHasValue: Boolean;
+    FgPagAntecipado: TCteOsSefazGPagAntecipadoOS;
     procedure SetId(const Value: string);
     procedure Setide(const Value: TCteOsSefazIdeOS);
     procedure Setcompl(const Value: TCteOsSefazComplOS);
@@ -3671,10 +3839,13 @@ type
     procedure Settoma(const Value: TCteOsSefazTomaOS);
     procedure SetvPrest(const Value: TCteOsSefazVPrestOS);
     procedure Setimp(const Value: TCteOsSefazInfCteImpOS);
+    procedure SetpgtoVinc(const Value: TCteOsSefazPgtoVincOS);
     procedure SetinfCTeNorm(const Value: TCteOsSefazInfCTeNormOS);
     procedure SetinfCteComp(const Value: TCteOsSefazInfCteCompOSList);
     procedure SetautXML(const Value: TCteOsSefazAutXMLOSList);
     procedure SetinfRespTec(const Value: TCteOsSefazRespTecOS);
+    procedure SettpPagAnt(const Value: Integer);
+    procedure SetgPagAntecipado(const Value: TCteOsSefazGPagAntecipadoOS);
   public
     constructor Create;
     destructor Destroy; override;
@@ -3697,10 +3868,21 @@ type
     property toma: TCteOsSefazTomaOS read Ftoma write Settoma;
     property vPrest: TCteOsSefazVPrestOS read FvPrest write SetvPrest;
     property imp: TCteOsSefazInfCteImpOS read Fimp write Setimp;
+    property pgtoVinc: TCteOsSefazPgtoVincOS read FpgtoVinc write SetpgtoVinc;
     property infCTeNorm: TCteOsSefazInfCTeNormOS read FinfCTeNorm write SetinfCTeNorm;
     property infCteComp: TCteOsSefazInfCteCompOSList read FinfCteComp write SetinfCteComp;
     property autXML: TCteOsSefazAutXMLOSList read FautXML write SetautXML;
     property infRespTec: TCteOsSefazRespTecOS read FinfRespTec write SetinfRespTec;
+    /// <summary>
+    /// Tipo Pagamento ou Pagamento Antecipado.
+    /// Informar:
+    /// * 1 - Pagamento Antecipado
+    /// * 3 - Fornecimento com pagamento realizado anteriormente
+    /// Este campo é opcional e apenas deve ser informado quando pagamento que ocorre antes da prestação do serviço e na DFe de fornecimento associada a esses pagamentos, demais hipóteses de prestação de serviço sem antecipação não devem preencher.
+    /// </summary>
+    property tpPagAnt: Integer read FtpPagAnt write SettpPagAnt;
+    property tpPagAntHasValue: Boolean read FtpPagAntHasValue write FtpPagAntHasValue;
+    property gPagAntecipado: TCteOsSefazGPagAntecipadoOS read FgPagAntecipado write SetgPagAntecipado;
   end;
   
   /// <summary>
@@ -4444,9 +4626,6 @@ type
     /// </summary>
     property chave: string read Fchave write Setchave;
     property chaveHasValue: Boolean read FchaveHasValue write FchaveHasValue;
-  end;
-  
-  stringList = class(TList<string>)
   end;
   
   TNfseCidadesAtendidas = class
@@ -5450,7 +5629,7 @@ type
     ///   da NFS-e, sem qualquer conversão pela API.
     /// - Esse campo sobrescreve o valor configurado previamente nas
     ///   configurações de NFS-e da empresa.
-    /// - É especialmente útil quando a prefeitura utiliza códigos próprios que
+    /// - - especialmente útil quando a prefeitura utiliza códigos próprios que
     ///   não existem no padrão nacional (como valores diferentes dos listados
     ///   de 0 a 6).
     /// 
@@ -5489,7 +5668,7 @@ type
     property CNPJHasValue: Boolean read FCNPJHasValue write FCNPJHasValue;
     /// <summary>
     /// Número do CPF.
-    /// Obrigatorio caso o emitente seja pessoa física.
+    /// Obrigatório caso o emitente seja pessoa física.
     /// </summary>
     property CPF: string read FCPF write SetCPF;
     property CPFHasValue: Boolean read FCPFHasValue write FCPFHasValue;
@@ -5646,7 +5825,7 @@ type
   public
     destructor Destroy; override;
     /// <summary>
-    /// Indica se o tomador do serviço é um orgão público.
+    /// Indica se o tomador do serviço - um órgão público.
     /// 
     /// **Atenção**: Para emissões pelo Sistema Nacional NFS-e, esse campo é ignorado.
     /// </summary>
@@ -5850,11 +6029,14 @@ type
     FcNatOpHasValue: Boolean;
     FcSitTrib: string;
     FcSitTribHasValue: Boolean;
+    FcIntContrib: string;
+    FcIntContribHasValue: Boolean;
     procedure SetcTribMun(const Value: string);
     procedure SetCNAE(const Value: string);
     procedure SetcNBS(const Value: string);
     procedure SetcNatOp(const Value: string);
     procedure SetcSitTrib(const Value: string);
+    procedure SetcIntContrib(const Value: string);
   public
     /// <summary>
     /// Código de tributação nacional do ISSQN.
@@ -5879,7 +6061,7 @@ type
     /// </summary>
     property xDescServ: string read FxDescServ write FxDescServ;
     /// <summary>
-    /// Código NBS (Nomenclatura Brasileira de Serviços, Intangíveis e outras Operações que produzam Variações no Patrimônio) correspondente ao serviço prestado.
+    /// Código NBS correspondente ao serviço prestado, seguindo a versão 2.0, conforme Anexo B.
     /// </summary>
     property cNBS: string read FcNBS write SetcNBS;
     property cNBSHasValue: Boolean read FcNBSHasValue write FcNBSHasValue;
@@ -5897,6 +6079,11 @@ type
     /// </summary>
     property cSitTrib: string read FcSitTrib write SetcSitTrib;
     property cSitTribHasValue: Boolean read FcSitTribHasValue write FcSitTribHasValue;
+    /// <summary>
+    /// Código interno do contribuinte.
+    /// </summary>
+    property cIntContrib: string read FcIntContrib write SetcIntContrib;
+    property cIntContribHasValue: Boolean read FcIntContribHasValue write FcIntContribHasValue;
   end;
   
   /// <summary>
@@ -5924,19 +6111,20 @@ type
     /// * 0 - Desconhecido (tipo não informado na nota de origem)
     /// * 1 - Transfronteiriço
     /// * 2 - Consumo no Brasil
-    /// * 3 - Presença Comercial no Exterior
-    /// * 4 - Movimento Temporário de Pessoas Físicas
+    /// * 3 - Movimento Temporário de Pessoas Físicas
+    /// * 4 - Consumo no Exterior
     /// </summary>
     property mdPrestacao: Integer read FmdPrestacao write FmdPrestacao;
     /// <summary>
     /// Vínculo entre as partes no negócio:
-    /// * 0 - Sem vínculo com o tomador/ Prestador
+    /// * 0 - Sem vínculo com o Tomador/Prestador
     /// * 1 - Controlada
     /// * 2 - Controladora
     /// * 3 - Coligada
     /// * 4 - Matriz
     /// * 5 - Filial ou sucursal
     /// * 6 - Outro vínculo
+    /// * 9 - Desconhecido (tipo não informado na nota de origem)
     /// </summary>
     property vincPrest: Integer read FvincPrest write FvincPrest;
     /// <summary>
@@ -5992,7 +6180,7 @@ type
     /// </summary>
     property mecAFComexT: string read FmecAFComexT write FmecAFComexT;
     /// <summary>
-    /// Operação está vinculada à Movimentação Temporária de Bens:
+    /// Vínculo da Operação à Movimentação Temporária de Bens:
     /// * 0 - Desconhecido (tipo não informado na nota de origem)
     /// * 1 - Não
     /// * 2 - Vinculada - Declaração de Importação
@@ -6015,34 +6203,6 @@ type
     /// * 1 - Enviar para o MDIC
     /// </summary>
     property mdic: Integer read Fmdic write Fmdic;
-  end;
-  
-  /// <summary>
-  /// Grupo de informações relativas a atividades de Locação, sublocação, arrendamento, direito de passagem ou permissão de uso, compartilhado ou não, de ferrovia, rodovia, postes, cabos, dutos e condutos de qualquer natureza.
-  /// </summary>
-  TLocacaoSublocacao = class
-  private
-    Fcateg: Integer;
-    Fobjeto: Integer;
-    Fextensao: string;
-    FnPostes: string;
-  public
-    /// <summary>
-    /// Categoria do serviço.
-    /// </summary>
-    property categ: Integer read Fcateg write Fcateg;
-    /// <summary>
-    /// Tipo de objetos da locação, sublocação, arrendamento, direito de passagem ou permissão de uso.
-    /// </summary>
-    property objeto: Integer read Fobjeto write Fobjeto;
-    /// <summary>
-    /// Extensão total da ferrovia, rodovia, cabos, dutos ou condutos.
-    /// </summary>
-    property extensao: string read Fextensao write Fextensao;
-    /// <summary>
-    /// Número total de postes.
-    /// </summary>
-    property nPostes: string read FnPostes write FnPostes;
   end;
   
   /// <summary>
@@ -6071,7 +6231,7 @@ type
   /// <summary>
   /// Grupo de informações do endereço da obra do serviço prestado.
   /// </summary>
-  TEnderecoSimples = class
+  TEnderObraEvento = class
   private
     FCEP: string;
     FCEPHasValue: Boolean;
@@ -6126,16 +6286,24 @@ type
   /// </summary>
   TInfoObra = class
   private
-    FcObra: string;
-    FcObraHasValue: Boolean;
     FinscImobFisc: string;
     FinscImobFiscHasValue: Boolean;
-    Fend: TEnderecoSimples;
-    procedure SetcObra(const Value: string);
+    FcObra: string;
+    FcObraHasValue: Boolean;
+    FcCIB: string;
+    FcCIBHasValue: Boolean;
+    Fend: TEnderObraEvento;
     procedure SetinscImobFisc(const Value: string);
-    procedure Setend(const Value: TEnderecoSimples);
+    procedure SetcObra(const Value: string);
+    procedure SetcCIB(const Value: string);
+    procedure Setend(const Value: TEnderObraEvento);
   public
     destructor Destroy; override;
+    /// <summary>
+    /// Inscrição imobiliária fiscal (código fornecido pela Prefeitura Municipal para a identificação da obra ou para fins de recolhimento do IPTU).
+    /// </summary>
+    property inscImobFisc: string read FinscImobFisc write SetinscImobFisc;
+    property inscImobFiscHasValue: Boolean read FinscImobFiscHasValue write FinscImobFiscHasValue;
     /// <summary>
     /// Número de identificação da obra.
     /// Cadastro Nacional de Obras (CNO) ou Cadastro Específico do INSS (CEI).
@@ -6143,11 +6311,64 @@ type
     property cObra: string read FcObra write SetcObra;
     property cObraHasValue: Boolean read FcObraHasValue write FcObraHasValue;
     /// <summary>
-    /// Inscrição imobiliária fiscal (código fornecido pela Prefeitura Municipal para a identificação da obra ou para fins de recolhimento do IPTU).
+    /// Código do Cadastro Imobiliário Brasileiro - CIB.
     /// </summary>
-    property inscImobFisc: string read FinscImobFisc write SetinscImobFisc;
-    property inscImobFiscHasValue: Boolean read FinscImobFiscHasValue write FinscImobFiscHasValue;
-    property &end: TEnderecoSimples read Fend write Setend;
+    property cCIB: string read FcCIB write SetcCIB;
+    property cCIBHasValue: Boolean read FcCIBHasValue write FcCIBHasValue;
+    property &end: TEnderObraEvento read Fend write Setend;
+  end;
+  
+  /// <summary>
+  /// Grupo de informações relativas ao endereço da atividade, evento ou local do serviço prestado.
+  /// </summary>
+  TEnderecoSimples = class
+  private
+    FCEP: string;
+    FCEPHasValue: Boolean;
+    FendExt: TEnderExtSimples;
+    FxLgr: string;
+    FtpLgr: string;
+    FtpLgrHasValue: Boolean;
+    Fnro: string;
+    FxCpl: string;
+    FxCplHasValue: Boolean;
+    FxBairro: string;
+    procedure SetCEP(const Value: string);
+    procedure SetendExt(const Value: TEnderExtSimples);
+    procedure SettpLgr(const Value: string);
+    procedure SetxCpl(const Value: string);
+  public
+    destructor Destroy; override;
+    /// <summary>
+    /// Número do CEP.
+    /// </summary>
+    property CEP: string read FCEP write SetCEP;
+    property CEPHasValue: Boolean read FCEPHasValue write FCEPHasValue;
+    property endExt: TEnderExtSimples read FendExt write SetendExt;
+    /// <summary>
+    /// Tipo e nome do logradouro da localização do imóvel.
+    /// </summary>
+    property xLgr: string read FxLgr write FxLgr;
+    /// <summary>
+    /// Tipo do Logradouro.
+    /// 
+    /// **Atenção**: Para emissões pelo Sistema Nacional NFS-e, esse campo é ignorado.
+    /// </summary>
+    property tpLgr: string read FtpLgr write SettpLgr;
+    property tpLgrHasValue: Boolean read FtpLgrHasValue write FtpLgrHasValue;
+    /// <summary>
+    /// Número do imóvel.
+    /// </summary>
+    property nro: string read Fnro write Fnro;
+    /// <summary>
+    /// Complemento do endereço.
+    /// </summary>
+    property xCpl: string read FxCpl write SetxCpl;
+    property xCplHasValue: Boolean read FxCplHasValue write FxCplHasValue;
+    /// <summary>
+    /// Bairro.
+    /// </summary>
+    property xBairro: string read FxBairro write FxBairro;
   end;
   
   /// <summary>
@@ -6174,7 +6395,7 @@ type
   public
     destructor Destroy; override;
     /// <summary>
-    /// Nome do evento Artístico, Cultural, Esportivo, etc.
+    /// Descrição do evento Artístico, Cultural, Esportivo, etc.
     /// </summary>
     property xNome: string read FxNome write SetxNome;
     property xNomeHasValue: Boolean read FxNomeHasValue write FxNomeHasValue;
@@ -6213,57 +6434,19 @@ type
   end;
   
   /// <summary>
-  /// Grupo de informações relativas a pedágio.
+  /// Grupo de itens do pedido/ordem de compra/ordem de serviço/projeto.
   /// </summary>
-  TExploracaoRodoviaria = class
+  TInfoItemPed = class
   private
-    FcategVeic: string;
-    FnEixos: string;
-    Frodagem: Integer;
-    Fsentido: string;
-    Fplaca: string;
-    FcodAcessoPed: string;
-    FcodContrato: string;
+    FxItemPed: stringList;
+    procedure SetxItemPed(const Value: stringList);
   public
+    constructor Create;
+    destructor Destroy; override;
     /// <summary>
-    /// Categorias de veículos para cobrança:
-    /// * 00 - Categoria de veículos (tipo não informado na nota de origem)
-    /// * 01 - Automóvel, caminhonete e furgão
-    /// * 02 - Caminhão leve, ônibus, caminhão trator e furgão
-    /// * 03 - Automóvel e caminhonete com semireboque
-    /// * 04 - Caminhão, caminhão-trator, caminhão-trator com semi-reboque e ônibus
-    /// * 05 - Automóvel e caminhonete com reboque
-    /// * 06 - Caminhão com reboque
-    /// * 07 - Caminhão trator com semi-reboque
-    /// * 08 - Motocicletas, motonetas e bicicletas motorizadas
-    /// * 09 - Veículo especial
-    /// * 10 - Veículo Isento
+    /// Número do item do  pedido/ordem de compra/ordem de serviço/projeto - Identificação do número do item do pedido ou ordem de compra destacado e xPed.
     /// </summary>
-    property categVeic: string read FcategVeic write FcategVeic;
-    /// <summary>
-    /// Número de eixos para fins de cobrança.
-    /// </summary>
-    property nEixos: string read FnEixos write FnEixos;
-    /// <summary>
-    /// Tipo de rodagem.
-    /// </summary>
-    property rodagem: Integer read Frodagem write Frodagem;
-    /// <summary>
-    /// Placa do veículo.
-    /// </summary>
-    property sentido: string read Fsentido write Fsentido;
-    /// <summary>
-    /// Placa do veículo.
-    /// </summary>
-    property placa: string read Fplaca write Fplaca;
-    /// <summary>
-    /// Código de acesso gerado automaticamente pelo sistema emissor da concessionária.
-    /// </summary>
-    property codAcessoPed: string read FcodAcessoPed write FcodAcessoPed;
-    /// <summary>
-    /// Código de contrato gerado automaticamente pelo sistema nacional no cadastro da concessionária.
-    /// </summary>
-    property codContrato: string read FcodContrato write FcodContrato;
+    property xItemPed: stringList read FxItemPed write SetxItemPed;
   end;
   
   /// <summary>
@@ -6275,12 +6458,18 @@ type
     FidDocTecHasValue: Boolean;
     FdocRef: string;
     FdocRefHasValue: Boolean;
+    FxPed: string;
+    FxPedHasValue: Boolean;
+    FgItemPed: TInfoItemPed;
     FxInfComp: string;
     FxInfCompHasValue: Boolean;
     procedure SetidDocTec(const Value: string);
     procedure SetdocRef(const Value: string);
+    procedure SetxPed(const Value: string);
+    procedure SetgItemPed(const Value: TInfoItemPed);
     procedure SetxInfComp(const Value: string);
   public
+    destructor Destroy; override;
     /// <summary>
     /// Identificador de Documento de Responsabilidade Técnica: ART, RRT, DRT, Outros.
     /// </summary>
@@ -6291,6 +6480,12 @@ type
     /// </summary>
     property docRef: string read FdocRef write SetdocRef;
     property docRefHasValue: Boolean read FdocRefHasValue write FdocRefHasValue;
+    /// <summary>
+    /// Número do  pedido/ordem de compra/ordem de serviço/projeto que autorize a prestação do serviço em operações B2B - Informação de interesse do tomador do serviço para controle e gestão da Negociação.
+    /// </summary>
+    property xPed: string read FxPed write SetxPed;
+    property xPedHasValue: Boolean read FxPedHasValue write FxPedHasValue;
+    property gItemPed: TInfoItemPed read FgItemPed write SetgItemPed;
     /// <summary>
     /// Informações complementares.
     /// </summary>
@@ -6306,18 +6501,14 @@ type
     FlocPrest: TLocPrest;
     FcServ: TCServ;
     FcomExt: TComExterior;
-    Flsadppu: TLocacaoSublocacao;
     Fobra: TInfoObra;
     FatvEvento: TAtvEvento;
-    FexplRod: TExploracaoRodoviaria;
     FinfoCompl: TInfoCompl;
     procedure SetlocPrest(const Value: TLocPrest);
     procedure SetcServ(const Value: TCServ);
     procedure SetcomExt(const Value: TComExterior);
-    procedure Setlsadppu(const Value: TLocacaoSublocacao);
     procedure Setobra(const Value: TInfoObra);
     procedure SetatvEvento(const Value: TAtvEvento);
-    procedure SetexplRod(const Value: TExploracaoRodoviaria);
     procedure SetinfoCompl(const Value: TInfoCompl);
   public
     constructor Create;
@@ -6325,10 +6516,8 @@ type
     property locPrest: TLocPrest read FlocPrest write SetlocPrest;
     property cServ: TCServ read FcServ write SetcServ;
     property comExt: TComExterior read FcomExt write SetcomExt;
-    property lsadppu: TLocacaoSublocacao read Flsadppu write Setlsadppu;
     property obra: TInfoObra read Fobra write Setobra;
     property atvEvento: TAtvEvento read FatvEvento write SetatvEvento;
-    property explRod: TExploracaoRodoviaria read FexplRod write SetexplRod;
     property infoCompl: TInfoCompl read FinfoCompl write SetinfoCompl;
   end;
   
@@ -6577,12 +6766,13 @@ type
     /// Identificação da Dedução/Redução:
     /// * 1 - Alimentação e bebidas/frigobar
     /// * 2 - Materiais
-    /// * 3 - Produção externa
+    /// * 3 - Produção Externa
     /// * 4 - Reembolso de despesas
     /// * 5 - Repasse consorciado
     /// * 6 - Repasse plano de saúde
     /// * 7 - Serviços
     /// * 8 - Subempreitada de mão de obra
+    /// * 9 - Profissional parceiro
     /// * 99 - Outras deduções
     /// </summary>
     property tpDedRed: Integer read FtpDedRed write FtpDedRed;
@@ -6653,43 +6843,6 @@ type
   end;
   
   /// <summary>
-  /// Benefício Municipal
-  /// </summary>
-  TBeneficioMunicipal = class
-  private
-    FtpBM: Integer;
-    FnBM: string;
-    FvRedBCBM: Double;
-    FvRedBCBMHasValue: Boolean;
-    FpRedBCBM: Double;
-    FpRedBCBMHasValue: Boolean;
-    procedure SetvRedBCBM(const Value: Double);
-    procedure SetpRedBCBM(const Value: Double);
-  public
-    /// <summary>
-    /// Tipo do Benefício Municipal:
-    /// * 1 - Alíquota Diferenciada
-    /// * 2 - Redução da BC
-    /// * 3 - Isenção
-    /// </summary>
-    property tpBM: Integer read FtpBM write FtpBM;
-    /// <summary>
-    /// Identificador do benefício municipal parametrizado pelo município.
-    /// </summary>
-    property nBM: string read FnBM write FnBM;
-    /// <summary>
-    /// Valor monetário informado pelo emitente para redução da base de cálculo (BC) do ISSQN devido a um Benefício Municipal (BM).
-    /// </summary>
-    property vRedBCBM: Double read FvRedBCBM write SetvRedBCBM;
-    property vRedBCBMHasValue: Boolean read FvRedBCBMHasValue write FvRedBCBMHasValue;
-    /// <summary>
-    /// Valor percentual informado pelo emitente para redução da base de cálculo (BC) do ISSQN devido a um Benefício Municipal (BM).
-    /// </summary>
-    property pRedBCBM: Double read FpRedBCBM write SetpRedBCBM;
-    property pRedBCBMHasValue: Boolean read FpRedBCBMHasValue write FpRedBCBMHasValue;
-  end;
-  
-  /// <summary>
   /// Informações para a suspensão da Exigibilidade do ISSQN.
   /// </summary>
   TExigSuspensa = class
@@ -6710,38 +6863,85 @@ type
   end;
   
   /// <summary>
+  /// Benefício Municipal
+  /// </summary>
+  TBeneficioMunicipal = class
+  private
+    FtpBM: Integer;
+    FtpBMHasValue: Boolean;
+    FnBM: string;
+    FvRedBCBM: Double;
+    FvRedBCBMHasValue: Boolean;
+    FpRedBCBM: Double;
+    FpRedBCBMHasValue: Boolean;
+    procedure SettpBM(const Value: Integer);
+    procedure SetvRedBCBM(const Value: Double);
+    procedure SetpRedBCBM(const Value: Double);
+  public
+    /// <summary>
+    /// Tipo do Benefício Municipal:
+    /// * 1 - Alíquota Diferenciada
+    /// * 2 - Redução da BC
+    /// * 3 - Isenção
+    /// 
+    /// **Atenção**: Para emissões pelo Sistema Nacional NFS-e, esse campo é ignorado.
+    /// </summary>
+    property tpBM: Integer read FtpBM write SettpBM;
+    property tpBMHasValue: Boolean read FtpBMHasValue write FtpBMHasValue;
+    /// <summary>
+    /// Identificador do benefício parametrizado pelo município.
+    /// Trata-se de um identificador único que foi gerado pelo Sistema Nacional no momento em que o município de incidência do ISSQN incluiu o benefício no sistema.
+    /// Critério de formação do número de identificação de parâmetros municipais:
+    /// 7 dígitos - posição 1 a 7: número identificador do Município, conforme código IBGE
+    /// 2 dígitos - posições 8 e 9 : número identificador do tipo de parametrização (01-legislação, 02-regimes especiais, 03-retenções, 04-outros benefícios)
+    /// 5 dígitos - posição 10 a 14 : número sequencial definido pelo sistema quando do registro específico do parâmetro dentro do tipo de parametrização no sistema.
+    /// </summary>
+    property nBM: string read FnBM write FnBM;
+    /// <summary>
+    /// Valor monetário informado pelo emitente para redução da base de cálculo (BC) do ISSQN devido a um Benefício Municipal (BM).
+    /// </summary>
+    property vRedBCBM: Double read FvRedBCBM write SetvRedBCBM;
+    property vRedBCBMHasValue: Boolean read FvRedBCBMHasValue write FvRedBCBMHasValue;
+    /// <summary>
+    /// Valor percentual informado pelo emitente para redução da base de cálculo (BC) do ISSQN devido a um Benefício Municipal (BM).
+    /// </summary>
+    property pRedBCBM: Double read FpRedBCBM write SetpRedBCBM;
+    property pRedBCBMHasValue: Boolean read FpRedBCBMHasValue write FpRedBCBMHasValue;
+  end;
+  
+  /// <summary>
   /// Grupo de informações relacionados ao Imposto Sobre Serviços de Qualquer Natureza - ISSQN.
   /// </summary>
   TTribMunicipal = class
   private
     FtribISSQN: Integer;
-    FcLocIncid: string;
-    FcLocIncidHasValue: Boolean;
     FcPaisResult: string;
     FcPaisResultHasValue: Boolean;
-    FBM: TBeneficioMunicipal;
-    FexigSusp: TExigSuspensa;
     FtpImunidade: Integer;
     FtpImunidadeHasValue: Boolean;
-    FvBC: Double;
-    FvBCHasValue: Boolean;
-    FpAliq: Double;
-    FpAliqHasValue: Boolean;
-    FvISSQN: Double;
-    FvISSQNHasValue: Boolean;
+    FexigSusp: TExigSuspensa;
+    FBM: TBeneficioMunicipal;
     FtpRetISSQN: Integer;
     FtpRetISSQNHasValue: Boolean;
+    FpAliq: Double;
+    FpAliqHasValue: Boolean;
+    FcLocIncid: string;
+    FcLocIncidHasValue: Boolean;
+    FvBC: Double;
+    FvBCHasValue: Boolean;
+    FvISSQN: Double;
+    FvISSQNHasValue: Boolean;
     FvLiq: Double;
     FvLiqHasValue: Boolean;
-    procedure SetcLocIncid(const Value: string);
     procedure SetcPaisResult(const Value: string);
-    procedure SetBM(const Value: TBeneficioMunicipal);
-    procedure SetexigSusp(const Value: TExigSuspensa);
     procedure SettpImunidade(const Value: Integer);
-    procedure SetvBC(const Value: Double);
-    procedure SetpAliq(const Value: Double);
-    procedure SetvISSQN(const Value: Double);
+    procedure SetexigSusp(const Value: TExigSuspensa);
+    procedure SetBM(const Value: TBeneficioMunicipal);
     procedure SettpRetISSQN(const Value: Integer);
+    procedure SetpAliq(const Value: Double);
+    procedure SetcLocIncid(const Value: string);
+    procedure SetvBC(const Value: Double);
+    procedure SetvISSQN(const Value: Double);
     procedure SetvLiq(const Value: Double);
   public
     destructor Destroy; override;
@@ -6754,38 +6954,32 @@ type
     /// </summary>
     property tribISSQN: Integer read FtribISSQN write FtribISSQN;
     /// <summary>
-    /// Código do município de incidência do ISSQN (tabela do IBGE).
-    /// 
-    /// Caso o envio seja pelo Sistema Nacional NFS-e, essa propriedade é ignorada e o município de incidência do ISSQN é determinado automaticamente pela SEFIN nacional, conforme regras do aspecto espacial da lei complementar federal (LC 116/03) que são válidas para todos os municípios.
-    /// </summary>
-    property cLocIncid: string read FcLocIncid write SetcLocIncid;
-    property cLocIncidHasValue: Boolean read FcLocIncidHasValue write FcLocIncidHasValue;
-    /// <summary>
     /// Código do país onde se verficou o resultado da prestação do serviço para o caso de Exportação de Serviço.(Tabela de Países ISO).
     /// </summary>
     property cPaisResult: string read FcPaisResult write SetcPaisResult;
     property cPaisResultHasValue: Boolean read FcPaisResultHasValue write FcPaisResultHasValue;
-    property BM: TBeneficioMunicipal read FBM write SetBM;
-    property exigSusp: TExigSuspensa read FexigSusp write SetexigSusp;
     /// <summary>
-    /// Identificação da Imunidade do ISSQN - somente para o caso de Imunidade:
+    /// Identificação da Imunidade do ISSQN - somente para o caso de Imunidade.
+    /// Tipos de Imunidades:
     /// * 0 - Imunidade (tipo não informado na nota de origem)
     /// * 1 - Patrimônio, renda ou serviços, uns dos outros (CF88, Art 150, VI, a)
     /// * 2 - Templos de qualquer culto (CF88, Art 150, VI, b)
     /// * 3 - Patrimônio, renda ou serviços dos partidos políticos, inclusive suas fundações, das entidades sindicais dos trabalhadores, das instituições de educação e de assistência social, sem fins lucrativos, atendidos os requisitos da lei (CF88, Art 150, VI, c)
     /// * 4 - Livros, jornais, periódicos e o papel destinado a sua impressão (CF88, Art 150, VI, d)
+    /// * 5 - Fonogramas e videofonogramas musicais produzidos no Brasil contendo obras musicais ou literomusicais de autores brasileiros e/ou obras em geral interpretadas por artistas brasileiros bem como os suportes materiais ou arquivos digitais que os contenham, salvo na etapa de replicação industrial de mídias ópticas de leitura a laser.   (CF88, Art 150, VI, e)
     /// </summary>
     property tpImunidade: Integer read FtpImunidade write SettpImunidade;
     property tpImunidadeHasValue: Boolean read FtpImunidadeHasValue write FtpImunidadeHasValue;
+    property exigSusp: TExigSuspensa read FexigSusp write SetexigSusp;
+    property BM: TBeneficioMunicipal read FBM write SetBM;
     /// <summary>
-    /// Valor da Base de Cálculo do ISSQN (R$).
-    /// 
-    /// Caso você não informe esse campo, vamos calculá-lo automaticamente.
-    /// 
-    /// **Atenção**: Para emissões pelo Sistema Nacional NFS-e, esse campo é ignorado e o valor é determinado automaticamente pela SEFIN nacional.
+    /// Tipo de retencao do ISSQN:
+    /// * 1 - Não Retido
+    /// * 2 - Retido pelo Tomador
+    /// * 3 - Retido pelo Intermediario
     /// </summary>
-    property vBC: Double read FvBC write SetvBC;
-    property vBCHasValue: Boolean read FvBCHasValue write FvBCHasValue;
+    property tpRetISSQN: Integer read FtpRetISSQN write SettpRetISSQN;
+    property tpRetISSQNHasValue: Boolean read FtpRetISSQNHasValue write FtpRetISSQNHasValue;
     /// <summary>
     /// Valor da alíquota (%%) do serviço prestado relativo ao município sujeito ativo (município de incidência) do ISSQN.
     /// 
@@ -6796,6 +6990,22 @@ type
     property pAliq: Double read FpAliq write SetpAliq;
     property pAliqHasValue: Boolean read FpAliqHasValue write FpAliqHasValue;
     /// <summary>
+    /// Código do município de incidência do ISSQN (tabela do IBGE).
+    /// 
+    /// Caso o envio seja pelo Sistema Nacional NFS-e, essa propriedade - ignorada e o município de incidência do ISSQN - determinado automaticamente pela SEFIN nacional, conforme regras do aspecto espacial da lei complementar federal (LC 116/03) que são válidas para todos os municípios.
+    /// </summary>
+    property cLocIncid: string read FcLocIncid write SetcLocIncid;
+    property cLocIncidHasValue: Boolean read FcLocIncidHasValue write FcLocIncidHasValue;
+    /// <summary>
+    /// Valor da Base de Cálculo do ISSQN (R$).
+    /// 
+    /// Caso você não informe esse campo, vamos calculá-lo automaticamente.
+    /// 
+    /// **Atenção**: Para emissões pelo Sistema Nacional NFS-e, esse campo é ignorado e o valor é determinado automaticamente pela SEFIN nacional.
+    /// </summary>
+    property vBC: Double read FvBC write SetvBC;
+    property vBCHasValue: Boolean read FvBCHasValue write FvBCHasValue;
+    /// <summary>
     /// Valor do ISSQN (R$).
     /// 
     /// Caso você não informe esse campo, vamos calculá-lo automaticamente.
@@ -6804,14 +7014,6 @@ type
     /// </summary>
     property vISSQN: Double read FvISSQN write SetvISSQN;
     property vISSQNHasValue: Boolean read FvISSQNHasValue write FvISSQNHasValue;
-    /// <summary>
-    /// Tipo de retencao do ISSQN:
-    /// * 1 - Não Retido
-    /// * 2 - Retido pelo Tomador
-    /// * 3 - Retido pelo Intermediario
-    /// </summary>
-    property tpRetISSQN: Integer read FtpRetISSQN write SettpRetISSQN;
-    property tpRetISSQNHasValue: Boolean read FtpRetISSQNHasValue write FtpRetISSQNHasValue;
     /// <summary>
     /// Valor Líquido (R$).
     /// 
@@ -6857,40 +7059,72 @@ type
     /// * 04 - Operação Tributável monofásica - Revenda a Alíquota Zero
     /// * 05 - Operação Tributável por Substituição Tributária
     /// * 06 - Operação Tributável a Alíquota Zero
-    /// * 07 - Operação Tributável da Contribuição
+    /// * 07 - Operação Isenta da Contribuição
     /// * 08 - Operação sem Incidência da Contribuição
     /// * 09 - Operação com Suspensão da Contribuição
+    /// * 49 - Outras Operações de Saída
+    /// * 50 - Operação com Direito a Crédito - Vinculada Exclusivamente a Receita Tributada no Mercado Interno
+    /// * 51 - Operação com Direito a Crédito - Vinculada Exclusivamente a Receita Não-Tributada no Mercado Interno
+    /// * 52 - Operação com Direito a Crédito - Vinculada Exclusivamente a Receita de Exportação
+    /// * 53 - Operação com Direito a Crédito - Vinculada a Receitas Tributadas e Não-Tributadas no Mercado Interno
+    /// * 54 - Operação com Direito a Crédito - Vinculada a Receitas Tributadas no Mercado Interno e de Exportação
+    /// * 55 - Operação com Direito a Crédito - Vinculada a Receitas Não Tributadas no Mercado Interno e de Exportação
+    /// * 56 - Operação com Direito a Crédito - Vinculada a Receitas Tributadas e Não-Tributadas no Mercado Interno e de Exportação
+    /// * 60 - Crédito Presumido - Operação de Aquisição Vinculada Exclusivamente a Receita Tributada no Mercado Interno
+    /// * 61 - Crédito Presumido - Operação de Aquisição Vinculada Exclusivamente a Receita Não-Tributada no Mercado Interno
+    /// * 62 - Crédito Presumido - Operação de Aquisição Vinculada Exclusivamente a Receita de Exportação
+    /// * 63 - Crédito Presumido - Operação de Aquisição Vinculada a Receitas Tributadas e Não-Tributadas no Mercado Interno
+    /// * 64 - Crédito Presumido - Operação de Aquisição Vinculada a Receitas Tributadas no Mercado Interno e de Exportação
+    /// * 65 - Crédito Presumido - Operação de Aquisição Vinculada a Receitas Não-Tributadas no Mercado Interno e de Exportação
+    /// * 66 - Crédito Presumido - Operação de Aquisição Vinculada a Receitas Tributadas e Não-Tributadas no Mercado Interno e de Exportação
+    /// * 67 - Crédito Presumido - Outras Operações
+    /// * 70 - Operação de Aquisição sem Direito a Crédito
+    /// * 71 - Operação de Aquisição com Isenção
+    /// * 72 - Operação de Aquisição com Suspensão
+    /// * 73 - Operação de Aquisição a Alíquota Zero
+    /// * 74 - Operação de Aquisição sem Incidência da Contribuição
+    /// * 75 - Operação de Aquisição por Substituição Tributária
+    /// * 98 - Outras Operações de Entrada
+    /// * 99 - Outras Operações
     /// </summary>
     property CST: string read FCST write FCST;
     /// <summary>
-    /// Valor da Base de Cálculo do PIS/COFINS (R$).
+    /// Valor da Base de Cálculo do PIS/COFINS, relativo à apuração própria (R$).
     /// </summary>
     property vBCPisCofins: Double read FvBCPisCofins write SetvBCPisCofins;
     property vBCPisCofinsHasValue: Boolean read FvBCPisCofinsHasValue write FvBCPisCofinsHasValue;
     /// <summary>
-    /// Valor da Alíquota do PIS (%%).
+    /// Alíquota do PIS, relativa à apuração própria (%%).
     /// </summary>
     property pAliqPis: Double read FpAliqPis write SetpAliqPis;
     property pAliqPisHasValue: Boolean read FpAliqPisHasValue write FpAliqPisHasValue;
     /// <summary>
-    /// Valor da Alíquota da COFINS (%%).
+    /// Alíquota da COFINS, relativa à apuração própria (%%).
     /// </summary>
     property pAliqCofins: Double read FpAliqCofins write SetpAliqCofins;
     property pAliqCofinsHasValue: Boolean read FpAliqCofinsHasValue write FpAliqCofinsHasValue;
     /// <summary>
-    /// Valor monetário do PIS (R$).
+    /// Valor do débito de PIS apuração própria (R$).
     /// </summary>
     property vPis: Double read FvPis write SetvPis;
     property vPisHasValue: Boolean read FvPisHasValue write FvPisHasValue;
     /// <summary>
-    /// Valor monetário do COFINS (R$).
+    /// Valor do débito de COFINS apuração própria (R$).
     /// </summary>
     property vCofins: Double read FvCofins write SetvCofins;
     property vCofinsHasValue: Boolean read FvCofinsHasValue write FvCofinsHasValue;
     /// <summary>
-    /// Tipo de retencao do Pis/Cofins:
-    /// * 1 - Retido
-    /// * 2 - Não Retido
+    /// Tipo de retenção do PIS/COFINS:
+    /// * 0 - PIS/COFINS/CSLL Não Retidos
+    /// * 1 - PIS/COFINS Retidos
+    /// * 2 - PIS/COFINS Não Retidos
+    /// * 3 - PIS/COFINS/CSLL Retidos
+    /// * 4 - PIS/COFINS Retidos, CSLL Não Retido
+    /// * 5 - PIS Retido, COFINS/CSLL Não Retido
+    /// * 6 - COFINS Retido, PIS/CSLL Não Retido
+    /// * 7 - PIS Não Retido, COFINS/CSLL Retidos
+    /// * 8 - PIS/COFINS Não Retidos, CSLL Retido
+    /// * 9 - COFINS Não Retido, PIS/CSLL Retidos
     /// </summary>
     property tpRetPisCofins: Integer read FtpRetPisCofins write SettpRetPisCofins;
     property tpRetPisCofinsHasValue: Boolean read FtpRetPisCofinsHasValue write FtpRetPisCofinsHasValue;
@@ -7053,6 +7287,484 @@ type
   end;
   
   /// <summary>
+  /// Grupo de NFS-e referenciadas.
+  /// </summary>
+  TInfoRefNFSe = class
+  private
+    FrefNFSe: stringList;
+    procedure SetrefNFSe(const Value: stringList);
+  public
+    constructor Create;
+    destructor Destroy; override;
+    /// <summary>
+    /// Chave da NFS-e referenciada.
+    /// </summary>
+    property refNFSe: stringList read FrefNFSe write SetrefNFSe;
+  end;
+  
+  /// <summary>
+  /// Grupo de informações relativas ao Destinatário.
+  /// </summary>
+  TRTCInfoDest = class
+  private
+    FCNPJ: string;
+    FCNPJHasValue: Boolean;
+    FCPF: string;
+    FCPFHasValue: Boolean;
+    FNIF: string;
+    FNIFHasValue: Boolean;
+    FcNaoNIF: Integer;
+    FcNaoNIFHasValue: Boolean;
+    FxNome: string;
+    Fend: TEndereco;
+    Ffone: string;
+    FfoneHasValue: Boolean;
+    Femail: string;
+    FemailHasValue: Boolean;
+    procedure SetCNPJ(const Value: string);
+    procedure SetCPF(const Value: string);
+    procedure SetNIF(const Value: string);
+    procedure SetcNaoNIF(const Value: Integer);
+    procedure Setend(const Value: TEndereco);
+    procedure Setfone(const Value: string);
+    procedure Setemail(const Value: string);
+  public
+    destructor Destroy; override;
+    /// <summary>
+    /// Número da inscrição no Cadastro Nacional de Pessoa Jurídica (CNPJ) do Destinatário do serviço.
+    /// </summary>
+    property CNPJ: string read FCNPJ write SetCNPJ;
+    property CNPJHasValue: Boolean read FCNPJHasValue write FCNPJHasValue;
+    /// <summary>
+    /// Número da inscrição no Cadastro de Pessoa Física (CPF) do Destinatário do serviço.
+    /// </summary>
+    property CPF: string read FCPF write SetCPF;
+    property CPFHasValue: Boolean read FCPFHasValue write FCPFHasValue;
+    /// <summary>
+    /// Número de Identificação Fiscal fornecido por órgão de administração tributária no exterior.
+    /// </summary>
+    property NIF: string read FNIF write SetNIF;
+    property NIFHasValue: Boolean read FNIFHasValue write FNIFHasValue;
+    /// <summary>
+    /// Motivo para não informação do NIF:
+    /// * 0 - Não informado na nota de origem
+    /// * 1 - Dispensado do NIF
+    /// * 2 - Não exigência do NIF
+    /// </summary>
+    property cNaoNIF: Integer read FcNaoNIF write SetcNaoNIF;
+    property cNaoNIFHasValue: Boolean read FcNaoNIFHasValue write FcNaoNIFHasValue;
+    /// <summary>
+    /// Nome / Nome Empresarial do do Destinatário do serviço.
+    /// </summary>
+    property xNome: string read FxNome write FxNome;
+    property &end: TEndereco read Fend write Setend;
+    /// <summary>
+    /// Número do telefone do Destinatário do serviço
+    /// (Preencher com o Código DDD + número do telefone. Nas operações com exterior é permitido informar o
+    /// código do país + código da localidade + número do telefone).
+    /// </summary>
+    property fone: string read Ffone write Setfone;
+    property foneHasValue: Boolean read FfoneHasValue write FfoneHasValue;
+    /// <summary>
+    /// * E-mail do Destinatário do serviço
+    /// </summary>
+    property email: string read Femail write Setemail;
+    property emailHasValue: Boolean read FemailHasValue write FemailHasValue;
+  end;
+  
+  /// <summary>
+  /// Grupo de informações de operações relacionadas a bens imóveis, exceto obras.
+  /// </summary>
+  TRTCInfoImovel = class
+  private
+    FinscImobFisc: string;
+    FinscImobFiscHasValue: Boolean;
+    FcCIB: string;
+    FcCIBHasValue: Boolean;
+    Fend: TEnderObraEvento;
+    procedure SetinscImobFisc(const Value: string);
+    procedure SetcCIB(const Value: string);
+    procedure Setend(const Value: TEnderObraEvento);
+  public
+    destructor Destroy; override;
+    /// <summary>
+    /// Inscrição imobiliária fiscal (código fornecido pela Prefeitura Municipal para a identificação da obra ou para fins de recolhimento do IPTU).
+    /// </summary>
+    property inscImobFisc: string read FinscImobFisc write SetinscImobFisc;
+    property inscImobFiscHasValue: Boolean read FinscImobFiscHasValue write FinscImobFiscHasValue;
+    /// <summary>
+    /// Código do Cadastro Imobiliário Brasileiro - CIB.
+    /// </summary>
+    property cCIB: string read FcCIB write SetcCIB;
+    property cCIBHasValue: Boolean read FcCIBHasValue write FcCIBHasValue;
+    property &end: TEnderObraEvento read Fend write Setend;
+  end;
+  
+  /// <summary>
+  /// Grupo de informações de documentos fiscais eletrônicos que se encontram no repositório nacional.
+  /// </summary>
+  TRTCListaDocDFe = class
+  private
+    FtipoChaveDFe: Integer;
+    FxTipoChaveDFe: string;
+    FxTipoChaveDFeHasValue: Boolean;
+    FchaveDFe: string;
+    procedure SetxTipoChaveDFe(const Value: string);
+  public
+    /// <summary>
+    /// Documento fiscal a que se refere a chaveDfe que seja um dos documentos do Repositório Nacional.
+    /// </summary>
+    property tipoChaveDFe: Integer read FtipoChaveDFe write FtipoChaveDFe;
+    /// <summary>
+    /// Descrição da DF-e a que se refere a chaveDfe que seja um dos documentos do Repositório Nacional
+    /// Deve ser preenchido apenas quando "tipoChaveDFe = 9 (Outro)".
+    /// </summary>
+    property xTipoChaveDFe: string read FxTipoChaveDFe write SetxTipoChaveDFe;
+    property xTipoChaveDFeHasValue: Boolean read FxTipoChaveDFeHasValue write FxTipoChaveDFeHasValue;
+    /// <summary>
+    /// Chave do Documento Fiscal eletrônico do repositório nacional referenciado para os casos de operações já tributadas.
+    /// </summary>
+    property chaveDFe: string read FchaveDFe write FchaveDFe;
+  end;
+  
+  /// <summary>
+  /// Grupo de informações de documento fiscais, eletrônicos ou não, que não se encontram no repositório nacional.
+  /// </summary>
+  TRTCListaDocFiscalOutro = class
+  private
+    FcMunDocFiscal: Integer;
+    FnDocFiscal: string;
+    FxDocFiscal: string;
+  public
+    /// <summary>
+    /// Código do município emissor do documento fiscal que não se encontra no repositório nacional.
+    /// </summary>
+    property cMunDocFiscal: Integer read FcMunDocFiscal write FcMunDocFiscal;
+    /// <summary>
+    /// Número do documento fiscal que não se encontra no repositório nacional.
+    /// </summary>
+    property nDocFiscal: string read FnDocFiscal write FnDocFiscal;
+    /// <summary>
+    /// Descrição do documento fiscal.
+    /// </summary>
+    property xDocFiscal: string read FxDocFiscal write FxDocFiscal;
+  end;
+  
+  /// <summary>
+  /// Grupo de informações de documento não fiscal.
+  /// </summary>
+  TRTCListaDocOutro = class
+  private
+    FnDoc: string;
+    FxDoc: string;
+  public
+    /// <summary>
+    /// Número do documento não fiscal.
+    /// </summary>
+    property nDoc: string read FnDoc write FnDoc;
+    /// <summary>
+    /// Descrição do documento não fiscal.
+    /// </summary>
+    property xDoc: string read FxDoc write FxDoc;
+  end;
+  
+  /// <summary>
+  /// Grupo de informações do fornecedor do documento referenciado.
+  /// </summary>
+  TRTCListaDocFornec = class
+  private
+    FCNPJ: string;
+    FCNPJHasValue: Boolean;
+    FCPF: string;
+    FCPFHasValue: Boolean;
+    FNIF: string;
+    FNIFHasValue: Boolean;
+    FcNaoNIF: Integer;
+    FcNaoNIFHasValue: Boolean;
+    FxNome: string;
+    procedure SetCNPJ(const Value: string);
+    procedure SetCPF(const Value: string);
+    procedure SetNIF(const Value: string);
+    procedure SetcNaoNIF(const Value: Integer);
+  public
+    /// <summary>
+    /// Número da inscrição no Cadastro Nacional de Pessoa Jurídica (CNPJ) do Fornecedor do serviço.
+    /// </summary>
+    property CNPJ: string read FCNPJ write SetCNPJ;
+    property CNPJHasValue: Boolean read FCNPJHasValue write FCNPJHasValue;
+    /// <summary>
+    /// Número da inscrição no Cadastro de Pessoa Física (CPF) do Fornecedor do serviço.
+    /// </summary>
+    property CPF: string read FCPF write SetCPF;
+    property CPFHasValue: Boolean read FCPFHasValue write FCPFHasValue;
+    /// <summary>
+    /// Este elemento só deverá ser preenchido para fornecedores não residentes no Brasil.
+    /// </summary>
+    property NIF: string read FNIF write SetNIF;
+    property NIFHasValue: Boolean read FNIFHasValue write FNIFHasValue;
+    /// <summary>
+    /// Motivo para não informação do NIF:
+    /// * 0 - Não informado na nota de origem
+    /// * 1 - Dispensado do NIF
+    /// * 2 - Não exigência do NIF
+    /// </summary>
+    property cNaoNIF: Integer read FcNaoNIF write SetcNaoNIF;
+    property cNaoNIFHasValue: Boolean read FcNaoNIFHasValue write FcNaoNIFHasValue;
+    /// <summary>
+    /// Nome / Razão Social do do Fornecedor do serviço.
+    /// </summary>
+    property xNome: string read FxNome write FxNome;
+  end;
+  
+  /// <summary>
+  /// Grupo relativo aos documentos referenciados nos casos de reembolso, repasse e ressarcimento que serão
+  /// considerados na base de cálculo do ISSQN, do IBS e da CBS.
+  /// </summary>
+  TRTCListaDoc = class
+  private
+    FdFeNacional: TRTCListaDocDFe;
+    FdocFiscalOutro: TRTCListaDocFiscalOutro;
+    FdocOutro: TRTCListaDocOutro;
+    Ffornec: TRTCListaDocFornec;
+    FdtEmiDoc: TDate;
+    FdtCompDoc: TDate;
+    FtpReeRepRes: string;
+    FxTpReeRepRes: string;
+    FxTpReeRepResHasValue: Boolean;
+    FvlrReeRepRes: Double;
+    procedure SetdFeNacional(const Value: TRTCListaDocDFe);
+    procedure SetdocFiscalOutro(const Value: TRTCListaDocFiscalOutro);
+    procedure SetdocOutro(const Value: TRTCListaDocOutro);
+    procedure Setfornec(const Value: TRTCListaDocFornec);
+    procedure SetxTpReeRepRes(const Value: string);
+  public
+    destructor Destroy; override;
+    property dFeNacional: TRTCListaDocDFe read FdFeNacional write SetdFeNacional;
+    property docFiscalOutro: TRTCListaDocFiscalOutro read FdocFiscalOutro write SetdocFiscalOutro;
+    property docOutro: TRTCListaDocOutro read FdocOutro write SetdocOutro;
+    property fornec: TRTCListaDocFornec read Ffornec write Setfornec;
+    /// <summary>
+    /// Data da emissão do documento dedutível
+    /// Ano, mês e dia (AAAA-MM-DD).
+    /// </summary>
+    property dtEmiDoc: TDate read FdtEmiDoc write FdtEmiDoc;
+    /// <summary>
+    /// Data da competência do documento dedutível
+    /// Ano, mês e dia (AAAA-MM-DD).
+    /// </summary>
+    property dtCompDoc: TDate read FdtCompDoc write FdtCompDoc;
+    /// <summary>
+    /// Tipo de valor incluído neste documento, recebido por motivo de estarem relacionadas a operações de terceiros,
+    /// objeto de reembolso, repasse ou ressarcimento pelo recebedor, já tributados e aqui referenciados.
+    /// </summary>
+    property tpReeRepRes: string read FtpReeRepRes write FtpReeRepRes;
+    /// <summary>
+    /// Descrição do reembolso ou ressarcimento quando a opção é
+    /// "99 - Outros reembolsos ou ressarcimentos recebidos por valores pagos relativos a operações por conta e ordem de terceiro".
+    /// </summary>
+    property xTpReeRepRes: string read FxTpReeRepRes write SetxTpReeRepRes;
+    property xTpReeRepResHasValue: Boolean read FxTpReeRepResHasValue write FxTpReeRepResHasValue;
+    /// <summary>
+    /// Valor monetário (total ou parcial, conforme documento informado) utilizado para não inclusão na base de cálculo
+    /// do ISS e do IBS e da CBS da NFS-e que está sendo emitida (R$).
+    /// </summary>
+    property vlrReeRepRes: Double read FvlrReeRepRes write FvlrReeRepRes;
+  end;
+  
+  TRTCListaDocList = class(TObjectList<TRTCListaDoc>)
+  end;
+  
+  /// <summary>
+  /// Grupo de informações relativas a valores incluídos neste documento e recebidos por motivo de estarem relacionadas
+  /// a operações de terceiros, objeto de reembolso, repasse ou ressarcimento pelo recebedor, já tributados e aqui referenciados.
+  /// </summary>
+  TRTCInfoReeRepRes = class
+  private
+    Fdocumentos: TRTCListaDocList;
+    procedure Setdocumentos(const Value: TRTCListaDocList);
+  public
+    constructor Create;
+    destructor Destroy; override;
+    property documentos: TRTCListaDocList read Fdocumentos write Setdocumentos;
+  end;
+  
+  /// <summary>
+  /// Grupo de informações da Tributação Regular.
+  /// </summary>
+  TRTCInfoTributosTribRegular = class
+  private
+    FCSTReg: string;
+    FcClassTribReg: string;
+  public
+    /// <summary>
+    /// Código de Situação Tributária do IBS e da CBS de tributação regular.
+    /// </summary>
+    property CSTReg: string read FCSTReg write FCSTReg;
+    /// <summary>
+    /// Código da Classificação Tributária do IBS e da CBS de tributação regular.
+    /// </summary>
+    property cClassTribReg: string read FcClassTribReg write FcClassTribReg;
+  end;
+  
+  /// <summary>
+  /// Grupo de informações relacionadas ao diferimento para IBS e CBS.
+  /// </summary>
+  TRTCInfoTributosDif = class
+  private
+    FpDifUF: Double;
+    FpDifMun: Double;
+    FpDifCBS: Double;
+  public
+    /// <summary>
+    /// Percentual de diferimento para o IBS estadual.
+    /// </summary>
+    property pDifUF: Double read FpDifUF write FpDifUF;
+    /// <summary>
+    /// Percentual de diferimento para o IBS municipal.
+    /// </summary>
+    property pDifMun: Double read FpDifMun write FpDifMun;
+    /// <summary>
+    /// Percentual de diferimento para a CBS.
+    /// </summary>
+    property pDifCBS: Double read FpDifCBS write FpDifCBS;
+  end;
+  
+  /// <summary>
+  /// Grupo de informações relacionadas ao IBS e à CBS.
+  /// </summary>
+  TRTCInfoTributosSitClas = class
+  private
+    FCST: string;
+    FcClassTrib: string;
+    FcCredPres: string;
+    FcCredPresHasValue: Boolean;
+    FgTribRegular: TRTCInfoTributosTribRegular;
+    FgDif: TRTCInfoTributosDif;
+    procedure SetcCredPres(const Value: string);
+    procedure SetgTribRegular(const Value: TRTCInfoTributosTribRegular);
+    procedure SetgDif(const Value: TRTCInfoTributosDif);
+  public
+    destructor Destroy; override;
+    /// <summary>
+    /// Código de Situação Tributária do IBS e da CBS.
+    /// </summary>
+    property CST: string read FCST write FCST;
+    /// <summary>
+    /// Código de Classificação Tributária do IBS e da CBS.
+    /// </summary>
+    property cClassTrib: string read FcClassTrib write FcClassTrib;
+    /// <summary>
+    /// Código e Classificação do Crédito Presumido: IBS e CBS.
+    /// </summary>
+    property cCredPres: string read FcCredPres write SetcCredPres;
+    property cCredPresHasValue: Boolean read FcCredPresHasValue write FcCredPresHasValue;
+    property gTribRegular: TRTCInfoTributosTribRegular read FgTribRegular write SetgTribRegular;
+    property gDif: TRTCInfoTributosDif read FgDif write SetgDif;
+  end;
+  
+  /// <summary>
+  /// Grupo de informações relacionados aos tributos IBS e CBS.
+  /// </summary>
+  TRTCInfoTributosIBSCBS = class
+  private
+    FgIBSCBS: TRTCInfoTributosSitClas;
+    procedure SetgIBSCBS(const Value: TRTCInfoTributosSitClas);
+  public
+    constructor Create;
+    destructor Destroy; override;
+    property gIBSCBS: TRTCInfoTributosSitClas read FgIBSCBS write SetgIBSCBS;
+  end;
+  
+  /// <summary>
+  /// Grupo de informações relativas aos valores do serviço prestado para IBS e CBS.
+  /// </summary>
+  TRTCInfoValoresIBSCBS = class
+  private
+    FgReeRepRes: TRTCInfoReeRepRes;
+    Ftrib: TRTCInfoTributosIBSCBS;
+    procedure SetgReeRepRes(const Value: TRTCInfoReeRepRes);
+    procedure Settrib(const Value: TRTCInfoTributosIBSCBS);
+  public
+    constructor Create;
+    destructor Destroy; override;
+    property gReeRepRes: TRTCInfoReeRepRes read FgReeRepRes write SetgReeRepRes;
+    property trib: TRTCInfoTributosIBSCBS read Ftrib write Settrib;
+  end;
+  
+  /// <summary>
+  /// Grupo de informações declaradas pelo emitente referentes ao IBS e à CBS.
+  /// </summary>
+  TRTCInfoIBSCBS = class
+  private
+    FfinNFSe: Integer;
+    FindFinal: Integer;
+    FcIndOp: string;
+    FtpOper: Integer;
+    FtpOperHasValue: Boolean;
+    FgRefNFSe: TInfoRefNFSe;
+    FtpEnteGov: Integer;
+    FtpEnteGovHasValue: Boolean;
+    FindDest: Integer;
+    Fdest: TRTCInfoDest;
+    Fimovel: TRTCInfoImovel;
+    Fvalores: TRTCInfoValoresIBSCBS;
+    procedure SettpOper(const Value: Integer);
+    procedure SetgRefNFSe(const Value: TInfoRefNFSe);
+    procedure SettpEnteGov(const Value: Integer);
+    procedure Setdest(const Value: TRTCInfoDest);
+    procedure Setimovel(const Value: TRTCInfoImovel);
+    procedure Setvalores(const Value: TRTCInfoValoresIBSCBS);
+  public
+    constructor Create;
+    destructor Destroy; override;
+    /// <summary>
+    /// Indicador da finalidade da emissão de NFS-e:
+    /// * 0 - NFS-e regular.
+    /// </summary>
+    property finNFSe: Integer read FfinNFSe write FfinNFSe;
+    /// <summary>
+    /// Indica operação de uso ou consumo pessoal (art. 57):
+    /// * 0 - Não;
+    /// * 1 - Sim.
+    /// </summary>
+    property indFinal: Integer read FindFinal write FindFinal;
+    /// <summary>
+    /// Código indicador da operação de fornecimento, conforme tabela "código indicador de operação".
+    /// </summary>
+    property cIndOp: string read FcIndOp write FcIndOp;
+    /// <summary>
+    /// Tipo de Operação com Entes Governamentais ou outros serviços sobre bens imóveis:
+    /// * 1 - Fornecimento com pagamento posterior;
+    /// * 2 - Recebimento do pagamento com fornecimento já realizado;
+    /// * 3 - Fornecimento com pagamento já realizado;
+    /// * 4 - Recebimento do pagamento com fornecimento posterior;
+    /// * 5 - Fornecimento e recebimento do pagamento concomitantes.
+    /// </summary>
+    property tpOper: Integer read FtpOper write SettpOper;
+    property tpOperHasValue: Boolean read FtpOperHasValue write FtpOperHasValue;
+    property gRefNFSe: TInfoRefNFSe read FgRefNFSe write SetgRefNFSe;
+    /// <summary>
+    /// Tipo de ente governamental
+    /// Para administração pública direta e suas autarquias e fundações:
+    /// * 1 - União;
+    /// * 2 - Estado;
+    /// * 3 - Distrito Federal;
+    /// * 4 - Município.
+    /// </summary>
+    property tpEnteGov: Integer read FtpEnteGov write SettpEnteGov;
+    property tpEnteGovHasValue: Boolean read FtpEnteGovHasValue write FtpEnteGovHasValue;
+    /// <summary>
+    /// A respeito do Destinatário dos serviços:
+    /// * 0 - O destinatário - o próprio tomador/adquirente identificado na NFS-e (tomador = adquirente = destinatário);
+    /// * 1 - O destinatário não - o próprio adquirente, podendo ser outra pessoa, física ou jurídica (ou equiparada), ou um estabelecimento diferente do indicado como tomador (tomador = adquirente != destinatário).
+    /// </summary>
+    property indDest: Integer read FindDest write FindDest;
+    property dest: TRTCInfoDest read Fdest write Setdest;
+    property imovel: TRTCInfoImovel read Fimovel write Setimovel;
+    property valores: TRTCInfoValoresIBSCBS read Fvalores write Setvalores;
+  end;
+  
+  /// <summary>
   /// Grupo de informações da DPS relativas ao serviço prestado.
   /// </summary>
   TInfDPS = class
@@ -7064,21 +7776,29 @@ type
     FverAplicHasValue: Boolean;
     FdCompet: TDate;
     FdCompetHasValue: Boolean;
+    FcMotivoEmisTI: Integer;
+    FcMotivoEmisTIHasValue: Boolean;
+    FchNFSeRej: string;
+    FchNFSeRejHasValue: Boolean;
     Fsubst: TSubstituicao;
     Fprest: TInfoPrestador;
     Ftoma: TInfoTomador;
     Finterm: TInfoIntermediario;
     Fserv: TServ;
     Fvalores: TInfoValores;
+    FIBSCBS: TRTCInfoIBSCBS;
     procedure SettpAmb(const Value: Integer);
     procedure SetverAplic(const Value: string);
     procedure SetdCompet(const Value: TDate);
+    procedure SetcMotivoEmisTI(const Value: Integer);
+    procedure SetchNFSeRej(const Value: string);
     procedure Setsubst(const Value: TSubstituicao);
     procedure Setprest(const Value: TInfoPrestador);
     procedure Settoma(const Value: TInfoTomador);
     procedure Setinterm(const Value: TInfoIntermediario);
     procedure Setserv(const Value: TServ);
     procedure Setvalores(const Value: TInfoValores);
+    procedure SetIBSCBS(const Value: TRTCInfoIBSCBS);
   public
     constructor Create;
     destructor Destroy; override;
@@ -7106,12 +7826,27 @@ type
     /// </summary>
     property dCompet: TDate read FdCompet write SetdCompet;
     property dCompetHasValue: Boolean read FdCompetHasValue write FdCompetHasValue;
+    /// <summary>
+    /// Motivo da Emissão da DPS pelo Tomador/Intermediário:
+    /// * 1 - Importação de Serviço
+    /// * 2 - Tomador/Intermediário obrigado a emitir NFS-e por legislação municipal
+    /// * 3 - Tomador/Intermediário emitindo NFS-e por recusa de emissão pelo prestador
+    /// * 4 - Tomador/Intermediário emitindo por rejeitar a NFS-e emitida pelo prestador
+    /// </summary>
+    property cMotivoEmisTI: Integer read FcMotivoEmisTI write SetcMotivoEmisTI;
+    property cMotivoEmisTIHasValue: Boolean read FcMotivoEmisTIHasValue write FcMotivoEmisTIHasValue;
+    /// <summary>
+    /// Chave de Acesso da NFS-e rejeitada pelo Tomador/Intermediário.
+    /// </summary>
+    property chNFSeRej: string read FchNFSeRej write SetchNFSeRej;
+    property chNFSeRejHasValue: Boolean read FchNFSeRejHasValue write FchNFSeRejHasValue;
     property subst: TSubstituicao read Fsubst write Setsubst;
     property prest: TInfoPrestador read Fprest write Setprest;
     property toma: TInfoTomador read Ftoma write Settoma;
     property interm: TInfoIntermediario read Finterm write Setinterm;
     property serv: TServ read Fserv write Setserv;
     property valores: TInfoValores read Fvalores write Setvalores;
+    property IBSCBS: TRTCInfoIBSCBS read FIBSCBS write SetIBSCBS;
   end;
   
   TNfseDpsPedidoEmissao = class
@@ -9132,19 +9867,40 @@ type
   private
     FtpEnteGov: Integer;
     FpRedutor: Double;
+    FtpOperGov: Integer;
+    FrefDFeAnt: stringList;
+    procedure SetrefDFeAnt(const Value: stringList);
   public
+    destructor Destroy; override;
     /// <summary>
     /// Para administração pública direta e suas autarquias e fundações:
     /// * 1 - União
     /// * 2 - Estados
     /// * 3 - Distrito Federal
     /// * 4 - Municípios
+    /// * 5 - Consórcio Público
+    /// * 6 - Comitê Gestor do IBS
     /// </summary>
     property tpEnteGov: Integer read FtpEnteGov write FtpEnteGov;
     /// <summary>
-    /// Percentual de redução de aliquota em compra goverrnamental.
+    /// Percentual de redução de aliquota em compra governamental.
     /// </summary>
     property pRedutor: Double read FpRedutor write FpRedutor;
+    /// <summary>
+    /// Tipo da operação com ente governamental:
+    /// * 1 - Fornecimento com pagamento posterior
+    /// * 2 - Recebimento do pagamento com fornecimento já realizado
+    /// * 3 - Fornecimento com pagamento já realizado
+    /// * 4 - Recebimento do pagamento com fornecimento posterior
+    /// </summary>
+    property tpOperGov: Integer read FtpOperGov write FtpOperGov;
+    /// <summary>
+    /// Chave de acesso do documento fiscal anterior.
+    /// Deverá ser informado para tpOperGov 2 e 3 e vedado para os tipos 1 e 4.
+    /// No caso do toOperGov 2 aceitará apenas uma chave referenciada, no tipo 3 poderá aceitar múltiplas chaves
+    /// Obs: a chave de acesso deverá ser de um emitente com o mesmo CNPJ base.
+    /// </summary>
+    property refDFeAnt: stringList read FrefDFeAnt write SetrefDFeAnt;
   end;
   
   /// <summary>
@@ -9181,6 +9937,8 @@ type
     FxJust: string;
     FxJustHasValue: Boolean;
     FgCompraGov: TNfcomSefazCompraGovReduzido;
+    FtpPagAnt: Integer;
+    FtpPagAntHasValue: Boolean;
     procedure SettpAmb(const Value: Integer);
     procedure Setmod(const Value: Integer);
     procedure SetcNF(const Value: string);
@@ -9191,6 +9949,7 @@ type
     procedure SetdhCont(const Value: TDateTime);
     procedure SetxJust(const Value: string);
     procedure SetgCompraGov(const Value: TNfcomSefazCompraGovReduzido);
+    procedure SettpPagAnt(const Value: Integer);
   public
     destructor Destroy; override;
     /// <summary>
@@ -9309,6 +10068,17 @@ type
     property xJust: string read FxJust write SetxJust;
     property xJustHasValue: Boolean read FxJustHasValue write FxJustHasValue;
     property gCompraGov: TNfcomSefazCompraGovReduzido read FgCompraGov write SetgCompraGov;
+    /// <summary>
+    /// Tipo Pagamento ou Pagamento Antecipado.
+    /// Informar:
+    /// * 1 - Pagamento Antecipado de Serviços Não Continuados
+    /// * 2 - Pagamento de serviços continuados (antes da prestação)
+    /// * 3 - Fornecimento com pagamento realizado anteriormente
+    /// Este campo é opcional e apenas deve ser informado em notas de pagamento que ocorre antes da prestação do serviço e na nota de fornecimento associada a esses pagamentos, Notas Normais que retratam a prestação de serviço continuado mensal da nota fatura (contendo ou não itens de serviço não continuado) em que o pagamento não foi antecipado NÃO DEVEM INFORMAR ESSE CAMPO.
+    /// A tabela cClass terá uma flag que sinaliza se o tipo de item é de prestação continuada ou não continuada.
+    /// </summary>
+    property tpPagAnt: Integer read FtpPagAnt write SettpPagAnt;
+    property tpPagAntHasValue: Boolean read FtpPagAntHasValue write FtpPagAntHasValue;
   end;
   
   /// <summary>
@@ -9437,12 +10207,15 @@ type
     FxFant: string;
     FxFantHasValue: Boolean;
     FenderEmit: TNfcomSefazEndeEmi;
+    FISUFEmit: string;
+    FISUFEmitHasValue: Boolean;
     procedure SetIE(const Value: string);
     procedure SetIEUFDest(const Value: string);
     procedure SetCRT(const Value: Integer);
     procedure SetxNome(const Value: string);
     procedure SetxFant(const Value: string);
     procedure SetenderEmit(const Value: TNfcomSefazEndeEmi);
+    procedure SetISUFEmit(const Value: string);
   public
     destructor Destroy; override;
     /// <summary>
@@ -9487,6 +10260,12 @@ type
     property xFant: string read FxFant write SetxFant;
     property xFantHasValue: Boolean read FxFantHasValue write FxFantHasValue;
     property enderEmit: TNfcomSefazEndeEmi read FenderEmit write SetenderEmit;
+    /// <summary>
+    /// Inscrição do emitente da Suframa.
+    /// Informar o número do Cadastro do emitente na Suframa. Campo obrigatório nas operações que se beneficiam de incentivos fiscais existentes nas áreas sob controle da SUFRAMA com alíquota zero da CBS referente aos arts. 451 e 466 da LC 214/25.
+    /// </summary>
+    property ISUFEmit: string read FISUFEmit write SetISUFEmit;
+    property ISUFEmitHasValue: Boolean read FISUFEmitHasValue write FISUFEmitHasValue;
   end;
   
   /// <summary>
@@ -9815,6 +10594,7 @@ type
     /// * 03 - Decisão Judicial
     /// * 04 - Erro de Tributação
     /// * 05 - Descontinuidade do Serviço
+    /// * 06 - Regime Especial
     /// </summary>
     property motSub: string read FmotSub write FmotSub;
   end;
@@ -9884,6 +10664,31 @@ type
   end;
   
   /// <summary>
+  /// Grupo de antecipação de pagamento
+  /// Permite informar apenas quando tpPagAnt=3.
+  /// Informado para abater as parcelas de antecipação de
+  /// pagamento.
+  /// </summary>
+  TNfcomSefazGPagAntecipado = class
+  private
+    FchDFePagAnt: string;
+    FnItemPagAnt: string;
+    FnItemPagAntHasValue: Boolean;
+    procedure SetnItemPagAnt(const Value: string);
+  public
+    /// <summary>
+    /// Chave de acesso da nota de antecipação de pagamento (com tpPagAnt=1 ou 2).
+    /// Referência a DFe emitido anteriormente, referente a pagamento antecipado.
+    /// </summary>
+    property chDFePagAnt: string read FchDFePagAnt write FchDFePagAnt;
+    /// <summary>
+    /// Número do item do DFe de antecipação para referência direta a um item.
+    /// </summary>
+    property nItemPagAnt: string read FnItemPagAnt write SetnItemPagAnt;
+    property nItemPagAntHasValue: Boolean read FnItemPagAntHasValue write FnItemPagAntHasValue;
+  end;
+  
+  /// <summary>
   /// Dados do Produto ou Serviço.
   /// </summary>
   TNfcomSefazProd = class
@@ -9907,13 +10712,19 @@ type
     FdExpiracaoHasValue: Boolean;
     FindDevolucao: Integer;
     FindDevolucaoHasValue: Boolean;
+    FCNPJCobrTerc: string;
+    FCNPJCobrTercHasValue: Boolean;
+    FgPagAntecipado: TNfcomSefazGPagAntecipado;
     procedure SetCFOP(const Value: string);
     procedure SetCNPJLD(const Value: string);
     procedure SetvDesc(const Value: Double);
     procedure SetvOutro(const Value: Double);
     procedure SetdExpiracao(const Value: TDate);
     procedure SetindDevolucao(const Value: Integer);
+    procedure SetCNPJCobrTerc(const Value: string);
+    procedure SetgPagAntecipado(const Value: TNfcomSefazGPagAntecipado);
   public
+    destructor Destroy; override;
     /// <summary>
     /// Código do produto ou serviço.
     /// </summary>
@@ -9982,6 +10793,13 @@ type
     /// </summary>
     property indDevolucao: Integer read FindDevolucao write SetindDevolucao;
     property indDevolucaoHasValue: Boolean read FindDevolucaoHasValue write FindDevolucaoHasValue;
+    /// <summary>
+    /// CNPJ de cobrança de terceiro.
+    /// Informar quando cClass do grupo 110 - Cobrança de terceiros.
+    /// </summary>
+    property CNPJCobrTerc: string read FCNPJCobrTerc write SetCNPJCobrTerc;
+    property CNPJCobrTercHasValue: Boolean read FCNPJCobrTercHasValue write FCNPJCobrTercHasValue;
+    property gPagAntecipado: TNfcomSefazGPagAntecipado read FgPagAntecipado write SetgPagAntecipado;
   end;
   
   /// <summary>
@@ -10485,11 +11303,18 @@ type
   /// </summary>
   TNfcomSefazDevTrib = class
   private
+    FpDevTrib: Double;
+    FpDevTribHasValue: Boolean;
     FvDevTrib: Double;
+    procedure SetpDevTrib(const Value: Double);
   public
     /// <summary>
-    /// Valor do tributo devolvido. No fornecimento de energia elétrica, água, esgoto e
-    /// gás natural e em outras hipóteses definidas no regulamento.
+    /// Percentual de devolução do tributo, conforme LC 214/25 art. 118.
+    /// </summary>
+    property pDevTrib: Double read FpDevTrib write SetpDevTrib;
+    property pDevTribHasValue: Boolean read FpDevTribHasValue write FpDevTribHasValue;
+    /// <summary>
+    /// Valor do tributo devolvido. (“cashback” de desconto na própria Nota Fiscal / Fatura).
     /// </summary>
     property vDevTrib: Double read FvDevTrib write FvDevTrib;
   end;
@@ -10507,7 +11332,7 @@ type
     /// </summary>
     property pRedAliq: Double read FpRedAliq write FpRedAliq;
     /// <summary>
-    /// Aliquota Efetiva que será aplicada a Base de Calculo.
+    /// Aliquota Efetiva que será aplicada a Base de Calculo (em percentual).
     /// </summary>
     property pAliqEfet: Double read FpAliqEfet write FpAliqEfet;
   end;
@@ -10528,7 +11353,7 @@ type
   public
     destructor Destroy; override;
     /// <summary>
-    /// Aliquota do IBS de competência das UF.
+    /// Aliquota do IBS de competência das UF (em percentual).
     /// </summary>
     property pIBSUF: Double read FpIBSUF write FpIBSUF;
     property gDif: TNfcomSefazDif read FgDif write SetgDif;
@@ -10556,7 +11381,7 @@ type
   public
     destructor Destroy; override;
     /// <summary>
-    /// Aliquota do IBS Municipal.
+    /// Aliquota do IBS Municipal (em percentual).
     /// </summary>
     property pIBSMun: Double read FpIBSMun write FpIBSMun;
     property gDif: TNfcomSefazDif read FgDif write SetgDif;
@@ -10569,6 +11394,27 @@ type
   end;
   
   /// <summary>
+  /// Grupo de operações em áreas incentivadas (ALC/ZFM) - CBS (alíquota zero).
+  /// Grupo de informações para identificação de operações em áreas incentivadas (ALC/ZFM) com alíquota zero da CBS, conforme arts. 451 e 466 da LC 214/2025, quando fornecedor e destinatário estiverem nessas áreas, distinguindo a existência de processo aprovado na Suframa.
+  /// </summary>
+  TNfcomSefazALCZFMCBS = class
+  private
+    FpAliqEfetRegCBS: Double;
+    FvTribRegCBS: Double;
+  public
+    /// <summary>
+    /// Percentual efetivo sem a redução.
+    /// Alíquota efetiva de referência da CBS aplicável à operação fora de áreas ou regimes incentivados.
+    /// </summary>
+    property pAliqEfetRegCBS: Double read FpAliqEfetRegCBS write FpAliqEfetRegCBS;
+    /// <summary>
+    /// Valor efetivo sem a redução.
+    /// Valor da CBS calculado para a operação fora de áreas ou regimes incentivado.
+    /// </summary>
+    property vTribRegCBS: Double read FvTribRegCBS write FvTribRegCBS;
+  end;
+  
+  /// <summary>
   /// Grupo de Tributação da CBS.
   /// </summary>
   TNfcomSefazGCBS = class
@@ -10577,19 +11423,22 @@ type
     FgDif: TNfcomSefazDif;
     FgDevTrib: TNfcomSefazDevTrib;
     FgRed: TNfcomSefazRed;
+    FgALCZFMCBS: TNfcomSefazALCZFMCBS;
     FvCBS: Double;
     procedure SetgDif(const Value: TNfcomSefazDif);
     procedure SetgDevTrib(const Value: TNfcomSefazDevTrib);
     procedure SetgRed(const Value: TNfcomSefazRed);
+    procedure SetgALCZFMCBS(const Value: TNfcomSefazALCZFMCBS);
   public
     destructor Destroy; override;
     /// <summary>
-    /// Aliquota da CBS.
+    /// Aliquota da CBS (em percentual).
     /// </summary>
     property pCBS: Double read FpCBS write FpCBS;
     property gDif: TNfcomSefazDif read FgDif write SetgDif;
     property gDevTrib: TNfcomSefazDevTrib read FgDevTrib write SetgDevTrib;
     property gRed: TNfcomSefazRed read FgRed write SetgRed;
+    property gALCZFMCBS: TNfcomSefazALCZFMCBS read FgALCZFMCBS write SetgALCZFMCBS;
     /// <summary>
     /// Valor da CBS.
     /// </summary>
@@ -10652,40 +11501,6 @@ type
   end;
   
   /// <summary>
-  /// Grupo de Informações do Crédito Presumido referente ao IBS, quando aproveitado pelo emitente do documento.
-  /// </summary>
-  TNfcomSefazCredPres = class
-  private
-    FcCredPres: string;
-    FpCredPres: Double;
-    FvCredPres: Double;
-    FvCredPresHasValue: Boolean;
-    FvCredPresCondSus: Double;
-    FvCredPresCondSusHasValue: Boolean;
-    procedure SetvCredPres(const Value: Double);
-    procedure SetvCredPresCondSus(const Value: Double);
-  public
-    /// <summary>
-    /// Usar tabela Cred Presumido, para o emitente da nota.
-    /// </summary>
-    property cCredPres: string read FcCredPres write FcCredPres;
-    /// <summary>
-    /// Percentual do Crédito Presumido.
-    /// </summary>
-    property pCredPres: Double read FpCredPres write FpCredPres;
-    /// <summary>
-    /// Valor do Crédito Presumido.
-    /// </summary>
-    property vCredPres: Double read FvCredPres write SetvCredPres;
-    property vCredPresHasValue: Boolean read FvCredPresHasValue write FvCredPresHasValue;
-    /// <summary>
-    /// Valor do Crédito Presumido Condição Suspensiva, preencher apenas para cCredPres que possui indicação de Condição Suspensiva.
-    /// </summary>
-    property vCredPresCondSus: Double read FvCredPresCondSus write SetvCredPresCondSus;
-    property vCredPresCondSusHasValue: Boolean read FvCredPresCondSusHasValue write FvCredPresCondSusHasValue;
-  end;
-  
-  /// <summary>
   /// Grupo de informações da composição do valor do IBS e da CBS em compras governamental.
   /// </summary>
   TNfcomSefazTribCompraGov = class
@@ -10731,15 +11546,11 @@ type
     FvIBS: Double;
     FgCBS: TNfcomSefazGCBS;
     FgTribRegular: TNfcomSefazTribRegular;
-    FgIBSCredPres: TNfcomSefazCredPres;
-    FgCBSCredPres: TNfcomSefazCredPres;
     FgTribCompraGov: TNfcomSefazTribCompraGov;
     procedure SetgIBSUF(const Value: TNfcomSefazGIBSUF);
     procedure SetgIBSMun(const Value: TNfcomSefazGIBSMun);
     procedure SetgCBS(const Value: TNfcomSefazGCBS);
     procedure SetgTribRegular(const Value: TNfcomSefazTribRegular);
-    procedure SetgIBSCredPres(const Value: TNfcomSefazCredPres);
-    procedure SetgCBSCredPres(const Value: TNfcomSefazCredPres);
     procedure SetgTribCompraGov(const Value: TNfcomSefazTribCompraGov);
   public
     constructor Create;
@@ -10751,14 +11562,30 @@ type
     property gIBSUF: TNfcomSefazGIBSUF read FgIBSUF write SetgIBSUF;
     property gIBSMun: TNfcomSefazGIBSMun read FgIBSMun write SetgIBSMun;
     /// <summary>
-    /// Valor do IBS (soma de vIBSUF e vIBSMun).
+    /// Valor do IBS.
     /// </summary>
     property vIBS: Double read FvIBS write FvIBS;
     property gCBS: TNfcomSefazGCBS read FgCBS write SetgCBS;
     property gTribRegular: TNfcomSefazTribRegular read FgTribRegular write SetgTribRegular;
-    property gIBSCredPres: TNfcomSefazCredPres read FgIBSCredPres write SetgIBSCredPres;
-    property gCBSCredPres: TNfcomSefazCredPres read FgCBSCredPres write SetgCBSCredPres;
     property gTribCompraGov: TNfcomSefazTribCompraGov read FgTribCompraGov write SetgTribCompraGov;
+  end;
+  
+  /// <summary>
+  /// Informado conforme indicador no cClassTrib.
+  /// </summary>
+  TNfcomSefazEstornoCred = class
+  private
+    FvIBSEstCred: Double;
+    FvCBSEstCred: Double;
+  public
+    /// <summary>
+    /// Valor do IBS a ser estornado.
+    /// </summary>
+    property vIBSEstCred: Double read FvIBSEstCred write FvIBSEstCred;
+    /// <summary>
+    /// Valor da CBS a ser estornada.
+    /// </summary>
+    property vCBSEstCred: Double read FvCBSEstCred write FvCBSEstCred;
   end;
   
   /// <summary>
@@ -10769,9 +11596,14 @@ type
     FCST: string;
     FcClassTrib: string;
     FcClassTribHasValue: Boolean;
+    FindDoacao: Integer;
+    FindDoacaoHasValue: Boolean;
     FgIBSCBS: TNfcomSefazCIBS;
+    FgEstornoCred: TNfcomSefazEstornoCred;
     procedure SetcClassTrib(const Value: string);
+    procedure SetindDoacao(const Value: Integer);
     procedure SetgIBSCBS(const Value: TNfcomSefazCIBS);
+    procedure SetgEstornoCred(const Value: TNfcomSefazEstornoCred);
   public
     destructor Destroy; override;
     /// <summary>
@@ -10780,7 +11612,13 @@ type
     property CST: string read FCST write FCST;
     property cClassTrib: string read FcClassTrib write SetcClassTrib;
     property cClassTribHasValue: Boolean read FcClassTribHasValue write FcClassTribHasValue;
+    /// <summary>
+    /// Indica se a operação é de doação.
+    /// </summary>
+    property indDoacao: Integer read FindDoacao write SetindDoacao;
+    property indDoacaoHasValue: Boolean read FindDoacaoHasValue write FindDoacaoHasValue;
     property gIBSCBS: TNfcomSefazCIBS read FgIBSCBS write SetgIBSCBS;
+    property gEstornoCred: TNfcomSefazEstornoCred read FgEstornoCred write SetgEstornoCred;
   end;
   
   /// <summary>
@@ -11084,6 +11922,57 @@ type
   end;
   
   /// <summary>
+  /// Dados de cada pagamento previsto.
+  /// </summary>
+  TNfcomSefazPagamentoRTC = class
+  private
+    FnPag: string;
+    FidTransacao: string;
+    FtpMeioPgto: string;
+    FCNPJReceb: string;
+    FCNPJBasePSP: string;
+  public
+    /// <summary>
+    /// Número sequencial do pagamento.
+    /// </summary>
+    property nPag: string read FnPag write FnPag;
+    /// <summary>
+    /// ID específico da transação financeira conforme o meio de pagamento.
+    /// </summary>
+    property idTransacao: string read FidTransacao write FidTransacao;
+    /// <summary>
+    /// (Meio de pagamento utilizado (ver IT DFe 2026.001).
+    /// </summary>
+    property tpMeioPgto: string read FtpMeioPgto write FtpMeioPgto;
+    /// <summary>
+    /// CNPJ do recebedor do pagamento.
+    /// Informar zeros não significativos.
+    /// </summary>
+    property CNPJReceb: string read FCNPJReceb write FCNPJReceb;
+    /// <summary>
+    /// CNPJ base da instituição financeira.
+    /// Informar zeros não significativos.
+    /// </summary>
+    property CNPJBasePSP: string read FCNPJBasePSP write FCNPJBasePSP;
+  end;
+  
+  TNfcomSefazPagamentoRTCList = class(TObjectList<TNfcomSefazPagamentoRTC>)
+  end;
+  
+  /// <summary>
+  /// Grupo de informações da vínculação com a transação de pagamento.
+  /// </summary>
+  TNfcomSefazPgtoVinc = class
+  private
+    Fpgto: TNfcomSefazPagamentoRTCList;
+    procedure Setpgto(const Value: TNfcomSefazPagamentoRTCList);
+  public
+    constructor Create;
+    destructor Destroy; override;
+    property pgto: TNfcomSefazPagamentoRTCList read Fpgto write Setpgto;
+  end;
+  
+  /// <summary>
   /// Totais referentes ao ICMS.
   /// </summary>
   TNfcomSefazICMSTot = class
@@ -11193,8 +12082,6 @@ type
     FgIBSUF: TNfcomSefazGIBSGIBSUF;
     FgIBSMun: TNfcomSefazGIBSGIBSMun;
     FvIBS: Double;
-    FvCredPres: Double;
-    FvCredPresCondSus: Double;
     procedure SetgIBSUF(const Value: TNfcomSefazGIBSGIBSUF);
     procedure SetgIBSMun(const Value: TNfcomSefazGIBSGIBSMun);
   public
@@ -11206,14 +12093,6 @@ type
     /// Valor total do IBS.
     /// </summary>
     property vIBS: Double read FvIBS write FvIBS;
-    /// <summary>
-    /// Total do Crédito Presumido.
-    /// </summary>
-    property vCredPres: Double read FvCredPres write FvCredPres;
-    /// <summary>
-    /// Total do Crédito Presumido Condição Suspensiva.
-    /// </summary>
-    property vCredPresCondSus: Double read FvCredPresCondSus write FvCredPresCondSus;
   end;
   
   /// <summary>
@@ -11224,8 +12103,6 @@ type
     FvDif: Double;
     FvDevTrib: Double;
     FvCBS: Double;
-    FvCredPres: Double;
-    FvCredPresCondSus: Double;
   public
     /// <summary>
     /// Total do Diferimento.
@@ -11239,14 +12116,24 @@ type
     /// Valor total da CBS.
     /// </summary>
     property vCBS: Double read FvCBS write FvCBS;
+  end;
+  
+  /// <summary>
+  /// Totalização do estorno de crédito.
+  /// </summary>
+  TNfcomSefazGEstornoCred = class
+  private
+    FvIBSEstCred: Double;
+    FvCBSEstCred: Double;
+  public
     /// <summary>
-    /// Total do Crédito Presumido.
+    /// Valor total do IBS estornado.
     /// </summary>
-    property vCredPres: Double read FvCredPres write FvCredPres;
+    property vIBSEstCred: Double read FvIBSEstCred write FvIBSEstCred;
     /// <summary>
-    /// Total do Crédito Presumido Condição Suspensiva.
+    /// Valor total da CBS estornada.
     /// </summary>
-    property vCredPresCondSus: Double read FvCredPresCondSus write FvCredPresCondSus;
+    property vCBSEstCred: Double read FvCBSEstCred write FvCBSEstCred;
   end;
   
   /// <summary>
@@ -11257,8 +12144,10 @@ type
     FvBCIBSCBS: Double;
     FgIBS: TNfcomSefazGIBS;
     FgCBS: TNfcomSefazIBSCBSTotGCBS;
+    FgEstornoCred: TNfcomSefazGEstornoCred;
     procedure SetgIBS(const Value: TNfcomSefazGIBS);
     procedure SetgCBS(const Value: TNfcomSefazIBSCBSTotGCBS);
+    procedure SetgEstornoCred(const Value: TNfcomSefazGEstornoCred);
   public
     constructor Create;
     destructor Destroy; override;
@@ -11268,6 +12157,7 @@ type
     property vBCIBSCBS: Double read FvBCIBSCBS write FvBCIBSCBS;
     property gIBS: TNfcomSefazGIBS read FgIBS write SetgIBS;
     property gCBS: TNfcomSefazIBSCBSTotGCBS read FgCBS write SetgCBS;
+    property gEstornoCred: TNfcomSefazGEstornoCred read FgEstornoCred write SetgEstornoCred;
   end;
   
   /// <summary>
@@ -11604,6 +12494,7 @@ type
     FgSub: TNfcomSefazGSub;
     FgCofat: TNfcomSefazGCofat;
     Fdet: TNfcomSefazDetList;
+    FpgtoVinc: TNfcomSefazPgtoVinc;
     Ftotal: TNfcomSefazTotal;
     FgFidelidade: TNfcomSefazGFidelidade;
     FgFat: TNfcomSefazGFat;
@@ -11619,6 +12510,7 @@ type
     procedure SetgSub(const Value: TNfcomSefazGSub);
     procedure SetgCofat(const Value: TNfcomSefazGCofat);
     procedure Setdet(const Value: TNfcomSefazDetList);
+    procedure SetpgtoVinc(const Value: TNfcomSefazPgtoVinc);
     procedure Settotal(const Value: TNfcomSefazTotal);
     procedure SetgFidelidade(const Value: TNfcomSefazGFidelidade);
     procedure SetgFat(const Value: TNfcomSefazGFat);
@@ -11648,6 +12540,7 @@ type
     property gSub: TNfcomSefazGSub read FgSub write SetgSub;
     property gCofat: TNfcomSefazGCofat read FgCofat write SetgCofat;
     property det: TNfcomSefazDetList read Fdet write Setdet;
+    property pgtoVinc: TNfcomSefazPgtoVinc read FpgtoVinc write SetpgtoVinc;
     property total: TNfcomSefazTotal read Ftotal write Settotal;
     property gFidelidade: TNfcomSefazGFidelidade read FgFidelidade write SetgFidelidade;
     property gFat: TNfcomSefazGFat read FgFat write SetgFat;
@@ -11697,20 +12590,30 @@ type
   private
     Fnome: string;
     FnomeHasValue: Boolean;
-    Fconsumo: Integer;
+    Fconsumo: Double;
     FconsumoHasValue: Boolean;
-    Flimite: Integer;
+    Flimite: Double;
     FlimiteHasValue: Boolean;
+    Fdisponivel: Double;
+    FdisponivelHasValue: Boolean;
+    Fultima_atualizacao: string;
+    Fultima_atualizacaoHasValue: Boolean;
     procedure Setnome(const Value: string);
-    procedure Setconsumo(const Value: Integer);
-    procedure Setlimite(const Value: Integer);
+    procedure Setconsumo(const Value: Double);
+    procedure Setlimite(const Value: Double);
+    procedure Setdisponivel(const Value: Double);
+    procedure Setultima_atualizacao(const Value: string);
   public
     property nome: string read Fnome write Setnome;
     property nomeHasValue: Boolean read FnomeHasValue write FnomeHasValue;
-    property consumo: Integer read Fconsumo write Setconsumo;
+    property consumo: Double read Fconsumo write Setconsumo;
     property consumoHasValue: Boolean read FconsumoHasValue write FconsumoHasValue;
-    property limite: Integer read Flimite write Setlimite;
+    property limite: Double read Flimite write Setlimite;
     property limiteHasValue: Boolean read FlimiteHasValue write FlimiteHasValue;
+    property disponivel: Double read Fdisponivel write Setdisponivel;
+    property disponivelHasValue: Boolean read FdisponivelHasValue write FdisponivelHasValue;
+    property ultima_atualizacao: string read Fultima_atualizacao write Setultima_atualizacao;
+    property ultima_atualizacaoHasValue: Boolean read Fultima_atualizacaoHasValue write Fultima_atualizacaoHasValue;
   end;
   
   TContaCotaList = class(TObjectList<TContaCota>)
@@ -11728,6 +12631,93 @@ type
     property _count: Integer read F_count write Set_count;
     property _countHasValue: Boolean read F_countHasValue write F_countHasValue;
     property data: TContaCotaList read Fdata write Setdata;
+  end;
+  
+  TContaCotaPrePago = class
+  private
+    Fpercentual_disponivel: Double;
+    Fpercentual_disponivelHasValue: Boolean;
+    Fcreditos_disponiveis: Double;
+    Fcreditos_disponiveisHasValue: Boolean;
+    Fultima_atualizacao: string;
+    Fultima_atualizacaoHasValue: Boolean;
+    procedure Setpercentual_disponivel(const Value: Double);
+    procedure Setcreditos_disponiveis(const Value: Double);
+    procedure Setultima_atualizacao(const Value: string);
+  public
+    property percentual_disponivel: Double read Fpercentual_disponivel write Setpercentual_disponivel;
+    property percentual_disponivelHasValue: Boolean read Fpercentual_disponivelHasValue write Fpercentual_disponivelHasValue;
+    property creditos_disponiveis: Double read Fcreditos_disponiveis write Setcreditos_disponiveis;
+    property creditos_disponiveisHasValue: Boolean read Fcreditos_disponiveisHasValue write Fcreditos_disponiveisHasValue;
+    property ultima_atualizacao: string read Fultima_atualizacao write Setultima_atualizacao;
+    property ultima_atualizacaoHasValue: Boolean read Fultima_atualizacaoHasValue write Fultima_atualizacaoHasValue;
+  end;
+  
+  TContaExtratoCredito = class
+  private
+    Ftenant_id: string;
+    Ftenant_idHasValue: Boolean;
+    Fcreated_at: TDateTime;
+    Fcreated_atHasValue: Boolean;
+    Fquota_name: string;
+    Fquota_nameHasValue: Boolean;
+    Fmovement_type: string;
+    Fmovement_typeHasValue: Boolean;
+    Fcredits: Double;
+    FcreditsHasValue: Boolean;
+    Fdocument_id: string;
+    Fdocument_idHasValue: Boolean;
+    Farquivo_id: string;
+    Farquivo_idHasValue: Boolean;
+    Fhttp_method: string;
+    Fhttp_methodHasValue: Boolean;
+    Furi: string;
+    FuriHasValue: Boolean;
+    procedure Settenant_id(const Value: string);
+    procedure Setcreated_at(const Value: TDateTime);
+    procedure Setquota_name(const Value: string);
+    procedure Setmovement_type(const Value: string);
+    procedure Setcredits(const Value: Double);
+    procedure Setdocument_id(const Value: string);
+    procedure Setarquivo_id(const Value: string);
+    procedure Sethttp_method(const Value: string);
+    procedure Seturi(const Value: string);
+  public
+    property tenant_id: string read Ftenant_id write Settenant_id;
+    property tenant_idHasValue: Boolean read Ftenant_idHasValue write Ftenant_idHasValue;
+    property created_at: TDateTime read Fcreated_at write Setcreated_at;
+    property created_atHasValue: Boolean read Fcreated_atHasValue write Fcreated_atHasValue;
+    property quota_name: string read Fquota_name write Setquota_name;
+    property quota_nameHasValue: Boolean read Fquota_nameHasValue write Fquota_nameHasValue;
+    property movement_type: string read Fmovement_type write Setmovement_type;
+    property movement_typeHasValue: Boolean read Fmovement_typeHasValue write Fmovement_typeHasValue;
+    property credits: Double read Fcredits write Setcredits;
+    property creditsHasValue: Boolean read FcreditsHasValue write FcreditsHasValue;
+    property document_id: string read Fdocument_id write Setdocument_id;
+    property document_idHasValue: Boolean read Fdocument_idHasValue write Fdocument_idHasValue;
+    property arquivo_id: string read Farquivo_id write Setarquivo_id;
+    property arquivo_idHasValue: Boolean read Farquivo_idHasValue write Farquivo_idHasValue;
+    property http_method: string read Fhttp_method write Sethttp_method;
+    property http_methodHasValue: Boolean read Fhttp_methodHasValue write Fhttp_methodHasValue;
+    property uri: string read Furi write Seturi;
+    property uriHasValue: Boolean read FuriHasValue write FuriHasValue;
+  end;
+  
+  TContaExtratoCreditoList = class(TObjectList<TContaExtratoCredito>)
+  end;
+  
+  TContaExtratoCreditoListagem = class
+  private
+    F_count: Integer;
+    F_countHasValue: Boolean;
+    Fdata: TContaExtratoCreditoList;
+    procedure Set_count(const Value: Integer);
+    procedure Setdata(const Value: TContaExtratoCreditoList);
+  public
+    destructor Destroy; override;
+    property _count: Integer read F_count write Set_count;
+    property _countHasValue: Boolean read F_countHasValue write F_countHasValue;
+    property data: TContaExtratoCreditoList read Fdata write Setdata;
   end;
   
   /// <summary>
@@ -11909,19 +12899,56 @@ type
   private
     FtpEnteGov: Integer;
     FpRedutor: Double;
+    FtpOperGov: Integer;
+    FrefDFeAnt: stringList;
+    procedure SetrefDFeAnt(const Value: stringList);
   public
+    destructor Destroy; override;
     /// <summary>
     /// Para administração pública direta e suas autarquias e fundações:
     /// * 1 - União
     /// * 2 - Estados
     /// * 3 - Distrito Federal
     /// * 4 - Municípios
+    /// * 5 - Consórcio Público
+    /// * 6 - Comitê Gestor do IBS
     /// </summary>
     property tpEnteGov: Integer read FtpEnteGov write FtpEnteGov;
     /// <summary>
-    /// Percentual de redução de aliquota em compra goverrnamental.
+    /// Percentual de redução de aliquota em compra governamental.
     /// </summary>
     property pRedutor: Double read FpRedutor write FpRedutor;
+    /// <summary>
+    /// Tipo da operação com ente governamental:
+    /// * 1 - Fornecimento com pagamento posterior
+    /// * 2 - Recebimento do pagamento com fornecimento já realizado
+    /// * 3 - Fornecimento com pagamento já realizado
+    /// * 4 - Recebimento do pagamento com fornecimento posterior
+    /// </summary>
+    property tpOperGov: Integer read FtpOperGov write FtpOperGov;
+    /// <summary>
+    /// Chave de acesso do documento fiscal anterior.
+    /// Deverá ser informado para tpOperGov 2 e 3 e vedado para os tipos 1 e 4.
+    /// No caso do toOperGov 2 aceitará apenas uma chave referenciada, no tipo 3 poderá aceitar múltiplas chaves
+    /// Obs: a chave de acesso deverá ser de um emitente com o mesmo CNPJ base.
+    /// </summary>
+    property refDFeAnt: stringList read FrefDFeAnt write SetrefDFeAnt;
+  end;
+  
+  /// <summary>
+  /// Grupo de antecipação de pagamento.
+  /// Informado para abater as parcelas de antecipação de
+  /// pagamento, conforme Art. 10. § 4º.
+  /// </summary>
+  TCteSefazGPagAntecipado = class
+  private
+    FchCTePagAnt: string;
+  public
+    /// <summary>
+    /// Chave de acesso do CTe de antecipação de pagamento.
+    /// Referência a CTe emitido anteriormente, referente a pagamento antecipado.
+    /// </summary>
+    property chCTePagAnt: string read FchCTePagAnt write FchCTePagAnt;
   end;
   
   /// <summary>
@@ -11972,6 +12999,9 @@ type
     FxJust: string;
     FxJustHasValue: Boolean;
     FgCompraGov: TCteSefazCompraGovReduzido;
+    FtpPagAnt: Integer;
+    FtpPagAntHasValue: Boolean;
+    FgPagAntecipado: TCteSefazGPagAntecipado;
     procedure SetcCT(const Value: string);
     procedure Setmod(const Value: Integer);
     procedure SetcDV(const Value: Integer);
@@ -11983,6 +13013,8 @@ type
     procedure SetdhCont(const Value: TDateTime);
     procedure SetxJust(const Value: string);
     procedure SetgCompraGov(const Value: TCteSefazCompraGovReduzido);
+    procedure SettpPagAnt(const Value: Integer);
+    procedure SetgPagAntecipado(const Value: TCteSefazGPagAntecipado);
   public
     destructor Destroy; override;
     /// <summary>
@@ -12067,10 +13099,11 @@ type
     /// </summary>
     property tpCTe: Integer read FtpCTe write FtpCTe;
     /// <summary>
-    /// Identificador do processo de emissão do CT-e.
+    /// Identificador do processo de emissão do CTe.
     /// Preencher com:
-    /// * 0 - emissão de CT-e com aplicativo do contribuinte
-    /// * 3 - emissão CT-e pelo contribuinte com aplicativo fornecido pelo SEBRAE
+    /// * 0 - emissão de CTe com aplicativo do contribuinte
+    /// * 3 - emissão CTe pelo contribuinte com aplicativo fornecido pelo SEBRAE
+    /// * 4 - emissão de CTe por Provedor de Assinatura e Autorização - PAA
     /// </summary>
     property procEmi: Integer read FprocEmi write FprocEmi;
     /// <summary>
@@ -12182,6 +13215,16 @@ type
     property xJust: string read FxJust write SetxJust;
     property xJustHasValue: Boolean read FxJustHasValue write FxJustHasValue;
     property gCompraGov: TCteSefazCompraGovReduzido read FgCompraGov write SetgCompraGov;
+    /// <summary>
+    /// Tipo Pagamento ou Pagamento Antecipado.
+    /// Informar:
+    /// * 1 - Pagamento Antecipado
+    /// * 3 - Fornecimento com pagamento realizado anteriormente
+    /// Este campo é opcional e apenas deve ser informado quando pagamento que ocorre antes da prestação do serviço e na DFe de fornecimento associada a esses pagamentos, demais hipóteses de prestação de serviço sem antecipação não devem preencher.
+    /// </summary>
+    property tpPagAnt: Integer read FtpPagAnt write SettpPagAnt;
+    property tpPagAntHasValue: Boolean read FtpPagAntHasValue write FtpPagAntHasValue;
+    property gPagAntecipado: TCteSefazGPagAntecipado read FgPagAntecipado write SetgPagAntecipado;
   end;
   
   TCteSefazPass = class
@@ -12642,6 +13685,8 @@ type
     FenderEmit: TCteSefazEndeEmi;
     FCRT: Integer;
     FCRTHasValue: Boolean;
+    FISUFEmit: string;
+    FISUFEmitHasValue: Boolean;
     procedure SetCNPJ(const Value: string);
     procedure SetCPF(const Value: string);
     procedure SetIE(const Value: string);
@@ -12650,6 +13695,7 @@ type
     procedure SetxFant(const Value: string);
     procedure SetenderEmit(const Value: TCteSefazEndeEmi);
     procedure SetCRT(const Value: Integer);
+    procedure SetISUFEmit(const Value: string);
   public
     destructor Destroy; override;
     /// <summary>
@@ -12665,7 +13711,7 @@ type
     /// Informar zeros não significativos.
     /// Usar com série específica 920-969 para emitente pessoa física com inscrição estadual.
     /// 
-    /// ***Obrigatorio caso o emitente seja pessoa física***.
+    /// ***Obrigatório caso o emitente seja pessoa física***.
     /// </summary>
     property CPF: string read FCPF write SetCPF;
     property CPFHasValue: Boolean read FCPFHasValue write FCPFHasValue;
@@ -12708,6 +13754,12 @@ type
     /// </summary>
     property CRT: Integer read FCRT write SetCRT;
     property CRTHasValue: Boolean read FCRTHasValue write FCRTHasValue;
+    /// <summary>
+    /// Inscrição do emitente da Suframa.
+    /// Informar o número do Cadastro do emitente na Suframa. Campo obrigatório nas operações que se beneficiam de incentivos fiscais existentes nas áreas sob controle da SUFRAMA com alíquota zero da CBS referente aos arts. 451 e 466 da LC 214/25.
+    /// </summary>
+    property ISUFEmit: string read FISUFEmit write SetISUFEmit;
+    property ISUFEmitHasValue: Boolean read FISUFEmitHasValue write FISUFEmitHasValue;
   end;
   
   /// <summary>
@@ -13429,11 +14481,18 @@ type
   /// </summary>
   TCteSefazDevTrib = class
   private
+    FpDevTrib: Double;
+    FpDevTribHasValue: Boolean;
     FvDevTrib: Double;
+    procedure SetpDevTrib(const Value: Double);
   public
     /// <summary>
-    /// Valor do tributo devolvido. No fornecimento de energia elétrica, água, esgoto e
-    /// gás natural e em outras hipóteses definidas no regulamento.
+    /// Percentual de devolução do tributo, conforme LC 214/25 art. 118.
+    /// </summary>
+    property pDevTrib: Double read FpDevTrib write SetpDevTrib;
+    property pDevTribHasValue: Boolean read FpDevTribHasValue write FpDevTribHasValue;
+    /// <summary>
+    /// Valor do tributo devolvido. (“cashback” de desconto na própria Nota Fiscal / Fatura).
     /// </summary>
     property vDevTrib: Double read FvDevTrib write FvDevTrib;
   end;
@@ -13451,7 +14510,7 @@ type
     /// </summary>
     property pRedAliq: Double read FpRedAliq write FpRedAliq;
     /// <summary>
-    /// Aliquota Efetiva que será aplicada a Base de Calculo.
+    /// Aliquota Efetiva que será aplicada a Base de Calculo (em percentual).
     /// </summary>
     property pAliqEfet: Double read FpAliqEfet write FpAliqEfet;
   end;
@@ -13472,7 +14531,7 @@ type
   public
     destructor Destroy; override;
     /// <summary>
-    /// Aliquota do IBS de competência das UF.
+    /// Aliquota do IBS de competência das UF (em percentual).
     /// </summary>
     property pIBSUF: Double read FpIBSUF write FpIBSUF;
     property gDif: TCteSefazDif read FgDif write SetgDif;
@@ -13500,7 +14559,7 @@ type
   public
     destructor Destroy; override;
     /// <summary>
-    /// Aliquota do IBS Municipal.
+    /// Aliquota do IBS Municipal (em percentual).
     /// </summary>
     property pIBSMun: Double read FpIBSMun write FpIBSMun;
     property gDif: TCteSefazDif read FgDif write SetgDif;
@@ -13513,6 +14572,27 @@ type
   end;
   
   /// <summary>
+  /// Grupo de operações em áreas incentivadas (ALC/ZFM) - CBS (alíquota zero).
+  /// Grupo de informações para identificação de operações em áreas incentivadas (ALC/ZFM) com alíquota zero da CBS, conforme arts. 451 e 466 da LC 214/2025, quando fornecedor e destinatário estiverem nessas áreas, distinguindo a existência de processo aprovado na Suframa.
+  /// </summary>
+  TCteSefazALCZFMCBS = class
+  private
+    FpAliqEfetRegCBS: Double;
+    FvTribRegCBS: Double;
+  public
+    /// <summary>
+    /// Percentual efetivo sem a redução.
+    /// Alíquota efetiva de referência da CBS aplicável à operação fora de áreas ou regimes incentivados.
+    /// </summary>
+    property pAliqEfetRegCBS: Double read FpAliqEfetRegCBS write FpAliqEfetRegCBS;
+    /// <summary>
+    /// Valor efetivo sem a redução.
+    /// Valor da CBS calculado para a operação fora de áreas ou regimes incentivado.
+    /// </summary>
+    property vTribRegCBS: Double read FvTribRegCBS write FvTribRegCBS;
+  end;
+  
+  /// <summary>
   /// Grupo de Tributação da CBS.
   /// </summary>
   TCteSefazGCBS = class
@@ -13521,19 +14601,22 @@ type
     FgDif: TCteSefazDif;
     FgDevTrib: TCteSefazDevTrib;
     FgRed: TCteSefazRed;
+    FgALCZFMCBS: TCteSefazALCZFMCBS;
     FvCBS: Double;
     procedure SetgDif(const Value: TCteSefazDif);
     procedure SetgDevTrib(const Value: TCteSefazDevTrib);
     procedure SetgRed(const Value: TCteSefazRed);
+    procedure SetgALCZFMCBS(const Value: TCteSefazALCZFMCBS);
   public
     destructor Destroy; override;
     /// <summary>
-    /// Aliquota da CBS.
+    /// Aliquota da CBS (em percentual).
     /// </summary>
     property pCBS: Double read FpCBS write FpCBS;
     property gDif: TCteSefazDif read FgDif write SetgDif;
     property gDevTrib: TCteSefazDevTrib read FgDevTrib write SetgDevTrib;
     property gRed: TCteSefazRed read FgRed write SetgRed;
+    property gALCZFMCBS: TCteSefazALCZFMCBS read FgALCZFMCBS write SetgALCZFMCBS;
     /// <summary>
     /// Valor da CBS.
     /// </summary>
@@ -13596,40 +14679,6 @@ type
   end;
   
   /// <summary>
-  /// Grupo de Informações do Crédito Presumido referente ao IBS, quando aproveitado pelo emitente do documento.
-  /// </summary>
-  TCteSefazCredPres = class
-  private
-    FcCredPres: string;
-    FpCredPres: Double;
-    FvCredPres: Double;
-    FvCredPresHasValue: Boolean;
-    FvCredPresCondSus: Double;
-    FvCredPresCondSusHasValue: Boolean;
-    procedure SetvCredPres(const Value: Double);
-    procedure SetvCredPresCondSus(const Value: Double);
-  public
-    /// <summary>
-    /// Usar tabela Cred Presumido, para o emitente da nota.
-    /// </summary>
-    property cCredPres: string read FcCredPres write FcCredPres;
-    /// <summary>
-    /// Percentual do Crédito Presumido.
-    /// </summary>
-    property pCredPres: Double read FpCredPres write FpCredPres;
-    /// <summary>
-    /// Valor do Crédito Presumido.
-    /// </summary>
-    property vCredPres: Double read FvCredPres write SetvCredPres;
-    property vCredPresHasValue: Boolean read FvCredPresHasValue write FvCredPresHasValue;
-    /// <summary>
-    /// Valor do Crédito Presumido Condição Suspensiva, preencher apenas para cCredPres que possui indicação de Condição Suspensiva.
-    /// </summary>
-    property vCredPresCondSus: Double read FvCredPresCondSus write SetvCredPresCondSus;
-    property vCredPresCondSusHasValue: Boolean read FvCredPresCondSusHasValue write FvCredPresCondSusHasValue;
-  end;
-  
-  /// <summary>
   /// Grupo de informações da composição do valor do IBS e da CBS em compras governamental.
   /// </summary>
   TCteSefazTribCompraGov = class
@@ -13675,15 +14724,11 @@ type
     FvIBS: Double;
     FgCBS: TCteSefazGCBS;
     FgTribRegular: TCteSefazTribRegular;
-    FgIBSCredPres: TCteSefazCredPres;
-    FgCBSCredPres: TCteSefazCredPres;
     FgTribCompraGov: TCteSefazTribCompraGov;
     procedure SetgIBSUF(const Value: TCteSefazGIBSUF);
     procedure SetgIBSMun(const Value: TCteSefazGIBSMun);
     procedure SetgCBS(const Value: TCteSefazGCBS);
     procedure SetgTribRegular(const Value: TCteSefazTribRegular);
-    procedure SetgIBSCredPres(const Value: TCteSefazCredPres);
-    procedure SetgCBSCredPres(const Value: TCteSefazCredPres);
     procedure SetgTribCompraGov(const Value: TCteSefazTribCompraGov);
   public
     constructor Create;
@@ -13695,14 +14740,30 @@ type
     property gIBSUF: TCteSefazGIBSUF read FgIBSUF write SetgIBSUF;
     property gIBSMun: TCteSefazGIBSMun read FgIBSMun write SetgIBSMun;
     /// <summary>
-    /// Valor do IBS (soma de vIBSUF e vIBSMun).
+    /// Valor do IBS.
     /// </summary>
     property vIBS: Double read FvIBS write FvIBS;
     property gCBS: TCteSefazGCBS read FgCBS write SetgCBS;
     property gTribRegular: TCteSefazTribRegular read FgTribRegular write SetgTribRegular;
-    property gIBSCredPres: TCteSefazCredPres read FgIBSCredPres write SetgIBSCredPres;
-    property gCBSCredPres: TCteSefazCredPres read FgCBSCredPres write SetgCBSCredPres;
     property gTribCompraGov: TCteSefazTribCompraGov read FgTribCompraGov write SetgTribCompraGov;
+  end;
+  
+  /// <summary>
+  /// Informado conforme indicador no cClassTrib.
+  /// </summary>
+  TCteSefazEstornoCred = class
+  private
+    FvIBSEstCred: Double;
+    FvCBSEstCred: Double;
+  public
+    /// <summary>
+    /// Valor do IBS a ser estornado.
+    /// </summary>
+    property vIBSEstCred: Double read FvIBSEstCred write FvIBSEstCred;
+    /// <summary>
+    /// Valor da CBS a ser estornada.
+    /// </summary>
+    property vCBSEstCred: Double read FvCBSEstCred write FvCBSEstCred;
   end;
   
   /// <summary>
@@ -13713,9 +14774,14 @@ type
     FCST: string;
     FcClassTrib: string;
     FcClassTribHasValue: Boolean;
+    FindDoacao: Integer;
+    FindDoacaoHasValue: Boolean;
     FgIBSCBS: TCteSefazCIBS;
+    FgEstornoCred: TCteSefazEstornoCred;
     procedure SetcClassTrib(const Value: string);
+    procedure SetindDoacao(const Value: Integer);
     procedure SetgIBSCBS(const Value: TCteSefazCIBS);
+    procedure SetgEstornoCred(const Value: TCteSefazEstornoCred);
   public
     destructor Destroy; override;
     /// <summary>
@@ -13724,7 +14790,10 @@ type
     property CST: string read FCST write FCST;
     property cClassTrib: string read FcClassTrib write SetcClassTrib;
     property cClassTribHasValue: Boolean read FcClassTribHasValue write FcClassTribHasValue;
+    property indDoacao: Integer read FindDoacao write SetindDoacao;
+    property indDoacaoHasValue: Boolean read FindDoacaoHasValue write FindDoacaoHasValue;
     property gIBSCBS: TCteSefazCIBS read FgIBSCBS write SetgIBSCBS;
+    property gEstornoCred: TCteSefazEstornoCred read FgEstornoCred write SetgEstornoCred;
   end;
   
   /// <summary>
@@ -13770,6 +14839,57 @@ type
     /// </summary>
     property vTotDFe: Double read FvTotDFe write SetvTotDFe;
     property vTotDFeHasValue: Boolean read FvTotDFeHasValue write FvTotDFeHasValue;
+  end;
+  
+  /// <summary>
+  /// Dados de cada pagamento previsto.
+  /// </summary>
+  TCteSefazPagamentoRTC = class
+  private
+    FnPag: string;
+    FidTransacao: string;
+    FtpMeioPgto: string;
+    FCNPJReceb: string;
+    FCNPJBasePSP: string;
+  public
+    /// <summary>
+    /// Número sequencial do pagamento.
+    /// </summary>
+    property nPag: string read FnPag write FnPag;
+    /// <summary>
+    /// ID específico da transação financeira conforme o meio de pagamento.
+    /// </summary>
+    property idTransacao: string read FidTransacao write FidTransacao;
+    /// <summary>
+    /// (Meio de pagamento utilizado (ver IT DFe 2026.001).
+    /// </summary>
+    property tpMeioPgto: string read FtpMeioPgto write FtpMeioPgto;
+    /// <summary>
+    /// CNPJ do recebedor do pagamento.
+    /// Informar zeros não significativos.
+    /// </summary>
+    property CNPJReceb: string read FCNPJReceb write FCNPJReceb;
+    /// <summary>
+    /// CNPJ base da instituição financeira.
+    /// Informar zeros não significativos.
+    /// </summary>
+    property CNPJBasePSP: string read FCNPJBasePSP write FCNPJBasePSP;
+  end;
+  
+  TCteSefazPagamentoRTCList = class(TObjectList<TCteSefazPagamentoRTC>)
+  end;
+  
+  /// <summary>
+  /// Grupo de informações da vínculação com a transação de pagamento.
+  /// </summary>
+  TCteSefazPgtoVinc = class
+  private
+    Fpgto: TCteSefazPagamentoRTCList;
+    procedure Setpgto(const Value: TCteSefazPagamentoRTCList);
+  public
+    constructor Create;
+    destructor Destroy; override;
+    property pgto: TCteSefazPagamentoRTCList read Fpgto write Setpgto;
   end;
   
   /// <summary>
@@ -15562,6 +16682,7 @@ type
     Fdest: TCteSefazDest;
     FvPrest: TCteSefazVPrest;
     Fimp: TCteSefazInfCteImp;
+    FpgtoVinc: TCteSefazPgtoVinc;
     FinfCTeNorm: TCteSefazInfCTeNorm;
     FinfCteComp: TCteSefazInfCteCompList;
     FautXML: TCteSefazAutXMLList;
@@ -15577,6 +16698,7 @@ type
     procedure Setdest(const Value: TCteSefazDest);
     procedure SetvPrest(const Value: TCteSefazVPrest);
     procedure Setimp(const Value: TCteSefazInfCteImp);
+    procedure SetpgtoVinc(const Value: TCteSefazPgtoVinc);
     procedure SetinfCTeNorm(const Value: TCteSefazInfCTeNorm);
     procedure SetinfCteComp(const Value: TCteSefazInfCteCompList);
     procedure SetautXML(const Value: TCteSefazAutXMLList);
@@ -15607,6 +16729,7 @@ type
     property dest: TCteSefazDest read Fdest write Setdest;
     property vPrest: TCteSefazVPrest read FvPrest write SetvPrest;
     property imp: TCteSefazInfCteImp read Fimp write Setimp;
+    property pgtoVinc: TCteSefazPgtoVinc read FpgtoVinc write SetpgtoVinc;
     property infCTeNorm: TCteSefazInfCTeNorm read FinfCTeNorm write SetinfCTeNorm;
     property infCteComp: TCteSefazInfCteCompList read FinfCteComp write SetinfCteComp;
     property autXML: TCteSefazAutXMLList read FautXML write SetautXML;
@@ -15665,19 +16788,57 @@ type
   private
     FtpEnteGov: Integer;
     FpRedutor: Double;
+    FtpOperGov: Integer;
+    FrefDFeAnt: stringList;
+    procedure SetrefDFeAnt(const Value: stringList);
   public
+    destructor Destroy; override;
     /// <summary>
     /// Para administração pública direta e suas autarquias e fundações:
     /// * 1 - União
     /// * 2 - Estados
     /// * 3 - Distrito Federal
     /// * 4 - Municípios
+    /// * 5 - Consórcio Público
+    /// * 6 - Comitê Gestor do IBS
     /// </summary>
     property tpEnteGov: Integer read FtpEnteGov write FtpEnteGov;
     /// <summary>
-    /// Percentual de redução de aliquota em compra goverrnamental.
+    /// Percentual de redução de aliquota em compra governamental.
     /// </summary>
     property pRedutor: Double read FpRedutor write FpRedutor;
+    /// <summary>
+    /// Tipo da operação com ente governamental:
+    /// * 1 - Fornecimento com pagamento posterior
+    /// * 2 - Recebimento do pagamento com fornecimento já realizado
+    /// * 3 - Fornecimento com pagamento já realizado
+    /// * 4 - Recebimento do pagamento com fornecimento posterior
+    /// </summary>
+    property tpOperGov: Integer read FtpOperGov write FtpOperGov;
+    /// <summary>
+    /// Chave de acesso do documento fiscal anterior.
+    /// Deverá ser informado para tpOperGov 2 e 3 e vedado para os tipos 1 e 4.
+    /// No caso do toOperGov 2 aceitará apenas uma chave referenciada, no tipo 3 poderá aceitar múltiplas chaves
+    /// Obs: a chave de acesso deverá ser de um emitente com o mesmo CNPJ base.
+    /// </summary>
+    property refDFeAnt: stringList read FrefDFeAnt write SetrefDFeAnt;
+  end;
+  
+  /// <summary>
+  /// Grupo de antecipação de pagamento
+  /// Permite informar apenas quando tpPagAnt=3.
+  /// Informado para abater as parcelas de antecipação de
+  /// pagamento, conforme Art. 10. § 4º.
+  /// </summary>
+  TCteSimpSefazGPagAntecipadoSimp = class
+  private
+    FchDFePagAnt: string;
+  public
+    /// <summary>
+    /// Chave de acesso do DFe de antecipação de pagamento (com tpPagAnt=1).
+    /// Referência a CTe emitido anteriormente, referente a pagamento antecipado.
+    /// </summary>
+    property chDFePagAnt: string read FchDFePagAnt write FchDFePagAnt;
   end;
   
   /// <summary>
@@ -15719,6 +16880,9 @@ type
     FxJust: string;
     FxJustHasValue: Boolean;
     FgCompraGov: TCteSimpSefazCompraGovReduzidoSimp;
+    FtpPagAnt: Integer;
+    FtpPagAntHasValue: Boolean;
+    FgPagAntecipado: TCteSimpSefazGPagAntecipadoSimp;
     procedure SetcCT(const Value: string);
     procedure Setmod(const Value: Integer);
     procedure SetcDV(const Value: Integer);
@@ -15727,6 +16891,8 @@ type
     procedure SetdhCont(const Value: TDateTime);
     procedure SetxJust(const Value: string);
     procedure SetgCompraGov(const Value: TCteSimpSefazCompraGovReduzidoSimp);
+    procedure SettpPagAnt(const Value: Integer);
+    procedure SetgPagAntecipado(const Value: TCteSimpSefazGPagAntecipadoSimp);
   public
     destructor Destroy; override;
     /// <summary>
@@ -15811,8 +16977,9 @@ type
     /// <summary>
     /// Identificador do processo de emissão do CT-e.
     /// Preencher com:
-    /// * 0 - emissão de CT-e com aplicativo do contribuinte
-    /// * 3 - emissão CT-e pelo contribuinte com aplicativo fornecido pelo SEBRAE
+    /// * 0 - emissão de CTe com aplicativo do contribuinte
+    /// * 3 - emissão CTe pelo contribuinte com aplicativo fornecido pelo SEBRAE
+    /// * 4 - emissão CTe pelo Provedor de Autorização e assinatura - PAA
     /// </summary>
     property procEmi: Integer read FprocEmi write FprocEmi;
     /// <summary>
@@ -15886,6 +17053,16 @@ type
     property xJust: string read FxJust write SetxJust;
     property xJustHasValue: Boolean read FxJustHasValue write FxJustHasValue;
     property gCompraGov: TCteSimpSefazCompraGovReduzidoSimp read FgCompraGov write SetgCompraGov;
+    /// <summary>
+    /// Tipo Pagamento ou Pagamento Antecipado.
+    /// Informar:
+    /// * 1 - Pagamento Antecipado
+    /// * 3 - Fornecimento com pagamento realizado anteriormente
+    /// Este campo é opcional e apenas deve ser informado em caso de Antecipação de Pagamento e no CTe de fornecimento associada a esses pagamentos antecipados, demais hipóteses de prestação de serviço sem antecipação não devem preencher.
+    /// </summary>
+    property tpPagAnt: Integer read FtpPagAnt write SettpPagAnt;
+    property tpPagAntHasValue: Boolean read FtpPagAntHasValue write FtpPagAntHasValue;
+    property gPagAntecipado: TCteSimpSefazGPagAntecipadoSimp read FgPagAntecipado write SetgPagAntecipado;
   end;
   
   TCteSimpSefazPassSimp = class
@@ -16165,6 +17342,8 @@ type
     FenderEmit: TCteSimpSefazEndeEmiSimp;
     FCRT: Integer;
     FCRTHasValue: Boolean;
+    FISUFEmit: string;
+    FISUFEmitHasValue: Boolean;
     procedure SetCNPJ(const Value: string);
     procedure SetCPF(const Value: string);
     procedure SetIE(const Value: string);
@@ -16173,6 +17352,7 @@ type
     procedure SetxFant(const Value: string);
     procedure SetenderEmit(const Value: TCteSimpSefazEndeEmiSimp);
     procedure SetCRT(const Value: Integer);
+    procedure SetISUFEmit(const Value: string);
   public
     destructor Destroy; override;
     /// <summary>
@@ -16188,7 +17368,7 @@ type
     /// Informar zeros não significativos.
     /// Usar com série específica 920-969 para emitente pessoa física com inscrição estadual.
     /// 
-    /// ***Obrigatorio caso o emitente seja pessoa física***.
+    /// ***Obrigatório caso o emitente seja pessoa física***.
     /// </summary>
     property CPF: string read FCPF write SetCPF;
     property CPFHasValue: Boolean read FCPFHasValue write FCPFHasValue;
@@ -16231,6 +17411,12 @@ type
     /// </summary>
     property CRT: Integer read FCRT write SetCRT;
     property CRTHasValue: Boolean read FCRTHasValue write FCRTHasValue;
+    /// <summary>
+    /// Inscrição do emitente da Suframa.
+    /// Informar o número do Cadastro do emitente na Suframa. Campo obrigatório nas operações que se beneficiam de incentivos fiscais existentes nas áreas sob controle da SUFRAMA com alíquota zero da CBS referente aos arts. 451 e 466 da LC 214/25.
+    /// </summary>
+    property ISUFEmit: string read FISUFEmit write SetISUFEmit;
+    property ISUFEmitHasValue: Boolean read FISUFEmitHasValue write FISUFEmitHasValue;
   end;
   
   /// <summary>
@@ -18092,11 +19278,18 @@ type
   /// </summary>
   TCteSimpSefazDevTribSimp = class
   private
+    FpDevTrib: Double;
+    FpDevTribHasValue: Boolean;
     FvDevTrib: Double;
+    procedure SetpDevTrib(const Value: Double);
   public
     /// <summary>
-    /// Valor do tributo devolvido. No fornecimento de energia elétrica, água, esgoto e
-    /// gás natural e em outras hipóteses definidas no regulamento.
+    /// Percentual de devolução do tributo, conforme LC 214/25 art. 118.
+    /// </summary>
+    property pDevTrib: Double read FpDevTrib write SetpDevTrib;
+    property pDevTribHasValue: Boolean read FpDevTribHasValue write FpDevTribHasValue;
+    /// <summary>
+    /// Valor do tributo devolvido. (“cashback” de desconto na própria Nota Fiscal / Fatura).
     /// </summary>
     property vDevTrib: Double read FvDevTrib write FvDevTrib;
   end;
@@ -18114,7 +19307,7 @@ type
     /// </summary>
     property pRedAliq: Double read FpRedAliq write FpRedAliq;
     /// <summary>
-    /// Aliquota Efetiva que será aplicada a Base de Calculo.
+    /// Aliquota Efetiva que será aplicada a Base de Calculo (em percentual).
     /// </summary>
     property pAliqEfet: Double read FpAliqEfet write FpAliqEfet;
   end;
@@ -18135,7 +19328,7 @@ type
   public
     destructor Destroy; override;
     /// <summary>
-    /// Aliquota do IBS de competência das UF.
+    /// Aliquota do IBS de competência das UF (em percentual).
     /// </summary>
     property pIBSUF: Double read FpIBSUF write FpIBSUF;
     property gDif: TCteSimpSefazDifSimp read FgDif write SetgDif;
@@ -18163,7 +19356,7 @@ type
   public
     destructor Destroy; override;
     /// <summary>
-    /// Aliquota do IBS Municipal.
+    /// Aliquota do IBS Municipal (em percentual).
     /// </summary>
     property pIBSMun: Double read FpIBSMun write FpIBSMun;
     property gDif: TCteSimpSefazDifSimp read FgDif write SetgDif;
@@ -18176,6 +19369,27 @@ type
   end;
   
   /// <summary>
+  /// Grupo de operações em áreas incentivadas (ALC/ZFM) - CBS (alíquota zero).
+  /// Grupo de informações para identificação de operações em áreas incentivadas (ALC/ZFM) com alíquota zero da CBS, conforme arts. 451 e 466 da LC 214/2025, quando fornecedor e destinatário estiverem nessas áreas, distinguindo a existência de processo aprovado na Suframa.
+  /// </summary>
+  TCteSimpSefazALCZFMCBSSimp = class
+  private
+    FpAliqEfetRegCBS: Double;
+    FvTribRegCBS: Double;
+  public
+    /// <summary>
+    /// Percentual efetivo sem a redução.
+    /// Alíquota efetiva de referência da CBS aplicável à operação fora de áreas ou regimes incentivados.
+    /// </summary>
+    property pAliqEfetRegCBS: Double read FpAliqEfetRegCBS write FpAliqEfetRegCBS;
+    /// <summary>
+    /// Valor efetivo sem a redução.
+    /// Valor da CBS calculado para a operação fora de áreas ou regimes incentivado.
+    /// </summary>
+    property vTribRegCBS: Double read FvTribRegCBS write FvTribRegCBS;
+  end;
+  
+  /// <summary>
   /// Grupo de Tributação da CBS.
   /// </summary>
   TCteSimpSefazGCBSSimp = class
@@ -18184,19 +19398,22 @@ type
     FgDif: TCteSimpSefazDifSimp;
     FgDevTrib: TCteSimpSefazDevTribSimp;
     FgRed: TCteSimpSefazRedSimp;
+    FgALCZFMCBS: TCteSimpSefazALCZFMCBSSimp;
     FvCBS: Double;
     procedure SetgDif(const Value: TCteSimpSefazDifSimp);
     procedure SetgDevTrib(const Value: TCteSimpSefazDevTribSimp);
     procedure SetgRed(const Value: TCteSimpSefazRedSimp);
+    procedure SetgALCZFMCBS(const Value: TCteSimpSefazALCZFMCBSSimp);
   public
     destructor Destroy; override;
     /// <summary>
-    /// Aliquota da CBS.
+    /// Aliquota da CBS (em percentual).
     /// </summary>
     property pCBS: Double read FpCBS write FpCBS;
     property gDif: TCteSimpSefazDifSimp read FgDif write SetgDif;
     property gDevTrib: TCteSimpSefazDevTribSimp read FgDevTrib write SetgDevTrib;
     property gRed: TCteSimpSefazRedSimp read FgRed write SetgRed;
+    property gALCZFMCBS: TCteSimpSefazALCZFMCBSSimp read FgALCZFMCBS write SetgALCZFMCBS;
     /// <summary>
     /// Valor da CBS.
     /// </summary>
@@ -18259,40 +19476,6 @@ type
   end;
   
   /// <summary>
-  /// Grupo de Informações do Crédito Presumido referente ao IBS, quando aproveitado pelo emitente do documento.
-  /// </summary>
-  TCteSimpSefazCredPresSimp = class
-  private
-    FcCredPres: string;
-    FpCredPres: Double;
-    FvCredPres: Double;
-    FvCredPresHasValue: Boolean;
-    FvCredPresCondSus: Double;
-    FvCredPresCondSusHasValue: Boolean;
-    procedure SetvCredPres(const Value: Double);
-    procedure SetvCredPresCondSus(const Value: Double);
-  public
-    /// <summary>
-    /// Usar tabela Cred Presumido, para o emitente da nota.
-    /// </summary>
-    property cCredPres: string read FcCredPres write FcCredPres;
-    /// <summary>
-    /// Percentual do Crédito Presumido.
-    /// </summary>
-    property pCredPres: Double read FpCredPres write FpCredPres;
-    /// <summary>
-    /// Valor do Crédito Presumido.
-    /// </summary>
-    property vCredPres: Double read FvCredPres write SetvCredPres;
-    property vCredPresHasValue: Boolean read FvCredPresHasValue write FvCredPresHasValue;
-    /// <summary>
-    /// Valor do Crédito Presumido Condição Suspensiva, preencher apenas para cCredPres que possui indicação de Condição Suspensiva.
-    /// </summary>
-    property vCredPresCondSus: Double read FvCredPresCondSus write SetvCredPresCondSus;
-    property vCredPresCondSusHasValue: Boolean read FvCredPresCondSusHasValue write FvCredPresCondSusHasValue;
-  end;
-  
-  /// <summary>
   /// Grupo de informações da composição do valor do IBS e da CBS em compras governamental.
   /// </summary>
   TCteSimpSefazTribCompraGovSimp = class
@@ -18338,15 +19521,11 @@ type
     FvIBS: Double;
     FgCBS: TCteSimpSefazGCBSSimp;
     FgTribRegular: TCteSimpSefazTribRegularSimp;
-    FgIBSCredPres: TCteSimpSefazCredPresSimp;
-    FgCBSCredPres: TCteSimpSefazCredPresSimp;
     FgTribCompraGov: TCteSimpSefazTribCompraGovSimp;
     procedure SetgIBSUF(const Value: TCteSimpSefazGIBSUFSimp);
     procedure SetgIBSMun(const Value: TCteSimpSefazGIBSMunSimp);
     procedure SetgCBS(const Value: TCteSimpSefazGCBSSimp);
     procedure SetgTribRegular(const Value: TCteSimpSefazTribRegularSimp);
-    procedure SetgIBSCredPres(const Value: TCteSimpSefazCredPresSimp);
-    procedure SetgCBSCredPres(const Value: TCteSimpSefazCredPresSimp);
     procedure SetgTribCompraGov(const Value: TCteSimpSefazTribCompraGovSimp);
   public
     constructor Create;
@@ -18358,14 +19537,30 @@ type
     property gIBSUF: TCteSimpSefazGIBSUFSimp read FgIBSUF write SetgIBSUF;
     property gIBSMun: TCteSimpSefazGIBSMunSimp read FgIBSMun write SetgIBSMun;
     /// <summary>
-    /// Valor do IBS (soma de vIBSUF e vIBSMun).
+    /// Valor do IBS.
     /// </summary>
     property vIBS: Double read FvIBS write FvIBS;
     property gCBS: TCteSimpSefazGCBSSimp read FgCBS write SetgCBS;
     property gTribRegular: TCteSimpSefazTribRegularSimp read FgTribRegular write SetgTribRegular;
-    property gIBSCredPres: TCteSimpSefazCredPresSimp read FgIBSCredPres write SetgIBSCredPres;
-    property gCBSCredPres: TCteSimpSefazCredPresSimp read FgCBSCredPres write SetgCBSCredPres;
     property gTribCompraGov: TCteSimpSefazTribCompraGovSimp read FgTribCompraGov write SetgTribCompraGov;
+  end;
+  
+  /// <summary>
+  /// Informado conforme indicador no cClassTrib.
+  /// </summary>
+  TCteSimpSefazEstornoCredSimp = class
+  private
+    FvIBSEstCred: Double;
+    FvCBSEstCred: Double;
+  public
+    /// <summary>
+    /// Valor do IBS a ser estornado.
+    /// </summary>
+    property vIBSEstCred: Double read FvIBSEstCred write FvIBSEstCred;
+    /// <summary>
+    /// Valor da CBS a ser estornada.
+    /// </summary>
+    property vCBSEstCred: Double read FvCBSEstCred write FvCBSEstCred;
   end;
   
   /// <summary>
@@ -18376,9 +19571,14 @@ type
     FCST: string;
     FcClassTrib: string;
     FcClassTribHasValue: Boolean;
+    FindDoacao: Integer;
+    FindDoacaoHasValue: Boolean;
     FgIBSCBS: TCteSimpSefazCIBSSimp;
+    FgEstornoCred: TCteSimpSefazEstornoCredSimp;
     procedure SetcClassTrib(const Value: string);
+    procedure SetindDoacao(const Value: Integer);
     procedure SetgIBSCBS(const Value: TCteSimpSefazCIBSSimp);
+    procedure SetgEstornoCred(const Value: TCteSimpSefazEstornoCredSimp);
   public
     destructor Destroy; override;
     /// <summary>
@@ -18387,7 +19587,10 @@ type
     property CST: string read FCST write FCST;
     property cClassTrib: string read FcClassTrib write SetcClassTrib;
     property cClassTribHasValue: Boolean read FcClassTribHasValue write FcClassTribHasValue;
+    property indDoacao: Integer read FindDoacao write SetindDoacao;
+    property indDoacaoHasValue: Boolean read FindDoacaoHasValue write FindDoacaoHasValue;
     property gIBSCBS: TCteSimpSefazCIBSSimp read FgIBSCBS write SetgIBSCBS;
+    property gEstornoCred: TCteSimpSefazEstornoCredSimp read FgEstornoCred write SetgEstornoCred;
   end;
   
   /// <summary>
@@ -18424,6 +19627,57 @@ type
     property infAdFiscoHasValue: Boolean read FinfAdFiscoHasValue write FinfAdFiscoHasValue;
     property ICMSUFFim: TCteSimpSefazICMSUFFimSimp read FICMSUFFim write SetICMSUFFim;
     property IBSCBS: TCteSimpSefazTribCTeSimp read FIBSCBS write SetIBSCBS;
+  end;
+  
+  /// <summary>
+  /// Dados de cada pagamento previsto.
+  /// </summary>
+  TCteSimpSefazPagamentoRTCSimp = class
+  private
+    FnPag: string;
+    FidTransacao: string;
+    FtpMeioPgto: string;
+    FCNPJReceb: string;
+    FCNPJBasePSP: string;
+  public
+    /// <summary>
+    /// Número sequencial do pagamento.
+    /// </summary>
+    property nPag: string read FnPag write FnPag;
+    /// <summary>
+    /// ID específico da transação financeira conforme o meio de pagamento.
+    /// </summary>
+    property idTransacao: string read FidTransacao write FidTransacao;
+    /// <summary>
+    /// (Meio de pagamento utilizado (ver IT DFe 2026.001).
+    /// </summary>
+    property tpMeioPgto: string read FtpMeioPgto write FtpMeioPgto;
+    /// <summary>
+    /// CNPJ do recebedor do pagamento.
+    /// Informar zeros não significativos.
+    /// </summary>
+    property CNPJReceb: string read FCNPJReceb write FCNPJReceb;
+    /// <summary>
+    /// CNPJ base da instituição financeira.
+    /// Informar zeros não significativos.
+    /// </summary>
+    property CNPJBasePSP: string read FCNPJBasePSP write FCNPJBasePSP;
+  end;
+  
+  TCteSimpSefazPagamentoRTCSimpList = class(TObjectList<TCteSimpSefazPagamentoRTCSimp>)
+  end;
+  
+  /// <summary>
+  /// Grupo de informações da vínculação com a transação de pagamento.
+  /// </summary>
+  TCteSimpSefazPgtoVincSimp = class
+  private
+    Fpgto: TCteSimpSefazPagamentoRTCSimpList;
+    procedure Setpgto(const Value: TCteSimpSefazPagamentoRTCSimpList);
+  public
+    constructor Create;
+    destructor Destroy; override;
+    property pgto: TCteSimpSefazPagamentoRTCSimpList read Fpgto write Setpgto;
   end;
   
   /// <summary>
@@ -18576,6 +19830,7 @@ type
     Fcobr: TCteSimpSefazCobrSimp;
     FinfCteSub: TCteSimpSefazInfCteSubSimp;
     Fimp: TCteSimpSefazInfCteImpSimp;
+    FpgtoVinc: TCteSimpSefazPgtoVincSimp;
     Ftotal: TCteSimpSefazTotalSimp;
     FautXML: TCteSimpSefazAutXMLSimpList;
     FinfRespTec: TCteSimpSefazRespTecSimp;
@@ -18591,6 +19846,7 @@ type
     procedure Setcobr(const Value: TCteSimpSefazCobrSimp);
     procedure SetinfCteSub(const Value: TCteSimpSefazInfCteSubSimp);
     procedure Setimp(const Value: TCteSimpSefazInfCteImpSimp);
+    procedure SetpgtoVinc(const Value: TCteSimpSefazPgtoVincSimp);
     procedure Settotal(const Value: TCteSimpSefazTotalSimp);
     procedure SetautXML(const Value: TCteSimpSefazAutXMLSimpList);
     procedure SetinfRespTec(const Value: TCteSimpSefazRespTecSimp);
@@ -18621,6 +19877,7 @@ type
     property cobr: TCteSimpSefazCobrSimp read Fcobr write Setcobr;
     property infCteSub: TCteSimpSefazInfCteSubSimp read FinfCteSub write SetinfCteSub;
     property imp: TCteSimpSefazInfCteImpSimp read Fimp write Setimp;
+    property pgtoVinc: TCteSimpSefazPgtoVincSimp read FpgtoVinc write SetpgtoVinc;
     property total: TCteSimpSefazTotalSimp read Ftotal write Settotal;
     property autXML: TCteSimpSefazAutXMLSimpList read FautXML write SetautXML;
     property infRespTec: TCteSimpSefazRespTecSimp read FinfRespTec write SetinfRespTec;
@@ -19083,7 +20340,8 @@ type
     property tpEmis: Integer read FtpEmis write FtpEmis;
     /// <summary>
     /// Identificação do processo de emissão do Manifesto.
-    /// * 0 - emissão de MDF-e com aplicativo do contribuinte
+    /// * 0 - emissão de MDFe com aplicativo do contribuinte
+    /// * 4 - emissão de MDFe por Provedor de Assinatura e Autorização - PAA
     /// </summary>
     property procEmi: string read FprocEmi write FprocEmi;
     /// <summary>
@@ -19270,7 +20528,7 @@ type
     /// Usar com série específica 920-969 para emitente pessoa física com inscrição estadual.
     /// Poderá ser usado também para emissão do Regime Especial da Nota Fiscal Fácil.
     /// 
-    /// ***Obrigatorio caso o emitente seja pessoa física***.
+    /// ***Obrigatório caso o emitente seja pessoa física***.
     /// </summary>
     property CPF: string read FCPF write SetCPF;
     property CPFHasValue: Boolean read FCPFHasValue write FCPFHasValue;
@@ -22622,7 +23880,7 @@ type
     /// </summary>
     property tpEnteGov: Integer read FtpEnteGov write FtpEnteGov;
     /// <summary>
-    /// Percentual de redução de aliquota em compra goverrnamental.
+    /// Percentual de redução de aliquota em compra governamental.
     /// </summary>
     property pRedutor: Double read FpRedutor write FpRedutor;
     /// <summary>
@@ -22665,6 +23923,8 @@ type
     FdhEmi: TDateTime;
     FdhSaiEnt: TDateTime;
     FdhSaiEntHasValue: Boolean;
+    FdPrevEntrega: TDate;
+    FdPrevEntregaHasValue: Boolean;
     FtpNF: Integer;
     FidDest: Integer;
     FcMunFG: string;
@@ -22697,6 +23957,7 @@ type
     procedure SetcNF(const Value: string);
     procedure Setmod(const Value: Integer);
     procedure SetdhSaiEnt(const Value: TDateTime);
+    procedure SetdPrevEntrega(const Value: TDate);
     procedure SetcMunFGIBS(const Value: string);
     procedure SetcDV(const Value: Integer);
     procedure SettpAmb(const Value: Integer);
@@ -22752,6 +24013,11 @@ type
     /// </summary>
     property dhSaiEnt: TDateTime read FdhSaiEnt write SetdhSaiEnt;
     property dhSaiEntHasValue: Boolean read FdhSaiEntHasValue write FdhSaiEntHasValue;
+    /// <summary>
+    /// Data da previsão de entrega ou disponibilização do bem (AAAA-MM-DD).
+    /// </summary>
+    property dPrevEntrega: TDate read FdPrevEntrega write SetdPrevEntrega;
+    property dPrevEntregaHasValue: Boolean read FdPrevEntregaHasValue write FdPrevEntregaHasValue;
     /// <summary>
     /// Tipo do Documento Fiscal:
     /// * 0 - Entrada
@@ -22867,6 +24133,7 @@ type
     /// * 2 - emissão de NF-e avulsa, pelo contribuinte com seu certificado digital, através do site
     /// do Fisco
     /// * 3 - emissão de NF-e pelo contribuinte com aplicativo fornecido pelo Fisco
+    /// * 4 - emissão de NF-e por Provedor de Assinatura e Autorização - PAA
     /// </summary>
     property procEmi: Integer read FprocEmi write FprocEmi;
     /// <summary>
@@ -23055,7 +24322,7 @@ type
     /// <summary>
     /// Número do CPF do emitente.
     /// 
-    /// ***Obrigatorio caso o emitente seja pessoa física***.
+    /// ***Obrigatório caso o emitente seja pessoa física***.
     /// </summary>
     property CPF: string read FCPF write SetCPF;
     property CPFHasValue: Boolean read FCPFHasValue write FCPFHasValue;
@@ -24212,6 +25479,8 @@ type
     FcBenef: string;
     FcBenefHasValue: Boolean;
     FgCred: TNfeSefazGCredList;
+    FtpCredPresIBSZFM: Integer;
+    FtpCredPresIBSZFMHasValue: Boolean;
     FEXTIPI: string;
     FEXTIPIHasValue: Boolean;
     FCFOP: string;
@@ -24260,6 +25529,7 @@ type
     procedure SetCNPJFab(const Value: string);
     procedure SetcBenef(const Value: string);
     procedure SetgCred(const Value: TNfeSefazGCredList);
+    procedure SettpCredPresIBSZFM(const Value: Integer);
     procedure SetEXTIPI(const Value: string);
     procedure SetcBarraTrib(const Value: string);
     procedure SetvFrete(const Value: Double);
@@ -24323,6 +25593,11 @@ type
     property cBenef: string read FcBenef write SetcBenef;
     property cBenefHasValue: Boolean read FcBenefHasValue write FcBenefHasValue;
     property gCred: TNfeSefazGCredList read FgCred write SetgCred;
+    /// <summary>
+    /// Classificação para subapuração do IBS na ZFM.
+    /// </summary>
+    property tpCredPresIBSZFM: Integer read FtpCredPresIBSZFM write SettpCredPresIBSZFM;
+    property tpCredPresIBSZFMHasValue: Boolean read FtpCredPresIBSZFMHasValue write FtpCredPresIBSZFMHasValue;
     /// <summary>
     /// Código EX TIPI (3 posições).
     /// </summary>
@@ -24886,6 +26161,8 @@ type
     /// <summary>
     /// Motivo da desoneração do ICMS:3-Uso na agropecuária
     /// * 9 - Outros
+    /// * 10 - Deficiente Condutor (Convênio ICMS 38/12)
+    /// * 11 - Deficiente Não Condutor (Convênio ICMS 38/12)
     /// * 12 - Fomento agropecuário
     /// </summary>
     property motDesICMS: Integer read FmotDesICMS write SetmotDesICMS;
@@ -25713,8 +26990,16 @@ type
     FvBCHasValue: Boolean;
     FpRedBC: Double;
     FpRedBCHasValue: Boolean;
+    FcBenefRBC: string;
+    FcBenefRBCHasValue: Boolean;
     FpICMS: Double;
     FpICMSHasValue: Boolean;
+    FvICMSOp: Double;
+    FvICMSOpHasValue: Boolean;
+    FpDif: Double;
+    FpDifHasValue: Boolean;
+    FvICMSDif: Double;
+    FvICMSDifHasValue: Boolean;
     FvICMS: Double;
     FvICMSHasValue: Boolean;
     FvBCFCP: Double;
@@ -25723,6 +27008,12 @@ type
     FpFCPHasValue: Boolean;
     FvFCP: Double;
     FvFCPHasValue: Boolean;
+    FpFCPDif: Double;
+    FpFCPDifHasValue: Boolean;
+    FvFCPDif: Double;
+    FvFCPDifHasValue: Boolean;
+    FvFCPEfet: Double;
+    FvFCPEfetHasValue: Boolean;
     FmodBCST: Integer;
     FmodBCSTHasValue: Boolean;
     FpMVAST: Double;
@@ -25754,11 +27045,18 @@ type
     procedure SetmodBC(const Value: Integer);
     procedure SetvBC(const Value: Double);
     procedure SetpRedBC(const Value: Double);
+    procedure SetcBenefRBC(const Value: string);
     procedure SetpICMS(const Value: Double);
+    procedure SetvICMSOp(const Value: Double);
+    procedure SetpDif(const Value: Double);
+    procedure SetvICMSDif(const Value: Double);
     procedure SetvICMS(const Value: Double);
     procedure SetvBCFCP(const Value: Double);
     procedure SetpFCP(const Value: Double);
     procedure SetvFCP(const Value: Double);
+    procedure SetpFCPDif(const Value: Double);
+    procedure SetvFCPDif(const Value: Double);
+    procedure SetvFCPEfet(const Value: Double);
     procedure SetmodBCST(const Value: Integer);
     procedure SetpMVAST(const Value: Double);
     procedure SetpRedBCST(const Value: Double);
@@ -25812,10 +27110,30 @@ type
     property pRedBC: Double read FpRedBC write SetpRedBC;
     property pRedBCHasValue: Boolean read FpRedBCHasValue write FpRedBCHasValue;
     /// <summary>
+    /// Código de Benefício Fiscal na UF aplicado ao item quando houver RBC.
+    /// </summary>
+    property cBenefRBC: string read FcBenefRBC write SetcBenefRBC;
+    property cBenefRBCHasValue: Boolean read FcBenefRBCHasValue write FcBenefRBCHasValue;
+    /// <summary>
     /// Alíquota do ICMS.
     /// </summary>
     property pICMS: Double read FpICMS write SetpICMS;
     property pICMSHasValue: Boolean read FpICMSHasValue write FpICMSHasValue;
+    /// <summary>
+    /// Valor do ICMS da Operação.
+    /// </summary>
+    property vICMSOp: Double read FvICMSOp write SetvICMSOp;
+    property vICMSOpHasValue: Boolean read FvICMSOpHasValue write FvICMSOpHasValue;
+    /// <summary>
+    /// Percentual do diferemento.
+    /// </summary>
+    property pDif: Double read FpDif write SetpDif;
+    property pDifHasValue: Boolean read FpDifHasValue write FpDifHasValue;
+    /// <summary>
+    /// Valor do ICMS da diferido.
+    /// </summary>
+    property vICMSDif: Double read FvICMSDif write SetvICMSDif;
+    property vICMSDifHasValue: Boolean read FvICMSDifHasValue write FvICMSDifHasValue;
     /// <summary>
     /// Valor do ICMS.
     /// </summary>
@@ -25836,6 +27154,21 @@ type
     /// </summary>
     property vFCP: Double read FvFCP write SetvFCP;
     property vFCPHasValue: Boolean read FvFCPHasValue write FvFCPHasValue;
+    /// <summary>
+    /// Percentual do diferimento do ICMS relativo ao Fundo de Combate à Pobreza (FCP).
+    /// </summary>
+    property pFCPDif: Double read FpFCPDif write SetpFCPDif;
+    property pFCPDifHasValue: Boolean read FpFCPDifHasValue write FpFCPDifHasValue;
+    /// <summary>
+    /// Valor do ICMS relativo ao Fundo de Combate à Pobreza (FCP) diferido.
+    /// </summary>
+    property vFCPDif: Double read FvFCPDif write SetvFCPDif;
+    property vFCPDifHasValue: Boolean read FvFCPDifHasValue write FvFCPDifHasValue;
+    /// <summary>
+    /// Valor efetivo do ICMS relativo ao Fundo de Combate à Pobreza (FCP).
+    /// </summary>
+    property vFCPEfet: Double read FvFCPEfet write SetvFCPEfet;
+    property vFCPEfetHasValue: Boolean read FvFCPEfetHasValue write FvFCPEfetHasValue;
     /// <summary>
     /// Modalidade de determinação da BC do ICMS ST:
     /// * 0 - Preço tabelado ou máximo  sugerido
@@ -25951,12 +27284,21 @@ type
     FvFCPSTHasValue: Boolean;
     FpBCOp: Double;
     FUFST: string;
+    FvICMSDeson: Double;
+    FvICMSDesonHasValue: Boolean;
+    FmotDesICMS: Integer;
+    FmotDesICMSHasValue: Boolean;
+    FindDeduzDeson: Integer;
+    FindDeduzDesonHasValue: Boolean;
     procedure SetpRedBC(const Value: Double);
     procedure SetpMVAST(const Value: Double);
     procedure SetpRedBCST(const Value: Double);
     procedure SetvBCFCPST(const Value: Double);
     procedure SetpFCPST(const Value: Double);
     procedure SetvFCPST(const Value: Double);
+    procedure SetvICMSDeson(const Value: Double);
+    procedure SetmotDesICMS(const Value: Integer);
+    procedure SetindDeduzDeson(const Value: Integer);
   public
     /// <summary>
     /// Origem da mercadoria:
@@ -25974,6 +27316,7 @@ type
     /// <summary>
     /// Tributação pelo ICMS
     /// * 10 - Tributada e com cobrança do ICMS por substituição tributária
+    /// * 20 - Redução de base de cálculo
     /// * 90 - Outros
     /// </summary>
     property CST: string read FCST write FCST;
@@ -26058,6 +27401,23 @@ type
     /// Sigla da UF para qual é devido o ICMS ST da operação.
     /// </summary>
     property UFST: string read FUFST write FUFST;
+    /// <summary>
+    /// Valor do ICMS de desoneração.
+    /// </summary>
+    property vICMSDeson: Double read FvICMSDeson write SetvICMSDeson;
+    property vICMSDesonHasValue: Boolean read FvICMSDesonHasValue write FvICMSDesonHasValue;
+    /// <summary>
+    /// Motivo da desoneração do ICMS:9-Outros;10=Deficiente Condutor (Convênio ICMS 38/12) 11=Deficiente Não Condutor (Convênio ICMS 38/12).
+    /// </summary>
+    property motDesICMS: Integer read FmotDesICMS write SetmotDesICMS;
+    property motDesICMSHasValue: Boolean read FmotDesICMSHasValue write FmotDesICMSHasValue;
+    /// <summary>
+    /// Indica se o valor do ICMS desonerado (vICMSDeson) deduz do valor do item (vProd):
+    /// * 0 - Valor do ICMS desonerado (vICMSDeson) não deduz do valor do item (vProd) / total da NF-e
+    /// * 1 - Valor do ICMS desonerado (vICMSDeson) deduz do valor do item (vProd) / total da NF-e
+    /// </summary>
+    property indDeduzDeson: Integer read FindDeduzDeson write SetindDeduzDeson;
+    property indDeduzDesonHasValue: Boolean read FindDeduzDesonHasValue write FindDeduzDesonHasValue;
   end;
   
   /// <summary>
@@ -27714,7 +29074,7 @@ type
     /// </summary>
     property pRedAliq: Double read FpRedAliq write FpRedAliq;
     /// <summary>
-    /// Aliquota Efetiva que será aplicada a Base de Calculo.
+    /// Aliquota Efetiva que será aplicada a Base de Calculo (em percentual).
     /// </summary>
     property pAliqEfet: Double read FpAliqEfet write FpAliqEfet;
   end;
@@ -27735,7 +29095,7 @@ type
   public
     destructor Destroy; override;
     /// <summary>
-    /// Aliquota do IBS de competência das UF.
+    /// Aliquota do IBS de competência das UF (em percentual).
     /// </summary>
     property pIBSUF: Double read FpIBSUF write FpIBSUF;
     property gDif: TNfeSefazDif read FgDif write SetgDif;
@@ -27763,7 +29123,7 @@ type
   public
     destructor Destroy; override;
     /// <summary>
-    /// Aliquota do IBS Municipal.
+    /// Aliquota do IBS Municipal (em percentual).
     /// </summary>
     property pIBSMun: Double read FpIBSMun write FpIBSMun;
     property gDif: TNfeSefazDif read FgDif write SetgDif;
@@ -27791,7 +29151,7 @@ type
   public
     destructor Destroy; override;
     /// <summary>
-    /// Aliquota da CBS.
+    /// Aliquota da CBS (em percentual).
     /// </summary>
     property pCBS: Double read FpCBS write FpCBS;
     property gDif: TNfeSefazDif read FgDif write SetgDif;
@@ -27859,40 +29219,6 @@ type
   end;
   
   /// <summary>
-  /// Grupo de Informações do Crédito Presumido referente ao IBS, quando aproveitado pelo emitente do documento.
-  /// </summary>
-  TNfeSefazCredPres = class
-  private
-    FcCredPres: string;
-    FpCredPres: Double;
-    FvCredPres: Double;
-    FvCredPresHasValue: Boolean;
-    FvCredPresCondSus: Double;
-    FvCredPresCondSusHasValue: Boolean;
-    procedure SetvCredPres(const Value: Double);
-    procedure SetvCredPresCondSus(const Value: Double);
-  public
-    /// <summary>
-    /// Código de Classificação do Crédito Presumido do IBS e da CBS.
-    /// </summary>
-    property cCredPres: string read FcCredPres write FcCredPres;
-    /// <summary>
-    /// Percentual do Crédito Presumido.
-    /// </summary>
-    property pCredPres: Double read FpCredPres write FpCredPres;
-    /// <summary>
-    /// Valor do Crédito Presumido.
-    /// </summary>
-    property vCredPres: Double read FvCredPres write SetvCredPres;
-    property vCredPresHasValue: Boolean read FvCredPresHasValue write FvCredPresHasValue;
-    /// <summary>
-    /// Valor do Crédito Presumido Condição Suspensiva, preencher apenas para cCredPres que possui indicação de Condição Suspensiva.
-    /// </summary>
-    property vCredPresCondSus: Double read FvCredPresCondSus write SetvCredPresCondSus;
-    property vCredPresCondSusHasValue: Boolean read FvCredPresCondSusHasValue write FvCredPresCondSusHasValue;
-  end;
-  
-  /// <summary>
   /// Grupo de informações da composição do valor do IBS e da CBS em compras governamental.
   /// </summary>
   TNfeSefazTribCompraGov = class
@@ -27938,15 +29264,11 @@ type
     FvIBS: Double;
     FgCBS: TNfeSefazGCBS;
     FgTribRegular: TNfeSefazTribRegular;
-    FgIBSCredPres: TNfeSefazCredPres;
-    FgCBSCredPres: TNfeSefazCredPres;
     FgTribCompraGov: TNfeSefazTribCompraGov;
     procedure SetgIBSUF(const Value: TNfeSefazGIBSUF);
     procedure SetgIBSMun(const Value: TNfeSefazGIBSMun);
     procedure SetgCBS(const Value: TNfeSefazGCBS);
     procedure SetgTribRegular(const Value: TNfeSefazTribRegular);
-    procedure SetgIBSCredPres(const Value: TNfeSefazCredPres);
-    procedure SetgCBSCredPres(const Value: TNfeSefazCredPres);
     procedure SetgTribCompraGov(const Value: TNfeSefazTribCompraGov);
   public
     constructor Create;
@@ -27963,8 +29285,6 @@ type
     property vIBS: Double read FvIBS write FvIBS;
     property gCBS: TNfeSefazGCBS read FgCBS write SetgCBS;
     property gTribRegular: TNfeSefazTribRegular read FgTribRegular write SetgTribRegular;
-    property gIBSCredPres: TNfeSefazCredPres read FgIBSCredPres write SetgIBSCredPres;
-    property gCBSCredPres: TNfeSefazCredPres read FgCBSCredPres write SetgCBSCredPres;
     property gTribCompraGov: TNfeSefazTribCompraGov read FgTribCompraGov write SetgTribCompraGov;
   end;
   
@@ -28096,7 +29416,7 @@ type
   end;
   
   /// <summary>
-  /// Informar essa opção da Choice para Monofasia.
+  /// Informar essa opção da Choice para Monofasia (CST 620).
   /// </summary>
   TNfeSefazMonofasia = class
   private
@@ -28145,15 +29465,113 @@ type
   end;
   
   /// <summary>
-  /// Classificação de acordo com o art. 450, § 1º, da LC 214/25 para o cálculo do crédito presumido na ZFM.
+  /// Informar essa opção da Choice para o CST 811.
+  /// </summary>
+  TNfeSefazAjusteCompet = class
+  private
+    FcompetApur: string;
+    FvIBS: Double;
+    FvCBS: Double;
+  public
+    /// <summary>
+    /// Ano e mês referência do período de apuração (AAAA-MM).
+    /// </summary>
+    property competApur: string read FcompetApur write FcompetApur;
+    /// <summary>
+    /// Valor do IBS.
+    /// </summary>
+    property vIBS: Double read FvIBS write FvIBS;
+    /// <summary>
+    /// Valor da CBS.
+    /// </summary>
+    property vCBS: Double read FvCBS write FvCBS;
+  end;
+  
+  /// <summary>
+  /// Informado conforme indicador no cClassTrib.
+  /// </summary>
+  TNfeSefazEstornoCred = class
+  private
+    FvIBSEstCred: Double;
+    FvCBSEstCred: Double;
+  public
+    /// <summary>
+    /// Valor do IBS a ser estornado.
+    /// </summary>
+    property vIBSEstCred: Double read FvIBSEstCred write FvIBSEstCred;
+    /// <summary>
+    /// Valor da CBS a ser estornada.
+    /// </summary>
+    property vCBSEstCred: Double read FvCBSEstCred write FvCBSEstCred;
+  end;
+  
+  /// <summary>
+  /// Grupo de Informações do Crédito Presumido referente ao IBS, quando aproveitado pelo emitente do documento.
+  /// </summary>
+  TNfeSefazCredPres = class
+  private
+    FpCredPres: Double;
+    FvCredPres: Double;
+    FvCredPresHasValue: Boolean;
+    FvCredPresCondSus: Double;
+    FvCredPresCondSusHasValue: Boolean;
+    procedure SetvCredPres(const Value: Double);
+    procedure SetvCredPresCondSus(const Value: Double);
+  public
+    /// <summary>
+    /// Percentual do Crédito Presumido.
+    /// </summary>
+    property pCredPres: Double read FpCredPres write FpCredPres;
+    /// <summary>
+    /// Valor do Crédito Presumido.
+    /// </summary>
+    property vCredPres: Double read FvCredPres write SetvCredPres;
+    property vCredPresHasValue: Boolean read FvCredPresHasValue write FvCredPresHasValue;
+    /// <summary>
+    /// Valor do Crédito Presumido Condição Suspensiva, preencher apenas para cCredPres que possui indicação de Condição Suspensiva.
+    /// </summary>
+    property vCredPresCondSus: Double read FvCredPresCondSus write SetvCredPresCondSus;
+    property vCredPresCondSusHasValue: Boolean read FvCredPresCondSusHasValue write FvCredPresCondSusHasValue;
+  end;
+  
+  /// <summary>
+  /// Crédito Presumido da Operação. Informado conforme indicador no cClassTrib.
+  /// </summary>
+  TNfeSefazCredPresOper = class
+  private
+    FvBCCredPres: Double;
+    FcCredPres: string;
+    FgIBSCredPres: TNfeSefazCredPres;
+    FgCBSCredPres: TNfeSefazCredPres;
+    procedure SetgIBSCredPres(const Value: TNfeSefazCredPres);
+    procedure SetgCBSCredPres(const Value: TNfeSefazCredPres);
+  public
+    destructor Destroy; override;
+    /// <summary>
+    /// Valor da Base de Cálculo do Crédito Presumido da Operação.
+    /// </summary>
+    property vBCCredPres: Double read FvBCCredPres write FvBCCredPres;
+    /// <summary>
+    /// Código de Classificação do Crédito Presumido do IBS e da CBS.
+    /// </summary>
+    property cCredPres: string read FcCredPres write FcCredPres;
+    property gIBSCredPres: TNfeSefazCredPres read FgIBSCredPres write SetgIBSCredPres;
+    property gCBSCredPres: TNfeSefazCredPres read FgCBSCredPres write SetgCBSCredPres;
+  end;
+  
+  /// <summary>
+  /// Classificação de acordo com o art. 450, § 1º, da LC 214/25 para o cálculo do crédito presumido na ZFM. Informado conforme indicador no cClassTrib.
   /// </summary>
   TNfeSefazCredPresIBSZFM = class
   private
+    FcompetApur: string;
     FtpCredPresIBSZFM: Integer;
     FvCredPresIBSZFM: Double;
-    FvCredPresIBSZFMHasValue: Boolean;
-    procedure SetvCredPresIBSZFM(const Value: Double);
   public
+    /// <summary>
+    /// Ano e mês referência do período de apuração (AAAA-MM).
+    /// </summary>
+    property competApur: string read FcompetApur write FcompetApur;
     /// <summary>
     /// Classificação de acordo com o art. 450, § 1º, da LC 214/25 para o cálculo do crédito presumido na ZFM.
     /// * 0 - Sem crédito presumido
@@ -28167,8 +29585,7 @@ type
     /// <summary>
     /// Valor do crédito presumido calculado sobre o saldo devedor apurado.
     /// </summary>
-    property vCredPresIBSZFM: Double read FvCredPresIBSZFM write SetvCredPresIBSZFM;
-    property vCredPresIBSZFMHasValue: Boolean read FvCredPresIBSZFMHasValue write FvCredPresIBSZFMHasValue;
+    property vCredPresIBSZFM: Double read FvCredPresIBSZFM write FvCredPresIBSZFM;
   end;
   
   /// <summary>
@@ -28179,14 +29596,23 @@ type
     FCST: string;
     FcClassTrib: string;
     FcClassTribHasValue: Boolean;
+    FindDoacao: Integer;
+    FindDoacaoHasValue: Boolean;
     FgIBSCBS: TNfeSefazCIBS;
     FgIBSCBSMono: TNfeSefazMonofasia;
     FgTransfCred: TNfeSefazTransfCred;
+    FgAjusteCompet: TNfeSefazAjusteCompet;
+    FgEstornoCred: TNfeSefazEstornoCred;
+    FgCredPresOper: TNfeSefazCredPresOper;
     FgCredPresIBSZFM: TNfeSefazCredPresIBSZFM;
     procedure SetcClassTrib(const Value: string);
+    procedure SetindDoacao(const Value: Integer);
     procedure SetgIBSCBS(const Value: TNfeSefazCIBS);
     procedure SetgIBSCBSMono(const Value: TNfeSefazMonofasia);
     procedure SetgTransfCred(const Value: TNfeSefazTransfCred);
+    procedure SetgAjusteCompet(const Value: TNfeSefazAjusteCompet);
+    procedure SetgEstornoCred(const Value: TNfeSefazEstornoCred);
+    procedure SetgCredPresOper(const Value: TNfeSefazCredPresOper);
     procedure SetgCredPresIBSZFM(const Value: TNfeSefazCredPresIBSZFM);
   public
     destructor Destroy; override;
@@ -28196,9 +29622,17 @@ type
     property CST: string read FCST write FCST;
     property cClassTrib: string read FcClassTrib write SetcClassTrib;
     property cClassTribHasValue: Boolean read FcClassTribHasValue write FcClassTribHasValue;
+    /// <summary>
+    /// Indica se a operação é de doação.
+    /// </summary>
+    property indDoacao: Integer read FindDoacao write SetindDoacao;
+    property indDoacaoHasValue: Boolean read FindDoacaoHasValue write FindDoacaoHasValue;
     property gIBSCBS: TNfeSefazCIBS read FgIBSCBS write SetgIBSCBS;
     property gIBSCBSMono: TNfeSefazMonofasia read FgIBSCBSMono write SetgIBSCBSMono;
     property gTransfCred: TNfeSefazTransfCred read FgTransfCred write SetgTransfCred;
+    property gAjusteCompet: TNfeSefazAjusteCompet read FgAjusteCompet write SetgAjusteCompet;
+    property gEstornoCred: TNfeSefazEstornoCred read FgEstornoCred write SetgEstornoCred;
+    property gCredPresOper: TNfeSefazCredPresOper read FgCredPresOper write SetgCredPresOper;
     property gCredPresIBSZFM: TNfeSefazCredPresIBSZFM read FgCredPresIBSZFM write SetgCredPresIBSZFM;
   end;
   
@@ -28912,6 +30346,24 @@ type
   end;
   
   /// <summary>
+  /// Totalização do estorno de crédito.
+  /// </summary>
+  TNfeSefazGEstornoCred = class
+  private
+    FvIBSEstCred: Double;
+    FvCBSEstCred: Double;
+  public
+    /// <summary>
+    /// Valor total do IBS estornado.
+    /// </summary>
+    property vIBSEstCred: Double read FvIBSEstCred write FvIBSEstCred;
+    /// <summary>
+    /// Valor total da CBS estornada.
+    /// </summary>
+    property vCBSEstCred: Double read FvCBSEstCred write FvCBSEstCred;
+  end;
+  
+  /// <summary>
   /// Valores totais da NF com IBS / CBS.
   /// </summary>
   TNfeSefazIBSCBSMonoTot = class
@@ -28920,9 +30372,11 @@ type
     FgIBS: TNfeSefazGIBS;
     FgCBS: TNfeSefazIBSCBSMonoTotGCBS;
     FgMono: TNfeSefazGMono;
+    FgEstornoCred: TNfeSefazGEstornoCred;
     procedure SetgIBS(const Value: TNfeSefazGIBS);
     procedure SetgCBS(const Value: TNfeSefazIBSCBSMonoTotGCBS);
     procedure SetgMono(const Value: TNfeSefazGMono);
+    procedure SetgEstornoCred(const Value: TNfeSefazGEstornoCred);
   public
     destructor Destroy; override;
     /// <summary>
@@ -28932,6 +30386,7 @@ type
     property gIBS: TNfeSefazGIBS read FgIBS write SetgIBS;
     property gCBS: TNfeSefazIBSCBSMonoTotGCBS read FgCBS write SetgCBS;
     property gMono: TNfeSefazGMono read FgMono write SetgMono;
+    property gEstornoCred: TNfeSefazGEstornoCred read FgEstornoCred write SetgEstornoCred;
   end;
   
   /// <summary>
@@ -29889,6 +31344,61 @@ type
   end;
   
   /// <summary>
+  /// Chave Publica no padrão XML RSA Key.
+  /// </summary>
+  TNfeSefazRSAKeyValueType = class
+  private
+    FModulus: TBytes;
+    FModulusHasValue: Boolean;
+    FExponent: TBytes;
+    FExponentHasValue: Boolean;
+    procedure SetModulus(const Value: TBytes);
+    procedure SetExponent(const Value: TBytes);
+  public
+    property Modulus: TBytes read FModulus write SetModulus;
+    property ModulusHasValue: Boolean read FModulusHasValue write FModulusHasValue;
+    property Exponent: TBytes read FExponent write SetExponent;
+    property ExponentHasValue: Boolean read FExponentHasValue write FExponentHasValue;
+  end;
+  
+  /// <summary>
+  /// Assinatura RSA do Emitente para DFe gerados por PAA.
+  /// </summary>
+  TNfeSefazPAASignature = class
+  private
+    FSignatureValue: TBytes;
+    FRSAKeyValue: TNfeSefazRSAKeyValueType;
+    procedure SetRSAKeyValue(const Value: TNfeSefazRSAKeyValueType);
+  public
+    constructor Create;
+    destructor Destroy; override;
+    /// <summary>
+    /// Assinatura digital padrão RSA.
+    /// Converter o atributo Id do DFe para array de bytes e assinar com a chave privada do RSA com algoritmo SHA1 gerando um valor no formato base64.
+    /// </summary>
+    property SignatureValue: TBytes read FSignatureValue write FSignatureValue;
+    property RSAKeyValue: TNfeSefazRSAKeyValueType read FRSAKeyValue write SetRSAKeyValue;
+  end;
+  
+  /// <summary>
+  /// Grupo de Informação do Provedor de Assinatura e Autorização.
+  /// </summary>
+  TNfeSefazInfPAA = class
+  private
+    FCNPJPAA: string;
+    FPAASignature: TNfeSefazPAASignature;
+    procedure SetPAASignature(const Value: TNfeSefazPAASignature);
+  public
+    constructor Create;
+    destructor Destroy; override;
+    /// <summary>
+    /// CNPJ do Provedor de Assinatura e Autorização.
+    /// </summary>
+    property CNPJPAA: string read FCNPJPAA write FCNPJPAA;
+    property PAASignature: TNfeSefazPAASignature read FPAASignature write SetPAASignature;
+  end;
+  
+  /// <summary>
   /// Informações da Nota Fiscal eletrônica.
   /// </summary>
   TNfeSefazInfNFe = class
@@ -29916,6 +31426,7 @@ type
     FinfRespTec: TNfeSefazInfRespTec;
     FinfSolicNFF: TNfeSefazInfSolicNFF;
     Fagropecuario: TNfeSefazAgropecuario;
+    FinfPAA: TNfeSefazInfPAA;
     procedure SetId(const Value: string);
     procedure Setide(const Value: TNfeSefazIde);
     procedure Setemit(const Value: TNfeSefazEmit);
@@ -29937,6 +31448,7 @@ type
     procedure SetinfRespTec(const Value: TNfeSefazInfRespTec);
     procedure SetinfSolicNFF(const Value: TNfeSefazInfSolicNFF);
     procedure Setagropecuario(const Value: TNfeSefazAgropecuario);
+    procedure SetinfPAA(const Value: TNfeSefazInfPAA);
   public
     constructor Create;
     destructor Destroy; override;
@@ -29971,6 +31483,7 @@ type
     property infRespTec: TNfeSefazInfRespTec read FinfRespTec write SetinfRespTec;
     property infSolicNFF: TNfeSefazInfSolicNFF read FinfSolicNFF write SetinfSolicNFF;
     property agropecuario: TNfeSefazAgropecuario read Fagropecuario write Setagropecuario;
+    property infPAA: TNfeSefazInfPAA read FinfPAA write SetinfPAA;
   end;
   
   /// <summary>
@@ -31622,6 +33135,23 @@ begin
   Fdata_hora_retornoHasValue := True;
 end;
 
+{ TCteOsSefazCompraGovReduzidoOS }
+
+destructor TCteOsSefazCompraGovReduzidoOS.Destroy;
+begin
+  FrefDFeAnt.Free;
+  inherited;
+end;
+
+procedure TCteOsSefazCompraGovReduzidoOS.SetrefDFeAnt(const Value: stringList);
+begin
+  if Value <> FrefDFeAnt then
+  begin
+    FrefDFeAnt.Free;
+    FrefDFeAnt := Value;
+  end;
+end;
+
 { TCteOsSefazIdeOS }
 
 destructor TCteOsSefazIdeOS.Destroy;
@@ -31879,6 +33409,12 @@ procedure TCteOsSefazEmitOS.SetCRT(const Value: Integer);
 begin
   FCRT := Value;
   FCRTHasValue := True;
+end;
+
+procedure TCteOsSefazEmitOS.SetISUFEmit(const Value: string);
+begin
+  FISUFEmit := Value;
+  FISUFEmitHasValue := True;
 end;
 
 { TCteOsSefazEnderecoOS }
@@ -32156,6 +33692,14 @@ begin
   FvCSLLHasValue := True;
 end;
 
+{ TCteOsSefazDevTribOS }
+
+procedure TCteOsSefazDevTribOS.SetpDevTrib(const Value: Double);
+begin
+  FpDevTrib := Value;
+  FpDevTribHasValue := True;
+end;
+
 { TCteOsSefazGIBSUFOS }
 
 destructor TCteOsSefazGIBSUFOS.Destroy;
@@ -32234,6 +33778,7 @@ end;
 
 destructor TCteOsSefazGCBSOS.Destroy;
 begin
+  FgALCZFMCBS.Free;
   FgRed.Free;
   FgDevTrib.Free;
   FgDif.Free;
@@ -32267,18 +33812,13 @@ begin
   end;
 end;
 
-{ TCteOsSefazCredPresOS }
-
-procedure TCteOsSefazCredPresOS.SetvCredPres(const Value: Double);
+procedure TCteOsSefazGCBSOS.SetgALCZFMCBS(const Value: TCteOsSefazALCZFMCBSOS);
 begin
-  FvCredPres := Value;
-  FvCredPresHasValue := True;
-end;
-
-procedure TCteOsSefazCredPresOS.SetvCredPresCondSus(const Value: Double);
-begin
-  FvCredPresCondSus := Value;
-  FvCredPresCondSusHasValue := True;
+  if Value <> FgALCZFMCBS then
+  begin
+    FgALCZFMCBS.Free;
+    FgALCZFMCBS := Value;
+  end;
 end;
 
 { TCteOsSefazTribCompraGovOS }
@@ -32314,8 +33854,6 @@ end;
 destructor TCteOsSefazCIBSOS.Destroy;
 begin
   FgTribCompraGov.Free;
-  FgCBSCredPres.Free;
-  FgIBSCredPres.Free;
   FgTribRegular.Free;
   FgCBS.Free;
   FgIBSMun.Free;
@@ -32359,24 +33897,6 @@ begin
   end;
 end;
 
-procedure TCteOsSefazCIBSOS.SetgIBSCredPres(const Value: TCteOsSefazCredPresOS);
-begin
-  if Value <> FgIBSCredPres then
-  begin
-    FgIBSCredPres.Free;
-    FgIBSCredPres := Value;
-  end;
-end;
-
-procedure TCteOsSefazCIBSOS.SetgCBSCredPres(const Value: TCteOsSefazCredPresOS);
-begin
-  if Value <> FgCBSCredPres then
-  begin
-    FgCBSCredPres.Free;
-    FgCBSCredPres := Value;
-  end;
-end;
-
 procedure TCteOsSefazCIBSOS.SetgTribCompraGov(const Value: TCteOsSefazTribCompraGovOS);
 begin
   if Value <> FgTribCompraGov then
@@ -32390,6 +33910,7 @@ end;
 
 destructor TCteOsSefazTribCTeOS.Destroy;
 begin
+  FgEstornoCred.Free;
   FgIBSCBS.Free;
   inherited;
 end;
@@ -32400,12 +33921,27 @@ begin
   FcClassTribHasValue := True;
 end;
 
+procedure TCteOsSefazTribCTeOS.SetindDoacao(const Value: Integer);
+begin
+  FindDoacao := Value;
+  FindDoacaoHasValue := True;
+end;
+
 procedure TCteOsSefazTribCTeOS.SetgIBSCBS(const Value: TCteOsSefazCIBSOS);
 begin
   if Value <> FgIBSCBS then
   begin
     FgIBSCBS.Free;
     FgIBSCBS := Value;
+  end;
+end;
+
+procedure TCteOsSefazTribCTeOS.SetgEstornoCred(const Value: TCteOsSefazEstornoCredOS);
+begin
+  if Value <> FgEstornoCred then
+  begin
+    FgEstornoCred.Free;
+    FgEstornoCred := Value;
   end;
 end;
 
@@ -32478,6 +34014,29 @@ procedure TCteOsSefazInfCteImpOS.SetvTotDFe(const Value: Double);
 begin
   FvTotDFe := Value;
   FvTotDFeHasValue := True;
+end;
+
+{ TCteOsSefazPgtoVincOS }
+
+constructor TCteOsSefazPgtoVincOS.Create;
+begin
+  inherited;
+  Fpgto := TCteOsSefazPagamentoRTCOSList.Create;
+end;
+
+destructor TCteOsSefazPgtoVincOS.Destroy;
+begin
+  Fpgto.Free;
+  inherited;
+end;
+
+procedure TCteOsSefazPgtoVincOS.Setpgto(const Value: TCteOsSefazPagamentoRTCOSList);
+begin
+  if Value <> Fpgto then
+  begin
+    Fpgto.Free;
+    Fpgto := Value;
+  end;
 end;
 
 { TCteOsSefazInfServicoOS }
@@ -32920,10 +34479,12 @@ end;
 
 destructor TCteOsSefazInfCteOS.Destroy;
 begin
+  FgPagAntecipado.Free;
   FinfRespTec.Free;
   FautXML.Free;
   FinfCteComp.Free;
   FinfCTeNorm.Free;
+  FpgtoVinc.Free;
   Fimp.Free;
   FvPrest.Free;
   Ftoma.Free;
@@ -32993,6 +34554,15 @@ begin
   end;
 end;
 
+procedure TCteOsSefazInfCteOS.SetpgtoVinc(const Value: TCteOsSefazPgtoVincOS);
+begin
+  if Value <> FpgtoVinc then
+  begin
+    FpgtoVinc.Free;
+    FpgtoVinc := Value;
+  end;
+end;
+
 procedure TCteOsSefazInfCteOS.SetinfCTeNorm(const Value: TCteOsSefazInfCTeNormOS);
 begin
   if Value <> FinfCTeNorm then
@@ -33026,6 +34596,21 @@ begin
   begin
     FinfRespTec.Free;
     FinfRespTec := Value;
+  end;
+end;
+
+procedure TCteOsSefazInfCteOS.SettpPagAnt(const Value: Integer);
+begin
+  FtpPagAnt := Value;
+  FtpPagAntHasValue := True;
+end;
+
+procedure TCteOsSefazInfCteOS.SetgPagAntecipado(const Value: TCteOsSefazGPagAntecipadoOS);
+begin
+  if Value <> FgPagAntecipado then
+  begin
+    FgPagAntecipado.Free;
+    FgPagAntecipado := Value;
   end;
 end;
 
@@ -34977,6 +36562,12 @@ begin
   FcSitTribHasValue := True;
 end;
 
+procedure TCServ.SetcIntContrib(const Value: string);
+begin
+  FcIntContrib := Value;
+  FcIntContribHasValue := True;
+end;
+
 { TComExterior }
 
 procedure TComExterior.SetnDI(const Value: string);
@@ -34989,6 +36580,76 @@ procedure TComExterior.SetnRE(const Value: string);
 begin
   FnRE := Value;
   FnREHasValue := True;
+end;
+
+{ TEnderObraEvento }
+
+destructor TEnderObraEvento.Destroy;
+begin
+  FendExt.Free;
+  inherited;
+end;
+
+procedure TEnderObraEvento.SetCEP(const Value: string);
+begin
+  FCEP := Value;
+  FCEPHasValue := True;
+end;
+
+procedure TEnderObraEvento.SetendExt(const Value: TEnderExtSimples);
+begin
+  if Value <> FendExt then
+  begin
+    FendExt.Free;
+    FendExt := Value;
+  end;
+end;
+
+procedure TEnderObraEvento.SettpLgr(const Value: string);
+begin
+  FtpLgr := Value;
+  FtpLgrHasValue := True;
+end;
+
+procedure TEnderObraEvento.SetxCpl(const Value: string);
+begin
+  FxCpl := Value;
+  FxCplHasValue := True;
+end;
+
+{ TInfoObra }
+
+destructor TInfoObra.Destroy;
+begin
+  Fend.Free;
+  inherited;
+end;
+
+procedure TInfoObra.SetinscImobFisc(const Value: string);
+begin
+  FinscImobFisc := Value;
+  FinscImobFiscHasValue := True;
+end;
+
+procedure TInfoObra.SetcObra(const Value: string);
+begin
+  FcObra := Value;
+  FcObraHasValue := True;
+end;
+
+procedure TInfoObra.SetcCIB(const Value: string);
+begin
+  FcCIB := Value;
+  FcCIBHasValue := True;
+end;
+
+procedure TInfoObra.Setend(const Value: TEnderObraEvento);
+begin
+  if Value <> Fend then
+  begin
+    Fend.Free;
+    Fend := Value;
+  end;
 end;
 
 { TEnderecoSimples }
@@ -35024,35 +36685,6 @@ procedure TEnderecoSimples.SetxCpl(const Value: string);
 begin
   FxCpl := Value;
   FxCplHasValue := True;
-end;
-
-{ TInfoObra }
-
-destructor TInfoObra.Destroy;
-begin
-  Fend.Free;
-  inherited;
-end;
-
-procedure TInfoObra.SetcObra(const Value: string);
-begin
-  FcObra := Value;
-  FcObraHasValue := True;
-end;
-
-procedure TInfoObra.SetinscImobFisc(const Value: string);
-begin
-  FinscImobFisc := Value;
-  FinscImobFiscHasValue := True;
-end;
-
-procedure TInfoObra.Setend(const Value: TEnderecoSimples);
-begin
-  if Value <> Fend then
-  begin
-    Fend.Free;
-    Fend := Value;
-  end;
 end;
 
 { TAtvEvento }
@@ -35096,7 +36728,36 @@ begin
   end;
 end;
 
+{ TInfoItemPed }
+
+constructor TInfoItemPed.Create;
+begin
+  inherited;
+  FxItemPed := stringList.Create;
+end;
+
+destructor TInfoItemPed.Destroy;
+begin
+  FxItemPed.Free;
+  inherited;
+end;
+
+procedure TInfoItemPed.SetxItemPed(const Value: stringList);
+begin
+  if Value <> FxItemPed then
+  begin
+    FxItemPed.Free;
+    FxItemPed := Value;
+  end;
+end;
+
 { TInfoCompl }
+
+destructor TInfoCompl.Destroy;
+begin
+  FgItemPed.Free;
+  inherited;
+end;
 
 procedure TInfoCompl.SetidDocTec(const Value: string);
 begin
@@ -35108,6 +36769,21 @@ procedure TInfoCompl.SetdocRef(const Value: string);
 begin
   FdocRef := Value;
   FdocRefHasValue := True;
+end;
+
+procedure TInfoCompl.SetxPed(const Value: string);
+begin
+  FxPed := Value;
+  FxPedHasValue := True;
+end;
+
+procedure TInfoCompl.SetgItemPed(const Value: TInfoItemPed);
+begin
+  if Value <> FgItemPed then
+  begin
+    FgItemPed.Free;
+    FgItemPed := Value;
+  end;
 end;
 
 procedure TInfoCompl.SetxInfComp(const Value: string);
@@ -35127,10 +36803,8 @@ end;
 destructor TServ.Destroy;
 begin
   FinfoCompl.Free;
-  FexplRod.Free;
   FatvEvento.Free;
   Fobra.Free;
-  Flsadppu.Free;
   FcomExt.Free;
   FcServ.Free;
   FlocPrest.Free;
@@ -35164,15 +36838,6 @@ begin
   end;
 end;
 
-procedure TServ.Setlsadppu(const Value: TLocacaoSublocacao);
-begin
-  if Value <> Flsadppu then
-  begin
-    Flsadppu.Free;
-    Flsadppu := Value;
-  end;
-end;
-
 procedure TServ.Setobra(const Value: TInfoObra);
 begin
   if Value <> Fobra then
@@ -35188,15 +36853,6 @@ begin
   begin
     FatvEvento.Free;
     FatvEvento := Value;
-  end;
-end;
-
-procedure TServ.SetexplRod(const Value: TExploracaoRodoviaria);
-begin
-  if Value <> FexplRod then
-  begin
-    FexplRod.Free;
-    FexplRod := Value;
   end;
 end;
 
@@ -35423,6 +37079,12 @@ end;
 
 { TBeneficioMunicipal }
 
+procedure TBeneficioMunicipal.SettpBM(const Value: Integer);
+begin
+  FtpBM := Value;
+  FtpBMHasValue := True;
+end;
+
 procedure TBeneficioMunicipal.SetvRedBCBM(const Value: Double);
 begin
   FvRedBCBM := Value;
@@ -35439,15 +37101,9 @@ end;
 
 destructor TTribMunicipal.Destroy;
 begin
-  FexigSusp.Free;
   FBM.Free;
+  FexigSusp.Free;
   inherited;
-end;
-
-procedure TTribMunicipal.SetcLocIncid(const Value: string);
-begin
-  FcLocIncid := Value;
-  FcLocIncidHasValue := True;
 end;
 
 procedure TTribMunicipal.SetcPaisResult(const Value: string);
@@ -35456,13 +37112,10 @@ begin
   FcPaisResultHasValue := True;
 end;
 
-procedure TTribMunicipal.SetBM(const Value: TBeneficioMunicipal);
+procedure TTribMunicipal.SettpImunidade(const Value: Integer);
 begin
-  if Value <> FBM then
-  begin
-    FBM.Free;
-    FBM := Value;
-  end;
+  FtpImunidade := Value;
+  FtpImunidadeHasValue := True;
 end;
 
 procedure TTribMunicipal.SetexigSusp(const Value: TExigSuspensa);
@@ -35474,16 +37127,19 @@ begin
   end;
 end;
 
-procedure TTribMunicipal.SettpImunidade(const Value: Integer);
+procedure TTribMunicipal.SetBM(const Value: TBeneficioMunicipal);
 begin
-  FtpImunidade := Value;
-  FtpImunidadeHasValue := True;
+  if Value <> FBM then
+  begin
+    FBM.Free;
+    FBM := Value;
+  end;
 end;
 
-procedure TTribMunicipal.SetvBC(const Value: Double);
+procedure TTribMunicipal.SettpRetISSQN(const Value: Integer);
 begin
-  FvBC := Value;
-  FvBCHasValue := True;
+  FtpRetISSQN := Value;
+  FtpRetISSQNHasValue := True;
 end;
 
 procedure TTribMunicipal.SetpAliq(const Value: Double);
@@ -35492,16 +37148,22 @@ begin
   FpAliqHasValue := True;
 end;
 
+procedure TTribMunicipal.SetcLocIncid(const Value: string);
+begin
+  FcLocIncid := Value;
+  FcLocIncidHasValue := True;
+end;
+
+procedure TTribMunicipal.SetvBC(const Value: Double);
+begin
+  FvBC := Value;
+  FvBCHasValue := True;
+end;
+
 procedure TTribMunicipal.SetvISSQN(const Value: Double);
 begin
   FvISSQN := Value;
   FvISSQNHasValue := True;
-end;
-
-procedure TTribMunicipal.SettpRetISSQN(const Value: Integer);
-begin
-  FtpRetISSQN := Value;
-  FtpRetISSQNHasValue := True;
 end;
 
 procedure TTribMunicipal.SetvLiq(const Value: Double);
@@ -35719,6 +37381,375 @@ begin
   end;
 end;
 
+{ TInfoRefNFSe }
+
+constructor TInfoRefNFSe.Create;
+begin
+  inherited;
+  FrefNFSe := stringList.Create;
+end;
+
+destructor TInfoRefNFSe.Destroy;
+begin
+  FrefNFSe.Free;
+  inherited;
+end;
+
+procedure TInfoRefNFSe.SetrefNFSe(const Value: stringList);
+begin
+  if Value <> FrefNFSe then
+  begin
+    FrefNFSe.Free;
+    FrefNFSe := Value;
+  end;
+end;
+
+{ TRTCInfoDest }
+
+destructor TRTCInfoDest.Destroy;
+begin
+  Fend.Free;
+  inherited;
+end;
+
+procedure TRTCInfoDest.SetCNPJ(const Value: string);
+begin
+  FCNPJ := Value;
+  FCNPJHasValue := True;
+end;
+
+procedure TRTCInfoDest.SetCPF(const Value: string);
+begin
+  FCPF := Value;
+  FCPFHasValue := True;
+end;
+
+procedure TRTCInfoDest.SetNIF(const Value: string);
+begin
+  FNIF := Value;
+  FNIFHasValue := True;
+end;
+
+procedure TRTCInfoDest.SetcNaoNIF(const Value: Integer);
+begin
+  FcNaoNIF := Value;
+  FcNaoNIFHasValue := True;
+end;
+
+procedure TRTCInfoDest.Setend(const Value: TEndereco);
+begin
+  if Value <> Fend then
+  begin
+    Fend.Free;
+    Fend := Value;
+  end;
+end;
+
+procedure TRTCInfoDest.Setfone(const Value: string);
+begin
+  Ffone := Value;
+  FfoneHasValue := True;
+end;
+
+procedure TRTCInfoDest.Setemail(const Value: string);
+begin
+  Femail := Value;
+  FemailHasValue := True;
+end;
+
+{ TRTCInfoImovel }
+
+destructor TRTCInfoImovel.Destroy;
+begin
+  Fend.Free;
+  inherited;
+end;
+
+procedure TRTCInfoImovel.SetinscImobFisc(const Value: string);
+begin
+  FinscImobFisc := Value;
+  FinscImobFiscHasValue := True;
+end;
+
+procedure TRTCInfoImovel.SetcCIB(const Value: string);
+begin
+  FcCIB := Value;
+  FcCIBHasValue := True;
+end;
+
+procedure TRTCInfoImovel.Setend(const Value: TEnderObraEvento);
+begin
+  if Value <> Fend then
+  begin
+    Fend.Free;
+    Fend := Value;
+  end;
+end;
+
+{ TRTCListaDocDFe }
+
+procedure TRTCListaDocDFe.SetxTipoChaveDFe(const Value: string);
+begin
+  FxTipoChaveDFe := Value;
+  FxTipoChaveDFeHasValue := True;
+end;
+
+{ TRTCListaDocFornec }
+
+procedure TRTCListaDocFornec.SetCNPJ(const Value: string);
+begin
+  FCNPJ := Value;
+  FCNPJHasValue := True;
+end;
+
+procedure TRTCListaDocFornec.SetCPF(const Value: string);
+begin
+  FCPF := Value;
+  FCPFHasValue := True;
+end;
+
+procedure TRTCListaDocFornec.SetNIF(const Value: string);
+begin
+  FNIF := Value;
+  FNIFHasValue := True;
+end;
+
+procedure TRTCListaDocFornec.SetcNaoNIF(const Value: Integer);
+begin
+  FcNaoNIF := Value;
+  FcNaoNIFHasValue := True;
+end;
+
+{ TRTCListaDoc }
+
+destructor TRTCListaDoc.Destroy;
+begin
+  Ffornec.Free;
+  FdocOutro.Free;
+  FdocFiscalOutro.Free;
+  FdFeNacional.Free;
+  inherited;
+end;
+
+procedure TRTCListaDoc.SetdFeNacional(const Value: TRTCListaDocDFe);
+begin
+  if Value <> FdFeNacional then
+  begin
+    FdFeNacional.Free;
+    FdFeNacional := Value;
+  end;
+end;
+
+procedure TRTCListaDoc.SetdocFiscalOutro(const Value: TRTCListaDocFiscalOutro);
+begin
+  if Value <> FdocFiscalOutro then
+  begin
+    FdocFiscalOutro.Free;
+    FdocFiscalOutro := Value;
+  end;
+end;
+
+procedure TRTCListaDoc.SetdocOutro(const Value: TRTCListaDocOutro);
+begin
+  if Value <> FdocOutro then
+  begin
+    FdocOutro.Free;
+    FdocOutro := Value;
+  end;
+end;
+
+procedure TRTCListaDoc.Setfornec(const Value: TRTCListaDocFornec);
+begin
+  if Value <> Ffornec then
+  begin
+    Ffornec.Free;
+    Ffornec := Value;
+  end;
+end;
+
+procedure TRTCListaDoc.SetxTpReeRepRes(const Value: string);
+begin
+  FxTpReeRepRes := Value;
+  FxTpReeRepResHasValue := True;
+end;
+
+{ TRTCInfoReeRepRes }
+
+constructor TRTCInfoReeRepRes.Create;
+begin
+  inherited;
+  Fdocumentos := TRTCListaDocList.Create;
+end;
+
+destructor TRTCInfoReeRepRes.Destroy;
+begin
+  Fdocumentos.Free;
+  inherited;
+end;
+
+procedure TRTCInfoReeRepRes.Setdocumentos(const Value: TRTCListaDocList);
+begin
+  if Value <> Fdocumentos then
+  begin
+    Fdocumentos.Free;
+    Fdocumentos := Value;
+  end;
+end;
+
+{ TRTCInfoTributosSitClas }
+
+destructor TRTCInfoTributosSitClas.Destroy;
+begin
+  FgDif.Free;
+  FgTribRegular.Free;
+  inherited;
+end;
+
+procedure TRTCInfoTributosSitClas.SetcCredPres(const Value: string);
+begin
+  FcCredPres := Value;
+  FcCredPresHasValue := True;
+end;
+
+procedure TRTCInfoTributosSitClas.SetgTribRegular(const Value: TRTCInfoTributosTribRegular);
+begin
+  if Value <> FgTribRegular then
+  begin
+    FgTribRegular.Free;
+    FgTribRegular := Value;
+  end;
+end;
+
+procedure TRTCInfoTributosSitClas.SetgDif(const Value: TRTCInfoTributosDif);
+begin
+  if Value <> FgDif then
+  begin
+    FgDif.Free;
+    FgDif := Value;
+  end;
+end;
+
+{ TRTCInfoTributosIBSCBS }
+
+constructor TRTCInfoTributosIBSCBS.Create;
+begin
+  inherited;
+  FgIBSCBS := TRTCInfoTributosSitClas.Create;
+end;
+
+destructor TRTCInfoTributosIBSCBS.Destroy;
+begin
+  FgIBSCBS.Free;
+  inherited;
+end;
+
+procedure TRTCInfoTributosIBSCBS.SetgIBSCBS(const Value: TRTCInfoTributosSitClas);
+begin
+  if Value <> FgIBSCBS then
+  begin
+    FgIBSCBS.Free;
+    FgIBSCBS := Value;
+  end;
+end;
+
+{ TRTCInfoValoresIBSCBS }
+
+constructor TRTCInfoValoresIBSCBS.Create;
+begin
+  inherited;
+  Ftrib := TRTCInfoTributosIBSCBS.Create;
+end;
+
+destructor TRTCInfoValoresIBSCBS.Destroy;
+begin
+  Ftrib.Free;
+  FgReeRepRes.Free;
+  inherited;
+end;
+
+procedure TRTCInfoValoresIBSCBS.SetgReeRepRes(const Value: TRTCInfoReeRepRes);
+begin
+  if Value <> FgReeRepRes then
+  begin
+    FgReeRepRes.Free;
+    FgReeRepRes := Value;
+  end;
+end;
+
+procedure TRTCInfoValoresIBSCBS.Settrib(const Value: TRTCInfoTributosIBSCBS);
+begin
+  if Value <> Ftrib then
+  begin
+    Ftrib.Free;
+    Ftrib := Value;
+  end;
+end;
+
+{ TRTCInfoIBSCBS }
+
+constructor TRTCInfoIBSCBS.Create;
+begin
+  inherited;
+  Fvalores := TRTCInfoValoresIBSCBS.Create;
+end;
+
+destructor TRTCInfoIBSCBS.Destroy;
+begin
+  Fvalores.Free;
+  Fimovel.Free;
+  Fdest.Free;
+  FgRefNFSe.Free;
+  inherited;
+end;
+
+procedure TRTCInfoIBSCBS.SettpOper(const Value: Integer);
+begin
+  FtpOper := Value;
+  FtpOperHasValue := True;
+end;
+
+procedure TRTCInfoIBSCBS.SetgRefNFSe(const Value: TInfoRefNFSe);
+begin
+  if Value <> FgRefNFSe then
+  begin
+    FgRefNFSe.Free;
+    FgRefNFSe := Value;
+  end;
+end;
+
+procedure TRTCInfoIBSCBS.SettpEnteGov(const Value: Integer);
+begin
+  FtpEnteGov := Value;
+  FtpEnteGovHasValue := True;
+end;
+
+procedure TRTCInfoIBSCBS.Setdest(const Value: TRTCInfoDest);
+begin
+  if Value <> Fdest then
+  begin
+    Fdest.Free;
+    Fdest := Value;
+  end;
+end;
+
+procedure TRTCInfoIBSCBS.Setimovel(const Value: TRTCInfoImovel);
+begin
+  if Value <> Fimovel then
+  begin
+    Fimovel.Free;
+    Fimovel := Value;
+  end;
+end;
+
+procedure TRTCInfoIBSCBS.Setvalores(const Value: TRTCInfoValoresIBSCBS);
+begin
+  if Value <> Fvalores then
+  begin
+    Fvalores.Free;
+    Fvalores := Value;
+  end;
+end;
+
 { TInfDPS }
 
 constructor TInfDPS.Create;
@@ -35731,6 +37762,7 @@ end;
 
 destructor TInfDPS.Destroy;
 begin
+  FIBSCBS.Free;
   Fvalores.Free;
   Fserv.Free;
   Finterm.Free;
@@ -35756,6 +37788,18 @@ procedure TInfDPS.SetdCompet(const Value: TDate);
 begin
   FdCompet := Value;
   FdCompetHasValue := True;
+end;
+
+procedure TInfDPS.SetcMotivoEmisTI(const Value: Integer);
+begin
+  FcMotivoEmisTI := Value;
+  FcMotivoEmisTIHasValue := True;
+end;
+
+procedure TInfDPS.SetchNFSeRej(const Value: string);
+begin
+  FchNFSeRej := Value;
+  FchNFSeRejHasValue := True;
 end;
 
 procedure TInfDPS.Setsubst(const Value: TSubstituicao);
@@ -35809,6 +37853,15 @@ begin
   begin
     Fvalores.Free;
     Fvalores := Value;
+  end;
+end;
+
+procedure TInfDPS.SetIBSCBS(const Value: TRTCInfoIBSCBS);
+begin
+  if Value <> FIBSCBS then
+  begin
+    FIBSCBS.Free;
+    FIBSCBS := Value;
   end;
 end;
 
@@ -37256,6 +39309,23 @@ begin
   FjustificativaHasValue := True;
 end;
 
+{ TNfcomSefazCompraGovReduzido }
+
+destructor TNfcomSefazCompraGovReduzido.Destroy;
+begin
+  FrefDFeAnt.Free;
+  inherited;
+end;
+
+procedure TNfcomSefazCompraGovReduzido.SetrefDFeAnt(const Value: stringList);
+begin
+  if Value <> FrefDFeAnt then
+  begin
+    FrefDFeAnt.Free;
+    FrefDFeAnt := Value;
+  end;
+end;
+
 { TNfcomSefazIde }
 
 destructor TNfcomSefazIde.Destroy;
@@ -37325,6 +39395,12 @@ begin
     FgCompraGov.Free;
     FgCompraGov := Value;
   end;
+end;
+
+procedure TNfcomSefazIde.SettpPagAnt(const Value: Integer);
+begin
+  FtpPagAnt := Value;
+  FtpPagAntHasValue := True;
 end;
 
 { TNfcomSefazEndeEmi }
@@ -37434,6 +39510,12 @@ begin
     FenderEmit.Free;
     FenderEmit := Value;
   end;
+end;
+
+procedure TNfcomSefazEmit.SetISUFEmit(const Value: string);
+begin
+  FISUFEmit := Value;
+  FISUFEmitHasValue := True;
 end;
 
 { TNfcomSefazEndeDest }
@@ -37627,7 +39709,21 @@ begin
   end;
 end;
 
+{ TNfcomSefazGPagAntecipado }
+
+procedure TNfcomSefazGPagAntecipado.SetnItemPagAnt(const Value: string);
+begin
+  FnItemPagAnt := Value;
+  FnItemPagAntHasValue := True;
+end;
+
 { TNfcomSefazProd }
+
+destructor TNfcomSefazProd.Destroy;
+begin
+  FgPagAntecipado.Free;
+  inherited;
+end;
 
 procedure TNfcomSefazProd.SetCFOP(const Value: string);
 begin
@@ -37663,6 +39759,21 @@ procedure TNfcomSefazProd.SetindDevolucao(const Value: Integer);
 begin
   FindDevolucao := Value;
   FindDevolucaoHasValue := True;
+end;
+
+procedure TNfcomSefazProd.SetCNPJCobrTerc(const Value: string);
+begin
+  FCNPJCobrTerc := Value;
+  FCNPJCobrTercHasValue := True;
+end;
+
+procedure TNfcomSefazProd.SetgPagAntecipado(const Value: TNfcomSefazGPagAntecipado);
+begin
+  if Value <> FgPagAntecipado then
+  begin
+    FgPagAntecipado.Free;
+    FgPagAntecipado := Value;
+  end;
 end;
 
 { TNfcomSefazICMS00 }
@@ -37791,6 +39902,14 @@ begin
   FcBenefUFDestHasValue := True;
 end;
 
+{ TNfcomSefazDevTrib }
+
+procedure TNfcomSefazDevTrib.SetpDevTrib(const Value: Double);
+begin
+  FpDevTrib := Value;
+  FpDevTribHasValue := True;
+end;
+
 { TNfcomSefazGIBSUF }
 
 destructor TNfcomSefazGIBSUF.Destroy;
@@ -37869,6 +39988,7 @@ end;
 
 destructor TNfcomSefazGCBS.Destroy;
 begin
+  FgALCZFMCBS.Free;
   FgRed.Free;
   FgDevTrib.Free;
   FgDif.Free;
@@ -37902,18 +40022,13 @@ begin
   end;
 end;
 
-{ TNfcomSefazCredPres }
-
-procedure TNfcomSefazCredPres.SetvCredPres(const Value: Double);
+procedure TNfcomSefazGCBS.SetgALCZFMCBS(const Value: TNfcomSefazALCZFMCBS);
 begin
-  FvCredPres := Value;
-  FvCredPresHasValue := True;
-end;
-
-procedure TNfcomSefazCredPres.SetvCredPresCondSus(const Value: Double);
-begin
-  FvCredPresCondSus := Value;
-  FvCredPresCondSusHasValue := True;
+  if Value <> FgALCZFMCBS then
+  begin
+    FgALCZFMCBS.Free;
+    FgALCZFMCBS := Value;
+  end;
 end;
 
 { TNfcomSefazTribCompraGov }
@@ -37949,8 +40064,6 @@ end;
 destructor TNfcomSefazCIBS.Destroy;
 begin
   FgTribCompraGov.Free;
-  FgCBSCredPres.Free;
-  FgIBSCredPres.Free;
   FgTribRegular.Free;
   FgCBS.Free;
   FgIBSMun.Free;
@@ -37994,24 +40107,6 @@ begin
   end;
 end;
 
-procedure TNfcomSefazCIBS.SetgIBSCredPres(const Value: TNfcomSefazCredPres);
-begin
-  if Value <> FgIBSCredPres then
-  begin
-    FgIBSCredPres.Free;
-    FgIBSCredPres := Value;
-  end;
-end;
-
-procedure TNfcomSefazCIBS.SetgCBSCredPres(const Value: TNfcomSefazCredPres);
-begin
-  if Value <> FgCBSCredPres then
-  begin
-    FgCBSCredPres.Free;
-    FgCBSCredPres := Value;
-  end;
-end;
-
 procedure TNfcomSefazCIBS.SetgTribCompraGov(const Value: TNfcomSefazTribCompraGov);
 begin
   if Value <> FgTribCompraGov then
@@ -38025,6 +40120,7 @@ end;
 
 destructor TNfcomSefazTribNFCom.Destroy;
 begin
+  FgEstornoCred.Free;
   FgIBSCBS.Free;
   inherited;
 end;
@@ -38035,12 +40131,27 @@ begin
   FcClassTribHasValue := True;
 end;
 
+procedure TNfcomSefazTribNFCom.SetindDoacao(const Value: Integer);
+begin
+  FindDoacao := Value;
+  FindDoacaoHasValue := True;
+end;
+
 procedure TNfcomSefazTribNFCom.SetgIBSCBS(const Value: TNfcomSefazCIBS);
 begin
   if Value <> FgIBSCBS then
   begin
     FgIBSCBS.Free;
     FgIBSCBS := Value;
+  end;
+end;
+
+procedure TNfcomSefazTribNFCom.SetgEstornoCred(const Value: TNfcomSefazEstornoCred);
+begin
+  if Value <> FgEstornoCred then
+  begin
+    FgEstornoCred.Free;
+    FgEstornoCred := Value;
   end;
 end;
 
@@ -38362,6 +40473,29 @@ begin
   FinfAdProdHasValue := True;
 end;
 
+{ TNfcomSefazPgtoVinc }
+
+constructor TNfcomSefazPgtoVinc.Create;
+begin
+  inherited;
+  Fpgto := TNfcomSefazPagamentoRTCList.Create;
+end;
+
+destructor TNfcomSefazPgtoVinc.Destroy;
+begin
+  Fpgto.Free;
+  inherited;
+end;
+
+procedure TNfcomSefazPgtoVinc.Setpgto(const Value: TNfcomSefazPagamentoRTCList);
+begin
+  if Value <> Fpgto then
+  begin
+    Fpgto.Free;
+    Fpgto := Value;
+  end;
+end;
+
 { TNfcomSefazGIBS }
 
 constructor TNfcomSefazGIBS.Create;
@@ -38407,6 +40541,7 @@ end;
 
 destructor TNfcomSefazIBSCBSTot.Destroy;
 begin
+  FgEstornoCred.Free;
   FgCBS.Free;
   FgIBS.Free;
   inherited;
@@ -38427,6 +40562,15 @@ begin
   begin
     FgCBS.Free;
     FgCBS := Value;
+  end;
+end;
+
+procedure TNfcomSefazIBSCBSTot.SetgEstornoCred(const Value: TNfcomSefazGEstornoCred);
+begin
+  if Value <> FgEstornoCred then
+  begin
+    FgEstornoCred.Free;
+    FgEstornoCred := Value;
   end;
 end;
 
@@ -38616,6 +40760,7 @@ begin
   FgFat.Free;
   FgFidelidade.Free;
   Ftotal.Free;
+  FpgtoVinc.Free;
   Fdet.Free;
   FgCofat.Free;
   FgSub.Free;
@@ -38692,6 +40837,15 @@ begin
   begin
     Fdet.Free;
     Fdet := Value;
+  end;
+end;
+
+procedure TNfcomSefazInfNFCom.SetpgtoVinc(const Value: TNfcomSefazPgtoVinc);
+begin
+  if Value <> FpgtoVinc then
+  begin
+    FpgtoVinc.Free;
+    FpgtoVinc := Value;
   end;
 end;
 
@@ -38803,16 +40957,28 @@ begin
   FnomeHasValue := True;
 end;
 
-procedure TContaCota.Setconsumo(const Value: Integer);
+procedure TContaCota.Setconsumo(const Value: Double);
 begin
   Fconsumo := Value;
   FconsumoHasValue := True;
 end;
 
-procedure TContaCota.Setlimite(const Value: Integer);
+procedure TContaCota.Setlimite(const Value: Double);
 begin
   Flimite := Value;
   FlimiteHasValue := True;
+end;
+
+procedure TContaCota.Setdisponivel(const Value: Double);
+begin
+  Fdisponivel := Value;
+  FdisponivelHasValue := True;
+end;
+
+procedure TContaCota.Setultima_atualizacao(const Value: string);
+begin
+  Fultima_atualizacao := Value;
+  Fultima_atualizacaoHasValue := True;
 end;
 
 { TContaCotaListagem }
@@ -38830,6 +40996,105 @@ begin
 end;
 
 procedure TContaCotaListagem.Setdata(const Value: TContaCotaList);
+begin
+  if Value <> Fdata then
+  begin
+    Fdata.Free;
+    Fdata := Value;
+  end;
+end;
+
+{ TContaCotaPrePago }
+
+procedure TContaCotaPrePago.Setpercentual_disponivel(const Value: Double);
+begin
+  Fpercentual_disponivel := Value;
+  Fpercentual_disponivelHasValue := True;
+end;
+
+procedure TContaCotaPrePago.Setcreditos_disponiveis(const Value: Double);
+begin
+  Fcreditos_disponiveis := Value;
+  Fcreditos_disponiveisHasValue := True;
+end;
+
+procedure TContaCotaPrePago.Setultima_atualizacao(const Value: string);
+begin
+  Fultima_atualizacao := Value;
+  Fultima_atualizacaoHasValue := True;
+end;
+
+{ TContaExtratoCredito }
+
+procedure TContaExtratoCredito.Settenant_id(const Value: string);
+begin
+  Ftenant_id := Value;
+  Ftenant_idHasValue := True;
+end;
+
+procedure TContaExtratoCredito.Setcreated_at(const Value: TDateTime);
+begin
+  Fcreated_at := Value;
+  Fcreated_atHasValue := True;
+end;
+
+procedure TContaExtratoCredito.Setquota_name(const Value: string);
+begin
+  Fquota_name := Value;
+  Fquota_nameHasValue := True;
+end;
+
+procedure TContaExtratoCredito.Setmovement_type(const Value: string);
+begin
+  Fmovement_type := Value;
+  Fmovement_typeHasValue := True;
+end;
+
+procedure TContaExtratoCredito.Setcredits(const Value: Double);
+begin
+  Fcredits := Value;
+  FcreditsHasValue := True;
+end;
+
+procedure TContaExtratoCredito.Setdocument_id(const Value: string);
+begin
+  Fdocument_id := Value;
+  Fdocument_idHasValue := True;
+end;
+
+procedure TContaExtratoCredito.Setarquivo_id(const Value: string);
+begin
+  Farquivo_id := Value;
+  Farquivo_idHasValue := True;
+end;
+
+procedure TContaExtratoCredito.Sethttp_method(const Value: string);
+begin
+  Fhttp_method := Value;
+  Fhttp_methodHasValue := True;
+end;
+
+procedure TContaExtratoCredito.Seturi(const Value: string);
+begin
+  Furi := Value;
+  FuriHasValue := True;
+end;
+
+{ TContaExtratoCreditoListagem }
+
+destructor TContaExtratoCreditoListagem.Destroy;
+begin
+  Fdata.Free;
+  inherited;
+end;
+
+procedure TContaExtratoCreditoListagem.Set_count(const Value: Integer);
+begin
+  F_count := Value;
+  F_countHasValue := True;
+end;
+
+procedure TContaExtratoCreditoListagem.Setdata(const Value: TContaExtratoCreditoList);
 begin
   if Value <> Fdata then
   begin
@@ -38923,10 +41188,28 @@ begin
   FemailHasValue := True;
 end;
 
+{ TCteSefazCompraGovReduzido }
+
+destructor TCteSefazCompraGovReduzido.Destroy;
+begin
+  FrefDFeAnt.Free;
+  inherited;
+end;
+
+procedure TCteSefazCompraGovReduzido.SetrefDFeAnt(const Value: stringList);
+begin
+  if Value <> FrefDFeAnt then
+  begin
+    FrefDFeAnt.Free;
+    FrefDFeAnt := Value;
+  end;
+end;
+
 { TCteSefazIde }
 
 destructor TCteSefazIde.Destroy;
 begin
+  FgPagAntecipado.Free;
   FgCompraGov.Free;
   Ftoma4.Free;
   Ftoma3.Free;
@@ -39005,6 +41288,21 @@ begin
   begin
     FgCompraGov.Free;
     FgCompraGov := Value;
+  end;
+end;
+
+procedure TCteSefazIde.SettpPagAnt(const Value: Integer);
+begin
+  FtpPagAnt := Value;
+  FtpPagAntHasValue := True;
+end;
+
+procedure TCteSefazIde.SetgPagAntecipado(const Value: TCteSefazGPagAntecipado);
+begin
+  if Value <> FgPagAntecipado then
+  begin
+    FgPagAntecipado.Free;
+    FgPagAntecipado := Value;
   end;
 end;
 
@@ -39314,6 +41612,12 @@ procedure TCteSefazEmit.SetCRT(const Value: Integer);
 begin
   FCRT := Value;
   FCRTHasValue := True;
+end;
+
+procedure TCteSefazEmit.SetISUFEmit(const Value: string);
+begin
+  FISUFEmit := Value;
+  FISUFEmitHasValue := True;
 end;
 
 { TCteSefazRem }
@@ -39728,6 +42032,14 @@ begin
   end;
 end;
 
+{ TCteSefazDevTrib }
+
+procedure TCteSefazDevTrib.SetpDevTrib(const Value: Double);
+begin
+  FpDevTrib := Value;
+  FpDevTribHasValue := True;
+end;
+
 { TCteSefazGIBSUF }
 
 destructor TCteSefazGIBSUF.Destroy;
@@ -39806,6 +42118,7 @@ end;
 
 destructor TCteSefazGCBS.Destroy;
 begin
+  FgALCZFMCBS.Free;
   FgRed.Free;
   FgDevTrib.Free;
   FgDif.Free;
@@ -39839,18 +42152,13 @@ begin
   end;
 end;
 
-{ TCteSefazCredPres }
-
-procedure TCteSefazCredPres.SetvCredPres(const Value: Double);
+procedure TCteSefazGCBS.SetgALCZFMCBS(const Value: TCteSefazALCZFMCBS);
 begin
-  FvCredPres := Value;
-  FvCredPresHasValue := True;
-end;
-
-procedure TCteSefazCredPres.SetvCredPresCondSus(const Value: Double);
-begin
-  FvCredPresCondSus := Value;
-  FvCredPresCondSusHasValue := True;
+  if Value <> FgALCZFMCBS then
+  begin
+    FgALCZFMCBS.Free;
+    FgALCZFMCBS := Value;
+  end;
 end;
 
 { TCteSefazTribCompraGov }
@@ -39886,8 +42194,6 @@ end;
 destructor TCteSefazCIBS.Destroy;
 begin
   FgTribCompraGov.Free;
-  FgCBSCredPres.Free;
-  FgIBSCredPres.Free;
   FgTribRegular.Free;
   FgCBS.Free;
   FgIBSMun.Free;
@@ -39931,24 +42237,6 @@ begin
   end;
 end;
 
-procedure TCteSefazCIBS.SetgIBSCredPres(const Value: TCteSefazCredPres);
-begin
-  if Value <> FgIBSCredPres then
-  begin
-    FgIBSCredPres.Free;
-    FgIBSCredPres := Value;
-  end;
-end;
-
-procedure TCteSefazCIBS.SetgCBSCredPres(const Value: TCteSefazCredPres);
-begin
-  if Value <> FgCBSCredPres then
-  begin
-    FgCBSCredPres.Free;
-    FgCBSCredPres := Value;
-  end;
-end;
-
 procedure TCteSefazCIBS.SetgTribCompraGov(const Value: TCteSefazTribCompraGov);
 begin
   if Value <> FgTribCompraGov then
@@ -39962,6 +42250,7 @@ end;
 
 destructor TCteSefazTribCTe.Destroy;
 begin
+  FgEstornoCred.Free;
   FgIBSCBS.Free;
   inherited;
 end;
@@ -39972,12 +42261,27 @@ begin
   FcClassTribHasValue := True;
 end;
 
+procedure TCteSefazTribCTe.SetindDoacao(const Value: Integer);
+begin
+  FindDoacao := Value;
+  FindDoacaoHasValue := True;
+end;
+
 procedure TCteSefazTribCTe.SetgIBSCBS(const Value: TCteSefazCIBS);
 begin
   if Value <> FgIBSCBS then
   begin
     FgIBSCBS.Free;
     FgIBSCBS := Value;
+  end;
+end;
+
+procedure TCteSefazTribCTe.SetgEstornoCred(const Value: TCteSefazEstornoCred);
+begin
+  if Value <> FgEstornoCred then
+  begin
+    FgEstornoCred.Free;
+    FgEstornoCred := Value;
   end;
 end;
 
@@ -40040,6 +42344,29 @@ procedure TCteSefazInfCteImp.SetvTotDFe(const Value: Double);
 begin
   FvTotDFe := Value;
   FvTotDFeHasValue := True;
+end;
+
+{ TCteSefazPgtoVinc }
+
+constructor TCteSefazPgtoVinc.Create;
+begin
+  inherited;
+  Fpgto := TCteSefazPagamentoRTCList.Create;
+end;
+
+destructor TCteSefazPgtoVinc.Destroy;
+begin
+  Fpgto.Free;
+  inherited;
+end;
+
+procedure TCteSefazPgtoVinc.Setpgto(const Value: TCteSefazPagamentoRTCList);
+begin
+  if Value <> Fpgto then
+  begin
+    Fpgto.Free;
+    Fpgto := Value;
+  end;
 end;
 
 { TCteSefazInfCarga }
@@ -41217,6 +43544,7 @@ begin
   FautXML.Free;
   FinfCteComp.Free;
   FinfCTeNorm.Free;
+  FpgtoVinc.Free;
   Fimp.Free;
   FvPrest.Free;
   Fdest.Free;
@@ -41316,6 +43644,15 @@ begin
   end;
 end;
 
+procedure TCteSefazInfCte.SetpgtoVinc(const Value: TCteSefazPgtoVinc);
+begin
+  if Value <> FpgtoVinc then
+  begin
+    FpgtoVinc.Free;
+    FpgtoVinc := Value;
+  end;
+end;
+
 procedure TCteSefazInfCte.SetinfCTeNorm(const Value: TCteSefazInfCTeNorm);
 begin
   if Value <> FinfCTeNorm then
@@ -41408,10 +43745,28 @@ begin
   FreferenciaHasValue := True;
 end;
 
+{ TCteSimpSefazCompraGovReduzidoSimp }
+
+destructor TCteSimpSefazCompraGovReduzidoSimp.Destroy;
+begin
+  FrefDFeAnt.Free;
+  inherited;
+end;
+
+procedure TCteSimpSefazCompraGovReduzidoSimp.SetrefDFeAnt(const Value: stringList);
+begin
+  if Value <> FrefDFeAnt then
+  begin
+    FrefDFeAnt.Free;
+    FrefDFeAnt := Value;
+  end;
+end;
+
 { TCteSimpSefazIdeSimp }
 
 destructor TCteSimpSefazIdeSimp.Destroy;
 begin
+  FgPagAntecipado.Free;
   FgCompraGov.Free;
   inherited;
 end;
@@ -41464,6 +43819,21 @@ begin
   begin
     FgCompraGov.Free;
     FgCompraGov := Value;
+  end;
+end;
+
+procedure TCteSimpSefazIdeSimp.SettpPagAnt(const Value: Integer);
+begin
+  FtpPagAnt := Value;
+  FtpPagAntHasValue := True;
+end;
+
+procedure TCteSimpSefazIdeSimp.SetgPagAntecipado(const Value: TCteSimpSefazGPagAntecipadoSimp);
+begin
+  if Value <> FgPagAntecipado then
+  begin
+    FgPagAntecipado.Free;
+    FgPagAntecipado := Value;
   end;
 end;
 
@@ -41678,6 +44048,12 @@ procedure TCteSimpSefazEmitSimp.SetCRT(const Value: Integer);
 begin
   FCRT := Value;
   FCRTHasValue := True;
+end;
+
+procedure TCteSimpSefazEmitSimp.SetISUFEmit(const Value: string);
+begin
+  FISUFEmit := Value;
+  FISUFEmitHasValue := True;
 end;
 
 { TCteSimpSefazEnderecoSimp }
@@ -42714,6 +45090,14 @@ begin
   end;
 end;
 
+{ TCteSimpSefazDevTribSimp }
+
+procedure TCteSimpSefazDevTribSimp.SetpDevTrib(const Value: Double);
+begin
+  FpDevTrib := Value;
+  FpDevTribHasValue := True;
+end;
+
 { TCteSimpSefazGIBSUFSimp }
 
 destructor TCteSimpSefazGIBSUFSimp.Destroy;
@@ -42792,6 +45176,7 @@ end;
 
 destructor TCteSimpSefazGCBSSimp.Destroy;
 begin
+  FgALCZFMCBS.Free;
   FgRed.Free;
   FgDevTrib.Free;
   FgDif.Free;
@@ -42825,18 +45210,13 @@ begin
   end;
 end;
 
-{ TCteSimpSefazCredPresSimp }
-
-procedure TCteSimpSefazCredPresSimp.SetvCredPres(const Value: Double);
+procedure TCteSimpSefazGCBSSimp.SetgALCZFMCBS(const Value: TCteSimpSefazALCZFMCBSSimp);
 begin
-  FvCredPres := Value;
-  FvCredPresHasValue := True;
-end;
-
-procedure TCteSimpSefazCredPresSimp.SetvCredPresCondSus(const Value: Double);
-begin
-  FvCredPresCondSus := Value;
-  FvCredPresCondSusHasValue := True;
+  if Value <> FgALCZFMCBS then
+  begin
+    FgALCZFMCBS.Free;
+    FgALCZFMCBS := Value;
+  end;
 end;
 
 { TCteSimpSefazTribCompraGovSimp }
@@ -42872,8 +45252,6 @@ end;
 destructor TCteSimpSefazCIBSSimp.Destroy;
 begin
   FgTribCompraGov.Free;
-  FgCBSCredPres.Free;
-  FgIBSCredPres.Free;
   FgTribRegular.Free;
   FgCBS.Free;
   FgIBSMun.Free;
@@ -42917,24 +45295,6 @@ begin
   end;
 end;
 
-procedure TCteSimpSefazCIBSSimp.SetgIBSCredPres(const Value: TCteSimpSefazCredPresSimp);
-begin
-  if Value <> FgIBSCredPres then
-  begin
-    FgIBSCredPres.Free;
-    FgIBSCredPres := Value;
-  end;
-end;
-
-procedure TCteSimpSefazCIBSSimp.SetgCBSCredPres(const Value: TCteSimpSefazCredPresSimp);
-begin
-  if Value <> FgCBSCredPres then
-  begin
-    FgCBSCredPres.Free;
-    FgCBSCredPres := Value;
-  end;
-end;
-
 procedure TCteSimpSefazCIBSSimp.SetgTribCompraGov(const Value: TCteSimpSefazTribCompraGovSimp);
 begin
   if Value <> FgTribCompraGov then
@@ -42948,6 +45308,7 @@ end;
 
 destructor TCteSimpSefazTribCTeSimp.Destroy;
 begin
+  FgEstornoCred.Free;
   FgIBSCBS.Free;
   inherited;
 end;
@@ -42958,12 +45319,27 @@ begin
   FcClassTribHasValue := True;
 end;
 
+procedure TCteSimpSefazTribCTeSimp.SetindDoacao(const Value: Integer);
+begin
+  FindDoacao := Value;
+  FindDoacaoHasValue := True;
+end;
+
 procedure TCteSimpSefazTribCTeSimp.SetgIBSCBS(const Value: TCteSimpSefazCIBSSimp);
 begin
   if Value <> FgIBSCBS then
   begin
     FgIBSCBS.Free;
     FgIBSCBS := Value;
+  end;
+end;
+
+procedure TCteSimpSefazTribCTeSimp.SetgEstornoCred(const Value: TCteSimpSefazEstornoCredSimp);
+begin
+  if Value <> FgEstornoCred then
+  begin
+    FgEstornoCred.Free;
+    FgEstornoCred := Value;
   end;
 end;
 
@@ -43019,6 +45395,29 @@ begin
   begin
     FIBSCBS.Free;
     FIBSCBS := Value;
+  end;
+end;
+
+{ TCteSimpSefazPgtoVincSimp }
+
+constructor TCteSimpSefazPgtoVincSimp.Create;
+begin
+  inherited;
+  Fpgto := TCteSimpSefazPagamentoRTCSimpList.Create;
+end;
+
+destructor TCteSimpSefazPgtoVincSimp.Destroy;
+begin
+  Fpgto.Free;
+  inherited;
+end;
+
+procedure TCteSimpSefazPgtoVincSimp.Setpgto(const Value: TCteSimpSefazPagamentoRTCSimpList);
+begin
+  if Value <> Fpgto then
+  begin
+    Fpgto.Free;
+    Fpgto := Value;
   end;
 end;
 
@@ -43085,6 +45484,7 @@ begin
   FinfRespTec.Free;
   FautXML.Free;
   Ftotal.Free;
+  FpgtoVinc.Free;
   Fimp.Free;
   FinfCteSub.Free;
   Fcobr.Free;
@@ -43191,6 +45591,15 @@ begin
   begin
     Fimp.Free;
     Fimp := Value;
+  end;
+end;
+
+procedure TCteSimpSefazInfCteSimp.SetpgtoVinc(const Value: TCteSimpSefazPgtoVincSimp);
+begin
+  if Value <> FpgtoVinc then
+  begin
+    FpgtoVinc.Free;
+    FpgtoVinc := Value;
   end;
 end;
 
@@ -45920,6 +48329,12 @@ begin
   FdhSaiEntHasValue := True;
 end;
 
+procedure TNfeSefazIde.SetdPrevEntrega(const Value: TDate);
+begin
+  FdPrevEntrega := Value;
+  FdPrevEntregaHasValue := True;
+end;
+
 procedure TNfeSefazIde.SetcMunFGIBS(const Value: string);
 begin
   FcMunFGIBS := Value;
@@ -46596,6 +49011,12 @@ begin
     FgCred.Free;
     FgCred := Value;
   end;
+end;
+
+procedure TNfeSefazProd.SettpCredPresIBSZFM(const Value: Integer);
+begin
+  FtpCredPresIBSZFM := Value;
+  FtpCredPresIBSZFMHasValue := True;
 end;
 
 procedure TNfeSefazProd.SetEXTIPI(const Value: string);
@@ -47281,10 +49702,34 @@ begin
   FpRedBCHasValue := True;
 end;
 
+procedure TNfeSefazICMS90.SetcBenefRBC(const Value: string);
+begin
+  FcBenefRBC := Value;
+  FcBenefRBCHasValue := True;
+end;
+
 procedure TNfeSefazICMS90.SetpICMS(const Value: Double);
 begin
   FpICMS := Value;
   FpICMSHasValue := True;
+end;
+
+procedure TNfeSefazICMS90.SetvICMSOp(const Value: Double);
+begin
+  FvICMSOp := Value;
+  FvICMSOpHasValue := True;
+end;
+
+procedure TNfeSefazICMS90.SetpDif(const Value: Double);
+begin
+  FpDif := Value;
+  FpDifHasValue := True;
+end;
+
+procedure TNfeSefazICMS90.SetvICMSDif(const Value: Double);
+begin
+  FvICMSDif := Value;
+  FvICMSDifHasValue := True;
 end;
 
 procedure TNfeSefazICMS90.SetvICMS(const Value: Double);
@@ -47309,6 +49754,24 @@ procedure TNfeSefazICMS90.SetvFCP(const Value: Double);
 begin
   FvFCP := Value;
   FvFCPHasValue := True;
+end;
+
+procedure TNfeSefazICMS90.SetpFCPDif(const Value: Double);
+begin
+  FpFCPDif := Value;
+  FpFCPDifHasValue := True;
+end;
+
+procedure TNfeSefazICMS90.SetvFCPDif(const Value: Double);
+begin
+  FvFCPDif := Value;
+  FvFCPDifHasValue := True;
+end;
+
+procedure TNfeSefazICMS90.SetvFCPEfet(const Value: Double);
+begin
+  FvFCPEfet := Value;
+  FvFCPEfetHasValue := True;
 end;
 
 procedure TNfeSefazICMS90.SetmodBCST(const Value: Integer);
@@ -47431,6 +49894,24 @@ procedure TNfeSefazICMSPart.SetvFCPST(const Value: Double);
 begin
   FvFCPST := Value;
   FvFCPSTHasValue := True;
+end;
+
+procedure TNfeSefazICMSPart.SetvICMSDeson(const Value: Double);
+begin
+  FvICMSDeson := Value;
+  FvICMSDesonHasValue := True;
+end;
+
+procedure TNfeSefazICMSPart.SetmotDesICMS(const Value: Integer);
+begin
+  FmotDesICMS := Value;
+  FmotDesICMSHasValue := True;
+end;
+
+procedure TNfeSefazICMSPart.SetindDeduzDeson(const Value: Integer);
+begin
+  FindDeduzDeson := Value;
+  FindDeduzDesonHasValue := True;
 end;
 
 { TNfeSefazICMSST }
@@ -48448,20 +50929,6 @@ begin
   end;
 end;
 
-{ TNfeSefazCredPres }
-
-procedure TNfeSefazCredPres.SetvCredPres(const Value: Double);
-begin
-  FvCredPres := Value;
-  FvCredPresHasValue := True;
-end;
-
-procedure TNfeSefazCredPres.SetvCredPresCondSus(const Value: Double);
-begin
-  FvCredPresCondSus := Value;
-  FvCredPresCondSusHasValue := True;
-end;
-
 { TNfeSefazTribCompraGov }
 
 procedure TNfeSefazTribCompraGov.SetpAliqIBSUF(const Value: Double);
@@ -48495,8 +50962,6 @@ end;
 destructor TNfeSefazCIBS.Destroy;
 begin
   FgTribCompraGov.Free;
-  FgCBSCredPres.Free;
-  FgIBSCredPres.Free;
   FgTribRegular.Free;
   FgCBS.Free;
   FgIBSMun.Free;
@@ -48537,24 +51002,6 @@ begin
   begin
     FgTribRegular.Free;
     FgTribRegular := Value;
-  end;
-end;
-
-procedure TNfeSefazCIBS.SetgIBSCredPres(const Value: TNfeSefazCredPres);
-begin
-  if Value <> FgIBSCredPres then
-  begin
-    FgIBSCredPres.Free;
-    FgIBSCredPres := Value;
-  end;
-end;
-
-procedure TNfeSefazCIBS.SetgCBSCredPres(const Value: TNfeSefazCredPres);
-begin
-  if Value <> FgCBSCredPres then
-  begin
-    FgCBSCredPres.Free;
-    FgCBSCredPres := Value;
   end;
 end;
 
@@ -48614,12 +51061,45 @@ begin
   end;
 end;
 
-{ TNfeSefazCredPresIBSZFM }
+{ TNfeSefazCredPres }
 
-procedure TNfeSefazCredPresIBSZFM.SetvCredPresIBSZFM(const Value: Double);
+procedure TNfeSefazCredPres.SetvCredPres(const Value: Double);
 begin
-  FvCredPresIBSZFM := Value;
-  FvCredPresIBSZFMHasValue := True;
+  FvCredPres := Value;
+  FvCredPresHasValue := True;
+end;
+
+procedure TNfeSefazCredPres.SetvCredPresCondSus(const Value: Double);
+begin
+  FvCredPresCondSus := Value;
+  FvCredPresCondSusHasValue := True;
+end;
+
+{ TNfeSefazCredPresOper }
+
+destructor TNfeSefazCredPresOper.Destroy;
+begin
+  FgCBSCredPres.Free;
+  FgIBSCredPres.Free;
+  inherited;
+end;
+
+procedure TNfeSefazCredPresOper.SetgIBSCredPres(const Value: TNfeSefazCredPres);
+begin
+  if Value <> FgIBSCredPres then
+  begin
+    FgIBSCredPres.Free;
+    FgIBSCredPres := Value;
+  end;
+end;
+
+procedure TNfeSefazCredPresOper.SetgCBSCredPres(const Value: TNfeSefazCredPres);
+begin
+  if Value <> FgCBSCredPres then
+  begin
+    FgCBSCredPres.Free;
+    FgCBSCredPres := Value;
+  end;
 end;
 
 { TNfeSefazTribNFe }
@@ -48627,6 +51107,9 @@ end;
 destructor TNfeSefazTribNFe.Destroy;
 begin
   FgCredPresIBSZFM.Free;
+  FgCredPresOper.Free;
+  FgEstornoCred.Free;
+  FgAjusteCompet.Free;
   FgTransfCred.Free;
   FgIBSCBSMono.Free;
   FgIBSCBS.Free;
@@ -48637,6 +51120,12 @@ procedure TNfeSefazTribNFe.SetcClassTrib(const Value: string);
 begin
   FcClassTrib := Value;
   FcClassTribHasValue := True;
+end;
+
+procedure TNfeSefazTribNFe.SetindDoacao(const Value: Integer);
+begin
+  FindDoacao := Value;
+  FindDoacaoHasValue := True;
 end;
 
 procedure TNfeSefazTribNFe.SetgIBSCBS(const Value: TNfeSefazCIBS);
@@ -48663,6 +51152,33 @@ begin
   begin
     FgTransfCred.Free;
     FgTransfCred := Value;
+  end;
+end;
+
+procedure TNfeSefazTribNFe.SetgAjusteCompet(const Value: TNfeSefazAjusteCompet);
+begin
+  if Value <> FgAjusteCompet then
+  begin
+    FgAjusteCompet.Free;
+    FgAjusteCompet := Value;
+  end;
+end;
+
+procedure TNfeSefazTribNFe.SetgEstornoCred(const Value: TNfeSefazEstornoCred);
+begin
+  if Value <> FgEstornoCred then
+  begin
+    FgEstornoCred.Free;
+    FgEstornoCred := Value;
+  end;
+end;
+
+procedure TNfeSefazTribNFe.SetgCredPresOper(const Value: TNfeSefazCredPresOper);
+begin
+  if Value <> FgCredPresOper then
+  begin
+    FgCredPresOper.Free;
+    FgCredPresOper := Value;
   end;
 end;
 
@@ -49172,6 +51688,7 @@ end;
 
 destructor TNfeSefazIBSCBSMonoTot.Destroy;
 begin
+  FgEstornoCred.Free;
   FgMono.Free;
   FgCBS.Free;
   FgIBS.Free;
@@ -49202,6 +51719,15 @@ begin
   begin
     FgMono.Free;
     FgMono := Value;
+  end;
+end;
+
+procedure TNfeSefazIBSCBSMonoTot.SetgEstornoCred(const Value: TNfeSefazGEstornoCred);
+begin
+  if Value <> FgEstornoCred then
+  begin
+    FgEstornoCred.Free;
+    FgEstornoCred := Value;
   end;
 end;
 
@@ -49836,6 +52362,66 @@ begin
   end;
 end;
 
+{ TNfeSefazRSAKeyValueType }
+
+procedure TNfeSefazRSAKeyValueType.SetModulus(const Value: TBytes);
+begin
+  FModulus := Value;
+  FModulusHasValue := True;
+end;
+
+procedure TNfeSefazRSAKeyValueType.SetExponent(const Value: TBytes);
+begin
+  FExponent := Value;
+  FExponentHasValue := True;
+end;
+
+{ TNfeSefazPAASignature }
+
+constructor TNfeSefazPAASignature.Create;
+begin
+  inherited;
+  FRSAKeyValue := TNfeSefazRSAKeyValueType.Create;
+end;
+
+destructor TNfeSefazPAASignature.Destroy;
+begin
+  FRSAKeyValue.Free;
+  inherited;
+end;
+
+procedure TNfeSefazPAASignature.SetRSAKeyValue(const Value: TNfeSefazRSAKeyValueType);
+begin
+  if Value <> FRSAKeyValue then
+  begin
+    FRSAKeyValue.Free;
+    FRSAKeyValue := Value;
+  end;
+end;
+
+{ TNfeSefazInfPAA }
+
+constructor TNfeSefazInfPAA.Create;
+begin
+  inherited;
+  FPAASignature := TNfeSefazPAASignature.Create;
+end;
+
+destructor TNfeSefazInfPAA.Destroy;
+begin
+  FPAASignature.Free;
+  inherited;
+end;
+
+procedure TNfeSefazInfPAA.SetPAASignature(const Value: TNfeSefazPAASignature);
+begin
+  if Value <> FPAASignature then
+  begin
+    FPAASignature.Free;
+    FPAASignature := Value;
+  end;
+end;
+
 { TNfeSefazInfNFe }
 
 constructor TNfeSefazInfNFe.Create;
@@ -49851,6 +52437,7 @@ end;
 
 destructor TNfeSefazInfNFe.Destroy;
 begin
+  FinfPAA.Free;
   Fagropecuario.Free;
   FinfSolicNFF.Free;
   FinfRespTec.Free;
@@ -50057,6 +52644,15 @@ begin
   begin
     Fagropecuario.Free;
     Fagropecuario := Value;
+  end;
+end;
+
+procedure TNfeSefazInfNFe.SetinfPAA(const Value: TNfeSefazInfPAA);
+begin
+  if Value <> FinfPAA then
+  begin
+    FinfPAA.Free;
+    FinfPAA := Value;
   end;
 end;
 
