@@ -4289,7 +4289,7 @@ type
     /// ID único da NF-e gerado pela API.
     /// </param>
     /// <remarks>
-    /// É possível enviar até 20 correções diferentes, sendo que será válido sempre a última correção enviada.
+    /// é possível enviar até 20 correções diferentes, sendo que será válido sempre a última correção enviada.
     /// 
     /// **Informações adicionais**:
     /// - Consumo: 1 unidade por requisição.
