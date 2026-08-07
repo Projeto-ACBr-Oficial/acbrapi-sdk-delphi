@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics, System.UITypes,
   System.IOUtils, ShellApi,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, ACBrAPIClient, ACBrAPIDTOs,
-  OpenApiRest, Vcl.ComCtrls, Vcl.ExtCtrls,
+  OpenApiRest, ACBrAPICurlLog, Vcl.ComCtrls, Vcl.ExtCtrls,
   Forms.Empresa,
   Forms.Certificado,
   Forms.ConfigNfse,
@@ -135,6 +135,7 @@ type
     procedure btVerDetalhesNfcomClick(Sender: TObject);
   private
     Client: IACBrAPIClient;
+    CurlLog: TACBrAPICurlLog;
     TokenProvider: IClientCredencialsTokenProvider;
     TokenData: ITokenData;
     function BaseUrl: string;
@@ -147,6 +148,7 @@ type
     function NfceSelecionada: string;
     function NfcomSelecionada: string;
   public
+    destructor Destroy; override;
   end;
 
 var
@@ -270,7 +272,7 @@ var
   Empresa: TEmpresa;
   Item: TListItem;
 begin
-  Empresas := Client.Empresa.ListarEmpresas(30, 0, False, '');
+  Empresas := Client.Empresa.ListarEmpresas(30, 0, False, '','');
   try
     lvEmpresas.Clear;
     for Empresa in Empresas.data do
@@ -750,6 +752,20 @@ begin
   Client.Config.BaseUrl := BaseUrl;
   TokenProvider := TClientCredentialsTokenProvider.Create;
   TokenProvider.TokenEndpoint := 'https://auth.acbr.api.br/realms/ACBrAPI/protocol/openid-connect/token';
+
+  // Loga no memo o curl de cada requisicao que o SDK envia (para suporte).
+  CurlLog := TACBrAPICurlLog.Instalar(Client.Config,
+    procedure(const Curl: string)
+    begin
+      Log(Curl);
+      Log('');
+    end);
+end;
+
+destructor TfmMain.Destroy;
+begin
+  CurlLog.Free;
+  inherited;
 end;
 
 procedure TfmMain.Log(const Msg: string);

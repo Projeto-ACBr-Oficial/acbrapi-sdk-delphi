@@ -15,7 +15,6 @@ object fmMain: TfmMain
   DesignSize = (
     846
     570)
-  TextHeight = 15
   object Label1: TLabel
     Left = 16
     Top = 40
