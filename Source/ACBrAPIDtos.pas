@@ -118,28 +118,6 @@ type
   TDfeSincronizacao = class;
   TNfseCidadesAtendidas = class;
   TNfseCidadeMetadados = class;
-  TRpsIdentificacaoPrestador = class;
-  TRpsDadosTomadorEndereco = class;
-  TRpsDadosTomador = class;
-  TRpsDadosIntermediario = class;
-  TRpsDadosConstrucaoCivil = class;
-  TRpsServicoValores = class;
-  TRpsDadosServico = class;
-  TRpsDadosServicoList = class;
-  TRpsPedidoEmissao = class;
-  TRpsPedidoEmissaoList = class;
-  TRpsPedidoEmissaoLote = class;
-  TDPS = class;
-  TNfseMensagemRetorno = class;
-  TNfseMensagemRetornoList = class;
-  TNfseCancelamento = class;
-  TRpsIdentificacao = class;
-  TRpsDados = class;
-  TRpsDadosPrestador = class;
-  TRps = class;
-  TNfse = class;
-  TNfseList = class;
-  TRpsLote = class;
   TSubstituicao = class;
   TRegTrib = class;
   TInfoPrestador = class;
@@ -198,9 +176,26 @@ type
   TNfseDpsPedidoEmissao = class;
   TNfseDpsPedidoEmissaoList = class;
   TNfseLoteDpsPedidoEmissao = class;
+  TDPS = class;
+  TNfseMensagemRetorno = class;
+  TNfseMensagemRetornoList = class;
+  TNfseCancelamento = class;
+  TRpsIdentificacao = class;
+  TRpsDados = class;
+  TRpsDadosPrestador = class;
+  TRpsDadosTomadorEndereco = class;
+  TRpsDadosTomador = class;
+  TRpsDadosIntermediario = class;
+  TRpsDadosConstrucaoCivil = class;
+  TRpsServicoValores = class;
+  TRpsDadosServico = class;
+  TRpsDadosServicoList = class;
+  TRps = class;
+  TNfse = class;
+  TNfseList = class;
+  TRpsLote = class;
   TRpsLoteList = class;
   TRpsLoteListagem = class;
-  TNfsePedidoEmissao = class;
   TNfseListagem = class;
   TNfsePedidoCancelamento = class;
   TNfsePedidoSincronizacao = class;
@@ -4699,884 +4694,6 @@ type
     property credenciais: stringList read Fcredenciais write Setcredenciais;
   end;
   
-  TRpsIdentificacaoPrestador = class
-  private
-    Fcpf_cnpj: string;
-  public
-    /// <summary>
-    /// CPF ou CNPJ do prestador.
-    /// Utilize o valor sem máscara.
-    /// </summary>
-    property cpf_cnpj: string read Fcpf_cnpj write Fcpf_cnpj;
-  end;
-  
-  TRpsDadosTomadorEndereco = class
-  private
-    Flogradouro: string;
-    FlogradouroHasValue: Boolean;
-    Fnumero: string;
-    FnumeroHasValue: Boolean;
-    Fcomplemento: string;
-    FcomplementoHasValue: Boolean;
-    Fbairro: string;
-    FbairroHasValue: Boolean;
-    Fcodigo_municipio: string;
-    Fcodigo_municipioHasValue: Boolean;
-    Fcidade: string;
-    FcidadeHasValue: Boolean;
-    Fuf: string;
-    FufHasValue: Boolean;
-    Fcodigo_pais: string;
-    Fcodigo_paisHasValue: Boolean;
-    Fpais: string;
-    FpaisHasValue: Boolean;
-    Fcep: string;
-    FcepHasValue: Boolean;
-    procedure Setlogradouro(const Value: string);
-    procedure Setnumero(const Value: string);
-    procedure Setcomplemento(const Value: string);
-    procedure Setbairro(const Value: string);
-    procedure Setcodigo_municipio(const Value: string);
-    procedure Setcidade(const Value: string);
-    procedure Setuf(const Value: string);
-    procedure Setcodigo_pais(const Value: string);
-    procedure Setpais(const Value: string);
-    procedure Setcep(const Value: string);
-  public
-    /// <summary>
-    /// Logradouro.
-    /// </summary>
-    property logradouro: string read Flogradouro write Setlogradouro;
-    property logradouroHasValue: Boolean read FlogradouroHasValue write FlogradouroHasValue;
-    /// <summary>
-    /// Número.
-    /// </summary>
-    property numero: string read Fnumero write Setnumero;
-    property numeroHasValue: Boolean read FnumeroHasValue write FnumeroHasValue;
-    /// <summary>
-    /// Complemento.
-    /// </summary>
-    property complemento: string read Fcomplemento write Setcomplemento;
-    property complementoHasValue: Boolean read FcomplementoHasValue write FcomplementoHasValue;
-    /// <summary>
-    /// Bairro.
-    /// </summary>
-    property bairro: string read Fbairro write Setbairro;
-    property bairroHasValue: Boolean read FbairroHasValue write FbairroHasValue;
-    /// <summary>
-    /// Código IBGE do município.
-    /// </summary>
-    property codigo_municipio: string read Fcodigo_municipio write Setcodigo_municipio;
-    property codigo_municipioHasValue: Boolean read Fcodigo_municipioHasValue write Fcodigo_municipioHasValue;
-    /// <summary>
-    /// Cidade.
-    /// </summary>
-    property cidade: string read Fcidade write Setcidade;
-    property cidadeHasValue: Boolean read FcidadeHasValue write FcidadeHasValue;
-    /// <summary>
-    /// Sigla do estado.
-    /// </summary>
-    property uf: string read Fuf write Setuf;
-    property ufHasValue: Boolean read FufHasValue write FufHasValue;
-    property codigo_pais: string read Fcodigo_pais write Setcodigo_pais;
-    property codigo_paisHasValue: Boolean read Fcodigo_paisHasValue write Fcodigo_paisHasValue;
-    /// <summary>
-    /// Nome do país.
-    /// </summary>
-    property pais: string read Fpais write Setpais;
-    property paisHasValue: Boolean read FpaisHasValue write FpaisHasValue;
-    /// <summary>
-    /// CEP.
-    /// Utilize o valor sem máscara.
-    /// </summary>
-    property cep: string read Fcep write Setcep;
-    property cepHasValue: Boolean read FcepHasValue write FcepHasValue;
-  end;
-  
-  TRpsDadosTomador = class
-  private
-    Fcpf_cnpj: string;
-    Fcpf_cnpjHasValue: Boolean;
-    Finscricao_municipal: string;
-    Finscricao_municipalHasValue: Boolean;
-    Fnome_razao_social: string;
-    Ffone: string;
-    FfoneHasValue: Boolean;
-    Femail: string;
-    FemailHasValue: Boolean;
-    Fendereco: TRpsDadosTomadorEndereco;
-    procedure Setcpf_cnpj(const Value: string);
-    procedure Setinscricao_municipal(const Value: string);
-    procedure Setfone(const Value: string);
-    procedure Setemail(const Value: string);
-    procedure Setendereco(const Value: TRpsDadosTomadorEndereco);
-  public
-    destructor Destroy; override;
-    /// <summary>
-    /// CPF ou CNPJ do tomador/destinatário.
-    /// </summary>
-    property cpf_cnpj: string read Fcpf_cnpj write Setcpf_cnpj;
-    property cpf_cnpjHasValue: Boolean read Fcpf_cnpjHasValue write Fcpf_cnpjHasValue;
-    /// <summary>
-    /// Inscrição Municipal do tomador/destinatário.
-    /// </summary>
-    property inscricao_municipal: string read Finscricao_municipal write Setinscricao_municipal;
-    property inscricao_municipalHasValue: Boolean read Finscricao_municipalHasValue write Finscricao_municipalHasValue;
-    /// <summary>
-    /// Nome ou Razão Social do tomador/destinatário.
-    /// </summary>
-    property nome_razao_social: string read Fnome_razao_social write Fnome_razao_social;
-    /// <summary>
-    /// Telefone do tomador/destinatário.
-    /// </summary>
-    property fone: string read Ffone write Setfone;
-    property foneHasValue: Boolean read FfoneHasValue write FfoneHasValue;
-    /// <summary>
-    /// Email do tomador/destinatário.
-    /// </summary>
-    property email: string read Femail write Setemail;
-    property emailHasValue: Boolean read FemailHasValue write FemailHasValue;
-    /// <summary>
-    /// Endereço do tomador/destinatário.
-    /// </summary>
-    property endereco: TRpsDadosTomadorEndereco read Fendereco write Setendereco;
-  end;
-  
-  TRpsDadosIntermediario = class
-  private
-    Fcpf_cnpj: string;
-    Fcpf_cnpjHasValue: Boolean;
-    Fnome_razao_social: string;
-    Fnome_razao_socialHasValue: Boolean;
-    Finscricao_municipal: string;
-    Finscricao_municipalHasValue: Boolean;
-    procedure Setcpf_cnpj(const Value: string);
-    procedure Setnome_razao_social(const Value: string);
-    procedure Setinscricao_municipal(const Value: string);
-  public
-    property cpf_cnpj: string read Fcpf_cnpj write Setcpf_cnpj;
-    property cpf_cnpjHasValue: Boolean read Fcpf_cnpjHasValue write Fcpf_cnpjHasValue;
-    property nome_razao_social: string read Fnome_razao_social write Setnome_razao_social;
-    property nome_razao_socialHasValue: Boolean read Fnome_razao_socialHasValue write Fnome_razao_socialHasValue;
-    property inscricao_municipal: string read Finscricao_municipal write Setinscricao_municipal;
-    property inscricao_municipalHasValue: Boolean read Finscricao_municipalHasValue write Finscricao_municipalHasValue;
-  end;
-  
-  TRpsDadosConstrucaoCivil = class
-  private
-    Fcodigo_obra: string;
-    Fcodigo_obraHasValue: Boolean;
-    Fart: string;
-    FartHasValue: Boolean;
-    procedure Setcodigo_obra(const Value: string);
-    procedure Setart(const Value: string);
-  public
-    property codigo_obra: string read Fcodigo_obra write Setcodigo_obra;
-    property codigo_obraHasValue: Boolean read Fcodigo_obraHasValue write Fcodigo_obraHasValue;
-    property art: string read Fart write Setart;
-    property artHasValue: Boolean read FartHasValue write FartHasValue;
-  end;
-  
-  TRpsServicoValores = class
-  private
-    Fvalor_unitario: Double;
-    Fvalor_servicos: Double;
-    Fvalor_servicosHasValue: Boolean;
-    Fvalor_deducoes: Double;
-    Fvalor_deducoesHasValue: Boolean;
-    Fvalor_pis: Double;
-    Fvalor_pisHasValue: Boolean;
-    Fvalor_cofins: Double;
-    Fvalor_cofinsHasValue: Boolean;
-    Fvalor_inss: Double;
-    Fvalor_inssHasValue: Boolean;
-    Fvalor_ir: Double;
-    Fvalor_irHasValue: Boolean;
-    Fvalor_csll: Double;
-    Fvalor_csllHasValue: Boolean;
-    Fvalor_outras_retencoes: Double;
-    Fvalor_outras_retencoesHasValue: Boolean;
-    Fvalor_iss: Double;
-    Fvalor_issHasValue: Boolean;
-    Fvalor_iss_retido: Double;
-    Fvalor_iss_retidoHasValue: Boolean;
-    Fvalor_liquido: Double;
-    Fvalor_liquidoHasValue: Boolean;
-    Faliquota_iss: Double;
-    Faliquota_issHasValue: Boolean;
-    Faliquota_pis: Double;
-    Faliquota_pisHasValue: Boolean;
-    Faliquota_cofins: Double;
-    Faliquota_cofinsHasValue: Boolean;
-    Faliquota_inss: Double;
-    Faliquota_inssHasValue: Boolean;
-    Faliquota_ir: Double;
-    Faliquota_irHasValue: Boolean;
-    Faliquota_csll: Double;
-    Faliquota_csllHasValue: Boolean;
-    Fdesconto_incondicionado: Double;
-    Fdesconto_incondicionadoHasValue: Boolean;
-    Fdesconto_condicionado: Double;
-    Fdesconto_condicionadoHasValue: Boolean;
-    procedure Setvalor_servicos(const Value: Double);
-    procedure Setvalor_deducoes(const Value: Double);
-    procedure Setvalor_pis(const Value: Double);
-    procedure Setvalor_cofins(const Value: Double);
-    procedure Setvalor_inss(const Value: Double);
-    procedure Setvalor_ir(const Value: Double);
-    procedure Setvalor_csll(const Value: Double);
-    procedure Setvalor_outras_retencoes(const Value: Double);
-    procedure Setvalor_iss(const Value: Double);
-    procedure Setvalor_iss_retido(const Value: Double);
-    procedure Setvalor_liquido(const Value: Double);
-    procedure Setaliquota_iss(const Value: Double);
-    procedure Setaliquota_pis(const Value: Double);
-    procedure Setaliquota_cofins(const Value: Double);
-    procedure Setaliquota_inss(const Value: Double);
-    procedure Setaliquota_ir(const Value: Double);
-    procedure Setaliquota_csll(const Value: Double);
-    procedure Setdesconto_incondicionado(const Value: Double);
-    procedure Setdesconto_condicionado(const Value: Double);
-  public
-    /// <summary>
-    /// Valor unitário do serviço.
-    /// </summary>
-    property valor_unitario: Double read Fvalor_unitario write Fvalor_unitario;
-    /// <summary>
-    /// Valor total do serviço.
-    /// </summary>
-    property valor_servicos: Double read Fvalor_servicos write Setvalor_servicos;
-    property valor_servicosHasValue: Boolean read Fvalor_servicosHasValue write Fvalor_servicosHasValue;
-    property valor_deducoes: Double read Fvalor_deducoes write Setvalor_deducoes;
-    property valor_deducoesHasValue: Boolean read Fvalor_deducoesHasValue write Fvalor_deducoesHasValue;
-    property valor_pis: Double read Fvalor_pis write Setvalor_pis;
-    property valor_pisHasValue: Boolean read Fvalor_pisHasValue write Fvalor_pisHasValue;
-    property valor_cofins: Double read Fvalor_cofins write Setvalor_cofins;
-    property valor_cofinsHasValue: Boolean read Fvalor_cofinsHasValue write Fvalor_cofinsHasValue;
-    property valor_inss: Double read Fvalor_inss write Setvalor_inss;
-    property valor_inssHasValue: Boolean read Fvalor_inssHasValue write Fvalor_inssHasValue;
-    property valor_ir: Double read Fvalor_ir write Setvalor_ir;
-    property valor_irHasValue: Boolean read Fvalor_irHasValue write Fvalor_irHasValue;
-    property valor_csll: Double read Fvalor_csll write Setvalor_csll;
-    property valor_csllHasValue: Boolean read Fvalor_csllHasValue write Fvalor_csllHasValue;
-    property valor_outras_retencoes: Double read Fvalor_outras_retencoes write Setvalor_outras_retencoes;
-    property valor_outras_retencoesHasValue: Boolean read Fvalor_outras_retencoesHasValue write Fvalor_outras_retencoesHasValue;
-    property valor_iss: Double read Fvalor_iss write Setvalor_iss;
-    property valor_issHasValue: Boolean read Fvalor_issHasValue write Fvalor_issHasValue;
-    property valor_iss_retido: Double read Fvalor_iss_retido write Setvalor_iss_retido;
-    property valor_iss_retidoHasValue: Boolean read Fvalor_iss_retidoHasValue write Fvalor_iss_retidoHasValue;
-    property valor_liquido: Double read Fvalor_liquido write Setvalor_liquido;
-    property valor_liquidoHasValue: Boolean read Fvalor_liquidoHasValue write Fvalor_liquidoHasValue;
-    property aliquota_iss: Double read Faliquota_iss write Setaliquota_iss;
-    property aliquota_issHasValue: Boolean read Faliquota_issHasValue write Faliquota_issHasValue;
-    property aliquota_pis: Double read Faliquota_pis write Setaliquota_pis;
-    property aliquota_pisHasValue: Boolean read Faliquota_pisHasValue write Faliquota_pisHasValue;
-    property aliquota_cofins: Double read Faliquota_cofins write Setaliquota_cofins;
-    property aliquota_cofinsHasValue: Boolean read Faliquota_cofinsHasValue write Faliquota_cofinsHasValue;
-    property aliquota_inss: Double read Faliquota_inss write Setaliquota_inss;
-    property aliquota_inssHasValue: Boolean read Faliquota_inssHasValue write Faliquota_inssHasValue;
-    property aliquota_ir: Double read Faliquota_ir write Setaliquota_ir;
-    property aliquota_irHasValue: Boolean read Faliquota_irHasValue write Faliquota_irHasValue;
-    property aliquota_csll: Double read Faliquota_csll write Setaliquota_csll;
-    property aliquota_csllHasValue: Boolean read Faliquota_csllHasValue write Faliquota_csllHasValue;
-    property desconto_incondicionado: Double read Fdesconto_incondicionado write Setdesconto_incondicionado;
-    property desconto_incondicionadoHasValue: Boolean read Fdesconto_incondicionadoHasValue write Fdesconto_incondicionadoHasValue;
-    property desconto_condicionado: Double read Fdesconto_condicionado write Setdesconto_condicionado;
-    property desconto_condicionadoHasValue: Boolean read Fdesconto_condicionadoHasValue write Fdesconto_condicionadoHasValue;
-  end;
-  
-  TRpsDadosServico = class
-  private
-    Fiss_retido: Boolean;
-    Fiss_retidoHasValue: Boolean;
-    Fresponsavel_retencao: Integer;
-    Fresponsavel_retencaoHasValue: Boolean;
-    Fitem_lista_servico: string;
-    Fcodigo_cnae: string;
-    Fcodigo_cnaeHasValue: Boolean;
-    Fcodigo_tributacao_municipio: string;
-    Fcodigo_tributacao_municipioHasValue: Boolean;
-    Fdiscriminacao: string;
-    Fcodigo_municipio: string;
-    Fcodigo_municipioHasValue: Boolean;
-    Fcodigo_pais: string;
-    Fcodigo_paisHasValue: Boolean;
-    Ftipo_tributacao: Integer;
-    Ftipo_tributacaoHasValue: Boolean;
-    Fexigibilidade_iss: Integer;
-    Fexigibilidade_issHasValue: Boolean;
-    Fcodigo_municipio_incidencia: string;
-    Fcodigo_municipio_incidenciaHasValue: Boolean;
-    Fnumero_processo: string;
-    Fnumero_processoHasValue: Boolean;
-    Funidade: string;
-    FunidadeHasValue: Boolean;
-    Fquantidade: Double;
-    FquantidadeHasValue: Boolean;
-    Fvalores: TRpsServicoValores;
-    procedure Setiss_retido(const Value: Boolean);
-    procedure Setresponsavel_retencao(const Value: Integer);
-    procedure Setcodigo_cnae(const Value: string);
-    procedure Setcodigo_tributacao_municipio(const Value: string);
-    procedure Setcodigo_municipio(const Value: string);
-    procedure Setcodigo_pais(const Value: string);
-    procedure Settipo_tributacao(const Value: Integer);
-    procedure Setexigibilidade_iss(const Value: Integer);
-    procedure Setcodigo_municipio_incidencia(const Value: string);
-    procedure Setnumero_processo(const Value: string);
-    procedure Setunidade(const Value: string);
-    procedure Setquantidade(const Value: Double);
-    procedure Setvalores(const Value: TRpsServicoValores);
-  public
-    constructor Create;
-    destructor Destroy; override;
-    /// <summary>
-    /// Reter ISSQN.
-    /// </summary>
-    property iss_retido: Boolean read Fiss_retido write Setiss_retido;
-    property iss_retidoHasValue: Boolean read Fiss_retidoHasValue write Fiss_retidoHasValue;
-    /// <summary>
-    /// Responsável pela retenção:
-    /// * 0 - Prestador;
-    /// * 1 - Tomador;
-    /// * 2 - Intermediário.
-    /// </summary>
-    property responsavel_retencao: Integer read Fresponsavel_retencao write Setresponsavel_retencao;
-    property responsavel_retencaoHasValue: Boolean read Fresponsavel_retencaoHasValue write Fresponsavel_retencaoHasValue;
-    /// <summary>
-    /// Código do item da lista de serviço, geralmente segue a LC116, podendo variar de acordo com a prefeitura.
-    /// 
-    /// Você pode encontrar esse dado no portal da prefeitura, em uma nota emitida ou junto ao contador.
-    /// </summary>
-    property item_lista_servico: string read Fitem_lista_servico write Fitem_lista_servico;
-    /// <summary>
-    /// Código CNAE (Classificação Nacional de Atividades Econômicas).
-    /// </summary>
-    property codigo_cnae: string read Fcodigo_cnae write Setcodigo_cnae;
-    property codigo_cnaeHasValue: Boolean read Fcodigo_cnaeHasValue write Fcodigo_cnaeHasValue;
-    /// <summary>
-    /// Código de tributação do município.
-    /// </summary>
-    property codigo_tributacao_municipio: string read Fcodigo_tributacao_municipio write Setcodigo_tributacao_municipio;
-    property codigo_tributacao_municipioHasValue: Boolean read Fcodigo_tributacao_municipioHasValue write Fcodigo_tributacao_municipioHasValue;
-    /// <summary>
-    /// Detalhamento do serviço prestado.
-    /// </summary>
-    property discriminacao: string read Fdiscriminacao write Fdiscriminacao;
-    /// <summary>
-    /// Código IBGE do município de prestação do serviço.
-    /// Caso não informado, será considerado o município do prestador.
-    /// </summary>
-    property codigo_municipio: string read Fcodigo_municipio write Setcodigo_municipio;
-    property codigo_municipioHasValue: Boolean read Fcodigo_municipioHasValue write Fcodigo_municipioHasValue;
-    /// <summary>
-    /// Código do país de prestação do serviço.
-    /// </summary>
-    property codigo_pais: string read Fcodigo_pais write Setcodigo_pais;
-    property codigo_paisHasValue: Boolean read Fcodigo_paisHasValue write Fcodigo_paisHasValue;
-    /// <summary>
-    /// Tipo de Tributação do Serviço:
-    /// * 1 - Isento de ISS
-    /// * 2 - Imune
-    /// * 3 - Não Incidência no Município
-    /// * 4 - Não Tributável
-    /// * 5 - Retido
-    /// * 6 - Tributável Dentro do Município
-    /// * 7 - Tributável Fora do Município
-    /// * 8 - Tributável Dentro do Município pelo tomador
-    /// </summary>
-    property tipo_tributacao: Integer read Ftipo_tributacao write Settipo_tributacao;
-    property tipo_tributacaoHasValue: Boolean read Ftipo_tributacaoHasValue write Ftipo_tributacaoHasValue;
-    /// <summary>
-    /// Exigibilidade do ISS:
-    /// * 1 - Exigível
-    /// * 2 - Não Incidência
-    /// * 3 - Isenção
-    /// * 4 - Exportação
-    /// * 5 - Imunidade
-    /// * 6 - Suspenso por Decisão Judicial
-    /// * 7 - Suspenso por Processo Administrativo
-    /// </summary>
-    property exigibilidade_iss: Integer read Fexigibilidade_iss write Setexigibilidade_iss;
-    property exigibilidade_issHasValue: Boolean read Fexigibilidade_issHasValue write Fexigibilidade_issHasValue;
-    /// <summary>
-    /// Código IBGE do município de incidência do ISSQN.
-    /// </summary>
-    property codigo_municipio_incidencia: string read Fcodigo_municipio_incidencia write Setcodigo_municipio_incidencia;
-    property codigo_municipio_incidenciaHasValue: Boolean read Fcodigo_municipio_incidenciaHasValue write Fcodigo_municipio_incidenciaHasValue;
-    /// <summary>
-    /// Número do Processo de Suspensão da Exigibilidade.
-    /// </summary>
-    property numero_processo: string read Fnumero_processo write Setnumero_processo;
-    property numero_processoHasValue: Boolean read Fnumero_processoHasValue write Fnumero_processoHasValue;
-    /// <summary>
-    /// Unidade do serviço prestado.
-    /// </summary>
-    property unidade: string read Funidade write Setunidade;
-    property unidadeHasValue: Boolean read FunidadeHasValue write FunidadeHasValue;
-    /// <summary>
-    /// Quantidade dos serviços prestados.
-    /// </summary>
-    property quantidade: Double read Fquantidade write Setquantidade;
-    property quantidadeHasValue: Boolean read FquantidadeHasValue write FquantidadeHasValue;
-    property valores: TRpsServicoValores read Fvalores write Setvalores;
-  end;
-  
-  TRpsDadosServicoList = class(TObjectList<TRpsDadosServico>)
-  end;
-  
-  TRpsPedidoEmissao = class
-  private
-    Freferencia: string;
-    FreferenciaHasValue: Boolean;
-    Fdata_emissao: TDateTime;
-    Fdata_emissaoHasValue: Boolean;
-    Fcompetencia: TDateTime;
-    FcompetenciaHasValue: Boolean;
-    Fnatureza_tributacao: Integer;
-    Fnatureza_tributacaoHasValue: Boolean;
-    Fprestador: TRpsIdentificacaoPrestador;
-    Ftomador: TRpsDadosTomador;
-    Fintermediario: TRpsDadosIntermediario;
-    Fconstrucao_civil: TRpsDadosConstrucaoCivil;
-    Fservicos: TRpsDadosServicoList;
-    Foutras_informacoes: string;
-    Foutras_informacoesHasValue: Boolean;
-    procedure Setreferencia(const Value: string);
-    procedure Setdata_emissao(const Value: TDateTime);
-    procedure Setcompetencia(const Value: TDateTime);
-    procedure Setnatureza_tributacao(const Value: Integer);
-    procedure Setprestador(const Value: TRpsIdentificacaoPrestador);
-    procedure Settomador(const Value: TRpsDadosTomador);
-    procedure Setintermediario(const Value: TRpsDadosIntermediario);
-    procedure Setconstrucao_civil(const Value: TRpsDadosConstrucaoCivil);
-    procedure Setservicos(const Value: TRpsDadosServicoList);
-    procedure Setoutras_informacoes(const Value: string);
-  public
-    constructor Create;
-    destructor Destroy; override;
-    /// <summary>
-    /// Seu identificador único para este documento. Opcional, ajuda a evitar o envio duplicado de um mesmo documento.
-    /// </summary>
-    property referencia: string read Freferencia write Setreferencia;
-    property referenciaHasValue: Boolean read FreferenciaHasValue write FreferenciaHasValue;
-    /// <summary>
-    /// Data e Hora de Emissão do RPS, no formato AAAA-MM-DDTHH:MM:SSTZD.
-    /// Caso não informado, será considerada a data/hora da requisição à API.
-    /// </summary>
-    property data_emissao: TDateTime read Fdata_emissao write Setdata_emissao;
-    property data_emissaoHasValue: Boolean read Fdata_emissaoHasValue write Fdata_emissaoHasValue;
-    /// <summary>
-    /// Competência do RPS, no formato AAAA-MM-DD.
-    /// Caso não informado, será considerada a data da requisição à API.
-    /// </summary>
-    property competencia: TDateTime read Fcompetencia write Setcompetencia;
-    property competenciaHasValue: Boolean read FcompetenciaHasValue write FcompetenciaHasValue;
-    /// <summary>
-    /// Natureza da tributação:
-    /// * 1 - Simples Nacional;
-    /// * 2 - Fixo;
-    /// * 3 - Depósito em juízo;
-    /// * 4 - Exigibilidade suspensa por decisão judicial;
-    /// * 5 - Exigibilidade suspensa por procedimento administrativo;
-    /// * 6 - Isenção parcial.
-    /// </summary>
-    property natureza_tributacao: Integer read Fnatureza_tributacao write Setnatureza_tributacao;
-    property natureza_tributacaoHasValue: Boolean read Fnatureza_tributacaoHasValue write Fnatureza_tributacaoHasValue;
-    /// <summary>
-    /// Dados da empresa emitente.
-    /// </summary>
-    property prestador: TRpsIdentificacaoPrestador read Fprestador write Setprestador;
-    /// <summary>
-    /// Dados do tomador/destinatário.
-    /// </summary>
-    property tomador: TRpsDadosTomador read Ftomador write Settomador;
-    /// <summary>
-    /// Dados do íntermediário.
-    /// </summary>
-    property intermediario: TRpsDadosIntermediario read Fintermediario write Setintermediario;
-    property construcao_civil: TRpsDadosConstrucaoCivil read Fconstrucao_civil write Setconstrucao_civil;
-    property servicos: TRpsDadosServicoList read Fservicos write Setservicos;
-    /// <summary>
-    /// Informações adicionais ao documento.
-    /// </summary>
-    property outras_informacoes: string read Foutras_informacoes write Setoutras_informacoes;
-    property outras_informacoesHasValue: Boolean read Foutras_informacoesHasValue write Foutras_informacoesHasValue;
-  end;
-  
-  TRpsPedidoEmissaoList = class(TObjectList<TRpsPedidoEmissao>)
-  end;
-  
-  TRpsPedidoEmissaoLote = class
-  private
-    Fambiente: string;
-    Freferencia: string;
-    FreferenciaHasValue: Boolean;
-    Flista_rps: TRpsPedidoEmissaoList;
-    procedure Setreferencia(const Value: string);
-    procedure Setlista_rps(const Value: TRpsPedidoEmissaoList);
-  public
-    destructor Destroy; override;
-    /// <summary>
-    /// Identificação do Ambiente.
-    /// </summary>
-    property ambiente: string read Fambiente write Fambiente;
-    /// <summary>
-    /// Seu identificador único para este documento. Opcional, ajuda a evitar o envio duplicado de um mesmo documento.
-    /// </summary>
-    property referencia: string read Freferencia write Setreferencia;
-    property referenciaHasValue: Boolean read FreferenciaHasValue write FreferenciaHasValue;
-    property lista_rps: TRpsPedidoEmissaoList read Flista_rps write Setlista_rps;
-  end;
-  
-  /// <summary>
-  /// Grupo de informações da DPS relativas ao serviço prestado.
-  /// </summary>
-  TDPS = class
-  private
-    Fserie: string;
-    FserieHasValue: Boolean;
-    FnDPS: string;
-    FnDPSHasValue: Boolean;
-    procedure Setserie(const Value: string);
-    procedure SetnDPS(const Value: string);
-  public
-    /// <summary>
-    /// Série do DPS.
-    /// </summary>
-    property serie: string read Fserie write Setserie;
-    property serieHasValue: Boolean read FserieHasValue write FserieHasValue;
-    /// <summary>
-    /// Número do DPS.
-    /// </summary>
-    property nDPS: string read FnDPS write SetnDPS;
-    property nDPSHasValue: Boolean read FnDPSHasValue write FnDPSHasValue;
-  end;
-  
-  TNfseMensagemRetorno = class
-  private
-    Fcodigo: string;
-    FcodigoHasValue: Boolean;
-    Fdescricao: string;
-    FdescricaoHasValue: Boolean;
-    Fcorrecao: string;
-    FcorrecaoHasValue: Boolean;
-    procedure Setcodigo(const Value: string);
-    procedure Setdescricao(const Value: string);
-    procedure Setcorrecao(const Value: string);
-  public
-    property codigo: string read Fcodigo write Setcodigo;
-    property codigoHasValue: Boolean read FcodigoHasValue write FcodigoHasValue;
-    property descricao: string read Fdescricao write Setdescricao;
-    property descricaoHasValue: Boolean read FdescricaoHasValue write FdescricaoHasValue;
-    property correcao: string read Fcorrecao write Setcorrecao;
-    property correcaoHasValue: Boolean read FcorrecaoHasValue write FcorrecaoHasValue;
-  end;
-  
-  TNfseMensagemRetornoList = class(TObjectList<TNfseMensagemRetorno>)
-  end;
-  
-  TNfseCancelamento = class
-  private
-    Fid: string;
-    FidHasValue: Boolean;
-    Fstatus: string;
-    FstatusHasValue: Boolean;
-    Fcodigo: string;
-    FcodigoHasValue: Boolean;
-    Fmotivo: string;
-    FmotivoHasValue: Boolean;
-    Fdata_hora: TDateTime;
-    Fdata_horaHasValue: Boolean;
-    Fmensagens: TNfseMensagemRetornoList;
-    procedure Setid(const Value: string);
-    procedure Setstatus(const Value: string);
-    procedure Setcodigo(const Value: string);
-    procedure Setmotivo(const Value: string);
-    procedure Setdata_hora(const Value: TDateTime);
-    procedure Setmensagens(const Value: TNfseMensagemRetornoList);
-  public
-    destructor Destroy; override;
-    /// <summary>
-    /// ID único do cancelamento gerado automaticamente pela API.
-    /// </summary>
-    property id: string read Fid write Setid;
-    property idHasValue: Boolean read FidHasValue write FidHasValue;
-    property status: string read Fstatus write Setstatus;
-    property statusHasValue: Boolean read FstatusHasValue write FstatusHasValue;
-    property codigo: string read Fcodigo write Setcodigo;
-    property codigoHasValue: Boolean read FcodigoHasValue write FcodigoHasValue;
-    property motivo: string read Fmotivo write Setmotivo;
-    property motivoHasValue: Boolean read FmotivoHasValue write FmotivoHasValue;
-    property data_hora: TDateTime read Fdata_hora write Setdata_hora;
-    property data_horaHasValue: Boolean read Fdata_horaHasValue write Fdata_horaHasValue;
-    property mensagens: TNfseMensagemRetornoList read Fmensagens write Setmensagens;
-  end;
-  
-  TRpsIdentificacao = class
-  private
-    Fnumero: string;
-    FnumeroHasValue: Boolean;
-    Fserie: string;
-    FserieHasValue: Boolean;
-    Ftipo: string;
-    FtipoHasValue: Boolean;
-    procedure Setnumero(const Value: string);
-    procedure Setserie(const Value: string);
-    procedure Settipo(const Value: string);
-  public
-    property numero: string read Fnumero write Setnumero;
-    property numeroHasValue: Boolean read FnumeroHasValue write FnumeroHasValue;
-    property serie: string read Fserie write Setserie;
-    property serieHasValue: Boolean read FserieHasValue write FserieHasValue;
-    property tipo: string read Ftipo write Settipo;
-    property tipoHasValue: Boolean read FtipoHasValue write FtipoHasValue;
-  end;
-  
-  TRpsDados = class
-  private
-    Fidentificacao_rps: TRpsIdentificacao;
-    Fdata_emissao: TDateTime;
-    Fdata_emissaoHasValue: Boolean;
-    procedure Setidentificacao_rps(const Value: TRpsIdentificacao);
-    procedure Setdata_emissao(const Value: TDateTime);
-  public
-    destructor Destroy; override;
-    property identificacao_rps: TRpsIdentificacao read Fidentificacao_rps write Setidentificacao_rps;
-    property data_emissao: TDateTime read Fdata_emissao write Setdata_emissao;
-    property data_emissaoHasValue: Boolean read Fdata_emissaoHasValue write Fdata_emissaoHasValue;
-  end;
-  
-  TRpsDadosPrestador = class
-  private
-    Fcpf_cnpj: string;
-    Fcpf_cnpjHasValue: Boolean;
-    Finscricao_municipal: string;
-    Finscricao_municipalHasValue: Boolean;
-    Fnome_razao_social: string;
-    Fnome_razao_socialHasValue: Boolean;
-    Fnome_fantasia: string;
-    Fnome_fantasiaHasValue: Boolean;
-    Ffone: string;
-    FfoneHasValue: Boolean;
-    Femail: string;
-    FemailHasValue: Boolean;
-    Fendereco: TEmpresaEndereco;
-    Foptante_simples_nacional: Boolean;
-    Foptante_simples_nacionalHasValue: Boolean;
-    Fregime_tributacao: Integer;
-    Fregime_tributacaoHasValue: Boolean;
-    Fregime_especial_tributacao: Integer;
-    Fregime_especial_tributacaoHasValue: Boolean;
-    Fincentivo_fiscal: Boolean;
-    Fincentivo_fiscalHasValue: Boolean;
-    Fincentivador_cultural: Boolean;
-    Fincentivador_culturalHasValue: Boolean;
-    procedure Setcpf_cnpj(const Value: string);
-    procedure Setinscricao_municipal(const Value: string);
-    procedure Setnome_razao_social(const Value: string);
-    procedure Setnome_fantasia(const Value: string);
-    procedure Setfone(const Value: string);
-    procedure Setemail(const Value: string);
-    procedure Setendereco(const Value: TEmpresaEndereco);
-    procedure Setoptante_simples_nacional(const Value: Boolean);
-    procedure Setregime_tributacao(const Value: Integer);
-    procedure Setregime_especial_tributacao(const Value: Integer);
-    procedure Setincentivo_fiscal(const Value: Boolean);
-    procedure Setincentivador_cultural(const Value: Boolean);
-  public
-    destructor Destroy; override;
-    property cpf_cnpj: string read Fcpf_cnpj write Setcpf_cnpj;
-    property cpf_cnpjHasValue: Boolean read Fcpf_cnpjHasValue write Fcpf_cnpjHasValue;
-    property inscricao_municipal: string read Finscricao_municipal write Setinscricao_municipal;
-    property inscricao_municipalHasValue: Boolean read Finscricao_municipalHasValue write Finscricao_municipalHasValue;
-    property nome_razao_social: string read Fnome_razao_social write Setnome_razao_social;
-    property nome_razao_socialHasValue: Boolean read Fnome_razao_socialHasValue write Fnome_razao_socialHasValue;
-    property nome_fantasia: string read Fnome_fantasia write Setnome_fantasia;
-    property nome_fantasiaHasValue: Boolean read Fnome_fantasiaHasValue write Fnome_fantasiaHasValue;
-    property fone: string read Ffone write Setfone;
-    property foneHasValue: Boolean read FfoneHasValue write FfoneHasValue;
-    property email: string read Femail write Setemail;
-    property emailHasValue: Boolean read FemailHasValue write FemailHasValue;
-    property endereco: TEmpresaEndereco read Fendereco write Setendereco;
-    property optante_simples_nacional: Boolean read Foptante_simples_nacional write Setoptante_simples_nacional;
-    property optante_simples_nacionalHasValue: Boolean read Foptante_simples_nacionalHasValue write Foptante_simples_nacionalHasValue;
-    property regime_tributacao: Integer read Fregime_tributacao write Setregime_tributacao;
-    property regime_tributacaoHasValue: Boolean read Fregime_tributacaoHasValue write Fregime_tributacaoHasValue;
-    property regime_especial_tributacao: Integer read Fregime_especial_tributacao write Setregime_especial_tributacao;
-    property regime_especial_tributacaoHasValue: Boolean read Fregime_especial_tributacaoHasValue write Fregime_especial_tributacaoHasValue;
-    property incentivo_fiscal: Boolean read Fincentivo_fiscal write Setincentivo_fiscal;
-    property incentivo_fiscalHasValue: Boolean read Fincentivo_fiscalHasValue write Fincentivo_fiscalHasValue;
-    property incentivador_cultural: Boolean read Fincentivador_cultural write Setincentivador_cultural;
-    property incentivador_culturalHasValue: Boolean read Fincentivador_culturalHasValue write Fincentivador_culturalHasValue;
-  end;
-  
-  /// <summary>
-  /// *Propriedade obsoleta. Não é mais retornada pela API.*
-  /// </summary>
-  TRps = class
-  private
-    Frps: TRpsDados;
-    Fcompetencia: TDateTime;
-    FcompetenciaHasValue: Boolean;
-    Fnatureza_tributacao: Integer;
-    Fnatureza_tributacaoHasValue: Boolean;
-    Fprestador: TRpsDadosPrestador;
-    Ftomador: TRpsDadosTomador;
-    Fintermediario: TRpsDadosIntermediario;
-    Fconstrucao_civil: TRpsDadosConstrucaoCivil;
-    Fservicos: TRpsDadosServicoList;
-    Foutras_informacoes: string;
-    Foutras_informacoesHasValue: Boolean;
-    procedure Setrps(const Value: TRpsDados);
-    procedure Setcompetencia(const Value: TDateTime);
-    procedure Setnatureza_tributacao(const Value: Integer);
-    procedure Setprestador(const Value: TRpsDadosPrestador);
-    procedure Settomador(const Value: TRpsDadosTomador);
-    procedure Setintermediario(const Value: TRpsDadosIntermediario);
-    procedure Setconstrucao_civil(const Value: TRpsDadosConstrucaoCivil);
-    procedure Setservicos(const Value: TRpsDadosServicoList);
-    procedure Setoutras_informacoes(const Value: string);
-  public
-    constructor Create;
-    destructor Destroy; override;
-    property rps: TRpsDados read Frps write Setrps;
-    property competencia: TDateTime read Fcompetencia write Setcompetencia;
-    property competenciaHasValue: Boolean read FcompetenciaHasValue write FcompetenciaHasValue;
-    /// <summary>
-    /// Natureza da tributação
-    /// 1 - Simples Nacional;
-    /// 2 - Fixo;
-    /// 3 - Depósito em juízo;
-    /// 4 - Exigibilidade suspensa por decisão judicial;
-    /// 5 - Exigibilidade suspensa por procedimento administrativo;
-    /// 6 - Isenção parcial.
-    /// </summary>
-    property natureza_tributacao: Integer read Fnatureza_tributacao write Setnatureza_tributacao;
-    property natureza_tributacaoHasValue: Boolean read Fnatureza_tributacaoHasValue write Fnatureza_tributacaoHasValue;
-    property prestador: TRpsDadosPrestador read Fprestador write Setprestador;
-    property tomador: TRpsDadosTomador read Ftomador write Settomador;
-    property intermediario: TRpsDadosIntermediario read Fintermediario write Setintermediario;
-    property construcao_civil: TRpsDadosConstrucaoCivil read Fconstrucao_civil write Setconstrucao_civil;
-    property servicos: TRpsDadosServicoList read Fservicos write Setservicos;
-    /// <summary>
-    /// Informações adicionais ao documento.
-    /// </summary>
-    property outras_informacoes: string read Foutras_informacoes write Setoutras_informacoes;
-    property outras_informacoesHasValue: Boolean read Foutras_informacoesHasValue write Foutras_informacoesHasValue;
-  end;
-  
-  TNfse = class
-  private
-    Fid: string;
-    FidHasValue: Boolean;
-    Fcreated_at: TDateTime;
-    Fcreated_atHasValue: Boolean;
-    Fstatus: string;
-    FstatusHasValue: Boolean;
-    Fnumero: string;
-    FnumeroHasValue: Boolean;
-    Fcodigo_verificacao: string;
-    Fcodigo_verificacaoHasValue: Boolean;
-    Flink_url: string;
-    Flink_urlHasValue: Boolean;
-    Fdata_emissao: TDateTime;
-    Fdata_emissaoHasValue: Boolean;
-    Fambiente: string;
-    FambienteHasValue: Boolean;
-    Freferencia: string;
-    FreferenciaHasValue: Boolean;
-    FDPS: TDPS;
-    Fcancelamento: TNfseCancelamento;
-    Fmensagens: TNfseMensagemRetornoList;
-    Fdeclaracao_prestacao_servico: TRps;
-    procedure Setid(const Value: string);
-    procedure Setcreated_at(const Value: TDateTime);
-    procedure Setstatus(const Value: string);
-    procedure Setnumero(const Value: string);
-    procedure Setcodigo_verificacao(const Value: string);
-    procedure Setlink_url(const Value: string);
-    procedure Setdata_emissao(const Value: TDateTime);
-    procedure Setambiente(const Value: string);
-    procedure Setreferencia(const Value: string);
-    procedure SetDPS(const Value: TDPS);
-    procedure Setcancelamento(const Value: TNfseCancelamento);
-    procedure Setmensagens(const Value: TNfseMensagemRetornoList);
-    procedure Setdeclaracao_prestacao_servico(const Value: TRps);
-  public
-    destructor Destroy; override;
-    /// <summary>
-    /// ID único da nota gerado automaticamente pela API.
-    /// </summary>
-    property id: string read Fid write Setid;
-    property idHasValue: Boolean read FidHasValue write FidHasValue;
-    property created_at: TDateTime read Fcreated_at write Setcreated_at;
-    property created_atHasValue: Boolean read Fcreated_atHasValue write Fcreated_atHasValue;
-    property status: string read Fstatus write Setstatus;
-    property statusHasValue: Boolean read FstatusHasValue write FstatusHasValue;
-    property numero: string read Fnumero write Setnumero;
-    property numeroHasValue: Boolean read FnumeroHasValue write FnumeroHasValue;
-    property codigo_verificacao: string read Fcodigo_verificacao write Setcodigo_verificacao;
-    property codigo_verificacaoHasValue: Boolean read Fcodigo_verificacaoHasValue write Fcodigo_verificacaoHasValue;
-    property link_url: string read Flink_url write Setlink_url;
-    property link_urlHasValue: Boolean read Flink_urlHasValue write Flink_urlHasValue;
-    property data_emissao: TDateTime read Fdata_emissao write Setdata_emissao;
-    property data_emissaoHasValue: Boolean read Fdata_emissaoHasValue write Fdata_emissaoHasValue;
-    property ambiente: string read Fambiente write Setambiente;
-    property ambienteHasValue: Boolean read FambienteHasValue write FambienteHasValue;
-    property referencia: string read Freferencia write Setreferencia;
-    property referenciaHasValue: Boolean read FreferenciaHasValue write FreferenciaHasValue;
-    property DPS: TDPS read FDPS write SetDPS;
-    property cancelamento: TNfseCancelamento read Fcancelamento write Setcancelamento;
-    property mensagens: TNfseMensagemRetornoList read Fmensagens write Setmensagens;
-    property declaracao_prestacao_servico: TRps read Fdeclaracao_prestacao_servico write Setdeclaracao_prestacao_servico;
-  end;
-  
-  TNfseList = class(TObjectList<TNfse>)
-  end;
-  
-  TRpsLote = class
-  private
-    Fid: string;
-    FidHasValue: Boolean;
-    Fcreated_at: TDateTime;
-    Fcreated_atHasValue: Boolean;
-    Fstatus: string;
-    FstatusHasValue: Boolean;
-    Fnumero: string;
-    FnumeroHasValue: Boolean;
-    Fambiente: string;
-    FambienteHasValue: Boolean;
-    Freferencia: string;
-    FreferenciaHasValue: Boolean;
-    Fnotas: TNfseList;
-    procedure Setid(const Value: string);
-    procedure Setcreated_at(const Value: TDateTime);
-    procedure Setstatus(const Value: string);
-    procedure Setnumero(const Value: string);
-    procedure Setambiente(const Value: string);
-    procedure Setreferencia(const Value: string);
-    procedure Setnotas(const Value: TNfseList);
-  public
-    destructor Destroy; override;
-    /// <summary>
-    /// ID único do lote gerado automaticamente pela API.
-    /// </summary>
-    property id: string read Fid write Setid;
-    property idHasValue: Boolean read FidHasValue write FidHasValue;
-    property created_at: TDateTime read Fcreated_at write Setcreated_at;
-    property created_atHasValue: Boolean read Fcreated_atHasValue write Fcreated_atHasValue;
-    property status: string read Fstatus write Setstatus;
-    property statusHasValue: Boolean read FstatusHasValue write FstatusHasValue;
-    property numero: string read Fnumero write Setnumero;
-    property numeroHasValue: Boolean read FnumeroHasValue write FnumeroHasValue;
-    property ambiente: string read Fambiente write Setambiente;
-    property ambienteHasValue: Boolean read FambienteHasValue write FambienteHasValue;
-    property referencia: string read Freferencia write Setreferencia;
-    property referenciaHasValue: Boolean read FreferenciaHasValue write FreferenciaHasValue;
-    property notas: TNfseList read Fnotas write Setnotas;
-  end;
-  
   /// <summary>
   /// Dados da NFS-e a ser substituída.
   /// </summary>
@@ -7925,6 +7042,769 @@ type
     property documentos: TNfseDpsPedidoEmissaoList read Fdocumentos write Setdocumentos;
   end;
   
+  /// <summary>
+  /// Grupo de informações da DPS relativas ao serviço prestado.
+  /// </summary>
+  TDPS = class
+  private
+    Fserie: string;
+    FserieHasValue: Boolean;
+    FnDPS: string;
+    FnDPSHasValue: Boolean;
+    procedure Setserie(const Value: string);
+    procedure SetnDPS(const Value: string);
+  public
+    /// <summary>
+    /// Série do DPS.
+    /// </summary>
+    property serie: string read Fserie write Setserie;
+    property serieHasValue: Boolean read FserieHasValue write FserieHasValue;
+    /// <summary>
+    /// Número do DPS.
+    /// </summary>
+    property nDPS: string read FnDPS write SetnDPS;
+    property nDPSHasValue: Boolean read FnDPSHasValue write FnDPSHasValue;
+  end;
+  
+  TNfseMensagemRetorno = class
+  private
+    Fcodigo: string;
+    FcodigoHasValue: Boolean;
+    Fdescricao: string;
+    FdescricaoHasValue: Boolean;
+    Fcorrecao: string;
+    FcorrecaoHasValue: Boolean;
+    procedure Setcodigo(const Value: string);
+    procedure Setdescricao(const Value: string);
+    procedure Setcorrecao(const Value: string);
+  public
+    property codigo: string read Fcodigo write Setcodigo;
+    property codigoHasValue: Boolean read FcodigoHasValue write FcodigoHasValue;
+    property descricao: string read Fdescricao write Setdescricao;
+    property descricaoHasValue: Boolean read FdescricaoHasValue write FdescricaoHasValue;
+    property correcao: string read Fcorrecao write Setcorrecao;
+    property correcaoHasValue: Boolean read FcorrecaoHasValue write FcorrecaoHasValue;
+  end;
+  
+  TNfseMensagemRetornoList = class(TObjectList<TNfseMensagemRetorno>)
+  end;
+  
+  TNfseCancelamento = class
+  private
+    Fid: string;
+    FidHasValue: Boolean;
+    Fstatus: string;
+    FstatusHasValue: Boolean;
+    Fcodigo: string;
+    FcodigoHasValue: Boolean;
+    Fmotivo: string;
+    FmotivoHasValue: Boolean;
+    Fdata_hora: TDateTime;
+    Fdata_horaHasValue: Boolean;
+    Fmensagens: TNfseMensagemRetornoList;
+    procedure Setid(const Value: string);
+    procedure Setstatus(const Value: string);
+    procedure Setcodigo(const Value: string);
+    procedure Setmotivo(const Value: string);
+    procedure Setdata_hora(const Value: TDateTime);
+    procedure Setmensagens(const Value: TNfseMensagemRetornoList);
+  public
+    destructor Destroy; override;
+    /// <summary>
+    /// ID único do cancelamento gerado automaticamente pela API.
+    /// </summary>
+    property id: string read Fid write Setid;
+    property idHasValue: Boolean read FidHasValue write FidHasValue;
+    property status: string read Fstatus write Setstatus;
+    property statusHasValue: Boolean read FstatusHasValue write FstatusHasValue;
+    property codigo: string read Fcodigo write Setcodigo;
+    property codigoHasValue: Boolean read FcodigoHasValue write FcodigoHasValue;
+    property motivo: string read Fmotivo write Setmotivo;
+    property motivoHasValue: Boolean read FmotivoHasValue write FmotivoHasValue;
+    property data_hora: TDateTime read Fdata_hora write Setdata_hora;
+    property data_horaHasValue: Boolean read Fdata_horaHasValue write Fdata_horaHasValue;
+    property mensagens: TNfseMensagemRetornoList read Fmensagens write Setmensagens;
+  end;
+  
+  TRpsIdentificacao = class
+  private
+    Fnumero: string;
+    FnumeroHasValue: Boolean;
+    Fserie: string;
+    FserieHasValue: Boolean;
+    Ftipo: string;
+    FtipoHasValue: Boolean;
+    procedure Setnumero(const Value: string);
+    procedure Setserie(const Value: string);
+    procedure Settipo(const Value: string);
+  public
+    property numero: string read Fnumero write Setnumero;
+    property numeroHasValue: Boolean read FnumeroHasValue write FnumeroHasValue;
+    property serie: string read Fserie write Setserie;
+    property serieHasValue: Boolean read FserieHasValue write FserieHasValue;
+    property tipo: string read Ftipo write Settipo;
+    property tipoHasValue: Boolean read FtipoHasValue write FtipoHasValue;
+  end;
+  
+  TRpsDados = class
+  private
+    Fidentificacao_rps: TRpsIdentificacao;
+    Fdata_emissao: TDateTime;
+    Fdata_emissaoHasValue: Boolean;
+    procedure Setidentificacao_rps(const Value: TRpsIdentificacao);
+    procedure Setdata_emissao(const Value: TDateTime);
+  public
+    destructor Destroy; override;
+    property identificacao_rps: TRpsIdentificacao read Fidentificacao_rps write Setidentificacao_rps;
+    property data_emissao: TDateTime read Fdata_emissao write Setdata_emissao;
+    property data_emissaoHasValue: Boolean read Fdata_emissaoHasValue write Fdata_emissaoHasValue;
+  end;
+  
+  TRpsDadosPrestador = class
+  private
+    Fcpf_cnpj: string;
+    Fcpf_cnpjHasValue: Boolean;
+    Finscricao_municipal: string;
+    Finscricao_municipalHasValue: Boolean;
+    Fnome_razao_social: string;
+    Fnome_razao_socialHasValue: Boolean;
+    Fnome_fantasia: string;
+    Fnome_fantasiaHasValue: Boolean;
+    Ffone: string;
+    FfoneHasValue: Boolean;
+    Femail: string;
+    FemailHasValue: Boolean;
+    Fendereco: TEmpresaEndereco;
+    Foptante_simples_nacional: Boolean;
+    Foptante_simples_nacionalHasValue: Boolean;
+    Fregime_tributacao: Integer;
+    Fregime_tributacaoHasValue: Boolean;
+    Fregime_especial_tributacao: Integer;
+    Fregime_especial_tributacaoHasValue: Boolean;
+    Fincentivo_fiscal: Boolean;
+    Fincentivo_fiscalHasValue: Boolean;
+    Fincentivador_cultural: Boolean;
+    Fincentivador_culturalHasValue: Boolean;
+    procedure Setcpf_cnpj(const Value: string);
+    procedure Setinscricao_municipal(const Value: string);
+    procedure Setnome_razao_social(const Value: string);
+    procedure Setnome_fantasia(const Value: string);
+    procedure Setfone(const Value: string);
+    procedure Setemail(const Value: string);
+    procedure Setendereco(const Value: TEmpresaEndereco);
+    procedure Setoptante_simples_nacional(const Value: Boolean);
+    procedure Setregime_tributacao(const Value: Integer);
+    procedure Setregime_especial_tributacao(const Value: Integer);
+    procedure Setincentivo_fiscal(const Value: Boolean);
+    procedure Setincentivador_cultural(const Value: Boolean);
+  public
+    destructor Destroy; override;
+    property cpf_cnpj: string read Fcpf_cnpj write Setcpf_cnpj;
+    property cpf_cnpjHasValue: Boolean read Fcpf_cnpjHasValue write Fcpf_cnpjHasValue;
+    property inscricao_municipal: string read Finscricao_municipal write Setinscricao_municipal;
+    property inscricao_municipalHasValue: Boolean read Finscricao_municipalHasValue write Finscricao_municipalHasValue;
+    property nome_razao_social: string read Fnome_razao_social write Setnome_razao_social;
+    property nome_razao_socialHasValue: Boolean read Fnome_razao_socialHasValue write Fnome_razao_socialHasValue;
+    property nome_fantasia: string read Fnome_fantasia write Setnome_fantasia;
+    property nome_fantasiaHasValue: Boolean read Fnome_fantasiaHasValue write Fnome_fantasiaHasValue;
+    property fone: string read Ffone write Setfone;
+    property foneHasValue: Boolean read FfoneHasValue write FfoneHasValue;
+    property email: string read Femail write Setemail;
+    property emailHasValue: Boolean read FemailHasValue write FemailHasValue;
+    property endereco: TEmpresaEndereco read Fendereco write Setendereco;
+    property optante_simples_nacional: Boolean read Foptante_simples_nacional write Setoptante_simples_nacional;
+    property optante_simples_nacionalHasValue: Boolean read Foptante_simples_nacionalHasValue write Foptante_simples_nacionalHasValue;
+    property regime_tributacao: Integer read Fregime_tributacao write Setregime_tributacao;
+    property regime_tributacaoHasValue: Boolean read Fregime_tributacaoHasValue write Fregime_tributacaoHasValue;
+    property regime_especial_tributacao: Integer read Fregime_especial_tributacao write Setregime_especial_tributacao;
+    property regime_especial_tributacaoHasValue: Boolean read Fregime_especial_tributacaoHasValue write Fregime_especial_tributacaoHasValue;
+    property incentivo_fiscal: Boolean read Fincentivo_fiscal write Setincentivo_fiscal;
+    property incentivo_fiscalHasValue: Boolean read Fincentivo_fiscalHasValue write Fincentivo_fiscalHasValue;
+    property incentivador_cultural: Boolean read Fincentivador_cultural write Setincentivador_cultural;
+    property incentivador_culturalHasValue: Boolean read Fincentivador_culturalHasValue write Fincentivador_culturalHasValue;
+  end;
+  
+  TRpsDadosTomadorEndereco = class
+  private
+    Flogradouro: string;
+    FlogradouroHasValue: Boolean;
+    Fnumero: string;
+    FnumeroHasValue: Boolean;
+    Fcomplemento: string;
+    FcomplementoHasValue: Boolean;
+    Fbairro: string;
+    FbairroHasValue: Boolean;
+    Fcodigo_municipio: string;
+    Fcodigo_municipioHasValue: Boolean;
+    Fcidade: string;
+    FcidadeHasValue: Boolean;
+    Fuf: string;
+    FufHasValue: Boolean;
+    Fcodigo_pais: string;
+    Fcodigo_paisHasValue: Boolean;
+    Fpais: string;
+    FpaisHasValue: Boolean;
+    Fcep: string;
+    FcepHasValue: Boolean;
+    procedure Setlogradouro(const Value: string);
+    procedure Setnumero(const Value: string);
+    procedure Setcomplemento(const Value: string);
+    procedure Setbairro(const Value: string);
+    procedure Setcodigo_municipio(const Value: string);
+    procedure Setcidade(const Value: string);
+    procedure Setuf(const Value: string);
+    procedure Setcodigo_pais(const Value: string);
+    procedure Setpais(const Value: string);
+    procedure Setcep(const Value: string);
+  public
+    /// <summary>
+    /// Logradouro.
+    /// </summary>
+    property logradouro: string read Flogradouro write Setlogradouro;
+    property logradouroHasValue: Boolean read FlogradouroHasValue write FlogradouroHasValue;
+    /// <summary>
+    /// Número.
+    /// </summary>
+    property numero: string read Fnumero write Setnumero;
+    property numeroHasValue: Boolean read FnumeroHasValue write FnumeroHasValue;
+    /// <summary>
+    /// Complemento.
+    /// </summary>
+    property complemento: string read Fcomplemento write Setcomplemento;
+    property complementoHasValue: Boolean read FcomplementoHasValue write FcomplementoHasValue;
+    /// <summary>
+    /// Bairro.
+    /// </summary>
+    property bairro: string read Fbairro write Setbairro;
+    property bairroHasValue: Boolean read FbairroHasValue write FbairroHasValue;
+    /// <summary>
+    /// Código IBGE do município.
+    /// </summary>
+    property codigo_municipio: string read Fcodigo_municipio write Setcodigo_municipio;
+    property codigo_municipioHasValue: Boolean read Fcodigo_municipioHasValue write Fcodigo_municipioHasValue;
+    /// <summary>
+    /// Cidade.
+    /// </summary>
+    property cidade: string read Fcidade write Setcidade;
+    property cidadeHasValue: Boolean read FcidadeHasValue write FcidadeHasValue;
+    /// <summary>
+    /// Sigla do estado.
+    /// </summary>
+    property uf: string read Fuf write Setuf;
+    property ufHasValue: Boolean read FufHasValue write FufHasValue;
+    property codigo_pais: string read Fcodigo_pais write Setcodigo_pais;
+    property codigo_paisHasValue: Boolean read Fcodigo_paisHasValue write Fcodigo_paisHasValue;
+    /// <summary>
+    /// Nome do país.
+    /// </summary>
+    property pais: string read Fpais write Setpais;
+    property paisHasValue: Boolean read FpaisHasValue write FpaisHasValue;
+    /// <summary>
+    /// CEP.
+    /// Utilize o valor sem máscara.
+    /// </summary>
+    property cep: string read Fcep write Setcep;
+    property cepHasValue: Boolean read FcepHasValue write FcepHasValue;
+  end;
+  
+  TRpsDadosTomador = class
+  private
+    Fcpf_cnpj: string;
+    Fcpf_cnpjHasValue: Boolean;
+    Finscricao_municipal: string;
+    Finscricao_municipalHasValue: Boolean;
+    Fnome_razao_social: string;
+    Ffone: string;
+    FfoneHasValue: Boolean;
+    Femail: string;
+    FemailHasValue: Boolean;
+    Fendereco: TRpsDadosTomadorEndereco;
+    procedure Setcpf_cnpj(const Value: string);
+    procedure Setinscricao_municipal(const Value: string);
+    procedure Setfone(const Value: string);
+    procedure Setemail(const Value: string);
+    procedure Setendereco(const Value: TRpsDadosTomadorEndereco);
+  public
+    destructor Destroy; override;
+    /// <summary>
+    /// CPF ou CNPJ do tomador/destinatário.
+    /// </summary>
+    property cpf_cnpj: string read Fcpf_cnpj write Setcpf_cnpj;
+    property cpf_cnpjHasValue: Boolean read Fcpf_cnpjHasValue write Fcpf_cnpjHasValue;
+    /// <summary>
+    /// Inscrição Municipal do tomador/destinatário.
+    /// </summary>
+    property inscricao_municipal: string read Finscricao_municipal write Setinscricao_municipal;
+    property inscricao_municipalHasValue: Boolean read Finscricao_municipalHasValue write Finscricao_municipalHasValue;
+    /// <summary>
+    /// Nome ou Razão Social do tomador/destinatário.
+    /// </summary>
+    property nome_razao_social: string read Fnome_razao_social write Fnome_razao_social;
+    /// <summary>
+    /// Telefone do tomador/destinatário.
+    /// </summary>
+    property fone: string read Ffone write Setfone;
+    property foneHasValue: Boolean read FfoneHasValue write FfoneHasValue;
+    /// <summary>
+    /// Email do tomador/destinatário.
+    /// </summary>
+    property email: string read Femail write Setemail;
+    property emailHasValue: Boolean read FemailHasValue write FemailHasValue;
+    /// <summary>
+    /// Endereço do tomador/destinatário.
+    /// </summary>
+    property endereco: TRpsDadosTomadorEndereco read Fendereco write Setendereco;
+  end;
+  
+  TRpsDadosIntermediario = class
+  private
+    Fcpf_cnpj: string;
+    Fcpf_cnpjHasValue: Boolean;
+    Fnome_razao_social: string;
+    Fnome_razao_socialHasValue: Boolean;
+    Finscricao_municipal: string;
+    Finscricao_municipalHasValue: Boolean;
+    procedure Setcpf_cnpj(const Value: string);
+    procedure Setnome_razao_social(const Value: string);
+    procedure Setinscricao_municipal(const Value: string);
+  public
+    property cpf_cnpj: string read Fcpf_cnpj write Setcpf_cnpj;
+    property cpf_cnpjHasValue: Boolean read Fcpf_cnpjHasValue write Fcpf_cnpjHasValue;
+    property nome_razao_social: string read Fnome_razao_social write Setnome_razao_social;
+    property nome_razao_socialHasValue: Boolean read Fnome_razao_socialHasValue write Fnome_razao_socialHasValue;
+    property inscricao_municipal: string read Finscricao_municipal write Setinscricao_municipal;
+    property inscricao_municipalHasValue: Boolean read Finscricao_municipalHasValue write Finscricao_municipalHasValue;
+  end;
+  
+  TRpsDadosConstrucaoCivil = class
+  private
+    Fcodigo_obra: string;
+    Fcodigo_obraHasValue: Boolean;
+    Fart: string;
+    FartHasValue: Boolean;
+    procedure Setcodigo_obra(const Value: string);
+    procedure Setart(const Value: string);
+  public
+    property codigo_obra: string read Fcodigo_obra write Setcodigo_obra;
+    property codigo_obraHasValue: Boolean read Fcodigo_obraHasValue write Fcodigo_obraHasValue;
+    property art: string read Fart write Setart;
+    property artHasValue: Boolean read FartHasValue write FartHasValue;
+  end;
+  
+  TRpsServicoValores = class
+  private
+    Fvalor_unitario: Double;
+    Fvalor_servicos: Double;
+    Fvalor_servicosHasValue: Boolean;
+    Fvalor_deducoes: Double;
+    Fvalor_deducoesHasValue: Boolean;
+    Fvalor_pis: Double;
+    Fvalor_pisHasValue: Boolean;
+    Fvalor_cofins: Double;
+    Fvalor_cofinsHasValue: Boolean;
+    Fvalor_inss: Double;
+    Fvalor_inssHasValue: Boolean;
+    Fvalor_ir: Double;
+    Fvalor_irHasValue: Boolean;
+    Fvalor_csll: Double;
+    Fvalor_csllHasValue: Boolean;
+    Fvalor_outras_retencoes: Double;
+    Fvalor_outras_retencoesHasValue: Boolean;
+    Fvalor_iss: Double;
+    Fvalor_issHasValue: Boolean;
+    Fvalor_iss_retido: Double;
+    Fvalor_iss_retidoHasValue: Boolean;
+    Fvalor_liquido: Double;
+    Fvalor_liquidoHasValue: Boolean;
+    Faliquota_iss: Double;
+    Faliquota_issHasValue: Boolean;
+    Faliquota_pis: Double;
+    Faliquota_pisHasValue: Boolean;
+    Faliquota_cofins: Double;
+    Faliquota_cofinsHasValue: Boolean;
+    Faliquota_inss: Double;
+    Faliquota_inssHasValue: Boolean;
+    Faliquota_ir: Double;
+    Faliquota_irHasValue: Boolean;
+    Faliquota_csll: Double;
+    Faliquota_csllHasValue: Boolean;
+    Fdesconto_incondicionado: Double;
+    Fdesconto_incondicionadoHasValue: Boolean;
+    Fdesconto_condicionado: Double;
+    Fdesconto_condicionadoHasValue: Boolean;
+    procedure Setvalor_servicos(const Value: Double);
+    procedure Setvalor_deducoes(const Value: Double);
+    procedure Setvalor_pis(const Value: Double);
+    procedure Setvalor_cofins(const Value: Double);
+    procedure Setvalor_inss(const Value: Double);
+    procedure Setvalor_ir(const Value: Double);
+    procedure Setvalor_csll(const Value: Double);
+    procedure Setvalor_outras_retencoes(const Value: Double);
+    procedure Setvalor_iss(const Value: Double);
+    procedure Setvalor_iss_retido(const Value: Double);
+    procedure Setvalor_liquido(const Value: Double);
+    procedure Setaliquota_iss(const Value: Double);
+    procedure Setaliquota_pis(const Value: Double);
+    procedure Setaliquota_cofins(const Value: Double);
+    procedure Setaliquota_inss(const Value: Double);
+    procedure Setaliquota_ir(const Value: Double);
+    procedure Setaliquota_csll(const Value: Double);
+    procedure Setdesconto_incondicionado(const Value: Double);
+    procedure Setdesconto_condicionado(const Value: Double);
+  public
+    /// <summary>
+    /// Valor unitário do serviço.
+    /// </summary>
+    property valor_unitario: Double read Fvalor_unitario write Fvalor_unitario;
+    /// <summary>
+    /// Valor total do serviço.
+    /// </summary>
+    property valor_servicos: Double read Fvalor_servicos write Setvalor_servicos;
+    property valor_servicosHasValue: Boolean read Fvalor_servicosHasValue write Fvalor_servicosHasValue;
+    property valor_deducoes: Double read Fvalor_deducoes write Setvalor_deducoes;
+    property valor_deducoesHasValue: Boolean read Fvalor_deducoesHasValue write Fvalor_deducoesHasValue;
+    property valor_pis: Double read Fvalor_pis write Setvalor_pis;
+    property valor_pisHasValue: Boolean read Fvalor_pisHasValue write Fvalor_pisHasValue;
+    property valor_cofins: Double read Fvalor_cofins write Setvalor_cofins;
+    property valor_cofinsHasValue: Boolean read Fvalor_cofinsHasValue write Fvalor_cofinsHasValue;
+    property valor_inss: Double read Fvalor_inss write Setvalor_inss;
+    property valor_inssHasValue: Boolean read Fvalor_inssHasValue write Fvalor_inssHasValue;
+    property valor_ir: Double read Fvalor_ir write Setvalor_ir;
+    property valor_irHasValue: Boolean read Fvalor_irHasValue write Fvalor_irHasValue;
+    property valor_csll: Double read Fvalor_csll write Setvalor_csll;
+    property valor_csllHasValue: Boolean read Fvalor_csllHasValue write Fvalor_csllHasValue;
+    property valor_outras_retencoes: Double read Fvalor_outras_retencoes write Setvalor_outras_retencoes;
+    property valor_outras_retencoesHasValue: Boolean read Fvalor_outras_retencoesHasValue write Fvalor_outras_retencoesHasValue;
+    property valor_iss: Double read Fvalor_iss write Setvalor_iss;
+    property valor_issHasValue: Boolean read Fvalor_issHasValue write Fvalor_issHasValue;
+    property valor_iss_retido: Double read Fvalor_iss_retido write Setvalor_iss_retido;
+    property valor_iss_retidoHasValue: Boolean read Fvalor_iss_retidoHasValue write Fvalor_iss_retidoHasValue;
+    property valor_liquido: Double read Fvalor_liquido write Setvalor_liquido;
+    property valor_liquidoHasValue: Boolean read Fvalor_liquidoHasValue write Fvalor_liquidoHasValue;
+    property aliquota_iss: Double read Faliquota_iss write Setaliquota_iss;
+    property aliquota_issHasValue: Boolean read Faliquota_issHasValue write Faliquota_issHasValue;
+    property aliquota_pis: Double read Faliquota_pis write Setaliquota_pis;
+    property aliquota_pisHasValue: Boolean read Faliquota_pisHasValue write Faliquota_pisHasValue;
+    property aliquota_cofins: Double read Faliquota_cofins write Setaliquota_cofins;
+    property aliquota_cofinsHasValue: Boolean read Faliquota_cofinsHasValue write Faliquota_cofinsHasValue;
+    property aliquota_inss: Double read Faliquota_inss write Setaliquota_inss;
+    property aliquota_inssHasValue: Boolean read Faliquota_inssHasValue write Faliquota_inssHasValue;
+    property aliquota_ir: Double read Faliquota_ir write Setaliquota_ir;
+    property aliquota_irHasValue: Boolean read Faliquota_irHasValue write Faliquota_irHasValue;
+    property aliquota_csll: Double read Faliquota_csll write Setaliquota_csll;
+    property aliquota_csllHasValue: Boolean read Faliquota_csllHasValue write Faliquota_csllHasValue;
+    property desconto_incondicionado: Double read Fdesconto_incondicionado write Setdesconto_incondicionado;
+    property desconto_incondicionadoHasValue: Boolean read Fdesconto_incondicionadoHasValue write Fdesconto_incondicionadoHasValue;
+    property desconto_condicionado: Double read Fdesconto_condicionado write Setdesconto_condicionado;
+    property desconto_condicionadoHasValue: Boolean read Fdesconto_condicionadoHasValue write Fdesconto_condicionadoHasValue;
+  end;
+  
+  TRpsDadosServico = class
+  private
+    Fiss_retido: Boolean;
+    Fiss_retidoHasValue: Boolean;
+    Fresponsavel_retencao: Integer;
+    Fresponsavel_retencaoHasValue: Boolean;
+    Fitem_lista_servico: string;
+    Fcodigo_cnae: string;
+    Fcodigo_cnaeHasValue: Boolean;
+    Fcodigo_tributacao_municipio: string;
+    Fcodigo_tributacao_municipioHasValue: Boolean;
+    Fdiscriminacao: string;
+    Fcodigo_municipio: string;
+    Fcodigo_municipioHasValue: Boolean;
+    Fcodigo_pais: string;
+    Fcodigo_paisHasValue: Boolean;
+    Ftipo_tributacao: Integer;
+    Ftipo_tributacaoHasValue: Boolean;
+    Fexigibilidade_iss: Integer;
+    Fexigibilidade_issHasValue: Boolean;
+    Fcodigo_municipio_incidencia: string;
+    Fcodigo_municipio_incidenciaHasValue: Boolean;
+    Fnumero_processo: string;
+    Fnumero_processoHasValue: Boolean;
+    Funidade: string;
+    FunidadeHasValue: Boolean;
+    Fquantidade: Double;
+    FquantidadeHasValue: Boolean;
+    Fvalores: TRpsServicoValores;
+    procedure Setiss_retido(const Value: Boolean);
+    procedure Setresponsavel_retencao(const Value: Integer);
+    procedure Setcodigo_cnae(const Value: string);
+    procedure Setcodigo_tributacao_municipio(const Value: string);
+    procedure Setcodigo_municipio(const Value: string);
+    procedure Setcodigo_pais(const Value: string);
+    procedure Settipo_tributacao(const Value: Integer);
+    procedure Setexigibilidade_iss(const Value: Integer);
+    procedure Setcodigo_municipio_incidencia(const Value: string);
+    procedure Setnumero_processo(const Value: string);
+    procedure Setunidade(const Value: string);
+    procedure Setquantidade(const Value: Double);
+    procedure Setvalores(const Value: TRpsServicoValores);
+  public
+    constructor Create;
+    destructor Destroy; override;
+    /// <summary>
+    /// Reter ISSQN.
+    /// </summary>
+    property iss_retido: Boolean read Fiss_retido write Setiss_retido;
+    property iss_retidoHasValue: Boolean read Fiss_retidoHasValue write Fiss_retidoHasValue;
+    /// <summary>
+    /// Responsável pela retenção:
+    /// * 0 - Prestador;
+    /// * 1 - Tomador;
+    /// * 2 - Intermediário.
+    /// </summary>
+    property responsavel_retencao: Integer read Fresponsavel_retencao write Setresponsavel_retencao;
+    property responsavel_retencaoHasValue: Boolean read Fresponsavel_retencaoHasValue write Fresponsavel_retencaoHasValue;
+    /// <summary>
+    /// Código do item da lista de serviço, geralmente segue a LC116, podendo variar de acordo com a prefeitura.
+    /// 
+    /// Você pode encontrar esse dado no portal da prefeitura, em uma nota emitida ou junto ao contador.
+    /// </summary>
+    property item_lista_servico: string read Fitem_lista_servico write Fitem_lista_servico;
+    /// <summary>
+    /// Código CNAE (Classificação Nacional de Atividades Econômicas).
+    /// </summary>
+    property codigo_cnae: string read Fcodigo_cnae write Setcodigo_cnae;
+    property codigo_cnaeHasValue: Boolean read Fcodigo_cnaeHasValue write Fcodigo_cnaeHasValue;
+    /// <summary>
+    /// Código de tributação do município.
+    /// </summary>
+    property codigo_tributacao_municipio: string read Fcodigo_tributacao_municipio write Setcodigo_tributacao_municipio;
+    property codigo_tributacao_municipioHasValue: Boolean read Fcodigo_tributacao_municipioHasValue write Fcodigo_tributacao_municipioHasValue;
+    /// <summary>
+    /// Detalhamento do serviço prestado.
+    /// </summary>
+    property discriminacao: string read Fdiscriminacao write Fdiscriminacao;
+    /// <summary>
+    /// Código IBGE do município de prestação do serviço.
+    /// Caso não informado, será considerado o município do prestador.
+    /// </summary>
+    property codigo_municipio: string read Fcodigo_municipio write Setcodigo_municipio;
+    property codigo_municipioHasValue: Boolean read Fcodigo_municipioHasValue write Fcodigo_municipioHasValue;
+    /// <summary>
+    /// Código do país de prestação do serviço.
+    /// </summary>
+    property codigo_pais: string read Fcodigo_pais write Setcodigo_pais;
+    property codigo_paisHasValue: Boolean read Fcodigo_paisHasValue write Fcodigo_paisHasValue;
+    /// <summary>
+    /// Tipo de Tributação do Serviço:
+    /// * 1 - Isento de ISS
+    /// * 2 - Imune
+    /// * 3 - Não Incidência no Município
+    /// * 4 - Não Tributável
+    /// * 5 - Retido
+    /// * 6 - Tributável Dentro do Município
+    /// * 7 - Tributável Fora do Município
+    /// * 8 - Tributável Dentro do Município pelo tomador
+    /// </summary>
+    property tipo_tributacao: Integer read Ftipo_tributacao write Settipo_tributacao;
+    property tipo_tributacaoHasValue: Boolean read Ftipo_tributacaoHasValue write Ftipo_tributacaoHasValue;
+    /// <summary>
+    /// Exigibilidade do ISS:
+    /// * 1 - Exigível
+    /// * 2 - Não Incidência
+    /// * 3 - Isenção
+    /// * 4 - Exportação
+    /// * 5 - Imunidade
+    /// * 6 - Suspenso por Decisão Judicial
+    /// * 7 - Suspenso por Processo Administrativo
+    /// </summary>
+    property exigibilidade_iss: Integer read Fexigibilidade_iss write Setexigibilidade_iss;
+    property exigibilidade_issHasValue: Boolean read Fexigibilidade_issHasValue write Fexigibilidade_issHasValue;
+    /// <summary>
+    /// Código IBGE do município de incidência do ISSQN.
+    /// </summary>
+    property codigo_municipio_incidencia: string read Fcodigo_municipio_incidencia write Setcodigo_municipio_incidencia;
+    property codigo_municipio_incidenciaHasValue: Boolean read Fcodigo_municipio_incidenciaHasValue write Fcodigo_municipio_incidenciaHasValue;
+    /// <summary>
+    /// Número do Processo de Suspensão da Exigibilidade.
+    /// </summary>
+    property numero_processo: string read Fnumero_processo write Setnumero_processo;
+    property numero_processoHasValue: Boolean read Fnumero_processoHasValue write Fnumero_processoHasValue;
+    /// <summary>
+    /// Unidade do serviço prestado.
+    /// </summary>
+    property unidade: string read Funidade write Setunidade;
+    property unidadeHasValue: Boolean read FunidadeHasValue write FunidadeHasValue;
+    /// <summary>
+    /// Quantidade dos serviços prestados.
+    /// </summary>
+    property quantidade: Double read Fquantidade write Setquantidade;
+    property quantidadeHasValue: Boolean read FquantidadeHasValue write FquantidadeHasValue;
+    property valores: TRpsServicoValores read Fvalores write Setvalores;
+  end;
+  
+  TRpsDadosServicoList = class(TObjectList<TRpsDadosServico>)
+  end;
+  
+  /// <summary>
+  /// *Propriedade obsoleta. Não é mais retornada pela API.*
+  /// </summary>
+  TRps = class
+  private
+    Frps: TRpsDados;
+    Fcompetencia: TDateTime;
+    FcompetenciaHasValue: Boolean;
+    Fnatureza_tributacao: Integer;
+    Fnatureza_tributacaoHasValue: Boolean;
+    Fprestador: TRpsDadosPrestador;
+    Ftomador: TRpsDadosTomador;
+    Fintermediario: TRpsDadosIntermediario;
+    Fconstrucao_civil: TRpsDadosConstrucaoCivil;
+    Fservicos: TRpsDadosServicoList;
+    Foutras_informacoes: string;
+    Foutras_informacoesHasValue: Boolean;
+    procedure Setrps(const Value: TRpsDados);
+    procedure Setcompetencia(const Value: TDateTime);
+    procedure Setnatureza_tributacao(const Value: Integer);
+    procedure Setprestador(const Value: TRpsDadosPrestador);
+    procedure Settomador(const Value: TRpsDadosTomador);
+    procedure Setintermediario(const Value: TRpsDadosIntermediario);
+    procedure Setconstrucao_civil(const Value: TRpsDadosConstrucaoCivil);
+    procedure Setservicos(const Value: TRpsDadosServicoList);
+    procedure Setoutras_informacoes(const Value: string);
+  public
+    constructor Create;
+    destructor Destroy; override;
+    property rps: TRpsDados read Frps write Setrps;
+    property competencia: TDateTime read Fcompetencia write Setcompetencia;
+    property competenciaHasValue: Boolean read FcompetenciaHasValue write FcompetenciaHasValue;
+    /// <summary>
+    /// Natureza da tributação
+    /// 1 - Simples Nacional;
+    /// 2 - Fixo;
+    /// 3 - Depósito em juízo;
+    /// 4 - Exigibilidade suspensa por decisão judicial;
+    /// 5 - Exigibilidade suspensa por procedimento administrativo;
+    /// 6 - Isenção parcial.
+    /// </summary>
+    property natureza_tributacao: Integer read Fnatureza_tributacao write Setnatureza_tributacao;
+    property natureza_tributacaoHasValue: Boolean read Fnatureza_tributacaoHasValue write Fnatureza_tributacaoHasValue;
+    property prestador: TRpsDadosPrestador read Fprestador write Setprestador;
+    property tomador: TRpsDadosTomador read Ftomador write Settomador;
+    property intermediario: TRpsDadosIntermediario read Fintermediario write Setintermediario;
+    property construcao_civil: TRpsDadosConstrucaoCivil read Fconstrucao_civil write Setconstrucao_civil;
+    property servicos: TRpsDadosServicoList read Fservicos write Setservicos;
+    /// <summary>
+    /// Informações adicionais ao documento.
+    /// </summary>
+    property outras_informacoes: string read Foutras_informacoes write Setoutras_informacoes;
+    property outras_informacoesHasValue: Boolean read Foutras_informacoesHasValue write Foutras_informacoesHasValue;
+  end;
+  
+  TNfse = class
+  private
+    Fid: string;
+    FidHasValue: Boolean;
+    Fcreated_at: TDateTime;
+    Fcreated_atHasValue: Boolean;
+    Fstatus: string;
+    FstatusHasValue: Boolean;
+    Fnumero: string;
+    FnumeroHasValue: Boolean;
+    Fcodigo_verificacao: string;
+    Fcodigo_verificacaoHasValue: Boolean;
+    Flink_url: string;
+    Flink_urlHasValue: Boolean;
+    Fdata_emissao: TDateTime;
+    Fdata_emissaoHasValue: Boolean;
+    Fambiente: string;
+    FambienteHasValue: Boolean;
+    Freferencia: string;
+    FreferenciaHasValue: Boolean;
+    FDPS: TDPS;
+    Fcancelamento: TNfseCancelamento;
+    Fmensagens: TNfseMensagemRetornoList;
+    Fdeclaracao_prestacao_servico: TRps;
+    procedure Setid(const Value: string);
+    procedure Setcreated_at(const Value: TDateTime);
+    procedure Setstatus(const Value: string);
+    procedure Setnumero(const Value: string);
+    procedure Setcodigo_verificacao(const Value: string);
+    procedure Setlink_url(const Value: string);
+    procedure Setdata_emissao(const Value: TDateTime);
+    procedure Setambiente(const Value: string);
+    procedure Setreferencia(const Value: string);
+    procedure SetDPS(const Value: TDPS);
+    procedure Setcancelamento(const Value: TNfseCancelamento);
+    procedure Setmensagens(const Value: TNfseMensagemRetornoList);
+    procedure Setdeclaracao_prestacao_servico(const Value: TRps);
+  public
+    destructor Destroy; override;
+    /// <summary>
+    /// ID único da nota gerado automaticamente pela API.
+    /// </summary>
+    property id: string read Fid write Setid;
+    property idHasValue: Boolean read FidHasValue write FidHasValue;
+    property created_at: TDateTime read Fcreated_at write Setcreated_at;
+    property created_atHasValue: Boolean read Fcreated_atHasValue write Fcreated_atHasValue;
+    property status: string read Fstatus write Setstatus;
+    property statusHasValue: Boolean read FstatusHasValue write FstatusHasValue;
+    property numero: string read Fnumero write Setnumero;
+    property numeroHasValue: Boolean read FnumeroHasValue write FnumeroHasValue;
+    property codigo_verificacao: string read Fcodigo_verificacao write Setcodigo_verificacao;
+    property codigo_verificacaoHasValue: Boolean read Fcodigo_verificacaoHasValue write Fcodigo_verificacaoHasValue;
+    property link_url: string read Flink_url write Setlink_url;
+    property link_urlHasValue: Boolean read Flink_urlHasValue write Flink_urlHasValue;
+    property data_emissao: TDateTime read Fdata_emissao write Setdata_emissao;
+    property data_emissaoHasValue: Boolean read Fdata_emissaoHasValue write Fdata_emissaoHasValue;
+    property ambiente: string read Fambiente write Setambiente;
+    property ambienteHasValue: Boolean read FambienteHasValue write FambienteHasValue;
+    property referencia: string read Freferencia write Setreferencia;
+    property referenciaHasValue: Boolean read FreferenciaHasValue write FreferenciaHasValue;
+    property DPS: TDPS read FDPS write SetDPS;
+    property cancelamento: TNfseCancelamento read Fcancelamento write Setcancelamento;
+    property mensagens: TNfseMensagemRetornoList read Fmensagens write Setmensagens;
+    property declaracao_prestacao_servico: TRps read Fdeclaracao_prestacao_servico write Setdeclaracao_prestacao_servico;
+  end;
+  
+  TNfseList = class(TObjectList<TNfse>)
+  end;
+  
+  TRpsLote = class
+  private
+    Fid: string;
+    FidHasValue: Boolean;
+    Fcreated_at: TDateTime;
+    Fcreated_atHasValue: Boolean;
+    Fstatus: string;
+    FstatusHasValue: Boolean;
+    Fnumero: string;
+    FnumeroHasValue: Boolean;
+    Fambiente: string;
+    FambienteHasValue: Boolean;
+    Freferencia: string;
+    FreferenciaHasValue: Boolean;
+    Fnotas: TNfseList;
+    procedure Setid(const Value: string);
+    procedure Setcreated_at(const Value: TDateTime);
+    procedure Setstatus(const Value: string);
+    procedure Setnumero(const Value: string);
+    procedure Setambiente(const Value: string);
+    procedure Setreferencia(const Value: string);
+    procedure Setnotas(const Value: TNfseList);
+  public
+    destructor Destroy; override;
+    /// <summary>
+    /// ID único do lote gerado automaticamente pela API.
+    /// </summary>
+    property id: string read Fid write Setid;
+    property idHasValue: Boolean read FidHasValue write FidHasValue;
+    property created_at: TDateTime read Fcreated_at write Setcreated_at;
+    property created_atHasValue: Boolean read Fcreated_atHasValue write Fcreated_atHasValue;
+    property status: string read Fstatus write Setstatus;
+    property statusHasValue: Boolean read FstatusHasValue write FstatusHasValue;
+    property numero: string read Fnumero write Setnumero;
+    property numeroHasValue: Boolean read FnumeroHasValue write FnumeroHasValue;
+    property ambiente: string read Fambiente write Setambiente;
+    property ambienteHasValue: Boolean read FambienteHasValue write FambienteHasValue;
+    property referencia: string read Freferencia write Setreferencia;
+    property referenciaHasValue: Boolean read FreferenciaHasValue write FreferenciaHasValue;
+    property notas: TNfseList read Fnotas write Setnotas;
+  end;
+  
   TRpsLoteList = class(TObjectList<TRpsLote>)
   end;
   
@@ -7940,21 +7820,6 @@ type
     property _count: Integer read F_count write Set_count;
     property _countHasValue: Boolean read F_countHasValue write F_countHasValue;
     property data: TRpsLoteList read Fdata write Setdata;
-  end;
-  
-  TNfsePedidoEmissao = class
-  private
-    Fambiente: string;
-    Frps: TRpsPedidoEmissao;
-    procedure Setrps(const Value: TRpsPedidoEmissao);
-  public
-    constructor Create;
-    destructor Destroy; override;
-    /// <summary>
-    /// Identificação do Ambiente.
-    /// </summary>
-    property ambiente: string read Fambiente write Fambiente;
-    property rps: TRpsPedidoEmissao read Frps write Setrps;
   end;
   
   TNfseListagem = class
@@ -35405,924 +35270,6 @@ begin
   end;
 end;
 
-{ TRpsDadosTomadorEndereco }
-
-procedure TRpsDadosTomadorEndereco.Setlogradouro(const Value: string);
-begin
-  Flogradouro := Value;
-  FlogradouroHasValue := True;
-end;
-
-procedure TRpsDadosTomadorEndereco.Setnumero(const Value: string);
-begin
-  Fnumero := Value;
-  FnumeroHasValue := True;
-end;
-
-procedure TRpsDadosTomadorEndereco.Setcomplemento(const Value: string);
-begin
-  Fcomplemento := Value;
-  FcomplementoHasValue := True;
-end;
-
-procedure TRpsDadosTomadorEndereco.Setbairro(const Value: string);
-begin
-  Fbairro := Value;
-  FbairroHasValue := True;
-end;
-
-procedure TRpsDadosTomadorEndereco.Setcodigo_municipio(const Value: string);
-begin
-  Fcodigo_municipio := Value;
-  Fcodigo_municipioHasValue := True;
-end;
-
-procedure TRpsDadosTomadorEndereco.Setcidade(const Value: string);
-begin
-  Fcidade := Value;
-  FcidadeHasValue := True;
-end;
-
-procedure TRpsDadosTomadorEndereco.Setuf(const Value: string);
-begin
-  Fuf := Value;
-  FufHasValue := True;
-end;
-
-procedure TRpsDadosTomadorEndereco.Setcodigo_pais(const Value: string);
-begin
-  Fcodigo_pais := Value;
-  Fcodigo_paisHasValue := True;
-end;
-
-procedure TRpsDadosTomadorEndereco.Setpais(const Value: string);
-begin
-  Fpais := Value;
-  FpaisHasValue := True;
-end;
-
-procedure TRpsDadosTomadorEndereco.Setcep(const Value: string);
-begin
-  Fcep := Value;
-  FcepHasValue := True;
-end;
-
-{ TRpsDadosTomador }
-
-destructor TRpsDadosTomador.Destroy;
-begin
-  Fendereco.Free;
-  inherited;
-end;
-
-procedure TRpsDadosTomador.Setcpf_cnpj(const Value: string);
-begin
-  Fcpf_cnpj := Value;
-  Fcpf_cnpjHasValue := True;
-end;
-
-procedure TRpsDadosTomador.Setinscricao_municipal(const Value: string);
-begin
-  Finscricao_municipal := Value;
-  Finscricao_municipalHasValue := True;
-end;
-
-procedure TRpsDadosTomador.Setfone(const Value: string);
-begin
-  Ffone := Value;
-  FfoneHasValue := True;
-end;
-
-procedure TRpsDadosTomador.Setemail(const Value: string);
-begin
-  Femail := Value;
-  FemailHasValue := True;
-end;
-
-procedure TRpsDadosTomador.Setendereco(const Value: TRpsDadosTomadorEndereco);
-begin
-  if Value <> Fendereco then
-  begin
-    Fendereco.Free;
-    Fendereco := Value;
-  end;
-end;
-
-{ TRpsDadosIntermediario }
-
-procedure TRpsDadosIntermediario.Setcpf_cnpj(const Value: string);
-begin
-  Fcpf_cnpj := Value;
-  Fcpf_cnpjHasValue := True;
-end;
-
-procedure TRpsDadosIntermediario.Setnome_razao_social(const Value: string);
-begin
-  Fnome_razao_social := Value;
-  Fnome_razao_socialHasValue := True;
-end;
-
-procedure TRpsDadosIntermediario.Setinscricao_municipal(const Value: string);
-begin
-  Finscricao_municipal := Value;
-  Finscricao_municipalHasValue := True;
-end;
-
-{ TRpsDadosConstrucaoCivil }
-
-procedure TRpsDadosConstrucaoCivil.Setcodigo_obra(const Value: string);
-begin
-  Fcodigo_obra := Value;
-  Fcodigo_obraHasValue := True;
-end;
-
-procedure TRpsDadosConstrucaoCivil.Setart(const Value: string);
-begin
-  Fart := Value;
-  FartHasValue := True;
-end;
-
-{ TRpsServicoValores }
-
-procedure TRpsServicoValores.Setvalor_servicos(const Value: Double);
-begin
-  Fvalor_servicos := Value;
-  Fvalor_servicosHasValue := True;
-end;
-
-procedure TRpsServicoValores.Setvalor_deducoes(const Value: Double);
-begin
-  Fvalor_deducoes := Value;
-  Fvalor_deducoesHasValue := True;
-end;
-
-procedure TRpsServicoValores.Setvalor_pis(const Value: Double);
-begin
-  Fvalor_pis := Value;
-  Fvalor_pisHasValue := True;
-end;
-
-procedure TRpsServicoValores.Setvalor_cofins(const Value: Double);
-begin
-  Fvalor_cofins := Value;
-  Fvalor_cofinsHasValue := True;
-end;
-
-procedure TRpsServicoValores.Setvalor_inss(const Value: Double);
-begin
-  Fvalor_inss := Value;
-  Fvalor_inssHasValue := True;
-end;
-
-procedure TRpsServicoValores.Setvalor_ir(const Value: Double);
-begin
-  Fvalor_ir := Value;
-  Fvalor_irHasValue := True;
-end;
-
-procedure TRpsServicoValores.Setvalor_csll(const Value: Double);
-begin
-  Fvalor_csll := Value;
-  Fvalor_csllHasValue := True;
-end;
-
-procedure TRpsServicoValores.Setvalor_outras_retencoes(const Value: Double);
-begin
-  Fvalor_outras_retencoes := Value;
-  Fvalor_outras_retencoesHasValue := True;
-end;
-
-procedure TRpsServicoValores.Setvalor_iss(const Value: Double);
-begin
-  Fvalor_iss := Value;
-  Fvalor_issHasValue := True;
-end;
-
-procedure TRpsServicoValores.Setvalor_iss_retido(const Value: Double);
-begin
-  Fvalor_iss_retido := Value;
-  Fvalor_iss_retidoHasValue := True;
-end;
-
-procedure TRpsServicoValores.Setvalor_liquido(const Value: Double);
-begin
-  Fvalor_liquido := Value;
-  Fvalor_liquidoHasValue := True;
-end;
-
-procedure TRpsServicoValores.Setaliquota_iss(const Value: Double);
-begin
-  Faliquota_iss := Value;
-  Faliquota_issHasValue := True;
-end;
-
-procedure TRpsServicoValores.Setaliquota_pis(const Value: Double);
-begin
-  Faliquota_pis := Value;
-  Faliquota_pisHasValue := True;
-end;
-
-procedure TRpsServicoValores.Setaliquota_cofins(const Value: Double);
-begin
-  Faliquota_cofins := Value;
-  Faliquota_cofinsHasValue := True;
-end;
-
-procedure TRpsServicoValores.Setaliquota_inss(const Value: Double);
-begin
-  Faliquota_inss := Value;
-  Faliquota_inssHasValue := True;
-end;
-
-procedure TRpsServicoValores.Setaliquota_ir(const Value: Double);
-begin
-  Faliquota_ir := Value;
-  Faliquota_irHasValue := True;
-end;
-
-procedure TRpsServicoValores.Setaliquota_csll(const Value: Double);
-begin
-  Faliquota_csll := Value;
-  Faliquota_csllHasValue := True;
-end;
-
-procedure TRpsServicoValores.Setdesconto_incondicionado(const Value: Double);
-begin
-  Fdesconto_incondicionado := Value;
-  Fdesconto_incondicionadoHasValue := True;
-end;
-
-procedure TRpsServicoValores.Setdesconto_condicionado(const Value: Double);
-begin
-  Fdesconto_condicionado := Value;
-  Fdesconto_condicionadoHasValue := True;
-end;
-
-{ TRpsDadosServico }
-
-constructor TRpsDadosServico.Create;
-begin
-  inherited;
-  Fvalores := TRpsServicoValores.Create;
-end;
-
-destructor TRpsDadosServico.Destroy;
-begin
-  Fvalores.Free;
-  inherited;
-end;
-
-procedure TRpsDadosServico.Setiss_retido(const Value: Boolean);
-begin
-  Fiss_retido := Value;
-  Fiss_retidoHasValue := True;
-end;
-
-procedure TRpsDadosServico.Setresponsavel_retencao(const Value: Integer);
-begin
-  Fresponsavel_retencao := Value;
-  Fresponsavel_retencaoHasValue := True;
-end;
-
-procedure TRpsDadosServico.Setcodigo_cnae(const Value: string);
-begin
-  Fcodigo_cnae := Value;
-  Fcodigo_cnaeHasValue := True;
-end;
-
-procedure TRpsDadosServico.Setcodigo_tributacao_municipio(const Value: string);
-begin
-  Fcodigo_tributacao_municipio := Value;
-  Fcodigo_tributacao_municipioHasValue := True;
-end;
-
-procedure TRpsDadosServico.Setcodigo_municipio(const Value: string);
-begin
-  Fcodigo_municipio := Value;
-  Fcodigo_municipioHasValue := True;
-end;
-
-procedure TRpsDadosServico.Setcodigo_pais(const Value: string);
-begin
-  Fcodigo_pais := Value;
-  Fcodigo_paisHasValue := True;
-end;
-
-procedure TRpsDadosServico.Settipo_tributacao(const Value: Integer);
-begin
-  Ftipo_tributacao := Value;
-  Ftipo_tributacaoHasValue := True;
-end;
-
-procedure TRpsDadosServico.Setexigibilidade_iss(const Value: Integer);
-begin
-  Fexigibilidade_iss := Value;
-  Fexigibilidade_issHasValue := True;
-end;
-
-procedure TRpsDadosServico.Setcodigo_municipio_incidencia(const Value: string);
-begin
-  Fcodigo_municipio_incidencia := Value;
-  Fcodigo_municipio_incidenciaHasValue := True;
-end;
-
-procedure TRpsDadosServico.Setnumero_processo(const Value: string);
-begin
-  Fnumero_processo := Value;
-  Fnumero_processoHasValue := True;
-end;
-
-procedure TRpsDadosServico.Setunidade(const Value: string);
-begin
-  Funidade := Value;
-  FunidadeHasValue := True;
-end;
-
-procedure TRpsDadosServico.Setquantidade(const Value: Double);
-begin
-  Fquantidade := Value;
-  FquantidadeHasValue := True;
-end;
-
-procedure TRpsDadosServico.Setvalores(const Value: TRpsServicoValores);
-begin
-  if Value <> Fvalores then
-  begin
-    Fvalores.Free;
-    Fvalores := Value;
-  end;
-end;
-
-{ TRpsPedidoEmissao }
-
-constructor TRpsPedidoEmissao.Create;
-begin
-  inherited;
-  Fprestador := TRpsIdentificacaoPrestador.Create;
-  Ftomador := TRpsDadosTomador.Create;
-  Fservicos := TRpsDadosServicoList.Create;
-end;
-
-destructor TRpsPedidoEmissao.Destroy;
-begin
-  Fservicos.Free;
-  Fconstrucao_civil.Free;
-  Fintermediario.Free;
-  Ftomador.Free;
-  Fprestador.Free;
-  inherited;
-end;
-
-procedure TRpsPedidoEmissao.Setreferencia(const Value: string);
-begin
-  Freferencia := Value;
-  FreferenciaHasValue := True;
-end;
-
-procedure TRpsPedidoEmissao.Setdata_emissao(const Value: TDateTime);
-begin
-  Fdata_emissao := Value;
-  Fdata_emissaoHasValue := True;
-end;
-
-procedure TRpsPedidoEmissao.Setcompetencia(const Value: TDateTime);
-begin
-  Fcompetencia := Value;
-  FcompetenciaHasValue := True;
-end;
-
-procedure TRpsPedidoEmissao.Setnatureza_tributacao(const Value: Integer);
-begin
-  Fnatureza_tributacao := Value;
-  Fnatureza_tributacaoHasValue := True;
-end;
-
-procedure TRpsPedidoEmissao.Setprestador(const Value: TRpsIdentificacaoPrestador);
-begin
-  if Value <> Fprestador then
-  begin
-    Fprestador.Free;
-    Fprestador := Value;
-  end;
-end;
-
-procedure TRpsPedidoEmissao.Settomador(const Value: TRpsDadosTomador);
-begin
-  if Value <> Ftomador then
-  begin
-    Ftomador.Free;
-    Ftomador := Value;
-  end;
-end;
-
-procedure TRpsPedidoEmissao.Setintermediario(const Value: TRpsDadosIntermediario);
-begin
-  if Value <> Fintermediario then
-  begin
-    Fintermediario.Free;
-    Fintermediario := Value;
-  end;
-end;
-
-procedure TRpsPedidoEmissao.Setconstrucao_civil(const Value: TRpsDadosConstrucaoCivil);
-begin
-  if Value <> Fconstrucao_civil then
-  begin
-    Fconstrucao_civil.Free;
-    Fconstrucao_civil := Value;
-  end;
-end;
-
-procedure TRpsPedidoEmissao.Setservicos(const Value: TRpsDadosServicoList);
-begin
-  if Value <> Fservicos then
-  begin
-    Fservicos.Free;
-    Fservicos := Value;
-  end;
-end;
-
-procedure TRpsPedidoEmissao.Setoutras_informacoes(const Value: string);
-begin
-  Foutras_informacoes := Value;
-  Foutras_informacoesHasValue := True;
-end;
-
-{ TRpsPedidoEmissaoLote }
-
-destructor TRpsPedidoEmissaoLote.Destroy;
-begin
-  Flista_rps.Free;
-  inherited;
-end;
-
-procedure TRpsPedidoEmissaoLote.Setreferencia(const Value: string);
-begin
-  Freferencia := Value;
-  FreferenciaHasValue := True;
-end;
-
-procedure TRpsPedidoEmissaoLote.Setlista_rps(const Value: TRpsPedidoEmissaoList);
-begin
-  if Value <> Flista_rps then
-  begin
-    Flista_rps.Free;
-    Flista_rps := Value;
-  end;
-end;
-
-{ TDPS }
-
-procedure TDPS.Setserie(const Value: string);
-begin
-  Fserie := Value;
-  FserieHasValue := True;
-end;
-
-procedure TDPS.SetnDPS(const Value: string);
-begin
-  FnDPS := Value;
-  FnDPSHasValue := True;
-end;
-
-{ TNfseMensagemRetorno }
-
-procedure TNfseMensagemRetorno.Setcodigo(const Value: string);
-begin
-  Fcodigo := Value;
-  FcodigoHasValue := True;
-end;
-
-procedure TNfseMensagemRetorno.Setdescricao(const Value: string);
-begin
-  Fdescricao := Value;
-  FdescricaoHasValue := True;
-end;
-
-procedure TNfseMensagemRetorno.Setcorrecao(const Value: string);
-begin
-  Fcorrecao := Value;
-  FcorrecaoHasValue := True;
-end;
-
-{ TNfseCancelamento }
-
-destructor TNfseCancelamento.Destroy;
-begin
-  Fmensagens.Free;
-  inherited;
-end;
-
-procedure TNfseCancelamento.Setid(const Value: string);
-begin
-  Fid := Value;
-  FidHasValue := True;
-end;
-
-procedure TNfseCancelamento.Setstatus(const Value: string);
-begin
-  Fstatus := Value;
-  FstatusHasValue := True;
-end;
-
-procedure TNfseCancelamento.Setcodigo(const Value: string);
-begin
-  Fcodigo := Value;
-  FcodigoHasValue := True;
-end;
-
-procedure TNfseCancelamento.Setmotivo(const Value: string);
-begin
-  Fmotivo := Value;
-  FmotivoHasValue := True;
-end;
-
-procedure TNfseCancelamento.Setdata_hora(const Value: TDateTime);
-begin
-  Fdata_hora := Value;
-  Fdata_horaHasValue := True;
-end;
-
-procedure TNfseCancelamento.Setmensagens(const Value: TNfseMensagemRetornoList);
-begin
-  if Value <> Fmensagens then
-  begin
-    Fmensagens.Free;
-    Fmensagens := Value;
-  end;
-end;
-
-{ TRpsIdentificacao }
-
-procedure TRpsIdentificacao.Setnumero(const Value: string);
-begin
-  Fnumero := Value;
-  FnumeroHasValue := True;
-end;
-
-procedure TRpsIdentificacao.Setserie(const Value: string);
-begin
-  Fserie := Value;
-  FserieHasValue := True;
-end;
-
-procedure TRpsIdentificacao.Settipo(const Value: string);
-begin
-  Ftipo := Value;
-  FtipoHasValue := True;
-end;
-
-{ TRpsDados }
-
-destructor TRpsDados.Destroy;
-begin
-  Fidentificacao_rps.Free;
-  inherited;
-end;
-
-procedure TRpsDados.Setidentificacao_rps(const Value: TRpsIdentificacao);
-begin
-  if Value <> Fidentificacao_rps then
-  begin
-    Fidentificacao_rps.Free;
-    Fidentificacao_rps := Value;
-  end;
-end;
-
-procedure TRpsDados.Setdata_emissao(const Value: TDateTime);
-begin
-  Fdata_emissao := Value;
-  Fdata_emissaoHasValue := True;
-end;
-
-{ TRpsDadosPrestador }
-
-destructor TRpsDadosPrestador.Destroy;
-begin
-  Fendereco.Free;
-  inherited;
-end;
-
-procedure TRpsDadosPrestador.Setcpf_cnpj(const Value: string);
-begin
-  Fcpf_cnpj := Value;
-  Fcpf_cnpjHasValue := True;
-end;
-
-procedure TRpsDadosPrestador.Setinscricao_municipal(const Value: string);
-begin
-  Finscricao_municipal := Value;
-  Finscricao_municipalHasValue := True;
-end;
-
-procedure TRpsDadosPrestador.Setnome_razao_social(const Value: string);
-begin
-  Fnome_razao_social := Value;
-  Fnome_razao_socialHasValue := True;
-end;
-
-procedure TRpsDadosPrestador.Setnome_fantasia(const Value: string);
-begin
-  Fnome_fantasia := Value;
-  Fnome_fantasiaHasValue := True;
-end;
-
-procedure TRpsDadosPrestador.Setfone(const Value: string);
-begin
-  Ffone := Value;
-  FfoneHasValue := True;
-end;
-
-procedure TRpsDadosPrestador.Setemail(const Value: string);
-begin
-  Femail := Value;
-  FemailHasValue := True;
-end;
-
-procedure TRpsDadosPrestador.Setendereco(const Value: TEmpresaEndereco);
-begin
-  if Value <> Fendereco then
-  begin
-    Fendereco.Free;
-    Fendereco := Value;
-  end;
-end;
-
-procedure TRpsDadosPrestador.Setoptante_simples_nacional(const Value: Boolean);
-begin
-  Foptante_simples_nacional := Value;
-  Foptante_simples_nacionalHasValue := True;
-end;
-
-procedure TRpsDadosPrestador.Setregime_tributacao(const Value: Integer);
-begin
-  Fregime_tributacao := Value;
-  Fregime_tributacaoHasValue := True;
-end;
-
-procedure TRpsDadosPrestador.Setregime_especial_tributacao(const Value: Integer);
-begin
-  Fregime_especial_tributacao := Value;
-  Fregime_especial_tributacaoHasValue := True;
-end;
-
-procedure TRpsDadosPrestador.Setincentivo_fiscal(const Value: Boolean);
-begin
-  Fincentivo_fiscal := Value;
-  Fincentivo_fiscalHasValue := True;
-end;
-
-procedure TRpsDadosPrestador.Setincentivador_cultural(const Value: Boolean);
-begin
-  Fincentivador_cultural := Value;
-  Fincentivador_culturalHasValue := True;
-end;
-
-{ TRps }
-
-constructor TRps.Create;
-begin
-  inherited;
-  Fservicos := TRpsDadosServicoList.Create;
-end;
-
-destructor TRps.Destroy;
-begin
-  Fservicos.Free;
-  Fconstrucao_civil.Free;
-  Fintermediario.Free;
-  Ftomador.Free;
-  Fprestador.Free;
-  Frps.Free;
-  inherited;
-end;
-
-procedure TRps.Setrps(const Value: TRpsDados);
-begin
-  if Value <> Frps then
-  begin
-    Frps.Free;
-    Frps := Value;
-  end;
-end;
-
-procedure TRps.Setcompetencia(const Value: TDateTime);
-begin
-  Fcompetencia := Value;
-  FcompetenciaHasValue := True;
-end;
-
-procedure TRps.Setnatureza_tributacao(const Value: Integer);
-begin
-  Fnatureza_tributacao := Value;
-  Fnatureza_tributacaoHasValue := True;
-end;
-
-procedure TRps.Setprestador(const Value: TRpsDadosPrestador);
-begin
-  if Value <> Fprestador then
-  begin
-    Fprestador.Free;
-    Fprestador := Value;
-  end;
-end;
-
-procedure TRps.Settomador(const Value: TRpsDadosTomador);
-begin
-  if Value <> Ftomador then
-  begin
-    Ftomador.Free;
-    Ftomador := Value;
-  end;
-end;
-
-procedure TRps.Setintermediario(const Value: TRpsDadosIntermediario);
-begin
-  if Value <> Fintermediario then
-  begin
-    Fintermediario.Free;
-    Fintermediario := Value;
-  end;
-end;
-
-procedure TRps.Setconstrucao_civil(const Value: TRpsDadosConstrucaoCivil);
-begin
-  if Value <> Fconstrucao_civil then
-  begin
-    Fconstrucao_civil.Free;
-    Fconstrucao_civil := Value;
-  end;
-end;
-
-procedure TRps.Setservicos(const Value: TRpsDadosServicoList);
-begin
-  if Value <> Fservicos then
-  begin
-    Fservicos.Free;
-    Fservicos := Value;
-  end;
-end;
-
-procedure TRps.Setoutras_informacoes(const Value: string);
-begin
-  Foutras_informacoes := Value;
-  Foutras_informacoesHasValue := True;
-end;
-
-{ TNfse }
-
-destructor TNfse.Destroy;
-begin
-  Fdeclaracao_prestacao_servico.Free;
-  Fmensagens.Free;
-  Fcancelamento.Free;
-  FDPS.Free;
-  inherited;
-end;
-
-procedure TNfse.Setid(const Value: string);
-begin
-  Fid := Value;
-  FidHasValue := True;
-end;
-
-procedure TNfse.Setcreated_at(const Value: TDateTime);
-begin
-  Fcreated_at := Value;
-  Fcreated_atHasValue := True;
-end;
-
-procedure TNfse.Setstatus(const Value: string);
-begin
-  Fstatus := Value;
-  FstatusHasValue := True;
-end;
-
-procedure TNfse.Setnumero(const Value: string);
-begin
-  Fnumero := Value;
-  FnumeroHasValue := True;
-end;
-
-procedure TNfse.Setcodigo_verificacao(const Value: string);
-begin
-  Fcodigo_verificacao := Value;
-  Fcodigo_verificacaoHasValue := True;
-end;
-
-procedure TNfse.Setlink_url(const Value: string);
-begin
-  Flink_url := Value;
-  Flink_urlHasValue := True;
-end;
-
-procedure TNfse.Setdata_emissao(const Value: TDateTime);
-begin
-  Fdata_emissao := Value;
-  Fdata_emissaoHasValue := True;
-end;
-
-procedure TNfse.Setambiente(const Value: string);
-begin
-  Fambiente := Value;
-  FambienteHasValue := True;
-end;
-
-procedure TNfse.Setreferencia(const Value: string);
-begin
-  Freferencia := Value;
-  FreferenciaHasValue := True;
-end;
-
-procedure TNfse.SetDPS(const Value: TDPS);
-begin
-  if Value <> FDPS then
-  begin
-    FDPS.Free;
-    FDPS := Value;
-  end;
-end;
-
-procedure TNfse.Setcancelamento(const Value: TNfseCancelamento);
-begin
-  if Value <> Fcancelamento then
-  begin
-    Fcancelamento.Free;
-    Fcancelamento := Value;
-  end;
-end;
-
-procedure TNfse.Setmensagens(const Value: TNfseMensagemRetornoList);
-begin
-  if Value <> Fmensagens then
-  begin
-    Fmensagens.Free;
-    Fmensagens := Value;
-  end;
-end;
-
-procedure TNfse.Setdeclaracao_prestacao_servico(const Value: TRps);
-begin
-  if Value <> Fdeclaracao_prestacao_servico then
-  begin
-    Fdeclaracao_prestacao_servico.Free;
-    Fdeclaracao_prestacao_servico := Value;
-  end;
-end;
-
-{ TRpsLote }
-
-destructor TRpsLote.Destroy;
-begin
-  Fnotas.Free;
-  inherited;
-end;
-
-procedure TRpsLote.Setid(const Value: string);
-begin
-  Fid := Value;
-  FidHasValue := True;
-end;
-
-procedure TRpsLote.Setcreated_at(const Value: TDateTime);
-begin
-  Fcreated_at := Value;
-  Fcreated_atHasValue := True;
-end;
-
-procedure TRpsLote.Setstatus(const Value: string);
-begin
-  Fstatus := Value;
-  FstatusHasValue := True;
-end;
-
-procedure TRpsLote.Setnumero(const Value: string);
-begin
-  Fnumero := Value;
-  FnumeroHasValue := True;
-end;
-
-procedure TRpsLote.Setambiente(const Value: string);
-begin
-  Fambiente := Value;
-  FambienteHasValue := True;
-end;
-
-procedure TRpsLote.Setreferencia(const Value: string);
-begin
-  Freferencia := Value;
-  FreferenciaHasValue := True;
-end;
-
-procedure TRpsLote.Setnotas(const Value: TNfseList);
-begin
-  if Value <> Fnotas then
-  begin
-    Fnotas.Free;
-    Fnotas := Value;
-  end;
-end;
-
 { TSubstituicao }
 
 procedure TSubstituicao.SetxMotivo(const Value: string);
@@ -38000,6 +36947,806 @@ begin
   end;
 end;
 
+{ TDPS }
+
+procedure TDPS.Setserie(const Value: string);
+begin
+  Fserie := Value;
+  FserieHasValue := True;
+end;
+
+procedure TDPS.SetnDPS(const Value: string);
+begin
+  FnDPS := Value;
+  FnDPSHasValue := True;
+end;
+
+{ TNfseMensagemRetorno }
+
+procedure TNfseMensagemRetorno.Setcodigo(const Value: string);
+begin
+  Fcodigo := Value;
+  FcodigoHasValue := True;
+end;
+
+procedure TNfseMensagemRetorno.Setdescricao(const Value: string);
+begin
+  Fdescricao := Value;
+  FdescricaoHasValue := True;
+end;
+
+procedure TNfseMensagemRetorno.Setcorrecao(const Value: string);
+begin
+  Fcorrecao := Value;
+  FcorrecaoHasValue := True;
+end;
+
+{ TNfseCancelamento }
+
+destructor TNfseCancelamento.Destroy;
+begin
+  Fmensagens.Free;
+  inherited;
+end;
+
+procedure TNfseCancelamento.Setid(const Value: string);
+begin
+  Fid := Value;
+  FidHasValue := True;
+end;
+
+procedure TNfseCancelamento.Setstatus(const Value: string);
+begin
+  Fstatus := Value;
+  FstatusHasValue := True;
+end;
+
+procedure TNfseCancelamento.Setcodigo(const Value: string);
+begin
+  Fcodigo := Value;
+  FcodigoHasValue := True;
+end;
+
+procedure TNfseCancelamento.Setmotivo(const Value: string);
+begin
+  Fmotivo := Value;
+  FmotivoHasValue := True;
+end;
+
+procedure TNfseCancelamento.Setdata_hora(const Value: TDateTime);
+begin
+  Fdata_hora := Value;
+  Fdata_horaHasValue := True;
+end;
+
+procedure TNfseCancelamento.Setmensagens(const Value: TNfseMensagemRetornoList);
+begin
+  if Value <> Fmensagens then
+  begin
+    Fmensagens.Free;
+    Fmensagens := Value;
+  end;
+end;
+
+{ TRpsIdentificacao }
+
+procedure TRpsIdentificacao.Setnumero(const Value: string);
+begin
+  Fnumero := Value;
+  FnumeroHasValue := True;
+end;
+
+procedure TRpsIdentificacao.Setserie(const Value: string);
+begin
+  Fserie := Value;
+  FserieHasValue := True;
+end;
+
+procedure TRpsIdentificacao.Settipo(const Value: string);
+begin
+  Ftipo := Value;
+  FtipoHasValue := True;
+end;
+
+{ TRpsDados }
+
+destructor TRpsDados.Destroy;
+begin
+  Fidentificacao_rps.Free;
+  inherited;
+end;
+
+procedure TRpsDados.Setidentificacao_rps(const Value: TRpsIdentificacao);
+begin
+  if Value <> Fidentificacao_rps then
+  begin
+    Fidentificacao_rps.Free;
+    Fidentificacao_rps := Value;
+  end;
+end;
+
+procedure TRpsDados.Setdata_emissao(const Value: TDateTime);
+begin
+  Fdata_emissao := Value;
+  Fdata_emissaoHasValue := True;
+end;
+
+{ TRpsDadosPrestador }
+
+destructor TRpsDadosPrestador.Destroy;
+begin
+  Fendereco.Free;
+  inherited;
+end;
+
+procedure TRpsDadosPrestador.Setcpf_cnpj(const Value: string);
+begin
+  Fcpf_cnpj := Value;
+  Fcpf_cnpjHasValue := True;
+end;
+
+procedure TRpsDadosPrestador.Setinscricao_municipal(const Value: string);
+begin
+  Finscricao_municipal := Value;
+  Finscricao_municipalHasValue := True;
+end;
+
+procedure TRpsDadosPrestador.Setnome_razao_social(const Value: string);
+begin
+  Fnome_razao_social := Value;
+  Fnome_razao_socialHasValue := True;
+end;
+
+procedure TRpsDadosPrestador.Setnome_fantasia(const Value: string);
+begin
+  Fnome_fantasia := Value;
+  Fnome_fantasiaHasValue := True;
+end;
+
+procedure TRpsDadosPrestador.Setfone(const Value: string);
+begin
+  Ffone := Value;
+  FfoneHasValue := True;
+end;
+
+procedure TRpsDadosPrestador.Setemail(const Value: string);
+begin
+  Femail := Value;
+  FemailHasValue := True;
+end;
+
+procedure TRpsDadosPrestador.Setendereco(const Value: TEmpresaEndereco);
+begin
+  if Value <> Fendereco then
+  begin
+    Fendereco.Free;
+    Fendereco := Value;
+  end;
+end;
+
+procedure TRpsDadosPrestador.Setoptante_simples_nacional(const Value: Boolean);
+begin
+  Foptante_simples_nacional := Value;
+  Foptante_simples_nacionalHasValue := True;
+end;
+
+procedure TRpsDadosPrestador.Setregime_tributacao(const Value: Integer);
+begin
+  Fregime_tributacao := Value;
+  Fregime_tributacaoHasValue := True;
+end;
+
+procedure TRpsDadosPrestador.Setregime_especial_tributacao(const Value: Integer);
+begin
+  Fregime_especial_tributacao := Value;
+  Fregime_especial_tributacaoHasValue := True;
+end;
+
+procedure TRpsDadosPrestador.Setincentivo_fiscal(const Value: Boolean);
+begin
+  Fincentivo_fiscal := Value;
+  Fincentivo_fiscalHasValue := True;
+end;
+
+procedure TRpsDadosPrestador.Setincentivador_cultural(const Value: Boolean);
+begin
+  Fincentivador_cultural := Value;
+  Fincentivador_culturalHasValue := True;
+end;
+
+{ TRpsDadosTomadorEndereco }
+
+procedure TRpsDadosTomadorEndereco.Setlogradouro(const Value: string);
+begin
+  Flogradouro := Value;
+  FlogradouroHasValue := True;
+end;
+
+procedure TRpsDadosTomadorEndereco.Setnumero(const Value: string);
+begin
+  Fnumero := Value;
+  FnumeroHasValue := True;
+end;
+
+procedure TRpsDadosTomadorEndereco.Setcomplemento(const Value: string);
+begin
+  Fcomplemento := Value;
+  FcomplementoHasValue := True;
+end;
+
+procedure TRpsDadosTomadorEndereco.Setbairro(const Value: string);
+begin
+  Fbairro := Value;
+  FbairroHasValue := True;
+end;
+
+procedure TRpsDadosTomadorEndereco.Setcodigo_municipio(const Value: string);
+begin
+  Fcodigo_municipio := Value;
+  Fcodigo_municipioHasValue := True;
+end;
+
+procedure TRpsDadosTomadorEndereco.Setcidade(const Value: string);
+begin
+  Fcidade := Value;
+  FcidadeHasValue := True;
+end;
+
+procedure TRpsDadosTomadorEndereco.Setuf(const Value: string);
+begin
+  Fuf := Value;
+  FufHasValue := True;
+end;
+
+procedure TRpsDadosTomadorEndereco.Setcodigo_pais(const Value: string);
+begin
+  Fcodigo_pais := Value;
+  Fcodigo_paisHasValue := True;
+end;
+
+procedure TRpsDadosTomadorEndereco.Setpais(const Value: string);
+begin
+  Fpais := Value;
+  FpaisHasValue := True;
+end;
+
+procedure TRpsDadosTomadorEndereco.Setcep(const Value: string);
+begin
+  Fcep := Value;
+  FcepHasValue := True;
+end;
+
+{ TRpsDadosTomador }
+
+destructor TRpsDadosTomador.Destroy;
+begin
+  Fendereco.Free;
+  inherited;
+end;
+
+procedure TRpsDadosTomador.Setcpf_cnpj(const Value: string);
+begin
+  Fcpf_cnpj := Value;
+  Fcpf_cnpjHasValue := True;
+end;
+
+procedure TRpsDadosTomador.Setinscricao_municipal(const Value: string);
+begin
+  Finscricao_municipal := Value;
+  Finscricao_municipalHasValue := True;
+end;
+
+procedure TRpsDadosTomador.Setfone(const Value: string);
+begin
+  Ffone := Value;
+  FfoneHasValue := True;
+end;
+
+procedure TRpsDadosTomador.Setemail(const Value: string);
+begin
+  Femail := Value;
+  FemailHasValue := True;
+end;
+
+procedure TRpsDadosTomador.Setendereco(const Value: TRpsDadosTomadorEndereco);
+begin
+  if Value <> Fendereco then
+  begin
+    Fendereco.Free;
+    Fendereco := Value;
+  end;
+end;
+
+{ TRpsDadosIntermediario }
+
+procedure TRpsDadosIntermediario.Setcpf_cnpj(const Value: string);
+begin
+  Fcpf_cnpj := Value;
+  Fcpf_cnpjHasValue := True;
+end;
+
+procedure TRpsDadosIntermediario.Setnome_razao_social(const Value: string);
+begin
+  Fnome_razao_social := Value;
+  Fnome_razao_socialHasValue := True;
+end;
+
+procedure TRpsDadosIntermediario.Setinscricao_municipal(const Value: string);
+begin
+  Finscricao_municipal := Value;
+  Finscricao_municipalHasValue := True;
+end;
+
+{ TRpsDadosConstrucaoCivil }
+
+procedure TRpsDadosConstrucaoCivil.Setcodigo_obra(const Value: string);
+begin
+  Fcodigo_obra := Value;
+  Fcodigo_obraHasValue := True;
+end;
+
+procedure TRpsDadosConstrucaoCivil.Setart(const Value: string);
+begin
+  Fart := Value;
+  FartHasValue := True;
+end;
+
+{ TRpsServicoValores }
+
+procedure TRpsServicoValores.Setvalor_servicos(const Value: Double);
+begin
+  Fvalor_servicos := Value;
+  Fvalor_servicosHasValue := True;
+end;
+
+procedure TRpsServicoValores.Setvalor_deducoes(const Value: Double);
+begin
+  Fvalor_deducoes := Value;
+  Fvalor_deducoesHasValue := True;
+end;
+
+procedure TRpsServicoValores.Setvalor_pis(const Value: Double);
+begin
+  Fvalor_pis := Value;
+  Fvalor_pisHasValue := True;
+end;
+
+procedure TRpsServicoValores.Setvalor_cofins(const Value: Double);
+begin
+  Fvalor_cofins := Value;
+  Fvalor_cofinsHasValue := True;
+end;
+
+procedure TRpsServicoValores.Setvalor_inss(const Value: Double);
+begin
+  Fvalor_inss := Value;
+  Fvalor_inssHasValue := True;
+end;
+
+procedure TRpsServicoValores.Setvalor_ir(const Value: Double);
+begin
+  Fvalor_ir := Value;
+  Fvalor_irHasValue := True;
+end;
+
+procedure TRpsServicoValores.Setvalor_csll(const Value: Double);
+begin
+  Fvalor_csll := Value;
+  Fvalor_csllHasValue := True;
+end;
+
+procedure TRpsServicoValores.Setvalor_outras_retencoes(const Value: Double);
+begin
+  Fvalor_outras_retencoes := Value;
+  Fvalor_outras_retencoesHasValue := True;
+end;
+
+procedure TRpsServicoValores.Setvalor_iss(const Value: Double);
+begin
+  Fvalor_iss := Value;
+  Fvalor_issHasValue := True;
+end;
+
+procedure TRpsServicoValores.Setvalor_iss_retido(const Value: Double);
+begin
+  Fvalor_iss_retido := Value;
+  Fvalor_iss_retidoHasValue := True;
+end;
+
+procedure TRpsServicoValores.Setvalor_liquido(const Value: Double);
+begin
+  Fvalor_liquido := Value;
+  Fvalor_liquidoHasValue := True;
+end;
+
+procedure TRpsServicoValores.Setaliquota_iss(const Value: Double);
+begin
+  Faliquota_iss := Value;
+  Faliquota_issHasValue := True;
+end;
+
+procedure TRpsServicoValores.Setaliquota_pis(const Value: Double);
+begin
+  Faliquota_pis := Value;
+  Faliquota_pisHasValue := True;
+end;
+
+procedure TRpsServicoValores.Setaliquota_cofins(const Value: Double);
+begin
+  Faliquota_cofins := Value;
+  Faliquota_cofinsHasValue := True;
+end;
+
+procedure TRpsServicoValores.Setaliquota_inss(const Value: Double);
+begin
+  Faliquota_inss := Value;
+  Faliquota_inssHasValue := True;
+end;
+
+procedure TRpsServicoValores.Setaliquota_ir(const Value: Double);
+begin
+  Faliquota_ir := Value;
+  Faliquota_irHasValue := True;
+end;
+
+procedure TRpsServicoValores.Setaliquota_csll(const Value: Double);
+begin
+  Faliquota_csll := Value;
+  Faliquota_csllHasValue := True;
+end;
+
+procedure TRpsServicoValores.Setdesconto_incondicionado(const Value: Double);
+begin
+  Fdesconto_incondicionado := Value;
+  Fdesconto_incondicionadoHasValue := True;
+end;
+
+procedure TRpsServicoValores.Setdesconto_condicionado(const Value: Double);
+begin
+  Fdesconto_condicionado := Value;
+  Fdesconto_condicionadoHasValue := True;
+end;
+
+{ TRpsDadosServico }
+
+constructor TRpsDadosServico.Create;
+begin
+  inherited;
+  Fvalores := TRpsServicoValores.Create;
+end;
+
+destructor TRpsDadosServico.Destroy;
+begin
+  Fvalores.Free;
+  inherited;
+end;
+
+procedure TRpsDadosServico.Setiss_retido(const Value: Boolean);
+begin
+  Fiss_retido := Value;
+  Fiss_retidoHasValue := True;
+end;
+
+procedure TRpsDadosServico.Setresponsavel_retencao(const Value: Integer);
+begin
+  Fresponsavel_retencao := Value;
+  Fresponsavel_retencaoHasValue := True;
+end;
+
+procedure TRpsDadosServico.Setcodigo_cnae(const Value: string);
+begin
+  Fcodigo_cnae := Value;
+  Fcodigo_cnaeHasValue := True;
+end;
+
+procedure TRpsDadosServico.Setcodigo_tributacao_municipio(const Value: string);
+begin
+  Fcodigo_tributacao_municipio := Value;
+  Fcodigo_tributacao_municipioHasValue := True;
+end;
+
+procedure TRpsDadosServico.Setcodigo_municipio(const Value: string);
+begin
+  Fcodigo_municipio := Value;
+  Fcodigo_municipioHasValue := True;
+end;
+
+procedure TRpsDadosServico.Setcodigo_pais(const Value: string);
+begin
+  Fcodigo_pais := Value;
+  Fcodigo_paisHasValue := True;
+end;
+
+procedure TRpsDadosServico.Settipo_tributacao(const Value: Integer);
+begin
+  Ftipo_tributacao := Value;
+  Ftipo_tributacaoHasValue := True;
+end;
+
+procedure TRpsDadosServico.Setexigibilidade_iss(const Value: Integer);
+begin
+  Fexigibilidade_iss := Value;
+  Fexigibilidade_issHasValue := True;
+end;
+
+procedure TRpsDadosServico.Setcodigo_municipio_incidencia(const Value: string);
+begin
+  Fcodigo_municipio_incidencia := Value;
+  Fcodigo_municipio_incidenciaHasValue := True;
+end;
+
+procedure TRpsDadosServico.Setnumero_processo(const Value: string);
+begin
+  Fnumero_processo := Value;
+  Fnumero_processoHasValue := True;
+end;
+
+procedure TRpsDadosServico.Setunidade(const Value: string);
+begin
+  Funidade := Value;
+  FunidadeHasValue := True;
+end;
+
+procedure TRpsDadosServico.Setquantidade(const Value: Double);
+begin
+  Fquantidade := Value;
+  FquantidadeHasValue := True;
+end;
+
+procedure TRpsDadosServico.Setvalores(const Value: TRpsServicoValores);
+begin
+  if Value <> Fvalores then
+  begin
+    Fvalores.Free;
+    Fvalores := Value;
+  end;
+end;
+
+{ TRps }
+
+constructor TRps.Create;
+begin
+  inherited;
+  Fservicos := TRpsDadosServicoList.Create;
+end;
+
+destructor TRps.Destroy;
+begin
+  Fservicos.Free;
+  Fconstrucao_civil.Free;
+  Fintermediario.Free;
+  Ftomador.Free;
+  Fprestador.Free;
+  Frps.Free;
+  inherited;
+end;
+
+procedure TRps.Setrps(const Value: TRpsDados);
+begin
+  if Value <> Frps then
+  begin
+    Frps.Free;
+    Frps := Value;
+  end;
+end;
+
+procedure TRps.Setcompetencia(const Value: TDateTime);
+begin
+  Fcompetencia := Value;
+  FcompetenciaHasValue := True;
+end;
+
+procedure TRps.Setnatureza_tributacao(const Value: Integer);
+begin
+  Fnatureza_tributacao := Value;
+  Fnatureza_tributacaoHasValue := True;
+end;
+
+procedure TRps.Setprestador(const Value: TRpsDadosPrestador);
+begin
+  if Value <> Fprestador then
+  begin
+    Fprestador.Free;
+    Fprestador := Value;
+  end;
+end;
+
+procedure TRps.Settomador(const Value: TRpsDadosTomador);
+begin
+  if Value <> Ftomador then
+  begin
+    Ftomador.Free;
+    Ftomador := Value;
+  end;
+end;
+
+procedure TRps.Setintermediario(const Value: TRpsDadosIntermediario);
+begin
+  if Value <> Fintermediario then
+  begin
+    Fintermediario.Free;
+    Fintermediario := Value;
+  end;
+end;
+
+procedure TRps.Setconstrucao_civil(const Value: TRpsDadosConstrucaoCivil);
+begin
+  if Value <> Fconstrucao_civil then
+  begin
+    Fconstrucao_civil.Free;
+    Fconstrucao_civil := Value;
+  end;
+end;
+
+procedure TRps.Setservicos(const Value: TRpsDadosServicoList);
+begin
+  if Value <> Fservicos then
+  begin
+    Fservicos.Free;
+    Fservicos := Value;
+  end;
+end;
+
+procedure TRps.Setoutras_informacoes(const Value: string);
+begin
+  Foutras_informacoes := Value;
+  Foutras_informacoesHasValue := True;
+end;
+
+{ TNfse }
+
+destructor TNfse.Destroy;
+begin
+  Fdeclaracao_prestacao_servico.Free;
+  Fmensagens.Free;
+  Fcancelamento.Free;
+  FDPS.Free;
+  inherited;
+end;
+
+procedure TNfse.Setid(const Value: string);
+begin
+  Fid := Value;
+  FidHasValue := True;
+end;
+
+procedure TNfse.Setcreated_at(const Value: TDateTime);
+begin
+  Fcreated_at := Value;
+  Fcreated_atHasValue := True;
+end;
+
+procedure TNfse.Setstatus(const Value: string);
+begin
+  Fstatus := Value;
+  FstatusHasValue := True;
+end;
+
+procedure TNfse.Setnumero(const Value: string);
+begin
+  Fnumero := Value;
+  FnumeroHasValue := True;
+end;
+
+procedure TNfse.Setcodigo_verificacao(const Value: string);
+begin
+  Fcodigo_verificacao := Value;
+  Fcodigo_verificacaoHasValue := True;
+end;
+
+procedure TNfse.Setlink_url(const Value: string);
+begin
+  Flink_url := Value;
+  Flink_urlHasValue := True;
+end;
+
+procedure TNfse.Setdata_emissao(const Value: TDateTime);
+begin
+  Fdata_emissao := Value;
+  Fdata_emissaoHasValue := True;
+end;
+
+procedure TNfse.Setambiente(const Value: string);
+begin
+  Fambiente := Value;
+  FambienteHasValue := True;
+end;
+
+procedure TNfse.Setreferencia(const Value: string);
+begin
+  Freferencia := Value;
+  FreferenciaHasValue := True;
+end;
+
+procedure TNfse.SetDPS(const Value: TDPS);
+begin
+  if Value <> FDPS then
+  begin
+    FDPS.Free;
+    FDPS := Value;
+  end;
+end;
+
+procedure TNfse.Setcancelamento(const Value: TNfseCancelamento);
+begin
+  if Value <> Fcancelamento then
+  begin
+    Fcancelamento.Free;
+    Fcancelamento := Value;
+  end;
+end;
+
+procedure TNfse.Setmensagens(const Value: TNfseMensagemRetornoList);
+begin
+  if Value <> Fmensagens then
+  begin
+    Fmensagens.Free;
+    Fmensagens := Value;
+  end;
+end;
+
+procedure TNfse.Setdeclaracao_prestacao_servico(const Value: TRps);
+begin
+  if Value <> Fdeclaracao_prestacao_servico then
+  begin
+    Fdeclaracao_prestacao_servico.Free;
+    Fdeclaracao_prestacao_servico := Value;
+  end;
+end;
+
+{ TRpsLote }
+
+destructor TRpsLote.Destroy;
+begin
+  Fnotas.Free;
+  inherited;
+end;
+
+procedure TRpsLote.Setid(const Value: string);
+begin
+  Fid := Value;
+  FidHasValue := True;
+end;
+
+procedure TRpsLote.Setcreated_at(const Value: TDateTime);
+begin
+  Fcreated_at := Value;
+  Fcreated_atHasValue := True;
+end;
+
+procedure TRpsLote.Setstatus(const Value: string);
+begin
+  Fstatus := Value;
+  FstatusHasValue := True;
+end;
+
+procedure TRpsLote.Setnumero(const Value: string);
+begin
+  Fnumero := Value;
+  FnumeroHasValue := True;
+end;
+
+procedure TRpsLote.Setambiente(const Value: string);
+begin
+  Fambiente := Value;
+  FambienteHasValue := True;
+end;
+
+procedure TRpsLote.Setreferencia(const Value: string);
+begin
+  Freferencia := Value;
+  FreferenciaHasValue := True;
+end;
+
+procedure TRpsLote.Setnotas(const Value: TNfseList);
+begin
+  if Value <> Fnotas then
+  begin
+    Fnotas.Free;
+    Fnotas := Value;
+  end;
+end;
+
 { TRpsLoteListagem }
 
 destructor TRpsLoteListagem.Destroy;
@@ -38020,29 +37767,6 @@ begin
   begin
     Fdata.Free;
     Fdata := Value;
-  end;
-end;
-
-{ TNfsePedidoEmissao }
-
-constructor TNfsePedidoEmissao.Create;
-begin
-  inherited;
-  Frps := TRpsPedidoEmissao.Create;
-end;
-
-destructor TNfsePedidoEmissao.Destroy;
-begin
-  Frps.Free;
-  inherited;
-end;
-
-procedure TNfsePedidoEmissao.Setrps(const Value: TRpsPedidoEmissao);
-begin
-  if Value <> Frps then
-  begin
-    Frps.Free;
-    Frps := Value;
   end;
 end;
 

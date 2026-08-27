@@ -4797,14 +4797,6 @@ type
     /// </remarks>
     function ListarNfse(Top: Integer; Skip: Integer; Inlinecount: Boolean; CpfCnpj: string; Referencia: string; Ambiente: string; Chave: string; Serie: string): TNfseListagem;
     /// <summary>
-    /// Emitir NFS-e
-    /// </summary>
-    /// <remarks>
-    /// **Informações adicionais**:
-    /// - Consumo: 1 unidade por requisição.
-    /// </remarks>
-    function EmitirNfse(Body: TNfsePedidoEmissao): TNfse;
-    /// <summary>
     /// Cidades atendidas
     /// </summary>
     /// <remarks>
@@ -4862,14 +4854,6 @@ type
     /// Retorna a lista dos lotes de acordo com os critérios de busca utilizados. Os lotes são retornados ordenados pela data da criação, com os mais recentes aparecendo primeiro.
     /// </remarks>
     function ListarLotesNfse(Top: Integer; Skip: Integer; Inlinecount: Boolean; CpfCnpj: string; Referencia: string; Ambiente: string): TRpsLoteListagem;
-    /// <summary>
-    /// Emitir lote de NFS-e
-    /// </summary>
-    /// <remarks>
-    /// **Informações adicionais**:
-    /// - Consumo: 1 unidade por NFS-e.
-    /// </remarks>
-    function EmitirLoteNfse(Body: TRpsPedidoEmissaoLote): TRpsLote;
     /// <summary>
     /// Consultar lote de NFS-e
     /// </summary>
@@ -5018,7 +5002,6 @@ type
     /// Série do DF-e.
     /// </param>
     function ListarNfse(Top: Integer; Skip: Integer; Inlinecount: Boolean; CpfCnpj: string; Referencia: string; Ambiente: string; Chave: string; Serie: string): TNfseListagem;
-    function EmitirNfse(Body: TNfsePedidoEmissao): TNfse;
     function CidadesAtendidas: TNfseCidadesAtendidas;
     /// <param name="CodigoIbge">
     /// Código IBGE do município.
@@ -5045,7 +5028,6 @@ type
     /// Valores aceitos: homologacao, producao
     /// </param>
     function ListarLotesNfse(Top: Integer; Skip: Integer; Inlinecount: Boolean; CpfCnpj: string; Referencia: string; Ambiente: string): TRpsLoteListagem;
-    function EmitirLoteNfse(Body: TRpsPedidoEmissaoLote): TRpsLote;
     /// <param name="Id">
     /// ID único do lote gerado pela API.
     /// </param>
@@ -8044,20 +8026,6 @@ begin
   Result := Converter.TNfseListagemFromJson(Response.ContentAsString);
 end;
 
-function TNfseService.EmitirNfse(Body: TNfsePedidoEmissao): TNfse;
-var
-  Request: IRestRequest;
-  Response: IRestResponse;
-begin
-  Request := CreateRequest('/nfse', 'POST');
-  Request.AddBody(Converter.TNfsePedidoEmissaoToJson(Body));
-  Request.AddHeader('Content-Type', 'application/json');
-  Request.AddHeader('Accept', 'application/json');
-  Response := ExecuteRequest(Request);
-  CheckError(Response);
-  Result := Converter.TNfseFromJson(Response.ContentAsString);
-end;
-
 function TNfseService.CidadesAtendidas: TNfseCidadesAtendidas;
 var
   Request: IRestRequest;
@@ -8127,20 +8095,6 @@ begin
   Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TRpsLoteListagemFromJson(Response.ContentAsString);
-end;
-
-function TNfseService.EmitirLoteNfse(Body: TRpsPedidoEmissaoLote): TRpsLote;
-var
-  Request: IRestRequest;
-  Response: IRestResponse;
-begin
-  Request := CreateRequest('/nfse/lotes', 'POST');
-  Request.AddBody(Converter.TRpsPedidoEmissaoLoteToJson(Body));
-  Request.AddHeader('Content-Type', 'application/json');
-  Request.AddHeader('Accept', 'application/json');
-  Response := ExecuteRequest(Request);
-  CheckError(Response);
-  Result := Converter.TRpsLoteFromJson(Response.ContentAsString);
 end;
 
 function TNfseService.ConsultarLoteNfse(Id: string): TRpsLote;
