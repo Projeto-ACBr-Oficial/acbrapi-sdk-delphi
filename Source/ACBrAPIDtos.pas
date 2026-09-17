@@ -1180,19 +1180,36 @@ type
     property ambiente: string read Fambiente write Fambiente;
   end;
   
+  /// <summary>
+  /// Configurações do CSC (Código de Segurança do Contribuinte) para emissão
+  /// da NFC-e.
+  /// 
+  /// Se informado `id_csc` e `csc`, será utilizada a versão 2 do QR Code da
+  /// NFC-e. Para utilizar a versão 3 do QR Code (NT 2025.001), que dispensa o
+  /// CSC, envie `id_csc` igual a 0 (zero) e `csc` como string vazia.
+  /// 
+  /// Observação: emitente pessoa física (CPF) utilizar sempre a versão 3 do
+  /// QR Code.
+  /// </summary>
   TEmpresaConfigNfceSefaz = class
   private
     Fid_csc: Integer;
+    Fid_cscHasValue: Boolean;
     Fcsc: string;
+    FcscHasValue: Boolean;
+    procedure Setid_csc(const Value: Integer);
+    procedure Setcsc(const Value: string);
   public
     /// <summary>
     /// Número de identificação do CSC.
     /// </summary>
-    property id_csc: Integer read Fid_csc write Fid_csc;
+    property id_csc: Integer read Fid_csc write Setid_csc;
+    property id_cscHasValue: Boolean read Fid_cscHasValue write Fid_cscHasValue;
     /// <summary>
     /// Código do CSC.
     /// </summary>
-    property csc: string read Fcsc write Fcsc;
+    property csc: string read Fcsc write Setcsc;
+    property cscHasValue: Boolean read FcscHasValue write FcscHasValue;
   end;
   
   TEmpresaConfigNfce = class
@@ -32863,6 +32880,20 @@ procedure TEmpresaConfigNfe.SetCRT(const Value: Integer);
 begin
   FCRT := Value;
   FCRTHasValue := True;
+end;
+
+{ TEmpresaConfigNfceSefaz }
+
+procedure TEmpresaConfigNfceSefaz.Setid_csc(const Value: Integer);
+begin
+  Fid_csc := Value;
+  Fid_cscHasValue := True;
+end;
+
+procedure TEmpresaConfigNfceSefaz.Setcsc(const Value: string);
+begin
+  Fcsc := Value;
+  FcscHasValue := True;
 end;
 
 { TEmpresaConfigNfce }

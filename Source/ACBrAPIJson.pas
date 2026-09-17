@@ -4249,8 +4249,10 @@ begin
   end;
   Result := Json.CreateObject;
   try
-    Json.ObjAddProp(Result, 'id_csc', Self.IntegerToJsonValue(Source.id_csc));
-    Json.ObjAddProp(Result, 'csc', Self.stringToJsonValue(Source.csc));
+    if Source.id_cscHasValue then
+      Json.ObjAddProp(Result, 'id_csc', Self.IntegerToJsonValue(Source.id_csc));
+    if Source.cscHasValue then
+      Json.ObjAddProp(Result, 'csc', Self.stringToJsonValue(Source.csc));
   except
     Result.Free;
     raise;
