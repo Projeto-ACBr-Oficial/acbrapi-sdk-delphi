@@ -763,6 +763,22 @@ type
     function TNfseListagemToJson(Source: TNfseListagem): string;
     function TNfseListagemFromJsonValue(Source: TJSONValue): TNfseListagem;
     function TNfseListagemFromJson(Source: string): TNfseListagem;
+    function TEnderecoEmailToJsonValue(Source: TEnderecoEmail): TJSONValue;
+    function TEnderecoEmailToJson(Source: TEnderecoEmail): string;
+    function TEnderecoEmailFromJsonValue(Source: TJSONValue): TEnderecoEmail;
+    function TEnderecoEmailFromJson(Source: string): TEnderecoEmail;
+    function TEnderecoEmailListToJsonValue(Source: TEnderecoEmailList): TJSONValue;
+    function TEnderecoEmailListToJson(Source: TEnderecoEmailList): string;
+    function TEnderecoEmailListFromJsonValue(Source: TJSONValue): TEnderecoEmailList;
+    function TEnderecoEmailListFromJson(Source: string): TEnderecoEmailList;
+    function TDfePedidoEnvioEmailToJsonValue(Source: TDfePedidoEnvioEmail): TJSONValue;
+    function TDfePedidoEnvioEmailToJson(Source: TDfePedidoEnvioEmail): string;
+    function TDfePedidoEnvioEmailFromJsonValue(Source: TJSONValue): TDfePedidoEnvioEmail;
+    function TDfePedidoEnvioEmailFromJson(Source: string): TDfePedidoEnvioEmail;
+    function TEmailStatusResponseToJsonValue(Source: TEmailStatusResponse): TJSONValue;
+    function TEmailStatusResponseToJson(Source: TEmailStatusResponse): string;
+    function TEmailStatusResponseFromJsonValue(Source: TJSONValue): TEmailStatusResponse;
+    function TEmailStatusResponseFromJson(Source: string): TEmailStatusResponse;
     function TNfsePedidoCancelamentoToJsonValue(Source: TNfsePedidoCancelamento): TJSONValue;
     function TNfsePedidoCancelamentoToJson(Source: TNfsePedidoCancelamento): string;
     function TNfsePedidoCancelamentoFromJsonValue(Source: TJSONValue): TNfsePedidoCancelamento;
@@ -3435,22 +3451,6 @@ type
     function TNfePedidoEmissaoLoteToJson(Source: TNfePedidoEmissaoLote): string;
     function TNfePedidoEmissaoLoteFromJsonValue(Source: TJSONValue): TNfePedidoEmissaoLote;
     function TNfePedidoEmissaoLoteFromJson(Source: string): TNfePedidoEmissaoLote;
-    function TEnderecoEmailToJsonValue(Source: TEnderecoEmail): TJSONValue;
-    function TEnderecoEmailToJson(Source: TEnderecoEmail): string;
-    function TEnderecoEmailFromJsonValue(Source: TJSONValue): TEnderecoEmail;
-    function TEnderecoEmailFromJson(Source: string): TEnderecoEmail;
-    function TEnderecoEmailListToJsonValue(Source: TEnderecoEmailList): TJSONValue;
-    function TEnderecoEmailListToJson(Source: TEnderecoEmailList): string;
-    function TEnderecoEmailListFromJsonValue(Source: TJSONValue): TEnderecoEmailList;
-    function TEnderecoEmailListFromJson(Source: string): TEnderecoEmailList;
-    function TDfePedidoEnvioEmailToJsonValue(Source: TDfePedidoEnvioEmail): TJSONValue;
-    function TDfePedidoEnvioEmailToJson(Source: TDfePedidoEnvioEmail): string;
-    function TDfePedidoEnvioEmailFromJsonValue(Source: TJSONValue): TDfePedidoEnvioEmail;
-    function TDfePedidoEnvioEmailFromJson(Source: string): TDfePedidoEnvioEmail;
-    function TEmailStatusResponseToJsonValue(Source: TEmailStatusResponse): TJSONValue;
-    function TEmailStatusResponseToJson(Source: TEmailStatusResponse): string;
-    function TEmailStatusResponseFromJsonValue(Source: TJSONValue): TEmailStatusResponse;
-    function TEmailStatusResponseFromJson(Source: string): TEmailStatusResponse;
     function TNfePedidoCancelamentoToJsonValue(Source: TNfePedidoCancelamento): TJSONValue;
     function TNfePedidoCancelamentoToJson(Source: TNfePedidoCancelamento): string;
     function TNfePedidoCancelamentoFromJsonValue(Source: TJSONValue): TNfePedidoCancelamento;
@@ -3479,6 +3479,10 @@ type
     function TDfeEventoListagemToJson(Source: TDfeEventoListagem): string;
     function TDfeEventoListagemFromJsonValue(Source: TJSONValue): TDfeEventoListagem;
     function TDfeEventoListagemFromJson(Source: string): TDfeEventoListagem;
+    function TNfcePedidoCancelamentoToJsonValue(Source: TNfcePedidoCancelamento): TJSONValue;
+    function TNfcePedidoCancelamentoToJson(Source: TNfcePedidoCancelamento): string;
+    function TNfcePedidoCancelamentoFromJsonValue(Source: TJSONValue): TNfcePedidoCancelamento;
+    function TNfcePedidoCancelamentoFromJson(Source: string): TNfcePedidoCancelamento;
     function TCnpjNaturezaJuridicaToJsonValue(Source: TCnpjNaturezaJuridica): TJSONValue;
     function TCnpjNaturezaJuridicaToJson(Source: TCnpjNaturezaJuridica): string;
     function TCnpjNaturezaJuridicaFromJsonValue(Source: TJSONValue): TCnpjNaturezaJuridica;
@@ -4582,9 +4586,12 @@ begin
   try
     if Assigned(Source.regTrib) then
       Json.ObjAddProp(Result, 'regTrib', Self.TEmpresaConfigNfseRegTribToJsonValue(Source.regTrib));
-    Json.ObjAddProp(Result, 'rps', Self.TEmpresaConfigRpsToJsonValue(Source.rps));
+    if Assigned(Source.rps) then
+      Json.ObjAddProp(Result, 'rps', Self.TEmpresaConfigRpsToJsonValue(Source.rps));
     if Assigned(Source.prefeitura) then
       Json.ObjAddProp(Result, 'prefeitura', Self.TEmpresaConfigPrefeituraToJsonValue(Source.prefeitura));
+    if Source.numeracao_automaticaHasValue then
+      Json.ObjAddProp(Result, 'numeracao_automatica', Self.BooleanToJsonValue(Source.numeracao_automatica));
     if Source.incentivo_fiscalHasValue then
       Json.ObjAddProp(Result, 'incentivo_fiscal', Self.BooleanToJsonValue(Source.incentivo_fiscal));
     Json.ObjAddProp(Result, 'ambiente', Self.stringToJsonValue(Source.ambiente));
@@ -4623,6 +4630,8 @@ begin
       Result.rps := Self.TEmpresaConfigRpsFromJsonValue(JValue);
     if Json.ObjContains(Source, 'prefeitura', JValue) then
       Result.prefeitura := Self.TEmpresaConfigPrefeituraFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'numeracao_automatica', JValue) then
+      Result.numeracao_automatica := Self.BooleanFromJsonValue(JValue);
     if Json.ObjContains(Source, 'incentivo_fiscal', JValue) then
       Result.incentivo_fiscal := Self.BooleanFromJsonValue(JValue);
     if Json.ObjContains(Source, 'ambiente', JValue) then
@@ -10712,6 +10721,8 @@ begin
   try
     if Source.justificativaHasValue then
       Json.ObjAddProp(Result, 'justificativa', Self.stringToJsonValue(Source.justificativa));
+    if Source.chave_substitutaHasValue then
+      Json.ObjAddProp(Result, 'chave_substituta', Self.stringToJsonValue(Source.chave_substituta));
     if Source.idHasValue then
       Json.ObjAddProp(Result, 'id', Self.stringToJsonValue(Source.id));
     if Source.ambienteHasValue then
@@ -10771,6 +10782,8 @@ begin
   try
     if Json.ObjContains(Source, 'justificativa', JValue) then
       Result.justificativa := Self.stringFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'chave_substituta', JValue) then
+      Result.chave_substituta := Self.stringFromJsonValue(JValue);
     if Json.ObjContains(Source, 'id', JValue) then
       Result.id := Self.stringFromJsonValue(JValue);
     if Json.ObjContains(Source, 'ambiente', JValue) then
@@ -15389,6 +15402,10 @@ begin
     Json.ObjAddProp(Result, 'dhEmi', Self.TDateTimeToJsonValue(Source.dhEmi));
     if Source.verAplicHasValue then
       Json.ObjAddProp(Result, 'verAplic', Self.stringToJsonValue(Source.verAplic));
+    if Source.serieHasValue then
+      Json.ObjAddProp(Result, 'serie', Self.stringToJsonValue(Source.serie));
+    if Source.nDPSHasValue then
+      Json.ObjAddProp(Result, 'nDPS', Self.stringToJsonValue(Source.nDPS));
     if Source.dCompetHasValue then
       Json.ObjAddProp(Result, 'dCompet', Self.TDateToJsonValue(Source.dCompet));
     if Source.cMotivoEmisTIHasValue then
@@ -15441,6 +15458,10 @@ begin
       Result.dhEmi := Self.TDateTimeFromJsonValue(JValue);
     if Json.ObjContains(Source, 'verAplic', JValue) then
       Result.verAplic := Self.stringFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'serie', JValue) then
+      Result.serie := Self.stringFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'nDPS', JValue) then
+      Result.nDPS := Self.stringFromJsonValue(JValue);
     if Json.ObjContains(Source, 'dCompet', JValue) then
       Result.dCompet := Self.TDateFromJsonValue(JValue);
     if Json.ObjContains(Source, 'cMotivoEmisTI', JValue) then
@@ -15493,6 +15514,8 @@ begin
     Json.ObjAddProp(Result, 'ambiente', Self.stringToJsonValue(Source.ambiente));
     if Source.referenciaHasValue then
       Json.ObjAddProp(Result, 'referencia', Self.stringToJsonValue(Source.referencia));
+    if Source.numeroLoteHasValue then
+      Json.ObjAddProp(Result, 'numeroLote', Self.Int64ToJsonValue(Source.numeroLote));
     Json.ObjAddProp(Result, 'infDPS', Self.TInfDPSToJsonValue(Source.infDPS));
   except
     Result.Free;
@@ -15529,6 +15552,8 @@ begin
       Result.ambiente := Self.stringFromJsonValue(JValue);
     if Json.ObjContains(Source, 'referencia', JValue) then
       Result.referencia := Self.stringFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'numeroLote', JValue) then
+      Result.numeroLote := Self.Int64FromJsonValue(JValue);
     if Json.ObjContains(Source, 'infDPS', JValue) then
       Result.infDPS := Self.TInfDPSFromJsonValue(JValue);
   except
@@ -15625,6 +15650,8 @@ begin
     Json.ObjAddProp(Result, 'ambiente', Self.stringToJsonValue(Source.ambiente));
     if Source.referenciaHasValue then
       Json.ObjAddProp(Result, 'referencia', Self.stringToJsonValue(Source.referencia));
+    if Source.numeroLoteHasValue then
+      Json.ObjAddProp(Result, 'numeroLote', Self.Int64ToJsonValue(Source.numeroLote));
     if Assigned(Source.documentos) then
       Json.ObjAddProp(Result, 'documentos', Self.TNfseDpsPedidoEmissaoListToJsonValue(Source.documentos));
   except
@@ -15662,6 +15689,8 @@ begin
       Result.ambiente := Self.stringFromJsonValue(JValue);
     if Json.ObjContains(Source, 'referencia', JValue) then
       Result.referencia := Self.stringFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'numeroLote', JValue) then
+      Result.numeroLote := Self.Int64FromJsonValue(JValue);
     if Json.ObjContains(Source, 'documentos', JValue) then
       Result.documentos := Self.TNfseDpsPedidoEmissaoListFromJsonValue(JValue);
   except
@@ -17339,6 +17368,254 @@ begin
   JValue := JsonToJsonValue(Source);
   try
     Result := TNfseListagemFromJsonValue(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TEnderecoEmailToJsonValue(Source: TEnderecoEmail): TJSONValue;
+begin
+  if not Assigned(Source) then
+  begin
+    Result := Json.CreateNull;
+    Exit;
+  end;
+  Result := Json.CreateObject;
+  try
+    Json.ObjAddProp(Result, 'email', Self.stringToJsonValue(Source.email));
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TEnderecoEmailToJson(Source: TEnderecoEmail): string;
+var
+  JValue: TJSONValue;
+begin
+  JValue := TEnderecoEmailToJsonValue(Source);
+  try
+    Result := JsonValueToJson(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TEnderecoEmailFromJsonValue(Source: TJSONValue): TEnderecoEmail;
+var
+  JValue: TJSONValue;
+begin
+  if not Json.IsObject(Source) then
+  begin
+    Result := nil;
+    Exit;
+  end;
+  Result := TEnderecoEmail.Create;
+  try
+    if Json.ObjContains(Source, 'email', JValue) then
+      Result.email := Self.stringFromJsonValue(JValue);
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TEnderecoEmailFromJson(Source: string): TEnderecoEmail;
+var
+  JValue: TJSONValue;
+begin
+  JValue := JsonToJsonValue(Source);
+  try
+    Result := TEnderecoEmailFromJsonValue(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TEnderecoEmailListToJsonValue(Source: TEnderecoEmailList): TJSONValue;
+var
+  Index: Integer;
+begin
+  if not Assigned(Source) then
+  begin
+    Result := Json.CreateNull;
+    Exit;
+  end;
+  Result := Json.CreateArray;
+  try
+    for Index := 0 to Source.Count - 1 do
+      Json.ArrayAdd(Result, Self.TEnderecoEmailToJsonValue(Source[Index]));
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TEnderecoEmailListToJson(Source: TEnderecoEmailList): string;
+var
+  JValue: TJSONValue;
+begin
+  JValue := TEnderecoEmailListToJsonValue(Source);
+  try
+    Result := JsonValueToJson(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TEnderecoEmailListFromJsonValue(Source: TJSONValue): TEnderecoEmailList;
+var
+  Index: Integer;
+begin
+  if not Json.IsArray(Source) then
+  begin
+    Result := nil;
+    Exit;
+  end;
+  Result := TEnderecoEmailList.Create;
+  try
+    for Index := 0 to Json.ArrayLength(Source) - 1 do
+      Result.Add(Self.TEnderecoEmailFromJsonValue(Json.ArrayGet(Source, Index)));
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TEnderecoEmailListFromJson(Source: string): TEnderecoEmailList;
+var
+  JValue: TJSONValue;
+begin
+  JValue := JsonToJsonValue(Source);
+  try
+    Result := TEnderecoEmailListFromJsonValue(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TDfePedidoEnvioEmailToJsonValue(Source: TDfePedidoEnvioEmail): TJSONValue;
+begin
+  if not Assigned(Source) then
+  begin
+    Result := Json.CreateNull;
+    Exit;
+  end;
+  Result := Json.CreateObject;
+  try
+    if Assigned(Source.destinatarios) then
+      Json.ObjAddProp(Result, 'destinatarios', Self.TEnderecoEmailListToJsonValue(Source.destinatarios));
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TDfePedidoEnvioEmailToJson(Source: TDfePedidoEnvioEmail): string;
+var
+  JValue: TJSONValue;
+begin
+  JValue := TDfePedidoEnvioEmailToJsonValue(Source);
+  try
+    Result := JsonValueToJson(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TDfePedidoEnvioEmailFromJsonValue(Source: TJSONValue): TDfePedidoEnvioEmail;
+var
+  JValue: TJSONValue;
+begin
+  if not Json.IsObject(Source) then
+  begin
+    Result := nil;
+    Exit;
+  end;
+  Result := TDfePedidoEnvioEmail.Create;
+  try
+    if Json.ObjContains(Source, 'destinatarios', JValue) then
+      Result.destinatarios := Self.TEnderecoEmailListFromJsonValue(JValue);
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TDfePedidoEnvioEmailFromJson(Source: string): TDfePedidoEnvioEmail;
+var
+  JValue: TJSONValue;
+begin
+  JValue := JsonToJsonValue(Source);
+  try
+    Result := TDfePedidoEnvioEmailFromJsonValue(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TEmailStatusResponseToJsonValue(Source: TEmailStatusResponse): TJSONValue;
+begin
+  if not Assigned(Source) then
+  begin
+    Result := Json.CreateNull;
+    Exit;
+  end;
+  Result := Json.CreateObject;
+  try
+    Json.ObjAddProp(Result, 'id', Self.stringToJsonValue(Source.id));
+    if Source.statusHasValue then
+      Json.ObjAddProp(Result, 'status', Self.stringToJsonValue(Source.status));
+    if Source.status_messageHasValue then
+      Json.ObjAddProp(Result, 'status_message', Self.stringToJsonValue(Source.status_message));
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TEmailStatusResponseToJson(Source: TEmailStatusResponse): string;
+var
+  JValue: TJSONValue;
+begin
+  JValue := TEmailStatusResponseToJsonValue(Source);
+  try
+    Result := JsonValueToJson(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TEmailStatusResponseFromJsonValue(Source: TJSONValue): TEmailStatusResponse;
+var
+  JValue: TJSONValue;
+begin
+  if not Json.IsObject(Source) then
+  begin
+    Result := nil;
+    Exit;
+  end;
+  Result := TEmailStatusResponse.Create;
+  try
+    if Json.ObjContains(Source, 'id', JValue) then
+      Result.id := Self.stringFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'status', JValue) then
+      Result.status := Self.stringFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'status_message', JValue) then
+      Result.status_message := Self.stringFromJsonValue(JValue);
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TEmailStatusResponseFromJson(Source: string): TEmailStatusResponse;
+var
+  JValue: TJSONValue;
+begin
+  JValue := JsonToJsonValue(Source);
+  try
+    Result := TEmailStatusResponseFromJsonValue(JValue);
   finally
     JValue.Free;
   end;
@@ -65963,254 +66240,6 @@ begin
   end;
 end;
 
-function TJsonConverter.TEnderecoEmailToJsonValue(Source: TEnderecoEmail): TJSONValue;
-begin
-  if not Assigned(Source) then
-  begin
-    Result := Json.CreateNull;
-    Exit;
-  end;
-  Result := Json.CreateObject;
-  try
-    Json.ObjAddProp(Result, 'email', Self.stringToJsonValue(Source.email));
-  except
-    Result.Free;
-    raise;
-  end;
-end;
-
-function TJsonConverter.TEnderecoEmailToJson(Source: TEnderecoEmail): string;
-var
-  JValue: TJSONValue;
-begin
-  JValue := TEnderecoEmailToJsonValue(Source);
-  try
-    Result := JsonValueToJson(JValue);
-  finally
-    JValue.Free;
-  end;
-end;
-
-function TJsonConverter.TEnderecoEmailFromJsonValue(Source: TJSONValue): TEnderecoEmail;
-var
-  JValue: TJSONValue;
-begin
-  if not Json.IsObject(Source) then
-  begin
-    Result := nil;
-    Exit;
-  end;
-  Result := TEnderecoEmail.Create;
-  try
-    if Json.ObjContains(Source, 'email', JValue) then
-      Result.email := Self.stringFromJsonValue(JValue);
-  except
-    Result.Free;
-    raise;
-  end;
-end;
-
-function TJsonConverter.TEnderecoEmailFromJson(Source: string): TEnderecoEmail;
-var
-  JValue: TJSONValue;
-begin
-  JValue := JsonToJsonValue(Source);
-  try
-    Result := TEnderecoEmailFromJsonValue(JValue);
-  finally
-    JValue.Free;
-  end;
-end;
-
-function TJsonConverter.TEnderecoEmailListToJsonValue(Source: TEnderecoEmailList): TJSONValue;
-var
-  Index: Integer;
-begin
-  if not Assigned(Source) then
-  begin
-    Result := Json.CreateNull;
-    Exit;
-  end;
-  Result := Json.CreateArray;
-  try
-    for Index := 0 to Source.Count - 1 do
-      Json.ArrayAdd(Result, Self.TEnderecoEmailToJsonValue(Source[Index]));
-  except
-    Result.Free;
-    raise;
-  end;
-end;
-
-function TJsonConverter.TEnderecoEmailListToJson(Source: TEnderecoEmailList): string;
-var
-  JValue: TJSONValue;
-begin
-  JValue := TEnderecoEmailListToJsonValue(Source);
-  try
-    Result := JsonValueToJson(JValue);
-  finally
-    JValue.Free;
-  end;
-end;
-
-function TJsonConverter.TEnderecoEmailListFromJsonValue(Source: TJSONValue): TEnderecoEmailList;
-var
-  Index: Integer;
-begin
-  if not Json.IsArray(Source) then
-  begin
-    Result := nil;
-    Exit;
-  end;
-  Result := TEnderecoEmailList.Create;
-  try
-    for Index := 0 to Json.ArrayLength(Source) - 1 do
-      Result.Add(Self.TEnderecoEmailFromJsonValue(Json.ArrayGet(Source, Index)));
-  except
-    Result.Free;
-    raise;
-  end;
-end;
-
-function TJsonConverter.TEnderecoEmailListFromJson(Source: string): TEnderecoEmailList;
-var
-  JValue: TJSONValue;
-begin
-  JValue := JsonToJsonValue(Source);
-  try
-    Result := TEnderecoEmailListFromJsonValue(JValue);
-  finally
-    JValue.Free;
-  end;
-end;
-
-function TJsonConverter.TDfePedidoEnvioEmailToJsonValue(Source: TDfePedidoEnvioEmail): TJSONValue;
-begin
-  if not Assigned(Source) then
-  begin
-    Result := Json.CreateNull;
-    Exit;
-  end;
-  Result := Json.CreateObject;
-  try
-    if Assigned(Source.destinatarios) then
-      Json.ObjAddProp(Result, 'destinatarios', Self.TEnderecoEmailListToJsonValue(Source.destinatarios));
-  except
-    Result.Free;
-    raise;
-  end;
-end;
-
-function TJsonConverter.TDfePedidoEnvioEmailToJson(Source: TDfePedidoEnvioEmail): string;
-var
-  JValue: TJSONValue;
-begin
-  JValue := TDfePedidoEnvioEmailToJsonValue(Source);
-  try
-    Result := JsonValueToJson(JValue);
-  finally
-    JValue.Free;
-  end;
-end;
-
-function TJsonConverter.TDfePedidoEnvioEmailFromJsonValue(Source: TJSONValue): TDfePedidoEnvioEmail;
-var
-  JValue: TJSONValue;
-begin
-  if not Json.IsObject(Source) then
-  begin
-    Result := nil;
-    Exit;
-  end;
-  Result := TDfePedidoEnvioEmail.Create;
-  try
-    if Json.ObjContains(Source, 'destinatarios', JValue) then
-      Result.destinatarios := Self.TEnderecoEmailListFromJsonValue(JValue);
-  except
-    Result.Free;
-    raise;
-  end;
-end;
-
-function TJsonConverter.TDfePedidoEnvioEmailFromJson(Source: string): TDfePedidoEnvioEmail;
-var
-  JValue: TJSONValue;
-begin
-  JValue := JsonToJsonValue(Source);
-  try
-    Result := TDfePedidoEnvioEmailFromJsonValue(JValue);
-  finally
-    JValue.Free;
-  end;
-end;
-
-function TJsonConverter.TEmailStatusResponseToJsonValue(Source: TEmailStatusResponse): TJSONValue;
-begin
-  if not Assigned(Source) then
-  begin
-    Result := Json.CreateNull;
-    Exit;
-  end;
-  Result := Json.CreateObject;
-  try
-    Json.ObjAddProp(Result, 'id', Self.stringToJsonValue(Source.id));
-    if Source.statusHasValue then
-      Json.ObjAddProp(Result, 'status', Self.stringToJsonValue(Source.status));
-    if Source.status_messageHasValue then
-      Json.ObjAddProp(Result, 'status_message', Self.stringToJsonValue(Source.status_message));
-  except
-    Result.Free;
-    raise;
-  end;
-end;
-
-function TJsonConverter.TEmailStatusResponseToJson(Source: TEmailStatusResponse): string;
-var
-  JValue: TJSONValue;
-begin
-  JValue := TEmailStatusResponseToJsonValue(Source);
-  try
-    Result := JsonValueToJson(JValue);
-  finally
-    JValue.Free;
-  end;
-end;
-
-function TJsonConverter.TEmailStatusResponseFromJsonValue(Source: TJSONValue): TEmailStatusResponse;
-var
-  JValue: TJSONValue;
-begin
-  if not Json.IsObject(Source) then
-  begin
-    Result := nil;
-    Exit;
-  end;
-  Result := TEmailStatusResponse.Create;
-  try
-    if Json.ObjContains(Source, 'id', JValue) then
-      Result.id := Self.stringFromJsonValue(JValue);
-    if Json.ObjContains(Source, 'status', JValue) then
-      Result.status := Self.stringFromJsonValue(JValue);
-    if Json.ObjContains(Source, 'status_message', JValue) then
-      Result.status_message := Self.stringFromJsonValue(JValue);
-  except
-    Result.Free;
-    raise;
-  end;
-end;
-
-function TJsonConverter.TEmailStatusResponseFromJson(Source: string): TEmailStatusResponse;
-var
-  JValue: TJSONValue;
-begin
-  JValue := JsonToJsonValue(Source);
-  try
-    Result := TEmailStatusResponseFromJsonValue(JValue);
-  finally
-    JValue.Free;
-  end;
-end;
-
 function TJsonConverter.TNfePedidoCancelamentoToJsonValue(Source: TNfePedidoCancelamento): TJSONValue;
 begin
   if not Assigned(Source) then
@@ -66785,6 +66814,70 @@ begin
   JValue := JsonToJsonValue(Source);
   try
     Result := TDfeEventoListagemFromJsonValue(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TNfcePedidoCancelamentoToJsonValue(Source: TNfcePedidoCancelamento): TJSONValue;
+begin
+  if not Assigned(Source) then
+  begin
+    Result := Json.CreateNull;
+    Exit;
+  end;
+  Result := Json.CreateObject;
+  try
+    if Source.chave_substitutaHasValue then
+      Json.ObjAddProp(Result, 'chave_substituta', Self.stringToJsonValue(Source.chave_substituta));
+    if Source.justificativaHasValue then
+      Json.ObjAddProp(Result, 'justificativa', Self.stringToJsonValue(Source.justificativa));
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TNfcePedidoCancelamentoToJson(Source: TNfcePedidoCancelamento): string;
+var
+  JValue: TJSONValue;
+begin
+  JValue := TNfcePedidoCancelamentoToJsonValue(Source);
+  try
+    Result := JsonValueToJson(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TNfcePedidoCancelamentoFromJsonValue(Source: TJSONValue): TNfcePedidoCancelamento;
+var
+  JValue: TJSONValue;
+begin
+  if not Json.IsObject(Source) then
+  begin
+    Result := nil;
+    Exit;
+  end;
+  Result := TNfcePedidoCancelamento.Create;
+  try
+    if Json.ObjContains(Source, 'chave_substituta', JValue) then
+      Result.chave_substituta := Self.stringFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'justificativa', JValue) then
+      Result.justificativa := Self.stringFromJsonValue(JValue);
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TNfcePedidoCancelamentoFromJson(Source: string): TNfcePedidoCancelamento;
+var
+  JValue: TJSONValue;
+begin
+  JValue := JsonToJsonValue(Source);
+  try
+    Result := TNfcePedidoCancelamentoFromJsonValue(JValue);
   finally
     JValue.Free;
   end;

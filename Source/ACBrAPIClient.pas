@@ -3048,7 +3048,7 @@ type
     /// **Informações adicionais**:
     /// - Consumo: 1 unidade por requisição.
     /// </remarks>
-    function CancelarNfce(Body: TNfePedidoCancelamento; Id: string): TDfeCancelamento;
+    function CancelarNfce(Body: TNfcePedidoCancelamento; Id: string): TDfeCancelamento;
     /// <summary>
     /// Baixar PDF do cancelamento
     /// </summary>
@@ -3492,7 +3492,7 @@ type
     /// <param name="Id">
     /// ID único da NFC-e gerado pela API.
     /// </param>
-    function CancelarNfce(Body: TNfePedidoCancelamento; Id: string): TDfeCancelamento;
+    function CancelarNfce(Body: TNfcePedidoCancelamento; Id: string): TDfeCancelamento;
     /// <param name="Id">
     /// ID único da NFC-e gerado pela API.
     /// </param>
@@ -4904,6 +4904,38 @@ type
     /// </remarks>
     function CancelarNfse(Body: TNfsePedidoCancelamento; Id: string): TNfseCancelamento;
     /// <summary>
+    /// Enviar e-mail
+    /// </summary>
+    /// <param name="Id">
+    /// ID único da NFS-e gerado pela API.
+    /// </param>
+    /// <param name="Logotipo">
+    /// Imprime o documento com logotipo, desde que esteja cadastrado na empresa.
+    /// </param>
+    /// <param name="MensagemRodape">
+    /// Imprime mensagem no rodapé do documento.
+    /// 
+    /// O caractere `|` (pipe) poderá ser utilizado para definir a quantidade e o alinhamento das mensagens.
+    /// 
+    /// **Exemplos de Uso:**
+    /// * `"esquerda"`
+    /// * `"esquerda|centro"`
+    /// * `"esquerda|centro|direita"`
+    /// * `"|centro"`, `"|centro|"`
+    /// * `"|centro|direita"`
+    /// * `"||direita"`
+    /// * `"esquerda||direita"`
+    /// 
+    /// Default: `""`
+    /// </param>
+    /// <remarks>
+    /// Envia o XML e PDF da nota via email.
+    /// 
+    /// **Informações adicionais**:
+    /// - Consumo: 1 unidade por requisição.
+    /// </remarks>
+    function EnviarEmailNfse(Body: TDfePedidoEnvioEmail; Id: string; Logotipo: Boolean; MensagemRodape: string): TEmailStatusResponse;
+    /// <summary>
     /// Baixar PDF do DANFSE
     /// </summary>
     /// <param name="Id">
@@ -5048,6 +5080,29 @@ type
     /// ID único da NFS-e gerado pela API.
     /// </param>
     function CancelarNfse(Body: TNfsePedidoCancelamento; Id: string): TNfseCancelamento;
+    /// <param name="Id">
+    /// ID único da NFS-e gerado pela API.
+    /// </param>
+    /// <param name="Logotipo">
+    /// Imprime o documento com logotipo, desde que esteja cadastrado na empresa.
+    /// </param>
+    /// <param name="MensagemRodape">
+    /// Imprime mensagem no rodapé do documento.
+    /// 
+    /// O caractere `|` (pipe) poderá ser utilizado para definir a quantidade e o alinhamento das mensagens.
+    /// 
+    /// **Exemplos de Uso:**
+    /// * `"esquerda"`
+    /// * `"esquerda|centro"`
+    /// * `"esquerda|centro|direita"`
+    /// * `"|centro"`, `"|centro|"`
+    /// * `"|centro|direita"`
+    /// * `"||direita"`
+    /// * `"esquerda||direita"`
+    /// 
+    /// Default: `""`
+    /// </param>
+    function EnviarEmailNfse(Body: TDfePedidoEnvioEmail; Id: string; Logotipo: Boolean; MensagemRodape: string): TEmailStatusResponse;
     /// <param name="Id">
     /// ID único da NFS-e gerado pela API.
     /// </param>
@@ -7259,13 +7314,13 @@ begin
   Result := Converter.TDfeCancelamentoFromJson(Response.ContentAsString);
 end;
 
-function TNfceService.CancelarNfce(Body: TNfePedidoCancelamento; Id: string): TDfeCancelamento;
+function TNfceService.CancelarNfce(Body: TNfcePedidoCancelamento; Id: string): TDfeCancelamento;
 var
   Request: IRestRequest;
   Response: IRestResponse;
 begin
   Request := CreateRequest('/nfce/{id}/cancelamento', 'POST');
-  Request.AddBody(Converter.TNfePedidoCancelamentoToJson(Body));
+  Request.AddBody(Converter.TNfcePedidoCancelamentoToJson(Body));
   Request.AddUrlParam('id', Id);
   Request.AddHeader('Content-Type', 'application/json');
   Request.AddHeader('Accept', 'application/json');
@@ -8161,6 +8216,23 @@ begin
   Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TNfseCancelamentoFromJson(Response.ContentAsString);
+end;
+
+function TNfseService.EnviarEmailNfse(Body: TDfePedidoEnvioEmail; Id: string; Logotipo: Boolean; MensagemRodape: string): TEmailStatusResponse;
+var
+  Request: IRestRequest;
+  Response: IRestResponse;
+begin
+  Request := CreateRequest('/nfse/{id}/email', 'POST');
+  Request.AddBody(Converter.TDfePedidoEnvioEmailToJson(Body));
+  Request.AddUrlParam('id', Id);
+  Request.AddQueryParam('logotipo', BoolToParam(Logotipo));
+  Request.AddQueryParam('mensagem_rodape', MensagemRodape);
+  Request.AddHeader('Content-Type', 'application/json');
+  Request.AddHeader('Accept', 'application/json');
+  Response := ExecuteRequest(Request);
+  CheckError(Response);
+  Result := Converter.TEmailStatusResponseFromJson(Response.ContentAsString);
 end;
 
 function TNfseService.BaixarPdfNfse(Id: string; Logotipo: Boolean; MensagemRodape: string): TBytes;

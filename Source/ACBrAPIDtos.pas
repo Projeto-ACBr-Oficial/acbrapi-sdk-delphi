@@ -197,6 +197,10 @@ type
   TRpsLoteList = class;
   TRpsLoteListagem = class;
   TNfseListagem = class;
+  TEnderecoEmail = class;
+  TEnderecoEmailList = class;
+  TDfePedidoEnvioEmail = class;
+  TEmailStatusResponse = class;
   TNfsePedidoCancelamento = class;
   TNfsePedidoSincronizacao = class;
   TNfseSincronizacao = class;
@@ -865,10 +869,6 @@ type
   TNfePedidoEmissao = class;
   TNfePedidoEmissaoList = class;
   TNfePedidoEmissaoLote = class;
-  TEnderecoEmail = class;
-  TEnderecoEmailList = class;
-  TDfePedidoEnvioEmail = class;
-  TEmailStatusResponse = class;
   TNfePedidoCancelamento = class;
   TNfePedidoCartaCorrecao = class;
   TDfeCartaCorrecao = class;
@@ -876,6 +876,7 @@ type
   TDfeInutilizacao = class;
   TDfeEventoList = class;
   TDfeEventoListagem = class;
+  TNfcePedidoCancelamento = class;
   TCnpjNaturezaJuridica = class;
   TCnpjPorteEmpresa = class;
   TCnpjSituacaoCadastral = class;
@@ -1369,19 +1370,26 @@ type
     FregTrib: TEmpresaConfigNfseRegTrib;
     Frps: TEmpresaConfigRps;
     Fprefeitura: TEmpresaConfigPrefeitura;
+    Fnumeracao_automatica: Boolean;
+    Fnumeracao_automaticaHasValue: Boolean;
     Fincentivo_fiscal: Boolean;
     Fincentivo_fiscalHasValue: Boolean;
     Fambiente: string;
     procedure SetregTrib(const Value: TEmpresaConfigNfseRegTrib);
     procedure Setrps(const Value: TEmpresaConfigRps);
     procedure Setprefeitura(const Value: TEmpresaConfigPrefeitura);
+    procedure Setnumeracao_automatica(const Value: Boolean);
     procedure Setincentivo_fiscal(const Value: Boolean);
   public
-    constructor Create;
     destructor Destroy; override;
     property regTrib: TEmpresaConfigNfseRegTrib read FregTrib write SetregTrib;
     property rps: TEmpresaConfigRps read Frps write Setrps;
     property prefeitura: TEmpresaConfigPrefeitura read Fprefeitura write Setprefeitura;
+    /// <summary>
+    /// Indicador para que a API controle a numeração da NFSe.
+    /// </summary>
+    property numeracao_automatica: Boolean read Fnumeracao_automatica write Setnumeracao_automatica;
+    property numeracao_automaticaHasValue: Boolean read Fnumeracao_automaticaHasValue write Fnumeracao_automaticaHasValue;
     /// <summary>
     /// Indicador se a empresa possui algum tipo de incentivo fiscal.
     /// </summary>
@@ -4201,6 +4209,8 @@ type
   private
     Fjustificativa: string;
     FjustificativaHasValue: Boolean;
+    Fchave_substituta: string;
+    Fchave_substitutaHasValue: Boolean;
     Fid: string;
     FidHasValue: Boolean;
     Fambiente: string;
@@ -4229,6 +4239,7 @@ type
     Ftipo_evento: string;
     Ftipo_eventoHasValue: Boolean;
     procedure Setjustificativa(const Value: string);
+    procedure Setchave_substituta(const Value: string);
     procedure Setid(const Value: string);
     procedure Setambiente(const Value: string);
     procedure Setstatus(const Value: string);
@@ -4250,6 +4261,12 @@ type
     /// </summary>
     property justificativa: string read Fjustificativa write Setjustificativa;
     property justificativaHasValue: Boolean read FjustificativaHasValue write FjustificativaHasValue;
+    /// <summary>
+    /// Chave de acesso da NFC-e substituta. Preenchida apenas no cancelamento
+    /// por substituição (evento 110112).
+    /// </summary>
+    property chave_substituta: string read Fchave_substituta write Setchave_substituta;
+    property chave_substitutaHasValue: Boolean read Fchave_substitutaHasValue write Fchave_substitutaHasValue;
     /// <summary>
     /// ID único gerado pela API para este evento.
     /// </summary>
@@ -6909,6 +6926,10 @@ type
     FdhEmi: TDateTime;
     FverAplic: string;
     FverAplicHasValue: Boolean;
+    Fserie: string;
+    FserieHasValue: Boolean;
+    FnDPS: string;
+    FnDPSHasValue: Boolean;
     FdCompet: TDate;
     FdCompetHasValue: Boolean;
     FcMotivoEmisTI: Integer;
@@ -6924,6 +6945,8 @@ type
     FIBSCBS: TRTCInfoIBSCBS;
     procedure SettpAmb(const Value: Integer);
     procedure SetverAplic(const Value: string);
+    procedure Setserie(const Value: string);
+    procedure SetnDPS(const Value: string);
     procedure SetdCompet(const Value: TDate);
     procedure SetcMotivoEmisTI(const Value: Integer);
     procedure SetchNFSeRej(const Value: string);
@@ -6953,6 +6976,20 @@ type
     /// </summary>
     property verAplic: string read FverAplic write SetverAplic;
     property verAplicHasValue: Boolean read FverAplicHasValue write FverAplicHasValue;
+    /// <summary>
+    /// Número do equipamento emissor do DPS ou série do DPS.
+    /// 
+    /// Informar apenas quando a numeracao automatica estiver desabilitada na configuracao da empresa.
+    /// </summary>
+    property serie: string read Fserie write Setserie;
+    property serieHasValue: Boolean read FserieHasValue write FserieHasValue;
+    /// <summary>
+    /// Número do DPS.
+    /// 
+    /// Informar apenas quando a numeracao automatica estiver desabilitada na configuracao da empresa.
+    /// </summary>
+    property nDPS: string read FnDPS write SetnDPS;
+    property nDPSHasValue: Boolean read FnDPSHasValue write FnDPSHasValue;
     /// <summary>
     /// Data em que se iniciou a prestação do serviço: Dia, mês e ano (AAAAMMDD). (AAAA-MM-DDThh:mm:ssTZD).
     /// 
@@ -6991,9 +7028,12 @@ type
     Fambiente: string;
     Freferencia: string;
     FreferenciaHasValue: Boolean;
+    FnumeroLote: Int64;
+    FnumeroLoteHasValue: Boolean;
     FinfDPS: TInfDPS;
     procedure Setprovedor(const Value: string);
     procedure Setreferencia(const Value: string);
+    procedure SetnumeroLote(const Value: Int64);
     procedure SetinfDPS(const Value: TInfDPS);
   public
     constructor Create;
@@ -7016,6 +7056,11 @@ type
     /// </summary>
     property referencia: string read Freferencia write Setreferencia;
     property referenciaHasValue: Boolean read FreferenciaHasValue write FreferenciaHasValue;
+    /// <summary>
+    /// Numero do lote. Use apenas quando a numeracao automatica estiver desativada na configuracao da empresa.
+    /// </summary>
+    property numeroLote: Int64 read FnumeroLote write SetnumeroLote;
+    property numeroLoteHasValue: Boolean read FnumeroLoteHasValue write FnumeroLoteHasValue;
     property infDPS: TInfDPS read FinfDPS write SetinfDPS;
   end;
   
@@ -7029,9 +7074,12 @@ type
     Fambiente: string;
     Freferencia: string;
     FreferenciaHasValue: Boolean;
+    FnumeroLote: Int64;
+    FnumeroLoteHasValue: Boolean;
     Fdocumentos: TNfseDpsPedidoEmissaoList;
     procedure Setprovedor(const Value: string);
     procedure Setreferencia(const Value: string);
+    procedure SetnumeroLote(const Value: Int64);
     procedure Setdocumentos(const Value: TNfseDpsPedidoEmissaoList);
   public
     destructor Destroy; override;
@@ -7053,6 +7101,11 @@ type
     /// </summary>
     property referencia: string read Freferencia write Setreferencia;
     property referenciaHasValue: Boolean read FreferenciaHasValue write FreferenciaHasValue;
+    /// <summary>
+    /// Número do lote. Use apenas quando a numeração automática estiver desativada na configuração da empresa.
+    /// </summary>
+    property numeroLote: Int64 read FnumeroLote write SetnumeroLote;
+    property numeroLoteHasValue: Boolean read FnumeroLoteHasValue write FnumeroLoteHasValue;
     /// <summary>
     /// Lista com as informações das DPS relativas aos serviços prestados.
     /// </summary>
@@ -7851,6 +7904,58 @@ type
     property _count: Integer read F_count write Set_count;
     property _countHasValue: Boolean read F_countHasValue write F_countHasValue;
     property data: TNfseList read Fdata write Setdata;
+  end;
+  
+  TEnderecoEmail = class
+  private
+    Femail: string;
+  public
+    /// <summary>
+    /// Email do destinatário.
+    /// </summary>
+    property email: string read Femail write Femail;
+  end;
+  
+  TEnderecoEmailList = class(TObjectList<TEnderecoEmail>)
+  end;
+  
+  TDfePedidoEnvioEmail = class
+  private
+    Fdestinatarios: TEnderecoEmailList;
+    procedure Setdestinatarios(const Value: TEnderecoEmailList);
+  public
+    destructor Destroy; override;
+    /// <summary>
+    /// Lista de endereços de email para envio dos arquivos.
+    /// 
+    /// *Caso nenhum email seja informado, será utilizado o email do destinatário do documento fiscal.*
+    /// </summary>
+    property destinatarios: TEnderecoEmailList read Fdestinatarios write Setdestinatarios;
+  end;
+  
+  TEmailStatusResponse = class
+  private
+    Fid: string;
+    Fstatus: string;
+    FstatusHasValue: Boolean;
+    Fstatus_message: string;
+    Fstatus_messageHasValue: Boolean;
+    procedure Setstatus(const Value: string);
+    procedure Setstatus_message(const Value: string);
+  public
+    /// <summary>
+    /// ID único gerado pela API para este email.
+    /// 
+    /// Utilize-o no endpoint de <a href="#tag/Email/operation/ConsultarEmail">consulta de email</a>
+    /// para obter informações detalhadas sobre o envio do email e
+    /// rastrear todos os eventos relacionados, como envio, entrega, falhas e outros
+    /// eventos relevantes.
+    /// </summary>
+    property id: string read Fid write Fid;
+    property status: string read Fstatus write Setstatus;
+    property statusHasValue: Boolean read FstatusHasValue write FstatusHasValue;
+    property status_message: string read Fstatus_message write Setstatus_message;
+    property status_messageHasValue: Boolean read Fstatus_messageHasValue write Fstatus_messageHasValue;
   end;
   
   TNfsePedidoCancelamento = class
@@ -31521,58 +31626,6 @@ type
     property id_lote: string read Fid_lote write Fid_lote;
   end;
   
-  TEnderecoEmail = class
-  private
-    Femail: string;
-  public
-    /// <summary>
-    /// Email do destinatário.
-    /// </summary>
-    property email: string read Femail write Femail;
-  end;
-  
-  TEnderecoEmailList = class(TObjectList<TEnderecoEmail>)
-  end;
-  
-  TDfePedidoEnvioEmail = class
-  private
-    Fdestinatarios: TEnderecoEmailList;
-    procedure Setdestinatarios(const Value: TEnderecoEmailList);
-  public
-    destructor Destroy; override;
-    /// <summary>
-    /// Lista de endereços de email para envio dos arquivos.
-    /// 
-    /// *Caso nenhum email seja informado, será utilizado o email do destinatário do documento fiscal.*
-    /// </summary>
-    property destinatarios: TEnderecoEmailList read Fdestinatarios write Setdestinatarios;
-  end;
-  
-  TEmailStatusResponse = class
-  private
-    Fid: string;
-    Fstatus: string;
-    FstatusHasValue: Boolean;
-    Fstatus_message: string;
-    Fstatus_messageHasValue: Boolean;
-    procedure Setstatus(const Value: string);
-    procedure Setstatus_message(const Value: string);
-  public
-    /// <summary>
-    /// ID único gerado pela API para este email.
-    /// 
-    /// Utilize-o no endpoint de <a href="#tag/Email/operation/ConsultarEmail">consulta de email</a>
-    /// para obter informações detalhadas sobre o envio do email e
-    /// rastrear todos os eventos relacionados, como envio, entrega, falhas e outros
-    /// eventos relevantes.
-    /// </summary>
-    property id: string read Fid write Fid;
-    property status: string read Fstatus write Setstatus;
-    property statusHasValue: Boolean read FstatusHasValue write FstatusHasValue;
-    property status_message: string read Fstatus_message write Setstatus_message;
-    property status_messageHasValue: Boolean read Fstatus_messageHasValue write Fstatus_messageHasValue;
-  end;
-  
   TNfePedidoCancelamento = class
   private
     Fjustificativa: string;
@@ -31923,6 +31976,31 @@ type
     property _count: Integer read F_count write Set_count;
     property _countHasValue: Boolean read F_countHasValue write F_countHasValue;
     property data: TDfeEventoList read Fdata write Setdata;
+  end;
+  
+  TNfcePedidoCancelamento = class
+  private
+    Fchave_substituta: string;
+    Fchave_substitutaHasValue: Boolean;
+    Fjustificativa: string;
+    FjustificativaHasValue: Boolean;
+    procedure Setchave_substituta(const Value: string);
+    procedure Setjustificativa(const Value: string);
+  public
+    /// <summary>
+    /// Chave de acesso da NFC-e substituta.
+    /// Quando informada, o cancelamento é enviado à SEFAZ como evento de
+    /// "Cancelamento por substituição" (110112), no lugar do cancelamento
+    /// comum (110111). A NFC-e substituta precisa constar na API, pertencer
+    /// à mesma empresa, ter sido emitida no mesmo ambiente e estar autorizada.
+    /// </summary>
+    property chave_substituta: string read Fchave_substituta write Setchave_substituta;
+    property chave_substitutaHasValue: Boolean read Fchave_substitutaHasValue write Fchave_substitutaHasValue;
+    /// <summary>
+    /// Justificativa para o cancelamento. Preencheremos automaticamente, caso esteja em branco.
+    /// </summary>
+    property justificativa: string read Fjustificativa write Setjustificativa;
+    property justificativaHasValue: Boolean read FjustificativaHasValue write FjustificativaHasValue;
   end;
   
   /// <summary>
@@ -32967,12 +33045,6 @@ end;
 
 { TEmpresaConfigNfse }
 
-constructor TEmpresaConfigNfse.Create;
-begin
-  inherited;
-  Frps := TEmpresaConfigRps.Create;
-end;
-
 destructor TEmpresaConfigNfse.Destroy;
 begin
   Fprefeitura.Free;
@@ -33006,6 +33078,12 @@ begin
     Fprefeitura.Free;
     Fprefeitura := Value;
   end;
+end;
+
+procedure TEmpresaConfigNfse.Setnumeracao_automatica(const Value: Boolean);
+begin
+  Fnumeracao_automatica := Value;
+  Fnumeracao_automaticaHasValue := True;
 end;
 
 procedure TEmpresaConfigNfse.Setincentivo_fiscal(const Value: Boolean);
@@ -34869,6 +34947,12 @@ procedure TDfeCancelamento.Setjustificativa(const Value: string);
 begin
   Fjustificativa := Value;
   FjustificativaHasValue := True;
+end;
+
+procedure TDfeCancelamento.Setchave_substituta(const Value: string);
+begin
+  Fchave_substituta := Value;
+  Fchave_substitutaHasValue := True;
 end;
 
 procedure TDfeCancelamento.Setid(const Value: string);
@@ -36833,6 +36917,18 @@ begin
   FverAplicHasValue := True;
 end;
 
+procedure TInfDPS.Setserie(const Value: string);
+begin
+  Fserie := Value;
+  FserieHasValue := True;
+end;
+
+procedure TInfDPS.SetnDPS(const Value: string);
+begin
+  FnDPS := Value;
+  FnDPSHasValue := True;
+end;
+
 procedure TInfDPS.SetdCompet(const Value: TDate);
 begin
   FdCompet := Value;
@@ -36940,6 +37036,12 @@ begin
   FreferenciaHasValue := True;
 end;
 
+procedure TNfseDpsPedidoEmissao.SetnumeroLote(const Value: Int64);
+begin
+  FnumeroLote := Value;
+  FnumeroLoteHasValue := True;
+end;
+
 procedure TNfseDpsPedidoEmissao.SetinfDPS(const Value: TInfDPS);
 begin
   if Value <> FinfDPS then
@@ -36967,6 +37069,12 @@ procedure TNfseLoteDpsPedidoEmissao.Setreferencia(const Value: string);
 begin
   Freferencia := Value;
   FreferenciaHasValue := True;
+end;
+
+procedure TNfseLoteDpsPedidoEmissao.SetnumeroLote(const Value: Int64);
+begin
+  FnumeroLote := Value;
+  FnumeroLoteHasValue := True;
 end;
 
 procedure TNfseLoteDpsPedidoEmissao.Setdocumentos(const Value: TNfseDpsPedidoEmissaoList);
@@ -37822,6 +37930,37 @@ begin
     Fdata.Free;
     Fdata := Value;
   end;
+end;
+
+{ TDfePedidoEnvioEmail }
+
+destructor TDfePedidoEnvioEmail.Destroy;
+begin
+  Fdestinatarios.Free;
+  inherited;
+end;
+
+procedure TDfePedidoEnvioEmail.Setdestinatarios(const Value: TEnderecoEmailList);
+begin
+  if Value <> Fdestinatarios then
+  begin
+    Fdestinatarios.Free;
+    Fdestinatarios := Value;
+  end;
+end;
+
+{ TEmailStatusResponse }
+
+procedure TEmailStatusResponse.Setstatus(const Value: string);
+begin
+  Fstatus := Value;
+  FstatusHasValue := True;
+end;
+
+procedure TEmailStatusResponse.Setstatus_message(const Value: string);
+begin
+  Fstatus_message := Value;
+  Fstatus_messageHasValue := True;
 end;
 
 { TNfsePedidoCancelamento }
@@ -52619,37 +52758,6 @@ begin
   FreferenciaHasValue := True;
 end;
 
-{ TDfePedidoEnvioEmail }
-
-destructor TDfePedidoEnvioEmail.Destroy;
-begin
-  Fdestinatarios.Free;
-  inherited;
-end;
-
-procedure TDfePedidoEnvioEmail.Setdestinatarios(const Value: TEnderecoEmailList);
-begin
-  if Value <> Fdestinatarios then
-  begin
-    Fdestinatarios.Free;
-    Fdestinatarios := Value;
-  end;
-end;
-
-{ TEmailStatusResponse }
-
-procedure TEmailStatusResponse.Setstatus(const Value: string);
-begin
-  Fstatus := Value;
-  FstatusHasValue := True;
-end;
-
-procedure TEmailStatusResponse.Setstatus_message(const Value: string);
-begin
-  Fstatus_message := Value;
-  Fstatus_messageHasValue := True;
-end;
-
 { TNfePedidoCancelamento }
 
 procedure TNfePedidoCancelamento.Setjustificativa(const Value: string);
@@ -52925,6 +53033,20 @@ begin
     Fdata.Free;
     Fdata := Value;
   end;
+end;
+
+{ TNfcePedidoCancelamento }
+
+procedure TNfcePedidoCancelamento.Setchave_substituta(const Value: string);
+begin
+  Fchave_substituta := Value;
+  Fchave_substitutaHasValue := True;
+end;
+
+procedure TNfcePedidoCancelamento.Setjustificativa(const Value: string);
+begin
+  Fjustificativa := Value;
+  FjustificativaHasValue := True;
 end;
 
 { TCnpjNaturezaJuridica }
