@@ -4181,6 +4181,21 @@ type
     /// <param name="Canhoto">
     /// Imprime o documento com o bloco de canhoto.
     /// </param>
+    /// <param name="QrcodeLateral">
+    /// Imprime o QR Code na lateral do DANFE Simplificado Tipo 2.
+    /// 
+    /// *Aplicãvel apenas à NF-e com DANFE Simplificado Tipo 2 (`tpImp` = 6) e disponível apenas para 80 milímetros de largura*.
+    /// </param>
+    /// <param name="Largura">
+    /// Largura do DANFE Simplificado Tipo 2 (em milímetros).
+    /// 
+    /// *Aplicãvel apenas à NF-e com DANFE Simplificado Tipo 2 (`tpImp` = 6). A NT 2026.003 exige no mínimo 56 mm*.
+    /// </param>
+    /// <param name="Margem">
+    /// Define as margens do DANFE Simplificado Tipo 2 (em milímetros), no mesmo formato do parâmetro `margem` do PDF da NFC-e.
+    /// 
+    /// *Aplicãvel apenas à NF-e com DANFE Simplificado Tipo 2 (`tpImp` = 6). Margens laterais menores que 2 mm são ajustadas para 2 mm, o mínimo da NT 2026.003*.
+    /// </param>
     /// <remarks>
     /// Através desse endpoint, é possível enviar os dados de uma NF-e e gerar uma prévia do DANFE.
     /// 
@@ -4191,7 +4206,7 @@ type
     /// **Informações adicionais**:
     /// - Consumo: 1 unidade por requisição.
     /// </remarks>
-    function BaixarPreviaPdfNfe(Body: TNfePedidoEmissao; Logotipo: Boolean; NomeFantasia: Boolean; Formato: string; MensagemRodape: string; Canhoto: Boolean): TBytes;
+    function BaixarPreviaPdfNfe(Body: TNfePedidoEmissao; Logotipo: Boolean; NomeFantasia: Boolean; Formato: string; MensagemRodape: string; Canhoto: Boolean; QrcodeLateral: Boolean; Largura: Integer; Margem: string): TBytes;
     /// <summary>
     /// Prévia do XML da NF-e
     /// </summary>
@@ -4352,13 +4367,28 @@ type
     /// <param name="Canhoto">
     /// Imprime o documento com o bloco de canhoto.
     /// </param>
+    /// <param name="QrcodeLateral">
+    /// Imprime o QR Code na lateral do DANFE Simplificado Tipo 2.
+    /// 
+    /// *Aplicãvel apenas à NF-e com DANFE Simplificado Tipo 2 (`tpImp` = 6) e disponível apenas para 80 milímetros de largura*.
+    /// </param>
+    /// <param name="Largura">
+    /// Largura do DANFE Simplificado Tipo 2 (em milímetros).
+    /// 
+    /// *Aplicãvel apenas à NF-e com DANFE Simplificado Tipo 2 (`tpImp` = 6). A NT 2026.003 exige no mínimo 56 mm*.
+    /// </param>
+    /// <param name="Margem">
+    /// Define as margens do DANFE Simplificado Tipo 2 (em milímetros), no mesmo formato do parâmetro `margem` do PDF da NFC-e.
+    /// 
+    /// *Aplicãvel apenas à NF-e com DANFE Simplificado Tipo 2 (`tpImp` = 6). Margens laterais menores que 2 mm são ajustadas para 2 mm, o mínimo da NT 2026.003*.
+    /// </param>
     /// <remarks>
     /// Envia o XML e PDF da nota via email.
     /// 
     /// **Informações adicionais**:
     /// - Consumo: 1 unidade por requisição.
     /// </remarks>
-    function EnviarEmailNfe(Body: TDfePedidoEnvioEmail; Id: string; Logotipo: Boolean; NomeFantasia: Boolean; Formato: string; MensagemRodape: string; Canhoto: Boolean): TEmailStatusResponse;
+    function EnviarEmailNfe(Body: TDfePedidoEnvioEmail; Id: string; Logotipo: Boolean; NomeFantasia: Boolean; Formato: string; MensagemRodape: string; Canhoto: Boolean; QrcodeLateral: Boolean; Largura: Integer; Margem: string): TEmailStatusResponse;
     /// <summary>
     /// Baixar PDF do DANFE
     /// </summary>
@@ -4398,7 +4428,22 @@ type
     /// <param name="Canhoto">
     /// Imprime o documento com o bloco de canhoto.
     /// </param>
-    function BaixarPdfNfe(Id: string; Logotipo: Boolean; NomeFantasia: Boolean; Formato: string; MensagemRodape: string; Canhoto: Boolean): TBytes;
+    /// <param name="QrcodeLateral">
+    /// Imprime o QR Code na lateral do DANFE Simplificado Tipo 2.
+    /// 
+    /// *Aplicãvel apenas à NF-e com DANFE Simplificado Tipo 2 (`tpImp` = 6) e disponível apenas para 80 milímetros de largura*.
+    /// </param>
+    /// <param name="Largura">
+    /// Largura do DANFE Simplificado Tipo 2 (em milímetros).
+    /// 
+    /// *Aplicãvel apenas à NF-e com DANFE Simplificado Tipo 2 (`tpImp` = 6). A NT 2026.003 exige no mínimo 56 mm*.
+    /// </param>
+    /// <param name="Margem">
+    /// Define as margens do DANFE Simplificado Tipo 2 (em milímetros), no mesmo formato do parâmetro `margem` do PDF da NFC-e.
+    /// 
+    /// *Aplicãvel apenas à NF-e com DANFE Simplificado Tipo 2 (`tpImp` = 6). Margens laterais menores que 2 mm são ajustadas para 2 mm, o mínimo da NT 2026.003*.
+    /// </param>
+    function BaixarPdfNfe(Id: string; Logotipo: Boolean; NomeFantasia: Boolean; Formato: string; MensagemRodape: string; Canhoto: Boolean; QrcodeLateral: Boolean; Largura: Integer; Margem: string): TBytes;
     /// <summary>
     /// Sincroniza dados na NF-e a partir da SEFAZ
     /// </summary>
@@ -4611,7 +4656,22 @@ type
     /// <param name="Canhoto">
     /// Imprime o documento com o bloco de canhoto.
     /// </param>
-    function BaixarPreviaPdfNfe(Body: TNfePedidoEmissao; Logotipo: Boolean; NomeFantasia: Boolean; Formato: string; MensagemRodape: string; Canhoto: Boolean): TBytes;
+    /// <param name="QrcodeLateral">
+    /// Imprime o QR Code na lateral do DANFE Simplificado Tipo 2.
+    /// 
+    /// *Aplicãvel apenas à NF-e com DANFE Simplificado Tipo 2 (`tpImp` = 6) e disponível apenas para 80 milímetros de largura*.
+    /// </param>
+    /// <param name="Largura">
+    /// Largura do DANFE Simplificado Tipo 2 (em milímetros).
+    /// 
+    /// *Aplicãvel apenas à NF-e com DANFE Simplificado Tipo 2 (`tpImp` = 6). A NT 2026.003 exige no mínimo 56 mm*.
+    /// </param>
+    /// <param name="Margem">
+    /// Define as margens do DANFE Simplificado Tipo 2 (em milímetros), no mesmo formato do parâmetro `margem` do PDF da NFC-e.
+    /// 
+    /// *Aplicãvel apenas à NF-e com DANFE Simplificado Tipo 2 (`tpImp` = 6). Margens laterais menores que 2 mm são ajustadas para 2 mm, o mínimo da NT 2026.003*.
+    /// </param>
+    function BaixarPreviaPdfNfe(Body: TNfePedidoEmissao; Logotipo: Boolean; NomeFantasia: Boolean; Formato: string; MensagemRodape: string; Canhoto: Boolean; QrcodeLateral: Boolean; Largura: Integer; Margem: string): TBytes;
     function BaixarPreviaXmlNfe(Body: TNfePedidoEmissao): TBytes;
     /// <param name="CpfCnpj">
     /// CPF/CNPJ do emitente.
@@ -4700,7 +4760,22 @@ type
     /// <param name="Canhoto">
     /// Imprime o documento com o bloco de canhoto.
     /// </param>
-    function EnviarEmailNfe(Body: TDfePedidoEnvioEmail; Id: string; Logotipo: Boolean; NomeFantasia: Boolean; Formato: string; MensagemRodape: string; Canhoto: Boolean): TEmailStatusResponse;
+    /// <param name="QrcodeLateral">
+    /// Imprime o QR Code na lateral do DANFE Simplificado Tipo 2.
+    /// 
+    /// *Aplicãvel apenas à NF-e com DANFE Simplificado Tipo 2 (`tpImp` = 6) e disponível apenas para 80 milímetros de largura*.
+    /// </param>
+    /// <param name="Largura">
+    /// Largura do DANFE Simplificado Tipo 2 (em milímetros).
+    /// 
+    /// *Aplicãvel apenas à NF-e com DANFE Simplificado Tipo 2 (`tpImp` = 6). A NT 2026.003 exige no mínimo 56 mm*.
+    /// </param>
+    /// <param name="Margem">
+    /// Define as margens do DANFE Simplificado Tipo 2 (em milímetros), no mesmo formato do parâmetro `margem` do PDF da NFC-e.
+    /// 
+    /// *Aplicãvel apenas à NF-e com DANFE Simplificado Tipo 2 (`tpImp` = 6). Margens laterais menores que 2 mm são ajustadas para 2 mm, o mínimo da NT 2026.003*.
+    /// </param>
+    function EnviarEmailNfe(Body: TDfePedidoEnvioEmail; Id: string; Logotipo: Boolean; NomeFantasia: Boolean; Formato: string; MensagemRodape: string; Canhoto: Boolean; QrcodeLateral: Boolean; Largura: Integer; Margem: string): TEmailStatusResponse;
     /// <param name="Id">
     /// ID único da NF-e gerado pela API.
     /// </param>
@@ -4737,7 +4812,22 @@ type
     /// <param name="Canhoto">
     /// Imprime o documento com o bloco de canhoto.
     /// </param>
-    function BaixarPdfNfe(Id: string; Logotipo: Boolean; NomeFantasia: Boolean; Formato: string; MensagemRodape: string; Canhoto: Boolean): TBytes;
+    /// <param name="QrcodeLateral">
+    /// Imprime o QR Code na lateral do DANFE Simplificado Tipo 2.
+    /// 
+    /// *Aplicãvel apenas à NF-e com DANFE Simplificado Tipo 2 (`tpImp` = 6) e disponível apenas para 80 milímetros de largura*.
+    /// </param>
+    /// <param name="Largura">
+    /// Largura do DANFE Simplificado Tipo 2 (em milímetros).
+    /// 
+    /// *Aplicãvel apenas à NF-e com DANFE Simplificado Tipo 2 (`tpImp` = 6). A NT 2026.003 exige no mínimo 56 mm*.
+    /// </param>
+    /// <param name="Margem">
+    /// Define as margens do DANFE Simplificado Tipo 2 (em milímetros), no mesmo formato do parâmetro `margem` do PDF da NFC-e.
+    /// 
+    /// *Aplicãvel apenas à NF-e com DANFE Simplificado Tipo 2 (`tpImp` = 6). Margens laterais menores que 2 mm são ajustadas para 2 mm, o mínimo da NT 2026.003*.
+    /// </param>
+    function BaixarPdfNfe(Id: string; Logotipo: Boolean; NomeFantasia: Boolean; Formato: string; MensagemRodape: string; Canhoto: Boolean; QrcodeLateral: Boolean; Largura: Integer; Margem: string): TBytes;
     /// <param name="Id">
     /// ID único da NF-e gerado pela API.
     /// </param>
@@ -7811,7 +7901,7 @@ begin
   Result := Converter.TDfeLoteFromJson(Response.ContentAsString);
 end;
 
-function TNfeService.BaixarPreviaPdfNfe(Body: TNfePedidoEmissao; Logotipo: Boolean; NomeFantasia: Boolean; Formato: string; MensagemRodape: string; Canhoto: Boolean): TBytes;
+function TNfeService.BaixarPreviaPdfNfe(Body: TNfePedidoEmissao; Logotipo: Boolean; NomeFantasia: Boolean; Formato: string; MensagemRodape: string; Canhoto: Boolean; QrcodeLateral: Boolean; Largura: Integer; Margem: string): TBytes;
 var
   Request: IRestRequest;
   Response: IRestResponse;
@@ -7823,6 +7913,9 @@ begin
   Request.AddQueryParam('formato', Formato);
   Request.AddQueryParam('mensagem_rodape', MensagemRodape);
   Request.AddQueryParam('canhoto', BoolToParam(Canhoto));
+  Request.AddQueryParam('qrcode_lateral', BoolToParam(QrcodeLateral));
+  Request.AddQueryParam('largura', IntToStr(Largura));
+  Request.AddQueryParam('margem', Margem);
   Request.AddHeader('Content-Type', 'application/json');
   Response := ExecuteRequest(Request);
   CheckError(Response);
@@ -7973,7 +8066,7 @@ begin
   Result := Response.ContentAsBytes;
 end;
 
-function TNfeService.EnviarEmailNfe(Body: TDfePedidoEnvioEmail; Id: string; Logotipo: Boolean; NomeFantasia: Boolean; Formato: string; MensagemRodape: string; Canhoto: Boolean): TEmailStatusResponse;
+function TNfeService.EnviarEmailNfe(Body: TDfePedidoEnvioEmail; Id: string; Logotipo: Boolean; NomeFantasia: Boolean; Formato: string; MensagemRodape: string; Canhoto: Boolean; QrcodeLateral: Boolean; Largura: Integer; Margem: string): TEmailStatusResponse;
 var
   Request: IRestRequest;
   Response: IRestResponse;
@@ -7986,6 +8079,9 @@ begin
   Request.AddQueryParam('formato', Formato);
   Request.AddQueryParam('mensagem_rodape', MensagemRodape);
   Request.AddQueryParam('canhoto', BoolToParam(Canhoto));
+  Request.AddQueryParam('qrcode_lateral', BoolToParam(QrcodeLateral));
+  Request.AddQueryParam('largura', IntToStr(Largura));
+  Request.AddQueryParam('margem', Margem);
   Request.AddHeader('Content-Type', 'application/json');
   Request.AddHeader('Accept', 'application/json');
   Response := ExecuteRequest(Request);
@@ -7993,7 +8089,7 @@ begin
   Result := Converter.TEmailStatusResponseFromJson(Response.ContentAsString);
 end;
 
-function TNfeService.BaixarPdfNfe(Id: string; Logotipo: Boolean; NomeFantasia: Boolean; Formato: string; MensagemRodape: string; Canhoto: Boolean): TBytes;
+function TNfeService.BaixarPdfNfe(Id: string; Logotipo: Boolean; NomeFantasia: Boolean; Formato: string; MensagemRodape: string; Canhoto: Boolean; QrcodeLateral: Boolean; Largura: Integer; Margem: string): TBytes;
 var
   Request: IRestRequest;
   Response: IRestResponse;
@@ -8005,6 +8101,9 @@ begin
   Request.AddQueryParam('formato', Formato);
   Request.AddQueryParam('mensagem_rodape', MensagemRodape);
   Request.AddQueryParam('canhoto', BoolToParam(Canhoto));
+  Request.AddQueryParam('qrcode_lateral', BoolToParam(QrcodeLateral));
+  Request.AddQueryParam('largura', IntToStr(Largura));
+  Request.AddQueryParam('margem', Margem);
   Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Response.ContentAsBytes;

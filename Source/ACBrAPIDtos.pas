@@ -170,6 +170,10 @@ type
   TRTCInfoTributosDif = class;
   TRTCInfoTributosSitClas = class;
   TRTCInfoTributosIBSCBS = class;
+  TRTCInfoTributosAbrasfFed = class;
+  TRTCInfoTributosAbrasfUF = class;
+  TRTCInfoTributosAbrasfMun = class;
+  TRTCInfoTributosAbrasf = class;
   TRTCInfoValoresIBSCBS = class;
   TRTCInfoIBSCBS = class;
   TInfDPS = class;
@@ -6828,19 +6832,176 @@ type
   end;
   
   /// <summary>
+  /// Grupo de informações relativas aos valores da CBS.
+  /// </summary>
+  TRTCInfoTributosAbrasfFed = class
+  private
+    FpCBS: Double;
+    FpCBSHasValue: Boolean;
+    FpRedAliqCBS: Double;
+    FpRedAliqCBSHasValue: Boolean;
+    FpAliqEfetCBS: Double;
+    FpAliqEfetCBSHasValue: Boolean;
+    FvCBS: Double;
+    FvCBSHasValue: Boolean;
+    procedure SetpCBS(const Value: Double);
+    procedure SetpRedAliqCBS(const Value: Double);
+    procedure SetpAliqEfetCBS(const Value: Double);
+    procedure SetvCBS(const Value: Double);
+  public
+    /// <summary>
+    /// Alíquota da União para CBS.
+    /// </summary>
+    property pCBS: Double read FpCBS write SetpCBS;
+    property pCBSHasValue: Boolean read FpCBSHasValue write FpCBSHasValue;
+    /// <summary>
+    /// Percentual da redução de alíquota da CBS.
+    /// </summary>
+    property pRedAliqCBS: Double read FpRedAliqCBS write SetpRedAliqCBS;
+    property pRedAliqCBSHasValue: Boolean read FpRedAliqCBSHasValue write FpRedAliqCBSHasValue;
+    /// <summary>
+    /// Alíquota efetiva da CBS.
+    /// pAliqEfetCBS = pCBS x (1 - pRedAliqCBS) x (1 - pRedutor)
+    /// </summary>
+    property pAliqEfetCBS: Double read FpAliqEfetCBS write SetpAliqEfetCBS;
+    property pAliqEfetCBSHasValue: Boolean read FpAliqEfetCBSHasValue write FpAliqEfetCBSHasValue;
+    /// <summary>
+    /// Valor da CBS (R$).
+    /// vCBS = vBC x (pCBS ou pAliqEfetCBS)
+    /// </summary>
+    property vCBS: Double read FvCBS write SetvCBS;
+    property vCBSHasValue: Boolean read FvCBSHasValue write FvCBSHasValue;
+  end;
+  
+  /// <summary>
+  /// Grupo de informações relativas aos valores do IBS estadual.
+  /// </summary>
+  TRTCInfoTributosAbrasfUF = class
+  private
+    FpIBSUF: Double;
+    FpIBSUFHasValue: Boolean;
+    FpRedAliqUF: Double;
+    FpRedAliqUFHasValue: Boolean;
+    FpAliqEfetUF: Double;
+    FpAliqEfetUFHasValue: Boolean;
+    FvIBSUF: Double;
+    FvIBSUFHasValue: Boolean;
+    procedure SetpIBSUF(const Value: Double);
+    procedure SetpRedAliqUF(const Value: Double);
+    procedure SetpAliqEfetUF(const Value: Double);
+    procedure SetvIBSUF(const Value: Double);
+  public
+    /// <summary>
+    /// Alíquota da UF para IBS.
+    /// </summary>
+    property pIBSUF: Double read FpIBSUF write SetpIBSUF;
+    property pIBSUFHasValue: Boolean read FpIBSUFHasValue write FpIBSUFHasValue;
+    /// <summary>
+    /// Percentual de redução de alíquota estadual.
+    /// </summary>
+    property pRedAliqUF: Double read FpRedAliqUF write SetpRedAliqUF;
+    property pRedAliqUFHasValue: Boolean read FpRedAliqUFHasValue write FpRedAliqUFHasValue;
+    /// <summary>
+    /// Alíquota efetiva do IBS estadual.
+    /// pAliqEfetUF = pIBSUF x (1 - pRedAliqUF) x (1 - pRedutor)
+    /// </summary>
+    property pAliqEfetUF: Double read FpAliqEfetUF write SetpAliqEfetUF;
+    property pAliqEfetUFHasValue: Boolean read FpAliqEfetUFHasValue write FpAliqEfetUFHasValue;
+    /// <summary>
+    /// Valor do IBS estadual (R$).
+    /// vIBSUF = vBC x (pIBSUF ou pAliqEfetUF)
+    /// </summary>
+    property vIBSUF: Double read FvIBSUF write SetvIBSUF;
+    property vIBSUFHasValue: Boolean read FvIBSUFHasValue write FvIBSUFHasValue;
+  end;
+  
+  /// <summary>
+  /// Grupo de informações relativas aos valores do IBS municipal.
+  /// </summary>
+  TRTCInfoTributosAbrasfMun = class
+  private
+    FpIBSMun: Double;
+    FpIBSMunHasValue: Boolean;
+    FpRedAliqMun: Double;
+    FpRedAliqMunHasValue: Boolean;
+    FpAliqEfetMun: Double;
+    FpAliqEfetMunHasValue: Boolean;
+    FvIBSMun: Double;
+    FvIBSMunHasValue: Boolean;
+    procedure SetpIBSMun(const Value: Double);
+    procedure SetpRedAliqMun(const Value: Double);
+    procedure SetpAliqEfetMun(const Value: Double);
+    procedure SetvIBSMun(const Value: Double);
+  public
+    /// <summary>
+    /// Alíquota do Município para IBS.
+    /// </summary>
+    property pIBSMun: Double read FpIBSMun write SetpIBSMun;
+    property pIBSMunHasValue: Boolean read FpIBSMunHasValue write FpIBSMunHasValue;
+    /// <summary>
+    /// Percentual de redução de alíquota municipal.
+    /// </summary>
+    property pRedAliqMun: Double read FpRedAliqMun write SetpRedAliqMun;
+    property pRedAliqMunHasValue: Boolean read FpRedAliqMunHasValue write FpRedAliqMunHasValue;
+    /// <summary>
+    /// Alíquota efetiva do IBS municipal.
+    /// pAliqEfetMun = pIBSMun x (1 - pRedAliqMun) x (1 - pRedutor)
+    /// </summary>
+    property pAliqEfetMun: Double read FpAliqEfetMun write SetpAliqEfetMun;
+    property pAliqEfetMunHasValue: Boolean read FpAliqEfetMunHasValue write FpAliqEfetMunHasValue;
+    /// <summary>
+    /// Valor do IBS municipal (R$).
+    /// vIBSMun = vBC x (pIBSMun ou pAliqEfetMun)
+    /// </summary>
+    property vIBSMun: Double read FvIBSMun write SetvIBSMun;
+    property vIBSMunHasValue: Boolean read FvIBSMunHasValue write FvIBSMunHasValue;
+  end;
+  
+  /// <summary>
+  /// Grupo de informações dos valores do IBS e da CBS utilizado pelos provedores municipais.
+  /// 
+  /// **Atenção**: Para emissões pelo Sistema Nacional NFS-e, esse campo é ignorado.
+  /// </summary>
+  TRTCInfoTributosAbrasf = class
+  private
+    FvBC: Double;
+    FvBCHasValue: Boolean;
+    Ffed: TRTCInfoTributosAbrasfFed;
+    Fuf: TRTCInfoTributosAbrasfUF;
+    Fmun: TRTCInfoTributosAbrasfMun;
+    procedure SetvBC(const Value: Double);
+    procedure Setfed(const Value: TRTCInfoTributosAbrasfFed);
+    procedure Setuf(const Value: TRTCInfoTributosAbrasfUF);
+    procedure Setmun(const Value: TRTCInfoTributosAbrasfMun);
+  public
+    destructor Destroy; override;
+    /// <summary>
+    /// Valor da base de cálculo (BC) do IBS/CBS (R$).
+    /// </summary>
+    property vBC: Double read FvBC write SetvBC;
+    property vBCHasValue: Boolean read FvBCHasValue write FvBCHasValue;
+    property fed: TRTCInfoTributosAbrasfFed read Ffed write Setfed;
+    property uf: TRTCInfoTributosAbrasfUF read Fuf write Setuf;
+    property mun: TRTCInfoTributosAbrasfMun read Fmun write Setmun;
+  end;
+  
+  /// <summary>
   /// Grupo de informações relativas aos valores do serviço prestado para IBS e CBS.
   /// </summary>
   TRTCInfoValoresIBSCBS = class
   private
     FgReeRepRes: TRTCInfoReeRepRes;
     Ftrib: TRTCInfoTributosIBSCBS;
+    FtribAbrasf: TRTCInfoTributosAbrasf;
     procedure SetgReeRepRes(const Value: TRTCInfoReeRepRes);
     procedure Settrib(const Value: TRTCInfoTributosIBSCBS);
+    procedure SettribAbrasf(const Value: TRTCInfoTributosAbrasf);
   public
     constructor Create;
     destructor Destroy; override;
     property gReeRepRes: TRTCInfoReeRepRes read FgReeRepRes write SetgReeRepRes;
     property trib: TRTCInfoTributosIBSCBS read Ftrib write Settrib;
+    property tribAbrasf: TRTCInfoTributosAbrasf read FtribAbrasf write SettribAbrasf;
   end;
   
   /// <summary>
@@ -24054,6 +24215,7 @@ type
     /// * 3 - DANFe Simplificado
     /// * 4 - DANFe NFC-e
     /// * 5 - DANFe NFC-e em mensagem eletrônica
+    /// * 6 - DANFE Simplificado Tipo 2 (nas condições do Ajuste SINIEF 13/26)
     /// </summary>
     property tpImp: Integer read FtpImp write FtpImp;
     /// <summary>
@@ -24114,7 +24276,7 @@ type
     /// * 1 - Operação presencial
     /// * 2 - Não presencial, internet
     /// * 3 - Não presencial, teleatendimento
-    /// * 4 - NFC-e entrega em domicílio
+    /// * 4 - Operação não presencial com NFC-e e NF-e com DANFE Simplificado Tipo 2 (com entrega)
     /// * 5 - Operação presencial, fora do estabelecimento
     /// * 9 - Não presencial, outros
     /// </summary>
@@ -36785,6 +36947,127 @@ begin
   end;
 end;
 
+{ TRTCInfoTributosAbrasfFed }
+
+procedure TRTCInfoTributosAbrasfFed.SetpCBS(const Value: Double);
+begin
+  FpCBS := Value;
+  FpCBSHasValue := True;
+end;
+
+procedure TRTCInfoTributosAbrasfFed.SetpRedAliqCBS(const Value: Double);
+begin
+  FpRedAliqCBS := Value;
+  FpRedAliqCBSHasValue := True;
+end;
+
+procedure TRTCInfoTributosAbrasfFed.SetpAliqEfetCBS(const Value: Double);
+begin
+  FpAliqEfetCBS := Value;
+  FpAliqEfetCBSHasValue := True;
+end;
+
+procedure TRTCInfoTributosAbrasfFed.SetvCBS(const Value: Double);
+begin
+  FvCBS := Value;
+  FvCBSHasValue := True;
+end;
+
+{ TRTCInfoTributosAbrasfUF }
+
+procedure TRTCInfoTributosAbrasfUF.SetpIBSUF(const Value: Double);
+begin
+  FpIBSUF := Value;
+  FpIBSUFHasValue := True;
+end;
+
+procedure TRTCInfoTributosAbrasfUF.SetpRedAliqUF(const Value: Double);
+begin
+  FpRedAliqUF := Value;
+  FpRedAliqUFHasValue := True;
+end;
+
+procedure TRTCInfoTributosAbrasfUF.SetpAliqEfetUF(const Value: Double);
+begin
+  FpAliqEfetUF := Value;
+  FpAliqEfetUFHasValue := True;
+end;
+
+procedure TRTCInfoTributosAbrasfUF.SetvIBSUF(const Value: Double);
+begin
+  FvIBSUF := Value;
+  FvIBSUFHasValue := True;
+end;
+
+{ TRTCInfoTributosAbrasfMun }
+
+procedure TRTCInfoTributosAbrasfMun.SetpIBSMun(const Value: Double);
+begin
+  FpIBSMun := Value;
+  FpIBSMunHasValue := True;
+end;
+
+procedure TRTCInfoTributosAbrasfMun.SetpRedAliqMun(const Value: Double);
+begin
+  FpRedAliqMun := Value;
+  FpRedAliqMunHasValue := True;
+end;
+
+procedure TRTCInfoTributosAbrasfMun.SetpAliqEfetMun(const Value: Double);
+begin
+  FpAliqEfetMun := Value;
+  FpAliqEfetMunHasValue := True;
+end;
+
+procedure TRTCInfoTributosAbrasfMun.SetvIBSMun(const Value: Double);
+begin
+  FvIBSMun := Value;
+  FvIBSMunHasValue := True;
+end;
+
+{ TRTCInfoTributosAbrasf }
+
+destructor TRTCInfoTributosAbrasf.Destroy;
+begin
+  Fmun.Free;
+  Fuf.Free;
+  Ffed.Free;
+  inherited;
+end;
+
+procedure TRTCInfoTributosAbrasf.SetvBC(const Value: Double);
+begin
+  FvBC := Value;
+  FvBCHasValue := True;
+end;
+
+procedure TRTCInfoTributosAbrasf.Setfed(const Value: TRTCInfoTributosAbrasfFed);
+begin
+  if Value <> Ffed then
+  begin
+    Ffed.Free;
+    Ffed := Value;
+  end;
+end;
+
+procedure TRTCInfoTributosAbrasf.Setuf(const Value: TRTCInfoTributosAbrasfUF);
+begin
+  if Value <> Fuf then
+  begin
+    Fuf.Free;
+    Fuf := Value;
+  end;
+end;
+
+procedure TRTCInfoTributosAbrasf.Setmun(const Value: TRTCInfoTributosAbrasfMun);
+begin
+  if Value <> Fmun then
+  begin
+    Fmun.Free;
+    Fmun := Value;
+  end;
+end;
+
 { TRTCInfoValoresIBSCBS }
 
 constructor TRTCInfoValoresIBSCBS.Create;
@@ -36795,6 +37078,7 @@ end;
 
 destructor TRTCInfoValoresIBSCBS.Destroy;
 begin
+  FtribAbrasf.Free;
   Ftrib.Free;
   FgReeRepRes.Free;
   inherited;
@@ -36815,6 +37099,15 @@ begin
   begin
     Ftrib.Free;
     Ftrib := Value;
+  end;
+end;
+
+procedure TRTCInfoValoresIBSCBS.SettribAbrasf(const Value: TRTCInfoTributosAbrasf);
+begin
+  if Value <> FtribAbrasf then
+  begin
+    FtribAbrasf.Free;
+    FtribAbrasf := Value;
   end;
 end;
 

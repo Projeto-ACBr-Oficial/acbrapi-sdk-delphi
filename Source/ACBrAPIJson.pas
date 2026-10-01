@@ -655,6 +655,22 @@ type
     function TRTCInfoTributosIBSCBSToJson(Source: TRTCInfoTributosIBSCBS): string;
     function TRTCInfoTributosIBSCBSFromJsonValue(Source: TJSONValue): TRTCInfoTributosIBSCBS;
     function TRTCInfoTributosIBSCBSFromJson(Source: string): TRTCInfoTributosIBSCBS;
+    function TRTCInfoTributosAbrasfFedToJsonValue(Source: TRTCInfoTributosAbrasfFed): TJSONValue;
+    function TRTCInfoTributosAbrasfFedToJson(Source: TRTCInfoTributosAbrasfFed): string;
+    function TRTCInfoTributosAbrasfFedFromJsonValue(Source: TJSONValue): TRTCInfoTributosAbrasfFed;
+    function TRTCInfoTributosAbrasfFedFromJson(Source: string): TRTCInfoTributosAbrasfFed;
+    function TRTCInfoTributosAbrasfUFToJsonValue(Source: TRTCInfoTributosAbrasfUF): TJSONValue;
+    function TRTCInfoTributosAbrasfUFToJson(Source: TRTCInfoTributosAbrasfUF): string;
+    function TRTCInfoTributosAbrasfUFFromJsonValue(Source: TJSONValue): TRTCInfoTributosAbrasfUF;
+    function TRTCInfoTributosAbrasfUFFromJson(Source: string): TRTCInfoTributosAbrasfUF;
+    function TRTCInfoTributosAbrasfMunToJsonValue(Source: TRTCInfoTributosAbrasfMun): TJSONValue;
+    function TRTCInfoTributosAbrasfMunToJson(Source: TRTCInfoTributosAbrasfMun): string;
+    function TRTCInfoTributosAbrasfMunFromJsonValue(Source: TJSONValue): TRTCInfoTributosAbrasfMun;
+    function TRTCInfoTributosAbrasfMunFromJson(Source: string): TRTCInfoTributosAbrasfMun;
+    function TRTCInfoTributosAbrasfToJsonValue(Source: TRTCInfoTributosAbrasf): TJSONValue;
+    function TRTCInfoTributosAbrasfToJson(Source: TRTCInfoTributosAbrasf): string;
+    function TRTCInfoTributosAbrasfFromJsonValue(Source: TJSONValue): TRTCInfoTributosAbrasf;
+    function TRTCInfoTributosAbrasfFromJson(Source: string): TRTCInfoTributosAbrasf;
     function TRTCInfoValoresIBSCBSToJsonValue(Source: TRTCInfoValoresIBSCBS): TJSONValue;
     function TRTCInfoValoresIBSCBSToJson(Source: TRTCInfoValoresIBSCBS): string;
     function TRTCInfoValoresIBSCBSFromJsonValue(Source: TJSONValue): TRTCInfoValoresIBSCBS;
@@ -15234,6 +15250,294 @@ begin
   end;
 end;
 
+function TJsonConverter.TRTCInfoTributosAbrasfFedToJsonValue(Source: TRTCInfoTributosAbrasfFed): TJSONValue;
+begin
+  if not Assigned(Source) then
+  begin
+    Result := Json.CreateNull;
+    Exit;
+  end;
+  Result := Json.CreateObject;
+  try
+    if Source.pCBSHasValue then
+      Json.ObjAddProp(Result, 'pCBS', Self.DoubleToJsonValue(Source.pCBS));
+    if Source.pRedAliqCBSHasValue then
+      Json.ObjAddProp(Result, 'pRedAliqCBS', Self.DoubleToJsonValue(Source.pRedAliqCBS));
+    if Source.pAliqEfetCBSHasValue then
+      Json.ObjAddProp(Result, 'pAliqEfetCBS', Self.DoubleToJsonValue(Source.pAliqEfetCBS));
+    if Source.vCBSHasValue then
+      Json.ObjAddProp(Result, 'vCBS', Self.DoubleToJsonValue(Source.vCBS));
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TRTCInfoTributosAbrasfFedToJson(Source: TRTCInfoTributosAbrasfFed): string;
+var
+  JValue: TJSONValue;
+begin
+  JValue := TRTCInfoTributosAbrasfFedToJsonValue(Source);
+  try
+    Result := JsonValueToJson(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TRTCInfoTributosAbrasfFedFromJsonValue(Source: TJSONValue): TRTCInfoTributosAbrasfFed;
+var
+  JValue: TJSONValue;
+begin
+  if not Json.IsObject(Source) then
+  begin
+    Result := nil;
+    Exit;
+  end;
+  Result := TRTCInfoTributosAbrasfFed.Create;
+  try
+    if Json.ObjContains(Source, 'pCBS', JValue) then
+      Result.pCBS := Self.DoubleFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'pRedAliqCBS', JValue) then
+      Result.pRedAliqCBS := Self.DoubleFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'pAliqEfetCBS', JValue) then
+      Result.pAliqEfetCBS := Self.DoubleFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'vCBS', JValue) then
+      Result.vCBS := Self.DoubleFromJsonValue(JValue);
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TRTCInfoTributosAbrasfFedFromJson(Source: string): TRTCInfoTributosAbrasfFed;
+var
+  JValue: TJSONValue;
+begin
+  JValue := JsonToJsonValue(Source);
+  try
+    Result := TRTCInfoTributosAbrasfFedFromJsonValue(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TRTCInfoTributosAbrasfUFToJsonValue(Source: TRTCInfoTributosAbrasfUF): TJSONValue;
+begin
+  if not Assigned(Source) then
+  begin
+    Result := Json.CreateNull;
+    Exit;
+  end;
+  Result := Json.CreateObject;
+  try
+    if Source.pIBSUFHasValue then
+      Json.ObjAddProp(Result, 'pIBSUF', Self.DoubleToJsonValue(Source.pIBSUF));
+    if Source.pRedAliqUFHasValue then
+      Json.ObjAddProp(Result, 'pRedAliqUF', Self.DoubleToJsonValue(Source.pRedAliqUF));
+    if Source.pAliqEfetUFHasValue then
+      Json.ObjAddProp(Result, 'pAliqEfetUF', Self.DoubleToJsonValue(Source.pAliqEfetUF));
+    if Source.vIBSUFHasValue then
+      Json.ObjAddProp(Result, 'vIBSUF', Self.DoubleToJsonValue(Source.vIBSUF));
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TRTCInfoTributosAbrasfUFToJson(Source: TRTCInfoTributosAbrasfUF): string;
+var
+  JValue: TJSONValue;
+begin
+  JValue := TRTCInfoTributosAbrasfUFToJsonValue(Source);
+  try
+    Result := JsonValueToJson(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TRTCInfoTributosAbrasfUFFromJsonValue(Source: TJSONValue): TRTCInfoTributosAbrasfUF;
+var
+  JValue: TJSONValue;
+begin
+  if not Json.IsObject(Source) then
+  begin
+    Result := nil;
+    Exit;
+  end;
+  Result := TRTCInfoTributosAbrasfUF.Create;
+  try
+    if Json.ObjContains(Source, 'pIBSUF', JValue) then
+      Result.pIBSUF := Self.DoubleFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'pRedAliqUF', JValue) then
+      Result.pRedAliqUF := Self.DoubleFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'pAliqEfetUF', JValue) then
+      Result.pAliqEfetUF := Self.DoubleFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'vIBSUF', JValue) then
+      Result.vIBSUF := Self.DoubleFromJsonValue(JValue);
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TRTCInfoTributosAbrasfUFFromJson(Source: string): TRTCInfoTributosAbrasfUF;
+var
+  JValue: TJSONValue;
+begin
+  JValue := JsonToJsonValue(Source);
+  try
+    Result := TRTCInfoTributosAbrasfUFFromJsonValue(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TRTCInfoTributosAbrasfMunToJsonValue(Source: TRTCInfoTributosAbrasfMun): TJSONValue;
+begin
+  if not Assigned(Source) then
+  begin
+    Result := Json.CreateNull;
+    Exit;
+  end;
+  Result := Json.CreateObject;
+  try
+    if Source.pIBSMunHasValue then
+      Json.ObjAddProp(Result, 'pIBSMun', Self.DoubleToJsonValue(Source.pIBSMun));
+    if Source.pRedAliqMunHasValue then
+      Json.ObjAddProp(Result, 'pRedAliqMun', Self.DoubleToJsonValue(Source.pRedAliqMun));
+    if Source.pAliqEfetMunHasValue then
+      Json.ObjAddProp(Result, 'pAliqEfetMun', Self.DoubleToJsonValue(Source.pAliqEfetMun));
+    if Source.vIBSMunHasValue then
+      Json.ObjAddProp(Result, 'vIBSMun', Self.DoubleToJsonValue(Source.vIBSMun));
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TRTCInfoTributosAbrasfMunToJson(Source: TRTCInfoTributosAbrasfMun): string;
+var
+  JValue: TJSONValue;
+begin
+  JValue := TRTCInfoTributosAbrasfMunToJsonValue(Source);
+  try
+    Result := JsonValueToJson(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TRTCInfoTributosAbrasfMunFromJsonValue(Source: TJSONValue): TRTCInfoTributosAbrasfMun;
+var
+  JValue: TJSONValue;
+begin
+  if not Json.IsObject(Source) then
+  begin
+    Result := nil;
+    Exit;
+  end;
+  Result := TRTCInfoTributosAbrasfMun.Create;
+  try
+    if Json.ObjContains(Source, 'pIBSMun', JValue) then
+      Result.pIBSMun := Self.DoubleFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'pRedAliqMun', JValue) then
+      Result.pRedAliqMun := Self.DoubleFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'pAliqEfetMun', JValue) then
+      Result.pAliqEfetMun := Self.DoubleFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'vIBSMun', JValue) then
+      Result.vIBSMun := Self.DoubleFromJsonValue(JValue);
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TRTCInfoTributosAbrasfMunFromJson(Source: string): TRTCInfoTributosAbrasfMun;
+var
+  JValue: TJSONValue;
+begin
+  JValue := JsonToJsonValue(Source);
+  try
+    Result := TRTCInfoTributosAbrasfMunFromJsonValue(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TRTCInfoTributosAbrasfToJsonValue(Source: TRTCInfoTributosAbrasf): TJSONValue;
+begin
+  if not Assigned(Source) then
+  begin
+    Result := Json.CreateNull;
+    Exit;
+  end;
+  Result := Json.CreateObject;
+  try
+    if Source.vBCHasValue then
+      Json.ObjAddProp(Result, 'vBC', Self.DoubleToJsonValue(Source.vBC));
+    if Assigned(Source.fed) then
+      Json.ObjAddProp(Result, 'fed', Self.TRTCInfoTributosAbrasfFedToJsonValue(Source.fed));
+    if Assigned(Source.uf) then
+      Json.ObjAddProp(Result, 'uf', Self.TRTCInfoTributosAbrasfUFToJsonValue(Source.uf));
+    if Assigned(Source.mun) then
+      Json.ObjAddProp(Result, 'mun', Self.TRTCInfoTributosAbrasfMunToJsonValue(Source.mun));
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TRTCInfoTributosAbrasfToJson(Source: TRTCInfoTributosAbrasf): string;
+var
+  JValue: TJSONValue;
+begin
+  JValue := TRTCInfoTributosAbrasfToJsonValue(Source);
+  try
+    Result := JsonValueToJson(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TRTCInfoTributosAbrasfFromJsonValue(Source: TJSONValue): TRTCInfoTributosAbrasf;
+var
+  JValue: TJSONValue;
+begin
+  if not Json.IsObject(Source) then
+  begin
+    Result := nil;
+    Exit;
+  end;
+  Result := TRTCInfoTributosAbrasf.Create;
+  try
+    if Json.ObjContains(Source, 'vBC', JValue) then
+      Result.vBC := Self.DoubleFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'fed', JValue) then
+      Result.fed := Self.TRTCInfoTributosAbrasfFedFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'uf', JValue) then
+      Result.uf := Self.TRTCInfoTributosAbrasfUFFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'mun', JValue) then
+      Result.mun := Self.TRTCInfoTributosAbrasfMunFromJsonValue(JValue);
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TRTCInfoTributosAbrasfFromJson(Source: string): TRTCInfoTributosAbrasf;
+var
+  JValue: TJSONValue;
+begin
+  JValue := JsonToJsonValue(Source);
+  try
+    Result := TRTCInfoTributosAbrasfFromJsonValue(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
 function TJsonConverter.TRTCInfoValoresIBSCBSToJsonValue(Source: TRTCInfoValoresIBSCBS): TJSONValue;
 begin
   if not Assigned(Source) then
@@ -15246,6 +15550,8 @@ begin
     if Assigned(Source.gReeRepRes) then
       Json.ObjAddProp(Result, 'gReeRepRes', Self.TRTCInfoReeRepResToJsonValue(Source.gReeRepRes));
     Json.ObjAddProp(Result, 'trib', Self.TRTCInfoTributosIBSCBSToJsonValue(Source.trib));
+    if Assigned(Source.tribAbrasf) then
+      Json.ObjAddProp(Result, 'tribAbrasf', Self.TRTCInfoTributosAbrasfToJsonValue(Source.tribAbrasf));
   except
     Result.Free;
     raise;
@@ -15279,6 +15585,8 @@ begin
       Result.gReeRepRes := Self.TRTCInfoReeRepResFromJsonValue(JValue);
     if Json.ObjContains(Source, 'trib', JValue) then
       Result.trib := Self.TRTCInfoTributosIBSCBSFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'tribAbrasf', JValue) then
+      Result.tribAbrasf := Self.TRTCInfoTributosAbrasfFromJsonValue(JValue);
   except
     Result.Free;
     raise;
