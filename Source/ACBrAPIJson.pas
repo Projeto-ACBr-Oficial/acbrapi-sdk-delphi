@@ -27509,6 +27509,16 @@ begin
       Json.ObjAddProp(Result, 'http_method', Self.stringToJsonValue(Source.http_method));
     if Source.uriHasValue then
       Json.ObjAddProp(Result, 'uri', Self.stringToJsonValue(Source.uri));
+    if Source.client_idHasValue then
+      Json.ObjAddProp(Result, 'client_id', Self.stringToJsonValue(Source.client_id));
+    if Source.originHasValue then
+      Json.ObjAddProp(Result, 'origin', Self.stringToJsonValue(Source.origin));
+    if Source.resource_typeHasValue then
+      Json.ObjAddProp(Result, 'resource_type', Self.stringToJsonValue(Source.resource_type));
+    if Source.resource_idHasValue then
+      Json.ObjAddProp(Result, 'resource_id', Self.stringToJsonValue(Source.resource_id));
+    if Source.request_idHasValue then
+      Json.ObjAddProp(Result, 'request_id', Self.stringToJsonValue(Source.request_id));
   except
     Result.Free;
     raise;
@@ -27556,6 +27566,16 @@ begin
       Result.http_method := Self.stringFromJsonValue(JValue);
     if Json.ObjContains(Source, 'uri', JValue) then
       Result.uri := Self.stringFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'client_id', JValue) then
+      Result.client_id := Self.stringFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'origin', JValue) then
+      Result.origin := Self.stringFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'resource_type', JValue) then
+      Result.resource_type := Self.stringFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'resource_id', JValue) then
+      Result.resource_id := Self.stringFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'request_id', JValue) then
+      Result.request_id := Self.stringFromJsonValue(JValue);
   except
     Result.Free;
     raise;

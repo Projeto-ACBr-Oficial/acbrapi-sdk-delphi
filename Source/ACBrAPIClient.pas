@@ -166,7 +166,7 @@ type
     /// <summary>
     /// Consultar o extrato de movimentação de créditos do tenant atual.
     /// </summary>
-    function ListarExtratoCreditosConta(DataInicial: string; DataFinal: string; Top: Integer; Skip: Integer; Limit: Integer): TContaExtratoCreditoListagem;
+    function ListarExtratoCreditosConta(DataInicial: string; DataFinal: string; Top: Integer; Skip: Integer; Limit: Integer; ClientId: string; IncluirIsentos: Boolean): TContaExtratoCreditoListagem;
   end;
   
   TContaService = class(TRestService, IContaService)
@@ -177,7 +177,7 @@ type
     /// Nome da cota a ser consultada.
     /// </param>
     function ConsultarCotaConta(Nome: string): TContaCota;
-    function ListarExtratoCreditosConta(DataInicial: string; DataFinal: string; Top: Integer; Skip: Integer; Limit: Integer): TContaExtratoCreditoListagem;
+    function ListarExtratoCreditosConta(DataInicial: string; DataFinal: string; Top: Integer; Skip: Integer; Limit: Integer; ClientId: string; IncluirIsentos: Boolean): TContaExtratoCreditoListagem;
   end;
   
   /// <summary>
@@ -4955,17 +4955,6 @@ type
     /// </remarks>
     function ConsultarLoteNfse(Id: string): TRpsLote;
     /// <summary>
-    /// Baixar XML do evento de cancelamento
-    /// </summary>
-    /// <param name="Id">
-    /// ID único da NFS-e gerado pela API.
-    /// </param>
-    /// <remarks>
-    /// **Informações adicionais**:
-    /// - Consumo: Primeira requisição isenta, posteriores 1 unidade por requisição.
-    /// </remarks>
-    function BaixarXmlCancelamentoNfse(Id: string): TBytes;
-    /// <summary>
     /// Consultar NFS-e
     /// </summary>
     /// <param name="Id">
@@ -4993,6 +4982,17 @@ type
     /// - Consumo: 1 unidade por requisição.
     /// </remarks>
     function CancelarNfse(Body: TNfsePedidoCancelamento; Id: string): TNfseCancelamento;
+    /// <summary>
+    /// Baixar XML do evento de cancelamento
+    /// </summary>
+    /// <param name="Id">
+    /// ID único da NFS-e gerado pela API.
+    /// </param>
+    /// <remarks>
+    /// **Informações adicionais**:
+    /// - Consumo: Primeira requisição isenta, posteriores 1 unidade por requisição.
+    /// </remarks>
+    function BaixarXmlCancelamentoNfse(Id: string): TBytes;
     /// <summary>
     /// Enviar e-mail
     /// </summary>
@@ -5157,10 +5157,6 @@ type
     /// <param name="Id">
     /// ID único da NFS-e gerado pela API.
     /// </param>
-    function BaixarXmlCancelamentoNfse(Id: string): TBytes;
-    /// <param name="Id">
-    /// ID único da NFS-e gerado pela API.
-    /// </param>
     function ConsultarNfse(Id: string): TNfse;
     /// <param name="Id">
     /// ID único da NFS-e gerado pela API.
@@ -5170,6 +5166,10 @@ type
     /// ID único da NFS-e gerado pela API.
     /// </param>
     function CancelarNfse(Body: TNfsePedidoCancelamento; Id: string): TNfseCancelamento;
+    /// <param name="Id">
+    /// ID único da NFS-e gerado pela API.
+    /// </param>
+    function BaixarXmlCancelamentoNfse(Id: string): TBytes;
     /// <param name="Id">
     /// ID único da NFS-e gerado pela API.
     /// </param>
@@ -5413,7 +5413,7 @@ begin
   Result := Converter.TContaCotaFromJson(Response.ContentAsString);
 end;
 
-function TContaService.ListarExtratoCreditosConta(DataInicial: string; DataFinal: string; Top: Integer; Skip: Integer; Limit: Integer): TContaExtratoCreditoListagem;
+function TContaService.ListarExtratoCreditosConta(DataInicial: string; DataFinal: string; Top: Integer; Skip: Integer; Limit: Integer; ClientId: string; IncluirIsentos: Boolean): TContaExtratoCreditoListagem;
 var
   Request: IRestRequest;
   Response: IRestResponse;
@@ -5424,6 +5424,8 @@ begin
   Request.AddQueryParam('top', IntToStr(Top));
   Request.AddQueryParam('skip', IntToStr(Skip));
   Request.AddQueryParam('limit', IntToStr(Limit));
+  Request.AddQueryParam('client_id', ClientId);
+  Request.AddQueryParam('incluir_isentos', BoolToParam(IncluirIsentos));
   Request.AddHeader('Accept', 'application/json');
   Response := ExecuteRequest(Request);
   CheckError(Response);
@@ -8264,18 +8266,6 @@ begin
   Result := Converter.TRpsLoteFromJson(Response.ContentAsString);
 end;
 
-function TNfseService.BaixarXmlCancelamentoNfse(Id: string): TBytes;
-var
-  Request: IRestRequest;
-  Response: IRestResponse;
-begin
-  Request := CreateRequest('/nfse/{Id}/cancelamento/xml', 'GET');
-  Request.AddUrlParam('Id', Id);
-  Response := ExecuteRequest(Request);
-  CheckError(Response);
-  Result := Response.ContentAsBytes;
-end;
-
 function TNfseService.ConsultarNfse(Id: string): TNfse;
 var
   Request: IRestRequest;
@@ -8315,6 +8305,18 @@ begin
   Response := ExecuteRequest(Request);
   CheckError(Response);
   Result := Converter.TNfseCancelamentoFromJson(Response.ContentAsString);
+end;
+
+function TNfseService.BaixarXmlCancelamentoNfse(Id: string): TBytes;
+var
+  Request: IRestRequest;
+  Response: IRestResponse;
+begin
+  Request := CreateRequest('/nfse/{id}/cancelamento/xml', 'GET');
+  Request.AddUrlParam('id', Id);
+  Response := ExecuteRequest(Request);
+  CheckError(Response);
+  Result := Response.ContentAsBytes;
 end;
 
 function TNfseService.EnviarEmailNfse(Body: TDfePedidoEnvioEmail; Id: string; Logotipo: Boolean; MensagemRodape: string): TEmailStatusResponse;

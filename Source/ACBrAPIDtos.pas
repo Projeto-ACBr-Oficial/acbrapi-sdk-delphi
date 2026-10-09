@@ -12822,6 +12822,16 @@ type
     Fhttp_methodHasValue: Boolean;
     Furi: string;
     FuriHasValue: Boolean;
+    Fclient_id: string;
+    Fclient_idHasValue: Boolean;
+    Forigin: string;
+    ForiginHasValue: Boolean;
+    Fresource_type: string;
+    Fresource_typeHasValue: Boolean;
+    Fresource_id: string;
+    Fresource_idHasValue: Boolean;
+    Frequest_id: string;
+    Frequest_idHasValue: Boolean;
     procedure Settenant_id(const Value: string);
     procedure Setcreated_at(const Value: TDateTime);
     procedure Setquota_name(const Value: string);
@@ -12831,6 +12841,11 @@ type
     procedure Setarquivo_id(const Value: string);
     procedure Sethttp_method(const Value: string);
     procedure Seturi(const Value: string);
+    procedure Setclient_id(const Value: string);
+    procedure Setorigin(const Value: string);
+    procedure Setresource_type(const Value: string);
+    procedure Setresource_id(const Value: string);
+    procedure Setrequest_id(const Value: string);
   public
     property tenant_id: string read Ftenant_id write Settenant_id;
     property tenant_idHasValue: Boolean read Ftenant_idHasValue write Ftenant_idHasValue;
@@ -12850,6 +12865,16 @@ type
     property http_methodHasValue: Boolean read Fhttp_methodHasValue write Fhttp_methodHasValue;
     property uri: string read Furi write Seturi;
     property uriHasValue: Boolean read FuriHasValue write FuriHasValue;
+    property client_id: string read Fclient_id write Setclient_id;
+    property client_idHasValue: Boolean read Fclient_idHasValue write Fclient_idHasValue;
+    property origin: string read Forigin write Setorigin;
+    property originHasValue: Boolean read ForiginHasValue write ForiginHasValue;
+    property resource_type: string read Fresource_type write Setresource_type;
+    property resource_typeHasValue: Boolean read Fresource_typeHasValue write Fresource_typeHasValue;
+    property resource_id: string read Fresource_id write Setresource_id;
+    property resource_idHasValue: Boolean read Fresource_idHasValue write Fresource_idHasValue;
+    property request_id: string read Frequest_id write Setrequest_id;
+    property request_idHasValue: Boolean read Frequest_idHasValue write Frequest_idHasValue;
   end;
   
   TContaExtratoCreditoList = class(TObjectList<TContaExtratoCredito>)
@@ -41336,6 +41361,36 @@ procedure TContaExtratoCredito.Seturi(const Value: string);
 begin
   Furi := Value;
   FuriHasValue := True;
+end;
+
+procedure TContaExtratoCredito.Setclient_id(const Value: string);
+begin
+  Fclient_id := Value;
+  Fclient_idHasValue := True;
+end;
+
+procedure TContaExtratoCredito.Setorigin(const Value: string);
+begin
+  Forigin := Value;
+  ForiginHasValue := True;
+end;
+
+procedure TContaExtratoCredito.Setresource_type(const Value: string);
+begin
+  Fresource_type := Value;
+  Fresource_typeHasValue := True;
+end;
+
+procedure TContaExtratoCredito.Setresource_id(const Value: string);
+begin
+  Fresource_id := Value;
+  Fresource_idHasValue := True;
+end;
+
+procedure TContaExtratoCredito.Setrequest_id(const Value: string);
+begin
+  Frequest_id := Value;
+  Frequest_idHasValue := True;
 end;
 
 { TContaExtratoCreditoListagem }
