@@ -289,7 +289,7 @@ end;
 procedure TfmMain.btCancelarNfceClick(Sender: TObject);
 var
   Cancelamento: TDfeCancelamento;
-  PedidoCancelamento: TNfePedidoCancelamento;
+  PedidoCancelamento: TNfcePedidoCancelamento;
   Pdf: TBytes;
   Xml: TBytes;
 begin
@@ -298,7 +298,7 @@ begin
   if MessageDlg('Tem certeza que deseja cancelar a nota ' + NfceSelecionada, mtConfirmation, [mbOk, mbCancel], 0, mbCancel) <> mrOk then
     Exit;
 
-  PedidoCancelamento := TNfePedidoCancelamento.Create;
+  PedidoCancelamento := TNfcePedidoCancelamento.Create;
   try
     PedidoCancelamento.justificativa := 'Nota fiscal emitida com erro de preenchimento';
 

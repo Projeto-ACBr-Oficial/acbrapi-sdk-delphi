@@ -797,7 +797,23 @@ type
   TNfeSefazGMonoPadrao = class;
   TNfeSefazGMonoReten = class;
   TNfeSefazGMonoRet = class;
-  TNfeSefazGMonoDif = class;
+  TNfeSefazGpBioDiferenca = class;
+  TNfeSefazGIBSMonoAdRem = class;
+  TNfeSefazGIBSMonoAdValoremGMonoPadrao = class;
+  TNfeSefazGIBSMonoAdValoremGMonoReten = class;
+  TNfeSefazGIBSMonoAdValoremGMonoRet = class;
+  TNfeSefazGIBSMonoAdValoremGpBioDiferenca = class;
+  TNfeSefazGIBSMonoAdValorem = class;
+  TNfeSefazGCBSMonoAdRemGMonoPadrao = class;
+  TNfeSefazGCBSMonoAdRemGMonoReten = class;
+  TNfeSefazGCBSMonoAdRemGMonoRet = class;
+  TNfeSefazGCBSMonoAdRemGpBioDiferenca = class;
+  TNfeSefazGCBSMonoAdRem = class;
+  TNfeSefazGCBSMonoAdValoremGMonoPadrao = class;
+  TNfeSefazGCBSMonoAdValoremGMonoReten = class;
+  TNfeSefazGCBSMonoAdValoremGMonoRet = class;
+  TNfeSefazGCBSMonoAdValoremGpBioDiferenca = class;
+  TNfeSefazGCBSMonoAdValorem = class;
   TNfeSefazMonofasia = class;
   TNfeSefazTransfCred = class;
   TNfeSefazAjusteCompet = class;
@@ -24240,7 +24256,6 @@ type
     /// * 3 - DANFe Simplificado
     /// * 4 - DANFe NFC-e
     /// * 5 - DANFe NFC-e em mensagem eletrônica
-    /// * 6 - DANFE Simplificado Tipo 2 (nas condições do Ajuste SINIEF 13/26)
     /// </summary>
     property tpImp: Integer read FtpImp write FtpImp;
     /// <summary>
@@ -24301,7 +24316,7 @@ type
     /// * 1 - Operação presencial
     /// * 2 - Não presencial, internet
     /// * 3 - Não presencial, teleatendimento
-    /// * 4 - Operação não presencial com NFC-e e NF-e com DANFE Simplificado Tipo 2 (com entrega)
+    /// * 4 - NFC-e entrega em domicílio
     /// * 5 - Operação presencial, fora do estabelecimento
     /// * 9 - Não presencial, outros
     /// </summary>
@@ -29534,15 +29549,13 @@ type
   end;
   
   /// <summary>
-  /// Grupo de informações da Tributação Monofásica padrão.
+  /// Grupo de informações da Tributação Monofásica Padrão.
   /// </summary>
   TNfeSefazGMonoPadrao = class
   private
     FqBCMono: Double;
     FadRemIBS: Double;
-    FadRemCBS: Double;
     FvIBSMono: Double;
-    FvCBSMono: Double;
   public
     /// <summary>
     /// Quantidade tributada na monofasia.
@@ -29553,13 +29566,216 @@ type
     /// </summary>
     property adRemIBS: Double read FadRemIBS write FadRemIBS;
     /// <summary>
-    /// Alíquota ad rem da CBS.
+    /// Valor do IBS monofásico.
     /// </summary>
-    property adRemCBS: Double read FadRemCBS write FadRemCBS;
+    property vIBSMono: Double read FvIBSMono write FvIBSMono;
+  end;
+  
+  /// <summary>
+  /// Grupo de informações da Tributação Monofásica Sujeita à Retenção.
+  /// </summary>
+  TNfeSefazGMonoReten = class
+  private
+    FqBCMonoReten: Double;
+    FadRemIBSReten: Double;
+    FvIBSMonoReten: Double;
+  public
+    /// <summary>
+    /// Quantidade tributada sujeita à retenção na monofasia.
+    /// </summary>
+    property qBCMonoReten: Double read FqBCMonoReten write FqBCMonoReten;
+    /// <summary>
+    /// Alíquota ad rem do IBS sujeito à retenção.
+    /// </summary>
+    property adRemIBSReten: Double read FadRemIBSReten write FadRemIBSReten;
+    /// <summary>
+    /// Valor do IBS monofásico sujeito à retenção.
+    /// </summary>
+    property vIBSMonoReten: Double read FvIBSMonoReten write FvIBSMonoReten;
+  end;
+  
+  /// <summary>
+  /// Grupo de informações da Tributação Monofásica Retida Anteriormente.
+  /// </summary>
+  TNfeSefazGMonoRet = class
+  private
+    FvIBSMonoRet: Double;
+  public
+    /// <summary>
+    /// Valor do IBS retido anteriormente.
+    /// </summary>
+    property vIBSMonoRet: Double read FvIBSMonoRet write FvIBSMonoRet;
+  end;
+  
+  /// <summary>
+  /// Grupo de informações sobre mistura de EAC com gasolina A em percentual inferior ou superior ao obrigatório.
+  /// </summary>
+  TNfeSefazGpBioDiferenca = class
+  private
+    FqBCBioComb: Double;
+    FvIBSDiferenca: Double;
+  public
+    /// <summary>
+    /// Quantidade de Biocombustível (EAC) a recolher ou a ressarcir.
+    /// </summary>
+    property qBCBioComb: Double read FqBCBioComb write FqBCBioComb;
+    /// <summary>
+    /// Valor do IBS correspondente a diferença em relação ao pBioObrigatorio.
+    /// </summary>
+    property vIBSDiferenca: Double read FvIBSDiferenca write FvIBSDiferenca;
+  end;
+  
+  /// <summary>
+  /// Grupo de informações da Tributação Monofásica Ad Rem do IBS.
+  /// </summary>
+  TNfeSefazGIBSMonoAdRem = class
+  private
+    FgMonoPadrao: TNfeSefazGMonoPadrao;
+    FgMonoReten: TNfeSefazGMonoReten;
+    FgMonoRet: TNfeSefazGMonoRet;
+    FgpBioDiferenca: TNfeSefazGpBioDiferenca;
+    procedure SetgMonoPadrao(const Value: TNfeSefazGMonoPadrao);
+    procedure SetgMonoReten(const Value: TNfeSefazGMonoReten);
+    procedure SetgMonoRet(const Value: TNfeSefazGMonoRet);
+    procedure SetgpBioDiferenca(const Value: TNfeSefazGpBioDiferenca);
+  public
+    destructor Destroy; override;
+    property gMonoPadrao: TNfeSefazGMonoPadrao read FgMonoPadrao write SetgMonoPadrao;
+    property gMonoReten: TNfeSefazGMonoReten read FgMonoReten write SetgMonoReten;
+    property gMonoRet: TNfeSefazGMonoRet read FgMonoRet write SetgMonoRet;
+    property gpBioDiferenca: TNfeSefazGpBioDiferenca read FgpBioDiferenca write SetgpBioDiferenca;
+  end;
+  
+  /// <summary>
+  /// Grupo de informações da Tributação Monofásica Padrão.
+  /// </summary>
+  TNfeSefazGIBSMonoAdValoremGMonoPadrao = class
+  private
+    FvBCMono: Double;
+    FpAliqMonoUF: Double;
+    FvIBSMonoUF: Double;
+    FpAliqMonoMun: Double;
+    FvIBSMonoMun: Double;
+    FvIBSMono: Double;
+  public
+    /// <summary>
+    /// Valor tributado na monofasia.
+    /// </summary>
+    property vBCMono: Double read FvBCMono write FvBCMono;
+    /// <summary>
+    /// Alíquota ad valorem do IBS Estadual.
+    /// </summary>
+    property pAliqMonoUF: Double read FpAliqMonoUF write FpAliqMonoUF;
+    /// <summary>
+    /// Valor do IBS monofásico Estadual.
+    /// </summary>
+    property vIBSMonoUF: Double read FvIBSMonoUF write FvIBSMonoUF;
+    /// <summary>
+    /// Alíquota ad valorem do IBS Municipal.
+    /// </summary>
+    property pAliqMonoMun: Double read FpAliqMonoMun write FpAliqMonoMun;
+    /// <summary>
+    /// Valor do IBS monofásico do Municipal.
+    /// </summary>
+    property vIBSMonoMun: Double read FvIBSMonoMun write FvIBSMonoMun;
     /// <summary>
     /// Valor do IBS monofásico.
     /// </summary>
     property vIBSMono: Double read FvIBSMono write FvIBSMono;
+  end;
+  
+  /// <summary>
+  /// Grupo de informações da Tributação Monofásica Sujeita à Retenção.
+  /// </summary>
+  TNfeSefazGIBSMonoAdValoremGMonoReten = class
+  private
+    FvBCMonoReten: Double;
+    FpAliqMonoReten: Double;
+    FvIBSMonoReten: Double;
+  public
+    /// <summary>
+    /// Valor tributado sujeito à retenção na monofasia.
+    /// </summary>
+    property vBCMonoReten: Double read FvBCMonoReten write FvBCMonoReten;
+    /// <summary>
+    /// Alíquota ad valorem do IBS sujeito à retenção.
+    /// </summary>
+    property pAliqMonoReten: Double read FpAliqMonoReten write FpAliqMonoReten;
+    /// <summary>
+    /// Valor do IBS monofásico sujeito à retenção.
+    /// </summary>
+    property vIBSMonoReten: Double read FvIBSMonoReten write FvIBSMonoReten;
+  end;
+  
+  /// <summary>
+  /// Grupo de informações da Tributação Monofásica Retida Anteriormente.
+  /// </summary>
+  TNfeSefazGIBSMonoAdValoremGMonoRet = class
+  private
+    FvIBSMonoRet: Double;
+  public
+    /// <summary>
+    /// Valor do IBS retido anteriormente.
+    /// </summary>
+    property vIBSMonoRet: Double read FvIBSMonoRet write FvIBSMonoRet;
+  end;
+  
+  /// <summary>
+  /// Grupo de informações sobre mistura de EAC com gasolina A em percentual inferior ou superior ao obrigatório.
+  /// </summary>
+  TNfeSefazGIBSMonoAdValoremGpBioDiferenca = class
+  private
+    FqBCBioComb: Double;
+    FqBCBioCombHasValue: Boolean;
+    FvIBSDiferenca: Double;
+    FvIBSDiferencaHasValue: Boolean;
+    procedure SetqBCBioComb(const Value: Double);
+    procedure SetvIBSDiferenca(const Value: Double);
+  public
+    property qBCBioComb: Double read FqBCBioComb write SetqBCBioComb;
+    property qBCBioCombHasValue: Boolean read FqBCBioCombHasValue write FqBCBioCombHasValue;
+    property vIBSDiferenca: Double read FvIBSDiferenca write SetvIBSDiferenca;
+    property vIBSDiferencaHasValue: Boolean read FvIBSDiferencaHasValue write FvIBSDiferencaHasValue;
+  end;
+  
+  /// <summary>
+  /// Grupo de informações da Tributação Monofásica Ad Valorem do IBS.
+  /// </summary>
+  TNfeSefazGIBSMonoAdValorem = class
+  private
+    FgMonoPadrao: TNfeSefazGIBSMonoAdValoremGMonoPadrao;
+    FgMonoReten: TNfeSefazGIBSMonoAdValoremGMonoReten;
+    FgMonoRet: TNfeSefazGIBSMonoAdValoremGMonoRet;
+    FgpBioDiferenca: TNfeSefazGIBSMonoAdValoremGpBioDiferenca;
+    procedure SetgMonoPadrao(const Value: TNfeSefazGIBSMonoAdValoremGMonoPadrao);
+    procedure SetgMonoReten(const Value: TNfeSefazGIBSMonoAdValoremGMonoReten);
+    procedure SetgMonoRet(const Value: TNfeSefazGIBSMonoAdValoremGMonoRet);
+    procedure SetgpBioDiferenca(const Value: TNfeSefazGIBSMonoAdValoremGpBioDiferenca);
+  public
+    destructor Destroy; override;
+    property gMonoPadrao: TNfeSefazGIBSMonoAdValoremGMonoPadrao read FgMonoPadrao write SetgMonoPadrao;
+    property gMonoReten: TNfeSefazGIBSMonoAdValoremGMonoReten read FgMonoReten write SetgMonoReten;
+    property gMonoRet: TNfeSefazGIBSMonoAdValoremGMonoRet read FgMonoRet write SetgMonoRet;
+    property gpBioDiferenca: TNfeSefazGIBSMonoAdValoremGpBioDiferenca read FgpBioDiferenca write SetgpBioDiferenca;
+  end;
+  
+  /// <summary>
+  /// Grupo de informações da Tributação Monofásica Padrão.
+  /// </summary>
+  TNfeSefazGCBSMonoAdRemGMonoPadrao = class
+  private
+    FqBCMono: Double;
+    FadRemCBS: Double;
+    FvCBSMono: Double;
+  public
+    /// <summary>
+    /// Quantidade tributada na monofasia.
+    /// </summary>
+    property qBCMono: Double read FqBCMono write FqBCMono;
+    /// <summary>
+    /// Alíquota ad rem da CBS.
+    /// </summary>
+    property adRemCBS: Double read FadRemCBS write FadRemCBS;
     /// <summary>
     /// Valor da CBS monofásica.
     /// </summary>
@@ -29567,65 +29783,35 @@ type
   end;
   
   /// <summary>
-  /// Grupo de informações da Tributação Monofásica sujeita a retenção.
+  /// Grupo de informações da Tributação Monofásica Sujeita à Retenção.
   /// </summary>
-  TNfeSefazGMonoReten = class
+  TNfeSefazGCBSMonoAdRemGMonoReten = class
   private
     FqBCMonoReten: Double;
-    FadRemIBSReten: Double;
-    FvIBSMonoReten: Double;
     FadRemCBSReten: Double;
     FvCBSMonoReten: Double;
   public
     /// <summary>
-    /// Quantidade tributada sujeita a retenção.
+    /// Quantidade tributada sujeita à retenção na monofasia.
     /// </summary>
     property qBCMonoReten: Double read FqBCMonoReten write FqBCMonoReten;
     /// <summary>
-    /// Alíquota ad rem do IBS sujeito a retenção.
-    /// </summary>
-    property adRemIBSReten: Double read FadRemIBSReten write FadRemIBSReten;
-    /// <summary>
-    /// Valor do IBS monofásico sujeito a retenção.
-    /// </summary>
-    property vIBSMonoReten: Double read FvIBSMonoReten write FvIBSMonoReten;
-    /// <summary>
-    /// Alíquota ad rem da CBS sujeita a retenção.
+    /// Alíquota ad rem da CBS sujeita à retenção.
     /// </summary>
     property adRemCBSReten: Double read FadRemCBSReten write FadRemCBSReten;
     /// <summary>
-    /// Valor da CBS monofásica sujeita a retenção.
+    /// Valor da CBS monofásica sujeita à retenção.
     /// </summary>
     property vCBSMonoReten: Double read FvCBSMonoReten write FvCBSMonoReten;
   end;
   
   /// <summary>
-  /// Grupo de informações da Tributação Monofásica retida anteriormente.
+  /// Grupo de informações da Tributação Monofásica Retida Anteriormente.
   /// </summary>
-  TNfeSefazGMonoRet = class
+  TNfeSefazGCBSMonoAdRemGMonoRet = class
   private
-    FqBCMonoRet: Double;
-    FadRemIBSRet: Double;
-    FvIBSMonoRet: Double;
-    FadRemCBSRet: Double;
     FvCBSMonoRet: Double;
   public
-    /// <summary>
-    /// Quantidade tributada retida anteriormente.
-    /// </summary>
-    property qBCMonoRet: Double read FqBCMonoRet write FqBCMonoRet;
-    /// <summary>
-    /// Alíquota ad rem do IBS retido anteriormente.
-    /// </summary>
-    property adRemIBSRet: Double read FadRemIBSRet write FadRemIBSRet;
-    /// <summary>
-    /// Valor do IBS retido anteriormente.
-    /// </summary>
-    property vIBSMonoRet: Double read FvIBSMonoRet write FvIBSMonoRet;
-    /// <summary>
-    /// Alíquota ad rem da CBS retida anteriormente.
-    /// </summary>
-    property adRemCBSRet: Double read FadRemCBSRet write FadRemCBSRet;
     /// <summary>
     /// Valor da CBS retida anteriormente.
     /// </summary>
@@ -29633,60 +29819,169 @@ type
   end;
   
   /// <summary>
-  /// Grupo de informações do diferimento da Tributação Monofásica.
+  /// Grupo de informações sobre mistura de EAC com gasolina A em percentual inferior ou superior ao obrigatório.
   /// </summary>
-  TNfeSefazGMonoDif = class
+  TNfeSefazGCBSMonoAdRemGpBioDiferenca = class
   private
-    FpDifIBS: Double;
-    FvIBSMonoDif: Double;
-    FpDifCBS: Double;
-    FvCBSMonoDif: Double;
+    FqBCBioComb: Double;
+    FvCBSDiferenca: Double;
   public
     /// <summary>
-    /// Percentual do diferimento do imposto monofásico.
+    /// Quantidade de Biocombustível (EAC) a recolher ou a ressarcir.
     /// </summary>
-    property pDifIBS: Double read FpDifIBS write FpDifIBS;
+    property qBCBioComb: Double read FqBCBioComb write FqBCBioComb;
     /// <summary>
-    /// Valor do IBS monofásico diferido.
+    /// Valor da CBS correspondente a diferença em relação ao pBioObrigatorio.
     /// </summary>
-    property vIBSMonoDif: Double read FvIBSMonoDif write FvIBSMonoDif;
-    /// <summary>
-    /// Percentual do diferimento do imposto monofásico.
-    /// </summary>
-    property pDifCBS: Double read FpDifCBS write FpDifCBS;
-    /// <summary>
-    /// Valor da CBS monofásica diferida.
-    /// </summary>
-    property vCBSMonoDif: Double read FvCBSMonoDif write FvCBSMonoDif;
+    property vCBSDiferenca: Double read FvCBSDiferenca write FvCBSDiferenca;
   end;
   
   /// <summary>
-  /// Informar essa opção da Choice para Monofasia (CST 620).
+  /// Grupo de informações da Tributação Monofásica Ad Rem da CBS.
+  /// </summary>
+  TNfeSefazGCBSMonoAdRem = class
+  private
+    FgMonoPadrao: TNfeSefazGCBSMonoAdRemGMonoPadrao;
+    FgMonoReten: TNfeSefazGCBSMonoAdRemGMonoReten;
+    FgMonoRet: TNfeSefazGCBSMonoAdRemGMonoRet;
+    FgpBioDiferenca: TNfeSefazGCBSMonoAdRemGpBioDiferenca;
+    procedure SetgMonoPadrao(const Value: TNfeSefazGCBSMonoAdRemGMonoPadrao);
+    procedure SetgMonoReten(const Value: TNfeSefazGCBSMonoAdRemGMonoReten);
+    procedure SetgMonoRet(const Value: TNfeSefazGCBSMonoAdRemGMonoRet);
+    procedure SetgpBioDiferenca(const Value: TNfeSefazGCBSMonoAdRemGpBioDiferenca);
+  public
+    destructor Destroy; override;
+    property gMonoPadrao: TNfeSefazGCBSMonoAdRemGMonoPadrao read FgMonoPadrao write SetgMonoPadrao;
+    property gMonoReten: TNfeSefazGCBSMonoAdRemGMonoReten read FgMonoReten write SetgMonoReten;
+    property gMonoRet: TNfeSefazGCBSMonoAdRemGMonoRet read FgMonoRet write SetgMonoRet;
+    property gpBioDiferenca: TNfeSefazGCBSMonoAdRemGpBioDiferenca read FgpBioDiferenca write SetgpBioDiferenca;
+  end;
+  
+  /// <summary>
+  /// Grupo de informações da Tributação Monofásica Padrão.
+  /// </summary>
+  TNfeSefazGCBSMonoAdValoremGMonoPadrao = class
+  private
+    FvBCMono: Double;
+    FpAliqMonoCBS: Double;
+    FvCBSMono: Double;
+  public
+    /// <summary>
+    /// Valor tributado na monofasia.
+    /// </summary>
+    property vBCMono: Double read FvBCMono write FvBCMono;
+    /// <summary>
+    /// Alíquota ad valorem da CBS.
+    /// </summary>
+    property pAliqMonoCBS: Double read FpAliqMonoCBS write FpAliqMonoCBS;
+    /// <summary>
+    /// Valor da CBS monofásica.
+    /// </summary>
+    property vCBSMono: Double read FvCBSMono write FvCBSMono;
+  end;
+  
+  /// <summary>
+  /// Grupo de informações da Tributação Monofásica Sujeita à Retenção.
+  /// </summary>
+  TNfeSefazGCBSMonoAdValoremGMonoReten = class
+  private
+    FvBCMonoReten: Double;
+    FpAliqMonoReten: Double;
+    FvCBSMonoReten: Double;
+  public
+    /// <summary>
+    /// Valor tributado sujeito à retenção na monofasia.
+    /// </summary>
+    property vBCMonoReten: Double read FvBCMonoReten write FvBCMonoReten;
+    /// <summary>
+    /// Alíquota ad valorem da CBS sujeita à retenção.
+    /// </summary>
+    property pAliqMonoReten: Double read FpAliqMonoReten write FpAliqMonoReten;
+    /// <summary>
+    /// Valor da CBS monofásica sujeita à retenção.
+    /// </summary>
+    property vCBSMonoReten: Double read FvCBSMonoReten write FvCBSMonoReten;
+  end;
+  
+  /// <summary>
+  /// Grupo de informações da Tributação Monofásica Retida Anteriormente.
+  /// </summary>
+  TNfeSefazGCBSMonoAdValoremGMonoRet = class
+  private
+    FvCBSMonoRet: Double;
+  public
+    /// <summary>
+    /// Valor da CBS retida anteriormente.
+    /// </summary>
+    property vCBSMonoRet: Double read FvCBSMonoRet write FvCBSMonoRet;
+  end;
+  
+  /// <summary>
+  /// Grupo de informações sobre mistura de EAC com gasolina A em percentual inferior ou superior ao obrigatório.
+  /// </summary>
+  TNfeSefazGCBSMonoAdValoremGpBioDiferenca = class
+  private
+    FqBCBioComb: Double;
+    FqBCBioCombHasValue: Boolean;
+    FvCBSDiferenca: Double;
+    FvCBSDiferencaHasValue: Boolean;
+    procedure SetqBCBioComb(const Value: Double);
+    procedure SetvCBSDiferenca(const Value: Double);
+  public
+    property qBCBioComb: Double read FqBCBioComb write SetqBCBioComb;
+    property qBCBioCombHasValue: Boolean read FqBCBioCombHasValue write FqBCBioCombHasValue;
+    property vCBSDiferenca: Double read FvCBSDiferenca write SetvCBSDiferenca;
+    property vCBSDiferencaHasValue: Boolean read FvCBSDiferencaHasValue write FvCBSDiferencaHasValue;
+  end;
+  
+  /// <summary>
+  /// Grupo de informações da Tributação Monofásica Ad Valorem da CBS.
+  /// </summary>
+  TNfeSefazGCBSMonoAdValorem = class
+  private
+    FgMonoPadrao: TNfeSefazGCBSMonoAdValoremGMonoPadrao;
+    FgMonoReten: TNfeSefazGCBSMonoAdValoremGMonoReten;
+    FgMonoRet: TNfeSefazGCBSMonoAdValoremGMonoRet;
+    FgpBioDiferenca: TNfeSefazGCBSMonoAdValoremGpBioDiferenca;
+    procedure SetgMonoPadrao(const Value: TNfeSefazGCBSMonoAdValoremGMonoPadrao);
+    procedure SetgMonoReten(const Value: TNfeSefazGCBSMonoAdValoremGMonoReten);
+    procedure SetgMonoRet(const Value: TNfeSefazGCBSMonoAdValoremGMonoRet);
+    procedure SetgpBioDiferenca(const Value: TNfeSefazGCBSMonoAdValoremGpBioDiferenca);
+  public
+    destructor Destroy; override;
+    property gMonoPadrao: TNfeSefazGCBSMonoAdValoremGMonoPadrao read FgMonoPadrao write SetgMonoPadrao;
+    property gMonoReten: TNfeSefazGCBSMonoAdValoremGMonoReten read FgMonoReten write SetgMonoReten;
+    property gMonoRet: TNfeSefazGCBSMonoAdValoremGMonoRet read FgMonoRet write SetgMonoRet;
+    property gpBioDiferenca: TNfeSefazGCBSMonoAdValoremGpBioDiferenca read FgpBioDiferenca write SetgpBioDiferenca;
+  end;
+  
+  /// <summary>
+  /// Grupo de Informações do IBS e CBS em operações com imposto monofásico (CST 620).
   /// </summary>
   TNfeSefazMonofasia = class
   private
-    FgMonoPadrao: TNfeSefazGMonoPadrao;
-    FgMonoReten: TNfeSefazGMonoReten;
-    FgMonoRet: TNfeSefazGMonoRet;
-    FgMonoDif: TNfeSefazGMonoDif;
+    FgIBSMonoAdRem: TNfeSefazGIBSMonoAdRem;
+    FgIBSMonoAdValorem: TNfeSefazGIBSMonoAdValorem;
+    FgCBSMonoAdRem: TNfeSefazGCBSMonoAdRem;
+    FgCBSMonoAdValorem: TNfeSefazGCBSMonoAdValorem;
     FvTotIBSMonoItem: Double;
     FvTotCBSMonoItem: Double;
-    procedure SetgMonoPadrao(const Value: TNfeSefazGMonoPadrao);
-    procedure SetgMonoReten(const Value: TNfeSefazGMonoReten);
-    procedure SetgMonoRet(const Value: TNfeSefazGMonoRet);
-    procedure SetgMonoDif(const Value: TNfeSefazGMonoDif);
+    procedure SetgIBSMonoAdRem(const Value: TNfeSefazGIBSMonoAdRem);
+    procedure SetgIBSMonoAdValorem(const Value: TNfeSefazGIBSMonoAdValorem);
+    procedure SetgCBSMonoAdRem(const Value: TNfeSefazGCBSMonoAdRem);
+    procedure SetgCBSMonoAdValorem(const Value: TNfeSefazGCBSMonoAdValorem);
   public
     destructor Destroy; override;
-    property gMonoPadrao: TNfeSefazGMonoPadrao read FgMonoPadrao write SetgMonoPadrao;
-    property gMonoReten: TNfeSefazGMonoReten read FgMonoReten write SetgMonoReten;
-    property gMonoRet: TNfeSefazGMonoRet read FgMonoRet write SetgMonoRet;
-    property gMonoDif: TNfeSefazGMonoDif read FgMonoDif write SetgMonoDif;
+    property gIBSMonoAdRem: TNfeSefazGIBSMonoAdRem read FgIBSMonoAdRem write SetgIBSMonoAdRem;
+    property gIBSMonoAdValorem: TNfeSefazGIBSMonoAdValorem read FgIBSMonoAdValorem write SetgIBSMonoAdValorem;
+    property gCBSMonoAdRem: TNfeSefazGCBSMonoAdRem read FgCBSMonoAdRem write SetgCBSMonoAdRem;
+    property gCBSMonoAdValorem: TNfeSefazGCBSMonoAdValorem read FgCBSMonoAdValorem write SetgCBSMonoAdValorem;
     /// <summary>
-    /// Total de IBS monofásico do item.
+    /// Total de IBS Monofásico.
     /// </summary>
     property vTotIBSMonoItem: Double read FvTotIBSMonoItem write FvTotIBSMonoItem;
     /// <summary>
-    /// Total da CBS monofásica do item.
+    /// Total da CBS Monofásica.
     /// </summary>
     property vTotCBSMonoItem: Double read FvTotCBSMonoItem write FvTotCBSMonoItem;
   end;
@@ -51382,18 +51677,18 @@ begin
   end;
 end;
 
-{ TNfeSefazMonofasia }
+{ TNfeSefazGIBSMonoAdRem }
 
-destructor TNfeSefazMonofasia.Destroy;
+destructor TNfeSefazGIBSMonoAdRem.Destroy;
 begin
-  FgMonoDif.Free;
+  FgpBioDiferenca.Free;
   FgMonoRet.Free;
   FgMonoReten.Free;
   FgMonoPadrao.Free;
   inherited;
 end;
 
-procedure TNfeSefazMonofasia.SetgMonoPadrao(const Value: TNfeSefazGMonoPadrao);
+procedure TNfeSefazGIBSMonoAdRem.SetgMonoPadrao(const Value: TNfeSefazGMonoPadrao);
 begin
   if Value <> FgMonoPadrao then
   begin
@@ -51402,7 +51697,7 @@ begin
   end;
 end;
 
-procedure TNfeSefazMonofasia.SetgMonoReten(const Value: TNfeSefazGMonoReten);
+procedure TNfeSefazGIBSMonoAdRem.SetgMonoReten(const Value: TNfeSefazGMonoReten);
 begin
   if Value <> FgMonoReten then
   begin
@@ -51411,7 +51706,7 @@ begin
   end;
 end;
 
-procedure TNfeSefazMonofasia.SetgMonoRet(const Value: TNfeSefazGMonoRet);
+procedure TNfeSefazGIBSMonoAdRem.SetgMonoRet(const Value: TNfeSefazGMonoRet);
 begin
   if Value <> FgMonoRet then
   begin
@@ -51420,12 +51715,228 @@ begin
   end;
 end;
 
-procedure TNfeSefazMonofasia.SetgMonoDif(const Value: TNfeSefazGMonoDif);
+procedure TNfeSefazGIBSMonoAdRem.SetgpBioDiferenca(const Value: TNfeSefazGpBioDiferenca);
 begin
-  if Value <> FgMonoDif then
+  if Value <> FgpBioDiferenca then
   begin
-    FgMonoDif.Free;
-    FgMonoDif := Value;
+    FgpBioDiferenca.Free;
+    FgpBioDiferenca := Value;
+  end;
+end;
+
+{ TNfeSefazGIBSMonoAdValoremGpBioDiferenca }
+
+procedure TNfeSefazGIBSMonoAdValoremGpBioDiferenca.SetqBCBioComb(const Value: Double);
+begin
+  FqBCBioComb := Value;
+  FqBCBioCombHasValue := True;
+end;
+
+procedure TNfeSefazGIBSMonoAdValoremGpBioDiferenca.SetvIBSDiferenca(const Value: Double);
+begin
+  FvIBSDiferenca := Value;
+  FvIBSDiferencaHasValue := True;
+end;
+
+{ TNfeSefazGIBSMonoAdValorem }
+
+destructor TNfeSefazGIBSMonoAdValorem.Destroy;
+begin
+  FgpBioDiferenca.Free;
+  FgMonoRet.Free;
+  FgMonoReten.Free;
+  FgMonoPadrao.Free;
+  inherited;
+end;
+
+procedure TNfeSefazGIBSMonoAdValorem.SetgMonoPadrao(const Value: TNfeSefazGIBSMonoAdValoremGMonoPadrao);
+begin
+  if Value <> FgMonoPadrao then
+  begin
+    FgMonoPadrao.Free;
+    FgMonoPadrao := Value;
+  end;
+end;
+
+procedure TNfeSefazGIBSMonoAdValorem.SetgMonoReten(const Value: TNfeSefazGIBSMonoAdValoremGMonoReten);
+begin
+  if Value <> FgMonoReten then
+  begin
+    FgMonoReten.Free;
+    FgMonoReten := Value;
+  end;
+end;
+
+procedure TNfeSefazGIBSMonoAdValorem.SetgMonoRet(const Value: TNfeSefazGIBSMonoAdValoremGMonoRet);
+begin
+  if Value <> FgMonoRet then
+  begin
+    FgMonoRet.Free;
+    FgMonoRet := Value;
+  end;
+end;
+
+procedure TNfeSefazGIBSMonoAdValorem.SetgpBioDiferenca(const Value: TNfeSefazGIBSMonoAdValoremGpBioDiferenca);
+begin
+  if Value <> FgpBioDiferenca then
+  begin
+    FgpBioDiferenca.Free;
+    FgpBioDiferenca := Value;
+  end;
+end;
+
+{ TNfeSefazGCBSMonoAdRem }
+
+destructor TNfeSefazGCBSMonoAdRem.Destroy;
+begin
+  FgpBioDiferenca.Free;
+  FgMonoRet.Free;
+  FgMonoReten.Free;
+  FgMonoPadrao.Free;
+  inherited;
+end;
+
+procedure TNfeSefazGCBSMonoAdRem.SetgMonoPadrao(const Value: TNfeSefazGCBSMonoAdRemGMonoPadrao);
+begin
+  if Value <> FgMonoPadrao then
+  begin
+    FgMonoPadrao.Free;
+    FgMonoPadrao := Value;
+  end;
+end;
+
+procedure TNfeSefazGCBSMonoAdRem.SetgMonoReten(const Value: TNfeSefazGCBSMonoAdRemGMonoReten);
+begin
+  if Value <> FgMonoReten then
+  begin
+    FgMonoReten.Free;
+    FgMonoReten := Value;
+  end;
+end;
+
+procedure TNfeSefazGCBSMonoAdRem.SetgMonoRet(const Value: TNfeSefazGCBSMonoAdRemGMonoRet);
+begin
+  if Value <> FgMonoRet then
+  begin
+    FgMonoRet.Free;
+    FgMonoRet := Value;
+  end;
+end;
+
+procedure TNfeSefazGCBSMonoAdRem.SetgpBioDiferenca(const Value: TNfeSefazGCBSMonoAdRemGpBioDiferenca);
+begin
+  if Value <> FgpBioDiferenca then
+  begin
+    FgpBioDiferenca.Free;
+    FgpBioDiferenca := Value;
+  end;
+end;
+
+{ TNfeSefazGCBSMonoAdValoremGpBioDiferenca }
+
+procedure TNfeSefazGCBSMonoAdValoremGpBioDiferenca.SetqBCBioComb(const Value: Double);
+begin
+  FqBCBioComb := Value;
+  FqBCBioCombHasValue := True;
+end;
+
+procedure TNfeSefazGCBSMonoAdValoremGpBioDiferenca.SetvCBSDiferenca(const Value: Double);
+begin
+  FvCBSDiferenca := Value;
+  FvCBSDiferencaHasValue := True;
+end;
+
+{ TNfeSefazGCBSMonoAdValorem }
+
+destructor TNfeSefazGCBSMonoAdValorem.Destroy;
+begin
+  FgpBioDiferenca.Free;
+  FgMonoRet.Free;
+  FgMonoReten.Free;
+  FgMonoPadrao.Free;
+  inherited;
+end;
+
+procedure TNfeSefazGCBSMonoAdValorem.SetgMonoPadrao(const Value: TNfeSefazGCBSMonoAdValoremGMonoPadrao);
+begin
+  if Value <> FgMonoPadrao then
+  begin
+    FgMonoPadrao.Free;
+    FgMonoPadrao := Value;
+  end;
+end;
+
+procedure TNfeSefazGCBSMonoAdValorem.SetgMonoReten(const Value: TNfeSefazGCBSMonoAdValoremGMonoReten);
+begin
+  if Value <> FgMonoReten then
+  begin
+    FgMonoReten.Free;
+    FgMonoReten := Value;
+  end;
+end;
+
+procedure TNfeSefazGCBSMonoAdValorem.SetgMonoRet(const Value: TNfeSefazGCBSMonoAdValoremGMonoRet);
+begin
+  if Value <> FgMonoRet then
+  begin
+    FgMonoRet.Free;
+    FgMonoRet := Value;
+  end;
+end;
+
+procedure TNfeSefazGCBSMonoAdValorem.SetgpBioDiferenca(const Value: TNfeSefazGCBSMonoAdValoremGpBioDiferenca);
+begin
+  if Value <> FgpBioDiferenca then
+  begin
+    FgpBioDiferenca.Free;
+    FgpBioDiferenca := Value;
+  end;
+end;
+
+{ TNfeSefazMonofasia }
+
+destructor TNfeSefazMonofasia.Destroy;
+begin
+  FgCBSMonoAdValorem.Free;
+  FgCBSMonoAdRem.Free;
+  FgIBSMonoAdValorem.Free;
+  FgIBSMonoAdRem.Free;
+  inherited;
+end;
+
+procedure TNfeSefazMonofasia.SetgIBSMonoAdRem(const Value: TNfeSefazGIBSMonoAdRem);
+begin
+  if Value <> FgIBSMonoAdRem then
+  begin
+    FgIBSMonoAdRem.Free;
+    FgIBSMonoAdRem := Value;
+  end;
+end;
+
+procedure TNfeSefazMonofasia.SetgIBSMonoAdValorem(const Value: TNfeSefazGIBSMonoAdValorem);
+begin
+  if Value <> FgIBSMonoAdValorem then
+  begin
+    FgIBSMonoAdValorem.Free;
+    FgIBSMonoAdValorem := Value;
+  end;
+end;
+
+procedure TNfeSefazMonofasia.SetgCBSMonoAdRem(const Value: TNfeSefazGCBSMonoAdRem);
+begin
+  if Value <> FgCBSMonoAdRem then
+  begin
+    FgCBSMonoAdRem.Free;
+    FgCBSMonoAdRem := Value;
+  end;
+end;
+
+procedure TNfeSefazMonofasia.SetgCBSMonoAdValorem(const Value: TNfeSefazGCBSMonoAdValorem);
+begin
+  if Value <> FgCBSMonoAdValorem then
+  begin
+    FgCBSMonoAdValorem.Free;
+    FgCBSMonoAdValorem := Value;
   end;
 end;
 

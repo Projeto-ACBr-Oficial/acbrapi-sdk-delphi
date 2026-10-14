@@ -3163,10 +3163,74 @@ type
     function TNfeSefazGMonoRetToJson(Source: TNfeSefazGMonoRet): string;
     function TNfeSefazGMonoRetFromJsonValue(Source: TJSONValue): TNfeSefazGMonoRet;
     function TNfeSefazGMonoRetFromJson(Source: string): TNfeSefazGMonoRet;
-    function TNfeSefazGMonoDifToJsonValue(Source: TNfeSefazGMonoDif): TJSONValue;
-    function TNfeSefazGMonoDifToJson(Source: TNfeSefazGMonoDif): string;
-    function TNfeSefazGMonoDifFromJsonValue(Source: TJSONValue): TNfeSefazGMonoDif;
-    function TNfeSefazGMonoDifFromJson(Source: string): TNfeSefazGMonoDif;
+    function TNfeSefazGpBioDiferencaToJsonValue(Source: TNfeSefazGpBioDiferenca): TJSONValue;
+    function TNfeSefazGpBioDiferencaToJson(Source: TNfeSefazGpBioDiferenca): string;
+    function TNfeSefazGpBioDiferencaFromJsonValue(Source: TJSONValue): TNfeSefazGpBioDiferenca;
+    function TNfeSefazGpBioDiferencaFromJson(Source: string): TNfeSefazGpBioDiferenca;
+    function TNfeSefazGIBSMonoAdRemToJsonValue(Source: TNfeSefazGIBSMonoAdRem): TJSONValue;
+    function TNfeSefazGIBSMonoAdRemToJson(Source: TNfeSefazGIBSMonoAdRem): string;
+    function TNfeSefazGIBSMonoAdRemFromJsonValue(Source: TJSONValue): TNfeSefazGIBSMonoAdRem;
+    function TNfeSefazGIBSMonoAdRemFromJson(Source: string): TNfeSefazGIBSMonoAdRem;
+    function TNfeSefazGIBSMonoAdValoremGMonoPadraoToJsonValue(Source: TNfeSefazGIBSMonoAdValoremGMonoPadrao): TJSONValue;
+    function TNfeSefazGIBSMonoAdValoremGMonoPadraoToJson(Source: TNfeSefazGIBSMonoAdValoremGMonoPadrao): string;
+    function TNfeSefazGIBSMonoAdValoremGMonoPadraoFromJsonValue(Source: TJSONValue): TNfeSefazGIBSMonoAdValoremGMonoPadrao;
+    function TNfeSefazGIBSMonoAdValoremGMonoPadraoFromJson(Source: string): TNfeSefazGIBSMonoAdValoremGMonoPadrao;
+    function TNfeSefazGIBSMonoAdValoremGMonoRetenToJsonValue(Source: TNfeSefazGIBSMonoAdValoremGMonoReten): TJSONValue;
+    function TNfeSefazGIBSMonoAdValoremGMonoRetenToJson(Source: TNfeSefazGIBSMonoAdValoremGMonoReten): string;
+    function TNfeSefazGIBSMonoAdValoremGMonoRetenFromJsonValue(Source: TJSONValue): TNfeSefazGIBSMonoAdValoremGMonoReten;
+    function TNfeSefazGIBSMonoAdValoremGMonoRetenFromJson(Source: string): TNfeSefazGIBSMonoAdValoremGMonoReten;
+    function TNfeSefazGIBSMonoAdValoremGMonoRetToJsonValue(Source: TNfeSefazGIBSMonoAdValoremGMonoRet): TJSONValue;
+    function TNfeSefazGIBSMonoAdValoremGMonoRetToJson(Source: TNfeSefazGIBSMonoAdValoremGMonoRet): string;
+    function TNfeSefazGIBSMonoAdValoremGMonoRetFromJsonValue(Source: TJSONValue): TNfeSefazGIBSMonoAdValoremGMonoRet;
+    function TNfeSefazGIBSMonoAdValoremGMonoRetFromJson(Source: string): TNfeSefazGIBSMonoAdValoremGMonoRet;
+    function TNfeSefazGIBSMonoAdValoremGpBioDiferencaToJsonValue(Source: TNfeSefazGIBSMonoAdValoremGpBioDiferenca): TJSONValue;
+    function TNfeSefazGIBSMonoAdValoremGpBioDiferencaToJson(Source: TNfeSefazGIBSMonoAdValoremGpBioDiferenca): string;
+    function TNfeSefazGIBSMonoAdValoremGpBioDiferencaFromJsonValue(Source: TJSONValue): TNfeSefazGIBSMonoAdValoremGpBioDiferenca;
+    function TNfeSefazGIBSMonoAdValoremGpBioDiferencaFromJson(Source: string): TNfeSefazGIBSMonoAdValoremGpBioDiferenca;
+    function TNfeSefazGIBSMonoAdValoremToJsonValue(Source: TNfeSefazGIBSMonoAdValorem): TJSONValue;
+    function TNfeSefazGIBSMonoAdValoremToJson(Source: TNfeSefazGIBSMonoAdValorem): string;
+    function TNfeSefazGIBSMonoAdValoremFromJsonValue(Source: TJSONValue): TNfeSefazGIBSMonoAdValorem;
+    function TNfeSefazGIBSMonoAdValoremFromJson(Source: string): TNfeSefazGIBSMonoAdValorem;
+    function TNfeSefazGCBSMonoAdRemGMonoPadraoToJsonValue(Source: TNfeSefazGCBSMonoAdRemGMonoPadrao): TJSONValue;
+    function TNfeSefazGCBSMonoAdRemGMonoPadraoToJson(Source: TNfeSefazGCBSMonoAdRemGMonoPadrao): string;
+    function TNfeSefazGCBSMonoAdRemGMonoPadraoFromJsonValue(Source: TJSONValue): TNfeSefazGCBSMonoAdRemGMonoPadrao;
+    function TNfeSefazGCBSMonoAdRemGMonoPadraoFromJson(Source: string): TNfeSefazGCBSMonoAdRemGMonoPadrao;
+    function TNfeSefazGCBSMonoAdRemGMonoRetenToJsonValue(Source: TNfeSefazGCBSMonoAdRemGMonoReten): TJSONValue;
+    function TNfeSefazGCBSMonoAdRemGMonoRetenToJson(Source: TNfeSefazGCBSMonoAdRemGMonoReten): string;
+    function TNfeSefazGCBSMonoAdRemGMonoRetenFromJsonValue(Source: TJSONValue): TNfeSefazGCBSMonoAdRemGMonoReten;
+    function TNfeSefazGCBSMonoAdRemGMonoRetenFromJson(Source: string): TNfeSefazGCBSMonoAdRemGMonoReten;
+    function TNfeSefazGCBSMonoAdRemGMonoRetToJsonValue(Source: TNfeSefazGCBSMonoAdRemGMonoRet): TJSONValue;
+    function TNfeSefazGCBSMonoAdRemGMonoRetToJson(Source: TNfeSefazGCBSMonoAdRemGMonoRet): string;
+    function TNfeSefazGCBSMonoAdRemGMonoRetFromJsonValue(Source: TJSONValue): TNfeSefazGCBSMonoAdRemGMonoRet;
+    function TNfeSefazGCBSMonoAdRemGMonoRetFromJson(Source: string): TNfeSefazGCBSMonoAdRemGMonoRet;
+    function TNfeSefazGCBSMonoAdRemGpBioDiferencaToJsonValue(Source: TNfeSefazGCBSMonoAdRemGpBioDiferenca): TJSONValue;
+    function TNfeSefazGCBSMonoAdRemGpBioDiferencaToJson(Source: TNfeSefazGCBSMonoAdRemGpBioDiferenca): string;
+    function TNfeSefazGCBSMonoAdRemGpBioDiferencaFromJsonValue(Source: TJSONValue): TNfeSefazGCBSMonoAdRemGpBioDiferenca;
+    function TNfeSefazGCBSMonoAdRemGpBioDiferencaFromJson(Source: string): TNfeSefazGCBSMonoAdRemGpBioDiferenca;
+    function TNfeSefazGCBSMonoAdRemToJsonValue(Source: TNfeSefazGCBSMonoAdRem): TJSONValue;
+    function TNfeSefazGCBSMonoAdRemToJson(Source: TNfeSefazGCBSMonoAdRem): string;
+    function TNfeSefazGCBSMonoAdRemFromJsonValue(Source: TJSONValue): TNfeSefazGCBSMonoAdRem;
+    function TNfeSefazGCBSMonoAdRemFromJson(Source: string): TNfeSefazGCBSMonoAdRem;
+    function TNfeSefazGCBSMonoAdValoremGMonoPadraoToJsonValue(Source: TNfeSefazGCBSMonoAdValoremGMonoPadrao): TJSONValue;
+    function TNfeSefazGCBSMonoAdValoremGMonoPadraoToJson(Source: TNfeSefazGCBSMonoAdValoremGMonoPadrao): string;
+    function TNfeSefazGCBSMonoAdValoremGMonoPadraoFromJsonValue(Source: TJSONValue): TNfeSefazGCBSMonoAdValoremGMonoPadrao;
+    function TNfeSefazGCBSMonoAdValoremGMonoPadraoFromJson(Source: string): TNfeSefazGCBSMonoAdValoremGMonoPadrao;
+    function TNfeSefazGCBSMonoAdValoremGMonoRetenToJsonValue(Source: TNfeSefazGCBSMonoAdValoremGMonoReten): TJSONValue;
+    function TNfeSefazGCBSMonoAdValoremGMonoRetenToJson(Source: TNfeSefazGCBSMonoAdValoremGMonoReten): string;
+    function TNfeSefazGCBSMonoAdValoremGMonoRetenFromJsonValue(Source: TJSONValue): TNfeSefazGCBSMonoAdValoremGMonoReten;
+    function TNfeSefazGCBSMonoAdValoremGMonoRetenFromJson(Source: string): TNfeSefazGCBSMonoAdValoremGMonoReten;
+    function TNfeSefazGCBSMonoAdValoremGMonoRetToJsonValue(Source: TNfeSefazGCBSMonoAdValoremGMonoRet): TJSONValue;
+    function TNfeSefazGCBSMonoAdValoremGMonoRetToJson(Source: TNfeSefazGCBSMonoAdValoremGMonoRet): string;
+    function TNfeSefazGCBSMonoAdValoremGMonoRetFromJsonValue(Source: TJSONValue): TNfeSefazGCBSMonoAdValoremGMonoRet;
+    function TNfeSefazGCBSMonoAdValoremGMonoRetFromJson(Source: string): TNfeSefazGCBSMonoAdValoremGMonoRet;
+    function TNfeSefazGCBSMonoAdValoremGpBioDiferencaToJsonValue(Source: TNfeSefazGCBSMonoAdValoremGpBioDiferenca): TJSONValue;
+    function TNfeSefazGCBSMonoAdValoremGpBioDiferencaToJson(Source: TNfeSefazGCBSMonoAdValoremGpBioDiferenca): string;
+    function TNfeSefazGCBSMonoAdValoremGpBioDiferencaFromJsonValue(Source: TJSONValue): TNfeSefazGCBSMonoAdValoremGpBioDiferenca;
+    function TNfeSefazGCBSMonoAdValoremGpBioDiferencaFromJson(Source: string): TNfeSefazGCBSMonoAdValoremGpBioDiferenca;
+    function TNfeSefazGCBSMonoAdValoremToJsonValue(Source: TNfeSefazGCBSMonoAdValorem): TJSONValue;
+    function TNfeSefazGCBSMonoAdValoremToJson(Source: TNfeSefazGCBSMonoAdValorem): string;
+    function TNfeSefazGCBSMonoAdValoremFromJsonValue(Source: TJSONValue): TNfeSefazGCBSMonoAdValorem;
+    function TNfeSefazGCBSMonoAdValoremFromJson(Source: string): TNfeSefazGCBSMonoAdValorem;
     function TNfeSefazMonofasiaToJsonValue(Source: TNfeSefazMonofasia): TJSONValue;
     function TNfeSefazMonofasiaToJson(Source: TNfeSefazMonofasia): string;
     function TNfeSefazMonofasiaFromJsonValue(Source: TJSONValue): TNfeSefazMonofasia;
@@ -60972,9 +61036,7 @@ begin
   try
     Json.ObjAddProp(Result, 'qBCMono', Self.DoubleToJsonValue(Source.qBCMono));
     Json.ObjAddProp(Result, 'adRemIBS', Self.DoubleToJsonValue(Source.adRemIBS));
-    Json.ObjAddProp(Result, 'adRemCBS', Self.DoubleToJsonValue(Source.adRemCBS));
     Json.ObjAddProp(Result, 'vIBSMono', Self.DoubleToJsonValue(Source.vIBSMono));
-    Json.ObjAddProp(Result, 'vCBSMono', Self.DoubleToJsonValue(Source.vCBSMono));
   except
     Result.Free;
     raise;
@@ -61008,12 +61070,8 @@ begin
       Result.qBCMono := Self.DoubleFromJsonValue(JValue);
     if Json.ObjContains(Source, 'adRemIBS', JValue) then
       Result.adRemIBS := Self.DoubleFromJsonValue(JValue);
-    if Json.ObjContains(Source, 'adRemCBS', JValue) then
-      Result.adRemCBS := Self.DoubleFromJsonValue(JValue);
     if Json.ObjContains(Source, 'vIBSMono', JValue) then
       Result.vIBSMono := Self.DoubleFromJsonValue(JValue);
-    if Json.ObjContains(Source, 'vCBSMono', JValue) then
-      Result.vCBSMono := Self.DoubleFromJsonValue(JValue);
   except
     Result.Free;
     raise;
@@ -61044,8 +61102,6 @@ begin
     Json.ObjAddProp(Result, 'qBCMonoReten', Self.DoubleToJsonValue(Source.qBCMonoReten));
     Json.ObjAddProp(Result, 'adRemIBSReten', Self.DoubleToJsonValue(Source.adRemIBSReten));
     Json.ObjAddProp(Result, 'vIBSMonoReten', Self.DoubleToJsonValue(Source.vIBSMonoReten));
-    Json.ObjAddProp(Result, 'adRemCBSReten', Self.DoubleToJsonValue(Source.adRemCBSReten));
-    Json.ObjAddProp(Result, 'vCBSMonoReten', Self.DoubleToJsonValue(Source.vCBSMonoReten));
   except
     Result.Free;
     raise;
@@ -61081,10 +61137,6 @@ begin
       Result.adRemIBSReten := Self.DoubleFromJsonValue(JValue);
     if Json.ObjContains(Source, 'vIBSMonoReten', JValue) then
       Result.vIBSMonoReten := Self.DoubleFromJsonValue(JValue);
-    if Json.ObjContains(Source, 'adRemCBSReten', JValue) then
-      Result.adRemCBSReten := Self.DoubleFromJsonValue(JValue);
-    if Json.ObjContains(Source, 'vCBSMonoReten', JValue) then
-      Result.vCBSMonoReten := Self.DoubleFromJsonValue(JValue);
   except
     Result.Free;
     raise;
@@ -61112,11 +61164,7 @@ begin
   end;
   Result := Json.CreateObject;
   try
-    Json.ObjAddProp(Result, 'qBCMonoRet', Self.DoubleToJsonValue(Source.qBCMonoRet));
-    Json.ObjAddProp(Result, 'adRemIBSRet', Self.DoubleToJsonValue(Source.adRemIBSRet));
     Json.ObjAddProp(Result, 'vIBSMonoRet', Self.DoubleToJsonValue(Source.vIBSMonoRet));
-    Json.ObjAddProp(Result, 'adRemCBSRet', Self.DoubleToJsonValue(Source.adRemCBSRet));
-    Json.ObjAddProp(Result, 'vCBSMonoRet', Self.DoubleToJsonValue(Source.vCBSMonoRet));
   except
     Result.Free;
     raise;
@@ -61146,16 +61194,8 @@ begin
   end;
   Result := TNfeSefazGMonoRet.Create;
   try
-    if Json.ObjContains(Source, 'qBCMonoRet', JValue) then
-      Result.qBCMonoRet := Self.DoubleFromJsonValue(JValue);
-    if Json.ObjContains(Source, 'adRemIBSRet', JValue) then
-      Result.adRemIBSRet := Self.DoubleFromJsonValue(JValue);
     if Json.ObjContains(Source, 'vIBSMonoRet', JValue) then
       Result.vIBSMonoRet := Self.DoubleFromJsonValue(JValue);
-    if Json.ObjContains(Source, 'adRemCBSRet', JValue) then
-      Result.adRemCBSRet := Self.DoubleFromJsonValue(JValue);
-    if Json.ObjContains(Source, 'vCBSMonoRet', JValue) then
-      Result.vCBSMonoRet := Self.DoubleFromJsonValue(JValue);
   except
     Result.Free;
     raise;
@@ -61174,7 +61214,7 @@ begin
   end;
 end;
 
-function TJsonConverter.TNfeSefazGMonoDifToJsonValue(Source: TNfeSefazGMonoDif): TJSONValue;
+function TJsonConverter.TNfeSefazGpBioDiferencaToJsonValue(Source: TNfeSefazGpBioDiferenca): TJSONValue;
 begin
   if not Assigned(Source) then
   begin
@@ -61183,21 +61223,19 @@ begin
   end;
   Result := Json.CreateObject;
   try
-    Json.ObjAddProp(Result, 'pDifIBS', Self.DoubleToJsonValue(Source.pDifIBS));
-    Json.ObjAddProp(Result, 'vIBSMonoDif', Self.DoubleToJsonValue(Source.vIBSMonoDif));
-    Json.ObjAddProp(Result, 'pDifCBS', Self.DoubleToJsonValue(Source.pDifCBS));
-    Json.ObjAddProp(Result, 'vCBSMonoDif', Self.DoubleToJsonValue(Source.vCBSMonoDif));
+    Json.ObjAddProp(Result, 'qBCBioComb', Self.DoubleToJsonValue(Source.qBCBioComb));
+    Json.ObjAddProp(Result, 'vIBSDiferenca', Self.DoubleToJsonValue(Source.vIBSDiferenca));
   except
     Result.Free;
     raise;
   end;
 end;
 
-function TJsonConverter.TNfeSefazGMonoDifToJson(Source: TNfeSefazGMonoDif): string;
+function TJsonConverter.TNfeSefazGpBioDiferencaToJson(Source: TNfeSefazGpBioDiferenca): string;
 var
   JValue: TJSONValue;
 begin
-  JValue := TNfeSefazGMonoDifToJsonValue(Source);
+  JValue := TNfeSefazGpBioDiferencaToJsonValue(Source);
   try
     Result := JsonValueToJson(JValue);
   finally
@@ -61205,7 +61243,7 @@ begin
   end;
 end;
 
-function TJsonConverter.TNfeSefazGMonoDifFromJsonValue(Source: TJSONValue): TNfeSefazGMonoDif;
+function TJsonConverter.TNfeSefazGpBioDiferencaFromJsonValue(Source: TJSONValue): TNfeSefazGpBioDiferenca;
 var
   JValue: TJSONValue;
 begin
@@ -61214,35 +61252,31 @@ begin
     Result := nil;
     Exit;
   end;
-  Result := TNfeSefazGMonoDif.Create;
+  Result := TNfeSefazGpBioDiferenca.Create;
   try
-    if Json.ObjContains(Source, 'pDifIBS', JValue) then
-      Result.pDifIBS := Self.DoubleFromJsonValue(JValue);
-    if Json.ObjContains(Source, 'vIBSMonoDif', JValue) then
-      Result.vIBSMonoDif := Self.DoubleFromJsonValue(JValue);
-    if Json.ObjContains(Source, 'pDifCBS', JValue) then
-      Result.pDifCBS := Self.DoubleFromJsonValue(JValue);
-    if Json.ObjContains(Source, 'vCBSMonoDif', JValue) then
-      Result.vCBSMonoDif := Self.DoubleFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'qBCBioComb', JValue) then
+      Result.qBCBioComb := Self.DoubleFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'vIBSDiferenca', JValue) then
+      Result.vIBSDiferenca := Self.DoubleFromJsonValue(JValue);
   except
     Result.Free;
     raise;
   end;
 end;
 
-function TJsonConverter.TNfeSefazGMonoDifFromJson(Source: string): TNfeSefazGMonoDif;
+function TJsonConverter.TNfeSefazGpBioDiferencaFromJson(Source: string): TNfeSefazGpBioDiferenca;
 var
   JValue: TJSONValue;
 begin
   JValue := JsonToJsonValue(Source);
   try
-    Result := TNfeSefazGMonoDifFromJsonValue(JValue);
+    Result := TNfeSefazGpBioDiferencaFromJsonValue(JValue);
   finally
     JValue.Free;
   end;
 end;
 
-function TJsonConverter.TNfeSefazMonofasiaToJsonValue(Source: TNfeSefazMonofasia): TJSONValue;
+function TJsonConverter.TNfeSefazGIBSMonoAdRemToJsonValue(Source: TNfeSefazGIBSMonoAdRem): TJSONValue;
 begin
   if not Assigned(Source) then
   begin
@@ -61257,8 +61291,1062 @@ begin
       Json.ObjAddProp(Result, 'gMonoReten', Self.TNfeSefazGMonoRetenToJsonValue(Source.gMonoReten));
     if Assigned(Source.gMonoRet) then
       Json.ObjAddProp(Result, 'gMonoRet', Self.TNfeSefazGMonoRetToJsonValue(Source.gMonoRet));
-    if Assigned(Source.gMonoDif) then
-      Json.ObjAddProp(Result, 'gMonoDif', Self.TNfeSefazGMonoDifToJsonValue(Source.gMonoDif));
+    if Assigned(Source.gpBioDiferenca) then
+      Json.ObjAddProp(Result, 'gpBioDiferenca', Self.TNfeSefazGpBioDiferencaToJsonValue(Source.gpBioDiferenca));
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGIBSMonoAdRemToJson(Source: TNfeSefazGIBSMonoAdRem): string;
+var
+  JValue: TJSONValue;
+begin
+  JValue := TNfeSefazGIBSMonoAdRemToJsonValue(Source);
+  try
+    Result := JsonValueToJson(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGIBSMonoAdRemFromJsonValue(Source: TJSONValue): TNfeSefazGIBSMonoAdRem;
+var
+  JValue: TJSONValue;
+begin
+  if not Json.IsObject(Source) then
+  begin
+    Result := nil;
+    Exit;
+  end;
+  Result := TNfeSefazGIBSMonoAdRem.Create;
+  try
+    if Json.ObjContains(Source, 'gMonoPadrao', JValue) then
+      Result.gMonoPadrao := Self.TNfeSefazGMonoPadraoFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'gMonoReten', JValue) then
+      Result.gMonoReten := Self.TNfeSefazGMonoRetenFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'gMonoRet', JValue) then
+      Result.gMonoRet := Self.TNfeSefazGMonoRetFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'gpBioDiferenca', JValue) then
+      Result.gpBioDiferenca := Self.TNfeSefazGpBioDiferencaFromJsonValue(JValue);
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGIBSMonoAdRemFromJson(Source: string): TNfeSefazGIBSMonoAdRem;
+var
+  JValue: TJSONValue;
+begin
+  JValue := JsonToJsonValue(Source);
+  try
+    Result := TNfeSefazGIBSMonoAdRemFromJsonValue(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGIBSMonoAdValoremGMonoPadraoToJsonValue(Source: TNfeSefazGIBSMonoAdValoremGMonoPadrao): TJSONValue;
+begin
+  if not Assigned(Source) then
+  begin
+    Result := Json.CreateNull;
+    Exit;
+  end;
+  Result := Json.CreateObject;
+  try
+    Json.ObjAddProp(Result, 'vBCMono', Self.DoubleToJsonValue(Source.vBCMono));
+    Json.ObjAddProp(Result, 'pAliqMonoUF', Self.DoubleToJsonValue(Source.pAliqMonoUF));
+    Json.ObjAddProp(Result, 'vIBSMonoUF', Self.DoubleToJsonValue(Source.vIBSMonoUF));
+    Json.ObjAddProp(Result, 'pAliqMonoMun', Self.DoubleToJsonValue(Source.pAliqMonoMun));
+    Json.ObjAddProp(Result, 'vIBSMonoMun', Self.DoubleToJsonValue(Source.vIBSMonoMun));
+    Json.ObjAddProp(Result, 'vIBSMono', Self.DoubleToJsonValue(Source.vIBSMono));
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGIBSMonoAdValoremGMonoPadraoToJson(Source: TNfeSefazGIBSMonoAdValoremGMonoPadrao): string;
+var
+  JValue: TJSONValue;
+begin
+  JValue := TNfeSefazGIBSMonoAdValoremGMonoPadraoToJsonValue(Source);
+  try
+    Result := JsonValueToJson(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGIBSMonoAdValoremGMonoPadraoFromJsonValue(Source: TJSONValue): TNfeSefazGIBSMonoAdValoremGMonoPadrao;
+var
+  JValue: TJSONValue;
+begin
+  if not Json.IsObject(Source) then
+  begin
+    Result := nil;
+    Exit;
+  end;
+  Result := TNfeSefazGIBSMonoAdValoremGMonoPadrao.Create;
+  try
+    if Json.ObjContains(Source, 'vBCMono', JValue) then
+      Result.vBCMono := Self.DoubleFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'pAliqMonoUF', JValue) then
+      Result.pAliqMonoUF := Self.DoubleFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'vIBSMonoUF', JValue) then
+      Result.vIBSMonoUF := Self.DoubleFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'pAliqMonoMun', JValue) then
+      Result.pAliqMonoMun := Self.DoubleFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'vIBSMonoMun', JValue) then
+      Result.vIBSMonoMun := Self.DoubleFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'vIBSMono', JValue) then
+      Result.vIBSMono := Self.DoubleFromJsonValue(JValue);
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGIBSMonoAdValoremGMonoPadraoFromJson(Source: string): TNfeSefazGIBSMonoAdValoremGMonoPadrao;
+var
+  JValue: TJSONValue;
+begin
+  JValue := JsonToJsonValue(Source);
+  try
+    Result := TNfeSefazGIBSMonoAdValoremGMonoPadraoFromJsonValue(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGIBSMonoAdValoremGMonoRetenToJsonValue(Source: TNfeSefazGIBSMonoAdValoremGMonoReten): TJSONValue;
+begin
+  if not Assigned(Source) then
+  begin
+    Result := Json.CreateNull;
+    Exit;
+  end;
+  Result := Json.CreateObject;
+  try
+    Json.ObjAddProp(Result, 'vBCMonoReten', Self.DoubleToJsonValue(Source.vBCMonoReten));
+    Json.ObjAddProp(Result, 'pAliqMonoReten', Self.DoubleToJsonValue(Source.pAliqMonoReten));
+    Json.ObjAddProp(Result, 'vIBSMonoReten', Self.DoubleToJsonValue(Source.vIBSMonoReten));
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGIBSMonoAdValoremGMonoRetenToJson(Source: TNfeSefazGIBSMonoAdValoremGMonoReten): string;
+var
+  JValue: TJSONValue;
+begin
+  JValue := TNfeSefazGIBSMonoAdValoremGMonoRetenToJsonValue(Source);
+  try
+    Result := JsonValueToJson(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGIBSMonoAdValoremGMonoRetenFromJsonValue(Source: TJSONValue): TNfeSefazGIBSMonoAdValoremGMonoReten;
+var
+  JValue: TJSONValue;
+begin
+  if not Json.IsObject(Source) then
+  begin
+    Result := nil;
+    Exit;
+  end;
+  Result := TNfeSefazGIBSMonoAdValoremGMonoReten.Create;
+  try
+    if Json.ObjContains(Source, 'vBCMonoReten', JValue) then
+      Result.vBCMonoReten := Self.DoubleFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'pAliqMonoReten', JValue) then
+      Result.pAliqMonoReten := Self.DoubleFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'vIBSMonoReten', JValue) then
+      Result.vIBSMonoReten := Self.DoubleFromJsonValue(JValue);
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGIBSMonoAdValoremGMonoRetenFromJson(Source: string): TNfeSefazGIBSMonoAdValoremGMonoReten;
+var
+  JValue: TJSONValue;
+begin
+  JValue := JsonToJsonValue(Source);
+  try
+    Result := TNfeSefazGIBSMonoAdValoremGMonoRetenFromJsonValue(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGIBSMonoAdValoremGMonoRetToJsonValue(Source: TNfeSefazGIBSMonoAdValoremGMonoRet): TJSONValue;
+begin
+  if not Assigned(Source) then
+  begin
+    Result := Json.CreateNull;
+    Exit;
+  end;
+  Result := Json.CreateObject;
+  try
+    Json.ObjAddProp(Result, 'vIBSMonoRet', Self.DoubleToJsonValue(Source.vIBSMonoRet));
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGIBSMonoAdValoremGMonoRetToJson(Source: TNfeSefazGIBSMonoAdValoremGMonoRet): string;
+var
+  JValue: TJSONValue;
+begin
+  JValue := TNfeSefazGIBSMonoAdValoremGMonoRetToJsonValue(Source);
+  try
+    Result := JsonValueToJson(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGIBSMonoAdValoremGMonoRetFromJsonValue(Source: TJSONValue): TNfeSefazGIBSMonoAdValoremGMonoRet;
+var
+  JValue: TJSONValue;
+begin
+  if not Json.IsObject(Source) then
+  begin
+    Result := nil;
+    Exit;
+  end;
+  Result := TNfeSefazGIBSMonoAdValoremGMonoRet.Create;
+  try
+    if Json.ObjContains(Source, 'vIBSMonoRet', JValue) then
+      Result.vIBSMonoRet := Self.DoubleFromJsonValue(JValue);
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGIBSMonoAdValoremGMonoRetFromJson(Source: string): TNfeSefazGIBSMonoAdValoremGMonoRet;
+var
+  JValue: TJSONValue;
+begin
+  JValue := JsonToJsonValue(Source);
+  try
+    Result := TNfeSefazGIBSMonoAdValoremGMonoRetFromJsonValue(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGIBSMonoAdValoremGpBioDiferencaToJsonValue(Source: TNfeSefazGIBSMonoAdValoremGpBioDiferenca): TJSONValue;
+begin
+  if not Assigned(Source) then
+  begin
+    Result := Json.CreateNull;
+    Exit;
+  end;
+  Result := Json.CreateObject;
+  try
+    if Source.qBCBioCombHasValue then
+      Json.ObjAddProp(Result, 'qBCBioComb', Self.DoubleToJsonValue(Source.qBCBioComb));
+    if Source.vIBSDiferencaHasValue then
+      Json.ObjAddProp(Result, 'vIBSDiferenca', Self.DoubleToJsonValue(Source.vIBSDiferenca));
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGIBSMonoAdValoremGpBioDiferencaToJson(Source: TNfeSefazGIBSMonoAdValoremGpBioDiferenca): string;
+var
+  JValue: TJSONValue;
+begin
+  JValue := TNfeSefazGIBSMonoAdValoremGpBioDiferencaToJsonValue(Source);
+  try
+    Result := JsonValueToJson(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGIBSMonoAdValoremGpBioDiferencaFromJsonValue(Source: TJSONValue): TNfeSefazGIBSMonoAdValoremGpBioDiferenca;
+var
+  JValue: TJSONValue;
+begin
+  if not Json.IsObject(Source) then
+  begin
+    Result := nil;
+    Exit;
+  end;
+  Result := TNfeSefazGIBSMonoAdValoremGpBioDiferenca.Create;
+  try
+    if Json.ObjContains(Source, 'qBCBioComb', JValue) then
+      Result.qBCBioComb := Self.DoubleFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'vIBSDiferenca', JValue) then
+      Result.vIBSDiferenca := Self.DoubleFromJsonValue(JValue);
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGIBSMonoAdValoremGpBioDiferencaFromJson(Source: string): TNfeSefazGIBSMonoAdValoremGpBioDiferenca;
+var
+  JValue: TJSONValue;
+begin
+  JValue := JsonToJsonValue(Source);
+  try
+    Result := TNfeSefazGIBSMonoAdValoremGpBioDiferencaFromJsonValue(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGIBSMonoAdValoremToJsonValue(Source: TNfeSefazGIBSMonoAdValorem): TJSONValue;
+begin
+  if not Assigned(Source) then
+  begin
+    Result := Json.CreateNull;
+    Exit;
+  end;
+  Result := Json.CreateObject;
+  try
+    if Assigned(Source.gMonoPadrao) then
+      Json.ObjAddProp(Result, 'gMonoPadrao', Self.TNfeSefazGIBSMonoAdValoremGMonoPadraoToJsonValue(Source.gMonoPadrao));
+    if Assigned(Source.gMonoReten) then
+      Json.ObjAddProp(Result, 'gMonoReten', Self.TNfeSefazGIBSMonoAdValoremGMonoRetenToJsonValue(Source.gMonoReten));
+    if Assigned(Source.gMonoRet) then
+      Json.ObjAddProp(Result, 'gMonoRet', Self.TNfeSefazGIBSMonoAdValoremGMonoRetToJsonValue(Source.gMonoRet));
+    if Assigned(Source.gpBioDiferenca) then
+      Json.ObjAddProp(Result, 'gpBioDiferenca', Self.TNfeSefazGIBSMonoAdValoremGpBioDiferencaToJsonValue(Source.gpBioDiferenca));
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGIBSMonoAdValoremToJson(Source: TNfeSefazGIBSMonoAdValorem): string;
+var
+  JValue: TJSONValue;
+begin
+  JValue := TNfeSefazGIBSMonoAdValoremToJsonValue(Source);
+  try
+    Result := JsonValueToJson(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGIBSMonoAdValoremFromJsonValue(Source: TJSONValue): TNfeSefazGIBSMonoAdValorem;
+var
+  JValue: TJSONValue;
+begin
+  if not Json.IsObject(Source) then
+  begin
+    Result := nil;
+    Exit;
+  end;
+  Result := TNfeSefazGIBSMonoAdValorem.Create;
+  try
+    if Json.ObjContains(Source, 'gMonoPadrao', JValue) then
+      Result.gMonoPadrao := Self.TNfeSefazGIBSMonoAdValoremGMonoPadraoFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'gMonoReten', JValue) then
+      Result.gMonoReten := Self.TNfeSefazGIBSMonoAdValoremGMonoRetenFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'gMonoRet', JValue) then
+      Result.gMonoRet := Self.TNfeSefazGIBSMonoAdValoremGMonoRetFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'gpBioDiferenca', JValue) then
+      Result.gpBioDiferenca := Self.TNfeSefazGIBSMonoAdValoremGpBioDiferencaFromJsonValue(JValue);
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGIBSMonoAdValoremFromJson(Source: string): TNfeSefazGIBSMonoAdValorem;
+var
+  JValue: TJSONValue;
+begin
+  JValue := JsonToJsonValue(Source);
+  try
+    Result := TNfeSefazGIBSMonoAdValoremFromJsonValue(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGCBSMonoAdRemGMonoPadraoToJsonValue(Source: TNfeSefazGCBSMonoAdRemGMonoPadrao): TJSONValue;
+begin
+  if not Assigned(Source) then
+  begin
+    Result := Json.CreateNull;
+    Exit;
+  end;
+  Result := Json.CreateObject;
+  try
+    Json.ObjAddProp(Result, 'qBCMono', Self.DoubleToJsonValue(Source.qBCMono));
+    Json.ObjAddProp(Result, 'adRemCBS', Self.DoubleToJsonValue(Source.adRemCBS));
+    Json.ObjAddProp(Result, 'vCBSMono', Self.DoubleToJsonValue(Source.vCBSMono));
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGCBSMonoAdRemGMonoPadraoToJson(Source: TNfeSefazGCBSMonoAdRemGMonoPadrao): string;
+var
+  JValue: TJSONValue;
+begin
+  JValue := TNfeSefazGCBSMonoAdRemGMonoPadraoToJsonValue(Source);
+  try
+    Result := JsonValueToJson(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGCBSMonoAdRemGMonoPadraoFromJsonValue(Source: TJSONValue): TNfeSefazGCBSMonoAdRemGMonoPadrao;
+var
+  JValue: TJSONValue;
+begin
+  if not Json.IsObject(Source) then
+  begin
+    Result := nil;
+    Exit;
+  end;
+  Result := TNfeSefazGCBSMonoAdRemGMonoPadrao.Create;
+  try
+    if Json.ObjContains(Source, 'qBCMono', JValue) then
+      Result.qBCMono := Self.DoubleFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'adRemCBS', JValue) then
+      Result.adRemCBS := Self.DoubleFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'vCBSMono', JValue) then
+      Result.vCBSMono := Self.DoubleFromJsonValue(JValue);
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGCBSMonoAdRemGMonoPadraoFromJson(Source: string): TNfeSefazGCBSMonoAdRemGMonoPadrao;
+var
+  JValue: TJSONValue;
+begin
+  JValue := JsonToJsonValue(Source);
+  try
+    Result := TNfeSefazGCBSMonoAdRemGMonoPadraoFromJsonValue(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGCBSMonoAdRemGMonoRetenToJsonValue(Source: TNfeSefazGCBSMonoAdRemGMonoReten): TJSONValue;
+begin
+  if not Assigned(Source) then
+  begin
+    Result := Json.CreateNull;
+    Exit;
+  end;
+  Result := Json.CreateObject;
+  try
+    Json.ObjAddProp(Result, 'qBCMonoReten', Self.DoubleToJsonValue(Source.qBCMonoReten));
+    Json.ObjAddProp(Result, 'adRemCBSReten', Self.DoubleToJsonValue(Source.adRemCBSReten));
+    Json.ObjAddProp(Result, 'vCBSMonoReten', Self.DoubleToJsonValue(Source.vCBSMonoReten));
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGCBSMonoAdRemGMonoRetenToJson(Source: TNfeSefazGCBSMonoAdRemGMonoReten): string;
+var
+  JValue: TJSONValue;
+begin
+  JValue := TNfeSefazGCBSMonoAdRemGMonoRetenToJsonValue(Source);
+  try
+    Result := JsonValueToJson(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGCBSMonoAdRemGMonoRetenFromJsonValue(Source: TJSONValue): TNfeSefazGCBSMonoAdRemGMonoReten;
+var
+  JValue: TJSONValue;
+begin
+  if not Json.IsObject(Source) then
+  begin
+    Result := nil;
+    Exit;
+  end;
+  Result := TNfeSefazGCBSMonoAdRemGMonoReten.Create;
+  try
+    if Json.ObjContains(Source, 'qBCMonoReten', JValue) then
+      Result.qBCMonoReten := Self.DoubleFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'adRemCBSReten', JValue) then
+      Result.adRemCBSReten := Self.DoubleFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'vCBSMonoReten', JValue) then
+      Result.vCBSMonoReten := Self.DoubleFromJsonValue(JValue);
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGCBSMonoAdRemGMonoRetenFromJson(Source: string): TNfeSefazGCBSMonoAdRemGMonoReten;
+var
+  JValue: TJSONValue;
+begin
+  JValue := JsonToJsonValue(Source);
+  try
+    Result := TNfeSefazGCBSMonoAdRemGMonoRetenFromJsonValue(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGCBSMonoAdRemGMonoRetToJsonValue(Source: TNfeSefazGCBSMonoAdRemGMonoRet): TJSONValue;
+begin
+  if not Assigned(Source) then
+  begin
+    Result := Json.CreateNull;
+    Exit;
+  end;
+  Result := Json.CreateObject;
+  try
+    Json.ObjAddProp(Result, 'vCBSMonoRet', Self.DoubleToJsonValue(Source.vCBSMonoRet));
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGCBSMonoAdRemGMonoRetToJson(Source: TNfeSefazGCBSMonoAdRemGMonoRet): string;
+var
+  JValue: TJSONValue;
+begin
+  JValue := TNfeSefazGCBSMonoAdRemGMonoRetToJsonValue(Source);
+  try
+    Result := JsonValueToJson(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGCBSMonoAdRemGMonoRetFromJsonValue(Source: TJSONValue): TNfeSefazGCBSMonoAdRemGMonoRet;
+var
+  JValue: TJSONValue;
+begin
+  if not Json.IsObject(Source) then
+  begin
+    Result := nil;
+    Exit;
+  end;
+  Result := TNfeSefazGCBSMonoAdRemGMonoRet.Create;
+  try
+    if Json.ObjContains(Source, 'vCBSMonoRet', JValue) then
+      Result.vCBSMonoRet := Self.DoubleFromJsonValue(JValue);
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGCBSMonoAdRemGMonoRetFromJson(Source: string): TNfeSefazGCBSMonoAdRemGMonoRet;
+var
+  JValue: TJSONValue;
+begin
+  JValue := JsonToJsonValue(Source);
+  try
+    Result := TNfeSefazGCBSMonoAdRemGMonoRetFromJsonValue(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGCBSMonoAdRemGpBioDiferencaToJsonValue(Source: TNfeSefazGCBSMonoAdRemGpBioDiferenca): TJSONValue;
+begin
+  if not Assigned(Source) then
+  begin
+    Result := Json.CreateNull;
+    Exit;
+  end;
+  Result := Json.CreateObject;
+  try
+    Json.ObjAddProp(Result, 'qBCBioComb', Self.DoubleToJsonValue(Source.qBCBioComb));
+    Json.ObjAddProp(Result, 'vCBSDiferenca', Self.DoubleToJsonValue(Source.vCBSDiferenca));
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGCBSMonoAdRemGpBioDiferencaToJson(Source: TNfeSefazGCBSMonoAdRemGpBioDiferenca): string;
+var
+  JValue: TJSONValue;
+begin
+  JValue := TNfeSefazGCBSMonoAdRemGpBioDiferencaToJsonValue(Source);
+  try
+    Result := JsonValueToJson(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGCBSMonoAdRemGpBioDiferencaFromJsonValue(Source: TJSONValue): TNfeSefazGCBSMonoAdRemGpBioDiferenca;
+var
+  JValue: TJSONValue;
+begin
+  if not Json.IsObject(Source) then
+  begin
+    Result := nil;
+    Exit;
+  end;
+  Result := TNfeSefazGCBSMonoAdRemGpBioDiferenca.Create;
+  try
+    if Json.ObjContains(Source, 'qBCBioComb', JValue) then
+      Result.qBCBioComb := Self.DoubleFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'vCBSDiferenca', JValue) then
+      Result.vCBSDiferenca := Self.DoubleFromJsonValue(JValue);
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGCBSMonoAdRemGpBioDiferencaFromJson(Source: string): TNfeSefazGCBSMonoAdRemGpBioDiferenca;
+var
+  JValue: TJSONValue;
+begin
+  JValue := JsonToJsonValue(Source);
+  try
+    Result := TNfeSefazGCBSMonoAdRemGpBioDiferencaFromJsonValue(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGCBSMonoAdRemToJsonValue(Source: TNfeSefazGCBSMonoAdRem): TJSONValue;
+begin
+  if not Assigned(Source) then
+  begin
+    Result := Json.CreateNull;
+    Exit;
+  end;
+  Result := Json.CreateObject;
+  try
+    if Assigned(Source.gMonoPadrao) then
+      Json.ObjAddProp(Result, 'gMonoPadrao', Self.TNfeSefazGCBSMonoAdRemGMonoPadraoToJsonValue(Source.gMonoPadrao));
+    if Assigned(Source.gMonoReten) then
+      Json.ObjAddProp(Result, 'gMonoReten', Self.TNfeSefazGCBSMonoAdRemGMonoRetenToJsonValue(Source.gMonoReten));
+    if Assigned(Source.gMonoRet) then
+      Json.ObjAddProp(Result, 'gMonoRet', Self.TNfeSefazGCBSMonoAdRemGMonoRetToJsonValue(Source.gMonoRet));
+    if Assigned(Source.gpBioDiferenca) then
+      Json.ObjAddProp(Result, 'gpBioDiferenca', Self.TNfeSefazGCBSMonoAdRemGpBioDiferencaToJsonValue(Source.gpBioDiferenca));
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGCBSMonoAdRemToJson(Source: TNfeSefazGCBSMonoAdRem): string;
+var
+  JValue: TJSONValue;
+begin
+  JValue := TNfeSefazGCBSMonoAdRemToJsonValue(Source);
+  try
+    Result := JsonValueToJson(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGCBSMonoAdRemFromJsonValue(Source: TJSONValue): TNfeSefazGCBSMonoAdRem;
+var
+  JValue: TJSONValue;
+begin
+  if not Json.IsObject(Source) then
+  begin
+    Result := nil;
+    Exit;
+  end;
+  Result := TNfeSefazGCBSMonoAdRem.Create;
+  try
+    if Json.ObjContains(Source, 'gMonoPadrao', JValue) then
+      Result.gMonoPadrao := Self.TNfeSefazGCBSMonoAdRemGMonoPadraoFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'gMonoReten', JValue) then
+      Result.gMonoReten := Self.TNfeSefazGCBSMonoAdRemGMonoRetenFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'gMonoRet', JValue) then
+      Result.gMonoRet := Self.TNfeSefazGCBSMonoAdRemGMonoRetFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'gpBioDiferenca', JValue) then
+      Result.gpBioDiferenca := Self.TNfeSefazGCBSMonoAdRemGpBioDiferencaFromJsonValue(JValue);
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGCBSMonoAdRemFromJson(Source: string): TNfeSefazGCBSMonoAdRem;
+var
+  JValue: TJSONValue;
+begin
+  JValue := JsonToJsonValue(Source);
+  try
+    Result := TNfeSefazGCBSMonoAdRemFromJsonValue(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGCBSMonoAdValoremGMonoPadraoToJsonValue(Source: TNfeSefazGCBSMonoAdValoremGMonoPadrao): TJSONValue;
+begin
+  if not Assigned(Source) then
+  begin
+    Result := Json.CreateNull;
+    Exit;
+  end;
+  Result := Json.CreateObject;
+  try
+    Json.ObjAddProp(Result, 'vBCMono', Self.DoubleToJsonValue(Source.vBCMono));
+    Json.ObjAddProp(Result, 'pAliqMonoCBS', Self.DoubleToJsonValue(Source.pAliqMonoCBS));
+    Json.ObjAddProp(Result, 'vCBSMono', Self.DoubleToJsonValue(Source.vCBSMono));
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGCBSMonoAdValoremGMonoPadraoToJson(Source: TNfeSefazGCBSMonoAdValoremGMonoPadrao): string;
+var
+  JValue: TJSONValue;
+begin
+  JValue := TNfeSefazGCBSMonoAdValoremGMonoPadraoToJsonValue(Source);
+  try
+    Result := JsonValueToJson(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGCBSMonoAdValoremGMonoPadraoFromJsonValue(Source: TJSONValue): TNfeSefazGCBSMonoAdValoremGMonoPadrao;
+var
+  JValue: TJSONValue;
+begin
+  if not Json.IsObject(Source) then
+  begin
+    Result := nil;
+    Exit;
+  end;
+  Result := TNfeSefazGCBSMonoAdValoremGMonoPadrao.Create;
+  try
+    if Json.ObjContains(Source, 'vBCMono', JValue) then
+      Result.vBCMono := Self.DoubleFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'pAliqMonoCBS', JValue) then
+      Result.pAliqMonoCBS := Self.DoubleFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'vCBSMono', JValue) then
+      Result.vCBSMono := Self.DoubleFromJsonValue(JValue);
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGCBSMonoAdValoremGMonoPadraoFromJson(Source: string): TNfeSefazGCBSMonoAdValoremGMonoPadrao;
+var
+  JValue: TJSONValue;
+begin
+  JValue := JsonToJsonValue(Source);
+  try
+    Result := TNfeSefazGCBSMonoAdValoremGMonoPadraoFromJsonValue(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGCBSMonoAdValoremGMonoRetenToJsonValue(Source: TNfeSefazGCBSMonoAdValoremGMonoReten): TJSONValue;
+begin
+  if not Assigned(Source) then
+  begin
+    Result := Json.CreateNull;
+    Exit;
+  end;
+  Result := Json.CreateObject;
+  try
+    Json.ObjAddProp(Result, 'vBCMonoReten', Self.DoubleToJsonValue(Source.vBCMonoReten));
+    Json.ObjAddProp(Result, 'pAliqMonoReten', Self.DoubleToJsonValue(Source.pAliqMonoReten));
+    Json.ObjAddProp(Result, 'vCBSMonoReten', Self.DoubleToJsonValue(Source.vCBSMonoReten));
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGCBSMonoAdValoremGMonoRetenToJson(Source: TNfeSefazGCBSMonoAdValoremGMonoReten): string;
+var
+  JValue: TJSONValue;
+begin
+  JValue := TNfeSefazGCBSMonoAdValoremGMonoRetenToJsonValue(Source);
+  try
+    Result := JsonValueToJson(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGCBSMonoAdValoremGMonoRetenFromJsonValue(Source: TJSONValue): TNfeSefazGCBSMonoAdValoremGMonoReten;
+var
+  JValue: TJSONValue;
+begin
+  if not Json.IsObject(Source) then
+  begin
+    Result := nil;
+    Exit;
+  end;
+  Result := TNfeSefazGCBSMonoAdValoremGMonoReten.Create;
+  try
+    if Json.ObjContains(Source, 'vBCMonoReten', JValue) then
+      Result.vBCMonoReten := Self.DoubleFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'pAliqMonoReten', JValue) then
+      Result.pAliqMonoReten := Self.DoubleFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'vCBSMonoReten', JValue) then
+      Result.vCBSMonoReten := Self.DoubleFromJsonValue(JValue);
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGCBSMonoAdValoremGMonoRetenFromJson(Source: string): TNfeSefazGCBSMonoAdValoremGMonoReten;
+var
+  JValue: TJSONValue;
+begin
+  JValue := JsonToJsonValue(Source);
+  try
+    Result := TNfeSefazGCBSMonoAdValoremGMonoRetenFromJsonValue(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGCBSMonoAdValoremGMonoRetToJsonValue(Source: TNfeSefazGCBSMonoAdValoremGMonoRet): TJSONValue;
+begin
+  if not Assigned(Source) then
+  begin
+    Result := Json.CreateNull;
+    Exit;
+  end;
+  Result := Json.CreateObject;
+  try
+    Json.ObjAddProp(Result, 'vCBSMonoRet', Self.DoubleToJsonValue(Source.vCBSMonoRet));
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGCBSMonoAdValoremGMonoRetToJson(Source: TNfeSefazGCBSMonoAdValoremGMonoRet): string;
+var
+  JValue: TJSONValue;
+begin
+  JValue := TNfeSefazGCBSMonoAdValoremGMonoRetToJsonValue(Source);
+  try
+    Result := JsonValueToJson(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGCBSMonoAdValoremGMonoRetFromJsonValue(Source: TJSONValue): TNfeSefazGCBSMonoAdValoremGMonoRet;
+var
+  JValue: TJSONValue;
+begin
+  if not Json.IsObject(Source) then
+  begin
+    Result := nil;
+    Exit;
+  end;
+  Result := TNfeSefazGCBSMonoAdValoremGMonoRet.Create;
+  try
+    if Json.ObjContains(Source, 'vCBSMonoRet', JValue) then
+      Result.vCBSMonoRet := Self.DoubleFromJsonValue(JValue);
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGCBSMonoAdValoremGMonoRetFromJson(Source: string): TNfeSefazGCBSMonoAdValoremGMonoRet;
+var
+  JValue: TJSONValue;
+begin
+  JValue := JsonToJsonValue(Source);
+  try
+    Result := TNfeSefazGCBSMonoAdValoremGMonoRetFromJsonValue(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGCBSMonoAdValoremGpBioDiferencaToJsonValue(Source: TNfeSefazGCBSMonoAdValoremGpBioDiferenca): TJSONValue;
+begin
+  if not Assigned(Source) then
+  begin
+    Result := Json.CreateNull;
+    Exit;
+  end;
+  Result := Json.CreateObject;
+  try
+    if Source.qBCBioCombHasValue then
+      Json.ObjAddProp(Result, 'qBCBioComb', Self.DoubleToJsonValue(Source.qBCBioComb));
+    if Source.vCBSDiferencaHasValue then
+      Json.ObjAddProp(Result, 'vCBSDiferenca', Self.DoubleToJsonValue(Source.vCBSDiferenca));
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGCBSMonoAdValoremGpBioDiferencaToJson(Source: TNfeSefazGCBSMonoAdValoremGpBioDiferenca): string;
+var
+  JValue: TJSONValue;
+begin
+  JValue := TNfeSefazGCBSMonoAdValoremGpBioDiferencaToJsonValue(Source);
+  try
+    Result := JsonValueToJson(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGCBSMonoAdValoremGpBioDiferencaFromJsonValue(Source: TJSONValue): TNfeSefazGCBSMonoAdValoremGpBioDiferenca;
+var
+  JValue: TJSONValue;
+begin
+  if not Json.IsObject(Source) then
+  begin
+    Result := nil;
+    Exit;
+  end;
+  Result := TNfeSefazGCBSMonoAdValoremGpBioDiferenca.Create;
+  try
+    if Json.ObjContains(Source, 'qBCBioComb', JValue) then
+      Result.qBCBioComb := Self.DoubleFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'vCBSDiferenca', JValue) then
+      Result.vCBSDiferenca := Self.DoubleFromJsonValue(JValue);
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGCBSMonoAdValoremGpBioDiferencaFromJson(Source: string): TNfeSefazGCBSMonoAdValoremGpBioDiferenca;
+var
+  JValue: TJSONValue;
+begin
+  JValue := JsonToJsonValue(Source);
+  try
+    Result := TNfeSefazGCBSMonoAdValoremGpBioDiferencaFromJsonValue(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGCBSMonoAdValoremToJsonValue(Source: TNfeSefazGCBSMonoAdValorem): TJSONValue;
+begin
+  if not Assigned(Source) then
+  begin
+    Result := Json.CreateNull;
+    Exit;
+  end;
+  Result := Json.CreateObject;
+  try
+    if Assigned(Source.gMonoPadrao) then
+      Json.ObjAddProp(Result, 'gMonoPadrao', Self.TNfeSefazGCBSMonoAdValoremGMonoPadraoToJsonValue(Source.gMonoPadrao));
+    if Assigned(Source.gMonoReten) then
+      Json.ObjAddProp(Result, 'gMonoReten', Self.TNfeSefazGCBSMonoAdValoremGMonoRetenToJsonValue(Source.gMonoReten));
+    if Assigned(Source.gMonoRet) then
+      Json.ObjAddProp(Result, 'gMonoRet', Self.TNfeSefazGCBSMonoAdValoremGMonoRetToJsonValue(Source.gMonoRet));
+    if Assigned(Source.gpBioDiferenca) then
+      Json.ObjAddProp(Result, 'gpBioDiferenca', Self.TNfeSefazGCBSMonoAdValoremGpBioDiferencaToJsonValue(Source.gpBioDiferenca));
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGCBSMonoAdValoremToJson(Source: TNfeSefazGCBSMonoAdValorem): string;
+var
+  JValue: TJSONValue;
+begin
+  JValue := TNfeSefazGCBSMonoAdValoremToJsonValue(Source);
+  try
+    Result := JsonValueToJson(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGCBSMonoAdValoremFromJsonValue(Source: TJSONValue): TNfeSefazGCBSMonoAdValorem;
+var
+  JValue: TJSONValue;
+begin
+  if not Json.IsObject(Source) then
+  begin
+    Result := nil;
+    Exit;
+  end;
+  Result := TNfeSefazGCBSMonoAdValorem.Create;
+  try
+    if Json.ObjContains(Source, 'gMonoPadrao', JValue) then
+      Result.gMonoPadrao := Self.TNfeSefazGCBSMonoAdValoremGMonoPadraoFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'gMonoReten', JValue) then
+      Result.gMonoReten := Self.TNfeSefazGCBSMonoAdValoremGMonoRetenFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'gMonoRet', JValue) then
+      Result.gMonoRet := Self.TNfeSefazGCBSMonoAdValoremGMonoRetFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'gpBioDiferenca', JValue) then
+      Result.gpBioDiferenca := Self.TNfeSefazGCBSMonoAdValoremGpBioDiferencaFromJsonValue(JValue);
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazGCBSMonoAdValoremFromJson(Source: string): TNfeSefazGCBSMonoAdValorem;
+var
+  JValue: TJSONValue;
+begin
+  JValue := JsonToJsonValue(Source);
+  try
+    Result := TNfeSefazGCBSMonoAdValoremFromJsonValue(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TNfeSefazMonofasiaToJsonValue(Source: TNfeSefazMonofasia): TJSONValue;
+begin
+  if not Assigned(Source) then
+  begin
+    Result := Json.CreateNull;
+    Exit;
+  end;
+  Result := Json.CreateObject;
+  try
+    if Assigned(Source.gIBSMonoAdRem) then
+      Json.ObjAddProp(Result, 'gIBSMonoAdRem', Self.TNfeSefazGIBSMonoAdRemToJsonValue(Source.gIBSMonoAdRem));
+    if Assigned(Source.gIBSMonoAdValorem) then
+      Json.ObjAddProp(Result, 'gIBSMonoAdValorem', Self.TNfeSefazGIBSMonoAdValoremToJsonValue(Source.gIBSMonoAdValorem));
+    if Assigned(Source.gCBSMonoAdRem) then
+      Json.ObjAddProp(Result, 'gCBSMonoAdRem', Self.TNfeSefazGCBSMonoAdRemToJsonValue(Source.gCBSMonoAdRem));
+    if Assigned(Source.gCBSMonoAdValorem) then
+      Json.ObjAddProp(Result, 'gCBSMonoAdValorem', Self.TNfeSefazGCBSMonoAdValoremToJsonValue(Source.gCBSMonoAdValorem));
     Json.ObjAddProp(Result, 'vTotIBSMonoItem', Self.DoubleToJsonValue(Source.vTotIBSMonoItem));
     Json.ObjAddProp(Result, 'vTotCBSMonoItem', Self.DoubleToJsonValue(Source.vTotCBSMonoItem));
   except
@@ -61290,14 +62378,14 @@ begin
   end;
   Result := TNfeSefazMonofasia.Create;
   try
-    if Json.ObjContains(Source, 'gMonoPadrao', JValue) then
-      Result.gMonoPadrao := Self.TNfeSefazGMonoPadraoFromJsonValue(JValue);
-    if Json.ObjContains(Source, 'gMonoReten', JValue) then
-      Result.gMonoReten := Self.TNfeSefazGMonoRetenFromJsonValue(JValue);
-    if Json.ObjContains(Source, 'gMonoRet', JValue) then
-      Result.gMonoRet := Self.TNfeSefazGMonoRetFromJsonValue(JValue);
-    if Json.ObjContains(Source, 'gMonoDif', JValue) then
-      Result.gMonoDif := Self.TNfeSefazGMonoDifFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'gIBSMonoAdRem', JValue) then
+      Result.gIBSMonoAdRem := Self.TNfeSefazGIBSMonoAdRemFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'gIBSMonoAdValorem', JValue) then
+      Result.gIBSMonoAdValorem := Self.TNfeSefazGIBSMonoAdValoremFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'gCBSMonoAdRem', JValue) then
+      Result.gCBSMonoAdRem := Self.TNfeSefazGCBSMonoAdRemFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'gCBSMonoAdValorem', JValue) then
+      Result.gCBSMonoAdValorem := Self.TNfeSefazGCBSMonoAdValoremFromJsonValue(JValue);
     if Json.ObjContains(Source, 'vTotIBSMonoItem', JValue) then
       Result.vTotIBSMonoItem := Self.DoubleFromJsonValue(JValue);
     if Json.ObjContains(Source, 'vTotCBSMonoItem', JValue) then
