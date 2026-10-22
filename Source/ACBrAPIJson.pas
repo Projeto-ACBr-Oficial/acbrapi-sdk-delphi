@@ -15539,6 +15539,8 @@ begin
   end;
   Result := Json.CreateObject;
   try
+    if Source.cLocIncidIBSCBSHasValue then
+      Json.ObjAddProp(Result, 'cLocIncidIBSCBS', Self.stringToJsonValue(Source.cLocIncidIBSCBS));
     if Source.vBCHasValue then
       Json.ObjAddProp(Result, 'vBC', Self.DoubleToJsonValue(Source.vBC));
     if Assigned(Source.fed) then
@@ -15576,6 +15578,8 @@ begin
   end;
   Result := TRTCInfoTributosAbrasf.Create;
   try
+    if Json.ObjContains(Source, 'cLocIncidIBSCBS', JValue) then
+      Result.cLocIncidIBSCBS := Self.stringFromJsonValue(JValue);
     if Json.ObjContains(Source, 'vBC', JValue) then
       Result.vBC := Self.DoubleFromJsonValue(JValue);
     if Json.ObjContains(Source, 'fed', JValue) then

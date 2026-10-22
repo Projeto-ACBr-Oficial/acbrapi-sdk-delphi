@@ -6980,17 +6980,27 @@ type
   /// </summary>
   TRTCInfoTributosAbrasf = class
   private
+    FcLocIncidIBSCBS: string;
+    FcLocIncidIBSCBSHasValue: Boolean;
     FvBC: Double;
     FvBCHasValue: Boolean;
     Ffed: TRTCInfoTributosAbrasfFed;
     Fuf: TRTCInfoTributosAbrasfUF;
     Fmun: TRTCInfoTributosAbrasfMun;
+    procedure SetcLocIncidIBSCBS(const Value: string);
     procedure SetvBC(const Value: Double);
     procedure Setfed(const Value: TRTCInfoTributosAbrasfFed);
     procedure Setuf(const Value: TRTCInfoTributosAbrasfUF);
     procedure Setmun(const Value: TRTCInfoTributosAbrasfMun);
   public
     destructor Destroy; override;
+    /// <summary>
+    /// Código do município de incidência do IBS/CBS (tabela do IBGE).
+    /// 
+    /// Caso não seja informado, é determinado pelo local da operação (LC 214/25, art. 11), conforme o indicador da operação (`cIndOp`). Não confundir com o município de incidência do ISSQN (`tribMun.cLocIncid`).
+    /// </summary>
+    property cLocIncidIBSCBS: string read FcLocIncidIBSCBS write SetcLocIncidIBSCBS;
+    property cLocIncidIBSCBSHasValue: Boolean read FcLocIncidIBSCBSHasValue write FcLocIncidIBSCBSHasValue;
     /// <summary>
     /// Valor da base de cálculo (BC) do IBS/CBS (R$).
     /// </summary>
@@ -37353,6 +37363,12 @@ begin
   Fuf.Free;
   Ffed.Free;
   inherited;
+end;
+
+procedure TRTCInfoTributosAbrasf.SetcLocIncidIBSCBS(const Value: string);
+begin
+  FcLocIncidIBSCBS := Value;
+  FcLocIncidIBSCBSHasValue := True;
 end;
 
 procedure TRTCInfoTributosAbrasf.SetvBC(const Value: Double);
