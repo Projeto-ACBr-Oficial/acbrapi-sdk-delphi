@@ -6146,7 +6146,7 @@ type
     property BM: TBeneficioMunicipal read FBM write SetBM;
     /// <summary>
     /// Tipo de retencao do ISSQN:
-    /// * 1 - Não Retido
+    /// * 1 - Não Retido / Prestador
     /// * 2 - Retido pelo Tomador
     /// * 3 - Retido pelo Intermediario
     /// </summary>
