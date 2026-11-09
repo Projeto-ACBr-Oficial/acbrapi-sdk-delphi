@@ -531,6 +531,38 @@ type
     function TVDescCondIncondToJson(Source: TVDescCondIncond): string;
     function TVDescCondIncondFromJsonValue(Source: TJSONValue): TVDescCondIncond;
     function TVDescCondIncondFromJson(Source: string): TVDescCondIncond;
+    function TRTCListaDocDFeToJsonValue(Source: TRTCListaDocDFe): TJSONValue;
+    function TRTCListaDocDFeToJson(Source: TRTCListaDocDFe): string;
+    function TRTCListaDocDFeFromJsonValue(Source: TJSONValue): TRTCListaDocDFe;
+    function TRTCListaDocDFeFromJson(Source: string): TRTCListaDocDFe;
+    function TRTCListaDocFiscalOutroToJsonValue(Source: TRTCListaDocFiscalOutro): TJSONValue;
+    function TRTCListaDocFiscalOutroToJson(Source: TRTCListaDocFiscalOutro): string;
+    function TRTCListaDocFiscalOutroFromJsonValue(Source: TJSONValue): TRTCListaDocFiscalOutro;
+    function TRTCListaDocFiscalOutroFromJson(Source: string): TRTCListaDocFiscalOutro;
+    function TRTCListaDocOutroToJsonValue(Source: TRTCListaDocOutro): TJSONValue;
+    function TRTCListaDocOutroToJson(Source: TRTCListaDocOutro): string;
+    function TRTCListaDocOutroFromJsonValue(Source: TJSONValue): TRTCListaDocOutro;
+    function TRTCListaDocOutroFromJson(Source: string): TRTCListaDocOutro;
+    function TInfoFornecDocDedRedToJsonValue(Source: TInfoFornecDocDedRed): TJSONValue;
+    function TInfoFornecDocDedRedToJson(Source: TInfoFornecDocDedRed): string;
+    function TInfoFornecDocDedRedFromJsonValue(Source: TJSONValue): TInfoFornecDocDedRed;
+    function TInfoFornecDocDedRedFromJson(Source: string): TInfoFornecDocDedRed;
+    function TDocAjusteBCToJsonValue(Source: TDocAjusteBC): TJSONValue;
+    function TDocAjusteBCToJson(Source: TDocAjusteBC): string;
+    function TDocAjusteBCFromJsonValue(Source: TJSONValue): TDocAjusteBC;
+    function TDocAjusteBCFromJson(Source: string): TDocAjusteBC;
+    function TDocAjusteBCListToJsonValue(Source: TDocAjusteBCList): TJSONValue;
+    function TDocAjusteBCListToJson(Source: TDocAjusteBCList): string;
+    function TDocAjusteBCListFromJsonValue(Source: TJSONValue): TDocAjusteBCList;
+    function TDocAjusteBCListFromJson(Source: string): TDocAjusteBCList;
+    function TListaDocAjusteBCToJsonValue(Source: TListaDocAjusteBC): TJSONValue;
+    function TListaDocAjusteBCToJson(Source: TListaDocAjusteBC): string;
+    function TListaDocAjusteBCFromJsonValue(Source: TJSONValue): TListaDocAjusteBC;
+    function TListaDocAjusteBCFromJson(Source: string): TListaDocAjusteBC;
+    function TInfoAjusteBCToJsonValue(Source: TInfoAjusteBC): TJSONValue;
+    function TInfoAjusteBCToJson(Source: TInfoAjusteBC): string;
+    function TInfoAjusteBCFromJsonValue(Source: TJSONValue): TInfoAjusteBC;
+    function TInfoAjusteBCFromJson(Source: string): TInfoAjusteBC;
     function TDocOutNFSeToJsonValue(Source: TDocOutNFSe): TJSONValue;
     function TDocOutNFSeToJson(Source: TDocOutNFSe): string;
     function TDocOutNFSeFromJsonValue(Source: TJSONValue): TDocOutNFSe;
@@ -539,10 +571,6 @@ type
     function TDocNFNFSToJson(Source: TDocNFNFS): string;
     function TDocNFNFSFromJsonValue(Source: TJSONValue): TDocNFNFS;
     function TDocNFNFSFromJson(Source: string): TDocNFNFS;
-    function TInfoFornecDocDedRedToJsonValue(Source: TInfoFornecDocDedRed): TJSONValue;
-    function TInfoFornecDocDedRedToJson(Source: TInfoFornecDocDedRed): string;
-    function TInfoFornecDocDedRedFromJsonValue(Source: TJSONValue): TInfoFornecDocDedRed;
-    function TInfoFornecDocDedRedFromJson(Source: string): TInfoFornecDocDedRed;
     function TDocDedRedToJsonValue(Source: TDocDedRed): TJSONValue;
     function TDocDedRedToJson(Source: TDocDedRed): string;
     function TDocDedRedFromJsonValue(Source: TJSONValue): TDocDedRed;
@@ -607,22 +635,42 @@ type
     function TRTCInfoDestToJson(Source: TRTCInfoDest): string;
     function TRTCInfoDestFromJsonValue(Source: TJSONValue): TRTCInfoDest;
     function TRTCInfoDestFromJson(Source: string): TRTCInfoDest;
+    function TRTCLocacaoImovelToJsonValue(Source: TRTCLocacaoImovel): TJSONValue;
+    function TRTCLocacaoImovelToJson(Source: TRTCLocacaoImovel): string;
+    function TRTCLocacaoImovelFromJsonValue(Source: TJSONValue): TRTCLocacaoImovel;
+    function TRTCLocacaoImovelFromJson(Source: string): TRTCLocacaoImovel;
+    function TEnderImovelToJsonValue(Source: TEnderImovel): TJSONValue;
+    function TEnderImovelToJson(Source: TEnderImovel): string;
+    function TEnderImovelFromJsonValue(Source: TJSONValue): TEnderImovel;
+    function TEnderImovelFromJson(Source: string): TEnderImovel;
+    function TRTCValoresBCImoveisToJsonValue(Source: TRTCValoresBCImoveis): TJSONValue;
+    function TRTCValoresBCImoveisToJson(Source: TRTCValoresBCImoveis): string;
+    function TRTCValoresBCImoveisFromJsonValue(Source: TJSONValue): TRTCValoresBCImoveis;
+    function TRTCValoresBCImoveisFromJson(Source: string): TRTCValoresBCImoveis;
+    function TRTCValoresBCImoveisListToJsonValue(Source: TRTCValoresBCImoveisList): TJSONValue;
+    function TRTCValoresBCImoveisListToJson(Source: TRTCValoresBCImoveisList): string;
+    function TRTCValoresBCImoveisListFromJsonValue(Source: TJSONValue): TRTCValoresBCImoveisList;
+    function TRTCValoresBCImoveisListFromJson(Source: string): TRTCValoresBCImoveisList;
+    function TRTCUnidadesImobiliariasToJsonValue(Source: TRTCUnidadesImobiliarias): TJSONValue;
+    function TRTCUnidadesImobiliariasToJson(Source: TRTCUnidadesImobiliarias): string;
+    function TRTCUnidadesImobiliariasFromJsonValue(Source: TJSONValue): TRTCUnidadesImobiliarias;
+    function TRTCUnidadesImobiliariasFromJson(Source: string): TRTCUnidadesImobiliarias;
+    function TRTCUnidadesImobiliariasListToJsonValue(Source: TRTCUnidadesImobiliariasList): TJSONValue;
+    function TRTCUnidadesImobiliariasListToJson(Source: TRTCUnidadesImobiliariasList): string;
+    function TRTCUnidadesImobiliariasListFromJsonValue(Source: TJSONValue): TRTCUnidadesImobiliariasList;
+    function TRTCUnidadesImobiliariasListFromJson(Source: string): TRTCUnidadesImobiliariasList;
     function TRTCInfoImovelToJsonValue(Source: TRTCInfoImovel): TJSONValue;
     function TRTCInfoImovelToJson(Source: TRTCInfoImovel): string;
     function TRTCInfoImovelFromJsonValue(Source: TJSONValue): TRTCInfoImovel;
     function TRTCInfoImovelFromJson(Source: string): TRTCInfoImovel;
-    function TRTCListaDocDFeToJsonValue(Source: TRTCListaDocDFe): TJSONValue;
-    function TRTCListaDocDFeToJson(Source: TRTCListaDocDFe): string;
-    function TRTCListaDocDFeFromJsonValue(Source: TJSONValue): TRTCListaDocDFe;
-    function TRTCListaDocDFeFromJson(Source: string): TRTCListaDocDFe;
-    function TRTCListaDocFiscalOutroToJsonValue(Source: TRTCListaDocFiscalOutro): TJSONValue;
-    function TRTCListaDocFiscalOutroToJson(Source: TRTCListaDocFiscalOutro): string;
-    function TRTCListaDocFiscalOutroFromJsonValue(Source: TJSONValue): TRTCListaDocFiscalOutro;
-    function TRTCListaDocFiscalOutroFromJson(Source: string): TRTCListaDocFiscalOutro;
-    function TRTCListaDocOutroToJsonValue(Source: TRTCListaDocOutro): TJSONValue;
-    function TRTCListaDocOutroToJson(Source: TRTCListaDocOutro): string;
-    function TRTCListaDocOutroFromJsonValue(Source: TJSONValue): TRTCListaDocOutro;
-    function TRTCListaDocOutroFromJson(Source: string): TRTCListaDocOutro;
+    function TRTCInfoBensMoveisToJsonValue(Source: TRTCInfoBensMoveis): TJSONValue;
+    function TRTCInfoBensMoveisToJson(Source: TRTCInfoBensMoveis): string;
+    function TRTCInfoBensMoveisFromJsonValue(Source: TJSONValue): TRTCInfoBensMoveis;
+    function TRTCInfoBensMoveisFromJson(Source: string): TRTCInfoBensMoveis;
+    function TRTCInfoBensMoveisListToJsonValue(Source: TRTCInfoBensMoveisList): TJSONValue;
+    function TRTCInfoBensMoveisListToJson(Source: TRTCInfoBensMoveisList): string;
+    function TRTCInfoBensMoveisListFromJsonValue(Source: TJSONValue): TRTCInfoBensMoveisList;
+    function TRTCInfoBensMoveisListFromJson(Source: string): TRTCInfoBensMoveisList;
     function TRTCListaDocFornecToJsonValue(Source: TRTCListaDocFornec): TJSONValue;
     function TRTCListaDocFornecToJson(Source: TRTCListaDocFornec): string;
     function TRTCListaDocFornecFromJsonValue(Source: TJSONValue): TRTCListaDocFornec;
@@ -11982,7 +12030,8 @@ begin
       Json.ObjAddProp(Result, 'IM', Self.stringToJsonValue(Source.IM));
     if Source.IEHasValue then
       Json.ObjAddProp(Result, 'IE', Self.stringToJsonValue(Source.IE));
-    Json.ObjAddProp(Result, 'xNome', Self.stringToJsonValue(Source.xNome));
+    if Source.xNomeHasValue then
+      Json.ObjAddProp(Result, 'xNome', Self.stringToJsonValue(Source.xNome));
     if Assigned(Source.&end) then
       Json.ObjAddProp(Result, 'end', Self.TEnderecoToJsonValue(Source.&end));
     if Source.foneHasValue then
@@ -12083,7 +12132,8 @@ begin
       Json.ObjAddProp(Result, 'IM', Self.stringToJsonValue(Source.IM));
     if Source.IEHasValue then
       Json.ObjAddProp(Result, 'IE', Self.stringToJsonValue(Source.IE));
-    Json.ObjAddProp(Result, 'xNome', Self.stringToJsonValue(Source.xNome));
+    if Source.xNomeHasValue then
+      Json.ObjAddProp(Result, 'xNome', Self.stringToJsonValue(Source.xNome));
     if Assigned(Source.&end) then
       Json.ObjAddProp(Result, 'end', Self.TEnderecoToJsonValue(Source.&end));
     if Source.foneHasValue then
@@ -13119,6 +13169,581 @@ begin
   end;
 end;
 
+function TJsonConverter.TRTCListaDocDFeToJsonValue(Source: TRTCListaDocDFe): TJSONValue;
+begin
+  if not Assigned(Source) then
+  begin
+    Result := Json.CreateNull;
+    Exit;
+  end;
+  Result := Json.CreateObject;
+  try
+    Json.ObjAddProp(Result, 'tipoChaveDFe', Self.IntegerToJsonValue(Source.tipoChaveDFe));
+    if Source.xTipoChaveDFeHasValue then
+      Json.ObjAddProp(Result, 'xTipoChaveDFe', Self.stringToJsonValue(Source.xTipoChaveDFe));
+    Json.ObjAddProp(Result, 'chaveDFe', Self.stringToJsonValue(Source.chaveDFe));
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TRTCListaDocDFeToJson(Source: TRTCListaDocDFe): string;
+var
+  JValue: TJSONValue;
+begin
+  JValue := TRTCListaDocDFeToJsonValue(Source);
+  try
+    Result := JsonValueToJson(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TRTCListaDocDFeFromJsonValue(Source: TJSONValue): TRTCListaDocDFe;
+var
+  JValue: TJSONValue;
+begin
+  if not Json.IsObject(Source) then
+  begin
+    Result := nil;
+    Exit;
+  end;
+  Result := TRTCListaDocDFe.Create;
+  try
+    if Json.ObjContains(Source, 'tipoChaveDFe', JValue) then
+      Result.tipoChaveDFe := Self.IntegerFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'xTipoChaveDFe', JValue) then
+      Result.xTipoChaveDFe := Self.stringFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'chaveDFe', JValue) then
+      Result.chaveDFe := Self.stringFromJsonValue(JValue);
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TRTCListaDocDFeFromJson(Source: string): TRTCListaDocDFe;
+var
+  JValue: TJSONValue;
+begin
+  JValue := JsonToJsonValue(Source);
+  try
+    Result := TRTCListaDocDFeFromJsonValue(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TRTCListaDocFiscalOutroToJsonValue(Source: TRTCListaDocFiscalOutro): TJSONValue;
+begin
+  if not Assigned(Source) then
+  begin
+    Result := Json.CreateNull;
+    Exit;
+  end;
+  Result := Json.CreateObject;
+  try
+    Json.ObjAddProp(Result, 'cMunDocFiscal', Self.IntegerToJsonValue(Source.cMunDocFiscal));
+    Json.ObjAddProp(Result, 'nDocFiscal', Self.stringToJsonValue(Source.nDocFiscal));
+    Json.ObjAddProp(Result, 'xDocFiscal', Self.stringToJsonValue(Source.xDocFiscal));
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TRTCListaDocFiscalOutroToJson(Source: TRTCListaDocFiscalOutro): string;
+var
+  JValue: TJSONValue;
+begin
+  JValue := TRTCListaDocFiscalOutroToJsonValue(Source);
+  try
+    Result := JsonValueToJson(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TRTCListaDocFiscalOutroFromJsonValue(Source: TJSONValue): TRTCListaDocFiscalOutro;
+var
+  JValue: TJSONValue;
+begin
+  if not Json.IsObject(Source) then
+  begin
+    Result := nil;
+    Exit;
+  end;
+  Result := TRTCListaDocFiscalOutro.Create;
+  try
+    if Json.ObjContains(Source, 'cMunDocFiscal', JValue) then
+      Result.cMunDocFiscal := Self.IntegerFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'nDocFiscal', JValue) then
+      Result.nDocFiscal := Self.stringFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'xDocFiscal', JValue) then
+      Result.xDocFiscal := Self.stringFromJsonValue(JValue);
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TRTCListaDocFiscalOutroFromJson(Source: string): TRTCListaDocFiscalOutro;
+var
+  JValue: TJSONValue;
+begin
+  JValue := JsonToJsonValue(Source);
+  try
+    Result := TRTCListaDocFiscalOutroFromJsonValue(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TRTCListaDocOutroToJsonValue(Source: TRTCListaDocOutro): TJSONValue;
+begin
+  if not Assigned(Source) then
+  begin
+    Result := Json.CreateNull;
+    Exit;
+  end;
+  Result := Json.CreateObject;
+  try
+    Json.ObjAddProp(Result, 'nDoc', Self.stringToJsonValue(Source.nDoc));
+    Json.ObjAddProp(Result, 'xDoc', Self.stringToJsonValue(Source.xDoc));
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TRTCListaDocOutroToJson(Source: TRTCListaDocOutro): string;
+var
+  JValue: TJSONValue;
+begin
+  JValue := TRTCListaDocOutroToJsonValue(Source);
+  try
+    Result := JsonValueToJson(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TRTCListaDocOutroFromJsonValue(Source: TJSONValue): TRTCListaDocOutro;
+var
+  JValue: TJSONValue;
+begin
+  if not Json.IsObject(Source) then
+  begin
+    Result := nil;
+    Exit;
+  end;
+  Result := TRTCListaDocOutro.Create;
+  try
+    if Json.ObjContains(Source, 'nDoc', JValue) then
+      Result.nDoc := Self.stringFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'xDoc', JValue) then
+      Result.xDoc := Self.stringFromJsonValue(JValue);
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TRTCListaDocOutroFromJson(Source: string): TRTCListaDocOutro;
+var
+  JValue: TJSONValue;
+begin
+  JValue := JsonToJsonValue(Source);
+  try
+    Result := TRTCListaDocOutroFromJsonValue(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TInfoFornecDocDedRedToJsonValue(Source: TInfoFornecDocDedRed): TJSONValue;
+begin
+  if not Assigned(Source) then
+  begin
+    Result := Json.CreateNull;
+    Exit;
+  end;
+  Result := Json.CreateObject;
+  try
+    if Source.CNPJHasValue then
+      Json.ObjAddProp(Result, 'CNPJ', Self.stringToJsonValue(Source.CNPJ));
+    if Source.CPFHasValue then
+      Json.ObjAddProp(Result, 'CPF', Self.stringToJsonValue(Source.CPF));
+    if Source.NIFHasValue then
+      Json.ObjAddProp(Result, 'NIF', Self.stringToJsonValue(Source.NIF));
+    if Source.cNaoNIFHasValue then
+      Json.ObjAddProp(Result, 'cNaoNIF', Self.IntegerToJsonValue(Source.cNaoNIF));
+    if Source.CAEPFHasValue then
+      Json.ObjAddProp(Result, 'CAEPF', Self.stringToJsonValue(Source.CAEPF));
+    if Source.IMHasValue then
+      Json.ObjAddProp(Result, 'IM', Self.stringToJsonValue(Source.IM));
+    if Source.IEHasValue then
+      Json.ObjAddProp(Result, 'IE', Self.stringToJsonValue(Source.IE));
+    if Source.xNomeHasValue then
+      Json.ObjAddProp(Result, 'xNome', Self.stringToJsonValue(Source.xNome));
+    if Assigned(Source.&end) then
+      Json.ObjAddProp(Result, 'end', Self.TEnderecoToJsonValue(Source.&end));
+    if Source.foneHasValue then
+      Json.ObjAddProp(Result, 'fone', Self.stringToJsonValue(Source.fone));
+    if Source.emailHasValue then
+      Json.ObjAddProp(Result, 'email', Self.stringToJsonValue(Source.email));
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TInfoFornecDocDedRedToJson(Source: TInfoFornecDocDedRed): string;
+var
+  JValue: TJSONValue;
+begin
+  JValue := TInfoFornecDocDedRedToJsonValue(Source);
+  try
+    Result := JsonValueToJson(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TInfoFornecDocDedRedFromJsonValue(Source: TJSONValue): TInfoFornecDocDedRed;
+var
+  JValue: TJSONValue;
+begin
+  if not Json.IsObject(Source) then
+  begin
+    Result := nil;
+    Exit;
+  end;
+  Result := TInfoFornecDocDedRed.Create;
+  try
+    if Json.ObjContains(Source, 'CNPJ', JValue) then
+      Result.CNPJ := Self.stringFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'CPF', JValue) then
+      Result.CPF := Self.stringFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'NIF', JValue) then
+      Result.NIF := Self.stringFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'cNaoNIF', JValue) then
+      Result.cNaoNIF := Self.IntegerFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'CAEPF', JValue) then
+      Result.CAEPF := Self.stringFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'IM', JValue) then
+      Result.IM := Self.stringFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'IE', JValue) then
+      Result.IE := Self.stringFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'xNome', JValue) then
+      Result.xNome := Self.stringFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'end', JValue) then
+      Result.&end := Self.TEnderecoFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'fone', JValue) then
+      Result.fone := Self.stringFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'email', JValue) then
+      Result.email := Self.stringFromJsonValue(JValue);
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TInfoFornecDocDedRedFromJson(Source: string): TInfoFornecDocDedRed;
+var
+  JValue: TJSONValue;
+begin
+  JValue := JsonToJsonValue(Source);
+  try
+    Result := TInfoFornecDocDedRedFromJsonValue(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TDocAjusteBCToJsonValue(Source: TDocAjusteBC): TJSONValue;
+begin
+  if not Assigned(Source) then
+  begin
+    Result := Json.CreateNull;
+    Exit;
+  end;
+  Result := Json.CreateObject;
+  try
+    Json.ObjAddProp(Result, 'tpAjusteBC', Self.IntegerToJsonValue(Source.tpAjusteBC));
+    if Source.xTpAjusteBCHasValue then
+      Json.ObjAddProp(Result, 'xTpAjusteBC', Self.stringToJsonValue(Source.xTpAjusteBC));
+    Json.ObjAddProp(Result, 'vTotDoc', Self.DoubleToJsonValue(Source.vTotDoc));
+    Json.ObjAddProp(Result, 'vAjusteAplic', Self.DoubleToJsonValue(Source.vAjusteAplic));
+    if Source.dtEmiDocHasValue then
+      Json.ObjAddProp(Result, 'dtEmiDoc', Self.TDateToJsonValue(Source.dtEmiDoc));
+    if Source.dtCompDocHasValue then
+      Json.ObjAddProp(Result, 'dtCompDoc', Self.TDateToJsonValue(Source.dtCompDoc));
+    if Assigned(Source.dFeNacional) then
+      Json.ObjAddProp(Result, 'dFeNacional', Self.TRTCListaDocDFeToJsonValue(Source.dFeNacional));
+    if Assigned(Source.docFiscalOutro) then
+      Json.ObjAddProp(Result, 'docFiscalOutro', Self.TRTCListaDocFiscalOutroToJsonValue(Source.docFiscalOutro));
+    if Assigned(Source.docOutro) then
+      Json.ObjAddProp(Result, 'docOutro', Self.TRTCListaDocOutroToJsonValue(Source.docOutro));
+    if Assigned(Source.fornec) then
+      Json.ObjAddProp(Result, 'fornec', Self.TInfoFornecDocDedRedToJsonValue(Source.fornec));
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TDocAjusteBCToJson(Source: TDocAjusteBC): string;
+var
+  JValue: TJSONValue;
+begin
+  JValue := TDocAjusteBCToJsonValue(Source);
+  try
+    Result := JsonValueToJson(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TDocAjusteBCFromJsonValue(Source: TJSONValue): TDocAjusteBC;
+var
+  JValue: TJSONValue;
+begin
+  if not Json.IsObject(Source) then
+  begin
+    Result := nil;
+    Exit;
+  end;
+  Result := TDocAjusteBC.Create;
+  try
+    if Json.ObjContains(Source, 'tpAjusteBC', JValue) then
+      Result.tpAjusteBC := Self.IntegerFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'xTpAjusteBC', JValue) then
+      Result.xTpAjusteBC := Self.stringFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'vTotDoc', JValue) then
+      Result.vTotDoc := Self.DoubleFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'vAjusteAplic', JValue) then
+      Result.vAjusteAplic := Self.DoubleFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'dtEmiDoc', JValue) then
+      Result.dtEmiDoc := Self.TDateFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'dtCompDoc', JValue) then
+      Result.dtCompDoc := Self.TDateFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'dFeNacional', JValue) then
+      Result.dFeNacional := Self.TRTCListaDocDFeFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'docFiscalOutro', JValue) then
+      Result.docFiscalOutro := Self.TRTCListaDocFiscalOutroFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'docOutro', JValue) then
+      Result.docOutro := Self.TRTCListaDocOutroFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'fornec', JValue) then
+      Result.fornec := Self.TInfoFornecDocDedRedFromJsonValue(JValue);
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TDocAjusteBCFromJson(Source: string): TDocAjusteBC;
+var
+  JValue: TJSONValue;
+begin
+  JValue := JsonToJsonValue(Source);
+  try
+    Result := TDocAjusteBCFromJsonValue(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TDocAjusteBCListToJsonValue(Source: TDocAjusteBCList): TJSONValue;
+var
+  Index: Integer;
+begin
+  if not Assigned(Source) then
+  begin
+    Result := Json.CreateNull;
+    Exit;
+  end;
+  Result := Json.CreateArray;
+  try
+    for Index := 0 to Source.Count - 1 do
+      Json.ArrayAdd(Result, Self.TDocAjusteBCToJsonValue(Source[Index]));
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TDocAjusteBCListToJson(Source: TDocAjusteBCList): string;
+var
+  JValue: TJSONValue;
+begin
+  JValue := TDocAjusteBCListToJsonValue(Source);
+  try
+    Result := JsonValueToJson(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TDocAjusteBCListFromJsonValue(Source: TJSONValue): TDocAjusteBCList;
+var
+  Index: Integer;
+begin
+  if not Json.IsArray(Source) then
+  begin
+    Result := nil;
+    Exit;
+  end;
+  Result := TDocAjusteBCList.Create;
+  try
+    for Index := 0 to Json.ArrayLength(Source) - 1 do
+      Result.Add(Self.TDocAjusteBCFromJsonValue(Json.ArrayGet(Source, Index)));
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TDocAjusteBCListFromJson(Source: string): TDocAjusteBCList;
+var
+  JValue: TJSONValue;
+begin
+  JValue := JsonToJsonValue(Source);
+  try
+    Result := TDocAjusteBCListFromJsonValue(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TListaDocAjusteBCToJsonValue(Source: TListaDocAjusteBC): TJSONValue;
+begin
+  if not Assigned(Source) then
+  begin
+    Result := Json.CreateNull;
+    Exit;
+  end;
+  Result := Json.CreateObject;
+  try
+    Json.ObjAddProp(Result, 'docAjusteBC', Self.TDocAjusteBCListToJsonValue(Source.docAjusteBC));
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TListaDocAjusteBCToJson(Source: TListaDocAjusteBC): string;
+var
+  JValue: TJSONValue;
+begin
+  JValue := TListaDocAjusteBCToJsonValue(Source);
+  try
+    Result := JsonValueToJson(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TListaDocAjusteBCFromJsonValue(Source: TJSONValue): TListaDocAjusteBC;
+var
+  JValue: TJSONValue;
+begin
+  if not Json.IsObject(Source) then
+  begin
+    Result := nil;
+    Exit;
+  end;
+  Result := TListaDocAjusteBC.Create;
+  try
+    if Json.ObjContains(Source, 'docAjusteBC', JValue) then
+      Result.docAjusteBC := Self.TDocAjusteBCListFromJsonValue(JValue);
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TListaDocAjusteBCFromJson(Source: string): TListaDocAjusteBC;
+var
+  JValue: TJSONValue;
+begin
+  JValue := JsonToJsonValue(Source);
+  try
+    Result := TListaDocAjusteBCFromJsonValue(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TInfoAjusteBCToJsonValue(Source: TInfoAjusteBC): TJSONValue;
+begin
+  if not Assigned(Source) then
+  begin
+    Result := Json.CreateNull;
+    Exit;
+  end;
+  Result := Json.CreateObject;
+  try
+    if Source.pAjusteBCISSQNHasValue then
+      Json.ObjAddProp(Result, 'pAjusteBCISSQN', Self.DoubleToJsonValue(Source.pAjusteBCISSQN));
+    if Source.vAjusteBCISSQNHasValue then
+      Json.ObjAddProp(Result, 'vAjusteBCISSQN', Self.DoubleToJsonValue(Source.vAjusteBCISSQN));
+    if Assigned(Source.documentos) then
+      Json.ObjAddProp(Result, 'documentos', Self.TListaDocAjusteBCToJsonValue(Source.documentos));
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TInfoAjusteBCToJson(Source: TInfoAjusteBC): string;
+var
+  JValue: TJSONValue;
+begin
+  JValue := TInfoAjusteBCToJsonValue(Source);
+  try
+    Result := JsonValueToJson(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TInfoAjusteBCFromJsonValue(Source: TJSONValue): TInfoAjusteBC;
+var
+  JValue: TJSONValue;
+begin
+  if not Json.IsObject(Source) then
+  begin
+    Result := nil;
+    Exit;
+  end;
+  Result := TInfoAjusteBC.Create;
+  try
+    if Json.ObjContains(Source, 'pAjusteBCISSQN', JValue) then
+      Result.pAjusteBCISSQN := Self.DoubleFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'vAjusteBCISSQN', JValue) then
+      Result.vAjusteBCISSQN := Self.DoubleFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'documentos', JValue) then
+      Result.documentos := Self.TListaDocAjusteBCFromJsonValue(JValue);
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TInfoAjusteBCFromJson(Source: string): TInfoAjusteBC;
+var
+  JValue: TJSONValue;
+begin
+  JValue := JsonToJsonValue(Source);
+  try
+    Result := TInfoAjusteBCFromJsonValue(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
 function TJsonConverter.TDocOutNFSeToJsonValue(Source: TDocOutNFSe): TJSONValue;
 begin
   if not Assigned(Source) then
@@ -13244,105 +13869,6 @@ begin
   JValue := JsonToJsonValue(Source);
   try
     Result := TDocNFNFSFromJsonValue(JValue);
-  finally
-    JValue.Free;
-  end;
-end;
-
-function TJsonConverter.TInfoFornecDocDedRedToJsonValue(Source: TInfoFornecDocDedRed): TJSONValue;
-begin
-  if not Assigned(Source) then
-  begin
-    Result := Json.CreateNull;
-    Exit;
-  end;
-  Result := Json.CreateObject;
-  try
-    if Source.CNPJHasValue then
-      Json.ObjAddProp(Result, 'CNPJ', Self.stringToJsonValue(Source.CNPJ));
-    if Source.CPFHasValue then
-      Json.ObjAddProp(Result, 'CPF', Self.stringToJsonValue(Source.CPF));
-    if Source.NIFHasValue then
-      Json.ObjAddProp(Result, 'NIF', Self.stringToJsonValue(Source.NIF));
-    if Source.cNaoNIFHasValue then
-      Json.ObjAddProp(Result, 'cNaoNIF', Self.IntegerToJsonValue(Source.cNaoNIF));
-    if Source.CAEPFHasValue then
-      Json.ObjAddProp(Result, 'CAEPF', Self.stringToJsonValue(Source.CAEPF));
-    if Source.IMHasValue then
-      Json.ObjAddProp(Result, 'IM', Self.stringToJsonValue(Source.IM));
-    if Source.IEHasValue then
-      Json.ObjAddProp(Result, 'IE', Self.stringToJsonValue(Source.IE));
-    Json.ObjAddProp(Result, 'xNome', Self.stringToJsonValue(Source.xNome));
-    if Assigned(Source.&end) then
-      Json.ObjAddProp(Result, 'end', Self.TEnderecoToJsonValue(Source.&end));
-    if Source.foneHasValue then
-      Json.ObjAddProp(Result, 'fone', Self.stringToJsonValue(Source.fone));
-    if Source.emailHasValue then
-      Json.ObjAddProp(Result, 'email', Self.stringToJsonValue(Source.email));
-  except
-    Result.Free;
-    raise;
-  end;
-end;
-
-function TJsonConverter.TInfoFornecDocDedRedToJson(Source: TInfoFornecDocDedRed): string;
-var
-  JValue: TJSONValue;
-begin
-  JValue := TInfoFornecDocDedRedToJsonValue(Source);
-  try
-    Result := JsonValueToJson(JValue);
-  finally
-    JValue.Free;
-  end;
-end;
-
-function TJsonConverter.TInfoFornecDocDedRedFromJsonValue(Source: TJSONValue): TInfoFornecDocDedRed;
-var
-  JValue: TJSONValue;
-begin
-  if not Json.IsObject(Source) then
-  begin
-    Result := nil;
-    Exit;
-  end;
-  Result := TInfoFornecDocDedRed.Create;
-  try
-    if Json.ObjContains(Source, 'CNPJ', JValue) then
-      Result.CNPJ := Self.stringFromJsonValue(JValue);
-    if Json.ObjContains(Source, 'CPF', JValue) then
-      Result.CPF := Self.stringFromJsonValue(JValue);
-    if Json.ObjContains(Source, 'NIF', JValue) then
-      Result.NIF := Self.stringFromJsonValue(JValue);
-    if Json.ObjContains(Source, 'cNaoNIF', JValue) then
-      Result.cNaoNIF := Self.IntegerFromJsonValue(JValue);
-    if Json.ObjContains(Source, 'CAEPF', JValue) then
-      Result.CAEPF := Self.stringFromJsonValue(JValue);
-    if Json.ObjContains(Source, 'IM', JValue) then
-      Result.IM := Self.stringFromJsonValue(JValue);
-    if Json.ObjContains(Source, 'IE', JValue) then
-      Result.IE := Self.stringFromJsonValue(JValue);
-    if Json.ObjContains(Source, 'xNome', JValue) then
-      Result.xNome := Self.stringFromJsonValue(JValue);
-    if Json.ObjContains(Source, 'end', JValue) then
-      Result.&end := Self.TEnderecoFromJsonValue(JValue);
-    if Json.ObjContains(Source, 'fone', JValue) then
-      Result.fone := Self.stringFromJsonValue(JValue);
-    if Json.ObjContains(Source, 'email', JValue) then
-      Result.email := Self.stringFromJsonValue(JValue);
-  except
-    Result.Free;
-    raise;
-  end;
-end;
-
-function TJsonConverter.TInfoFornecDocDedRedFromJson(Source: string): TInfoFornecDocDedRed;
-var
-  JValue: TJSONValue;
-begin
-  JValue := JsonToJsonValue(Source);
-  try
-    Result := TInfoFornecDocDedRedFromJsonValue(JValue);
   finally
     JValue.Free;
   end;
@@ -14305,6 +14831,8 @@ begin
     Json.ObjAddProp(Result, 'vServPrest', Self.TVServPrestToJsonValue(Source.vServPrest));
     if Assigned(Source.vDescCondIncond) then
       Json.ObjAddProp(Result, 'vDescCondIncond', Self.TVDescCondIncondToJsonValue(Source.vDescCondIncond));
+    if Assigned(Source.vAjusteBC) then
+      Json.ObjAddProp(Result, 'vAjusteBC', Self.TInfoAjusteBCToJsonValue(Source.vAjusteBC));
     if Assigned(Source.vDedRed) then
       Json.ObjAddProp(Result, 'vDedRed', Self.TInfoDedRedToJsonValue(Source.vDedRed));
     Json.ObjAddProp(Result, 'trib', Self.TInfoTributacaoToJsonValue(Source.trib));
@@ -14341,6 +14869,8 @@ begin
       Result.vServPrest := Self.TVServPrestFromJsonValue(JValue);
     if Json.ObjContains(Source, 'vDescCondIncond', JValue) then
       Result.vDescCondIncond := Self.TVDescCondIncondFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'vAjusteBC', JValue) then
+      Result.vAjusteBC := Self.TInfoAjusteBCFromJsonValue(JValue);
     if Json.ObjContains(Source, 'vDedRed', JValue) then
       Result.vDedRed := Self.TInfoDedRedFromJsonValue(JValue);
     if Json.ObjContains(Source, 'trib', JValue) then
@@ -14509,6 +15039,419 @@ begin
   end;
 end;
 
+function TJsonConverter.TRTCLocacaoImovelToJsonValue(Source: TRTCLocacaoImovel): TJSONValue;
+begin
+  if not Assigned(Source) then
+  begin
+    Result := Json.CreateNull;
+    Exit;
+  end;
+  Result := Json.CreateObject;
+  try
+    Json.ObjAddProp(Result, 'pCopropriedade', Self.DoubleToJsonValue(Source.pCopropriedade));
+    Json.ObjAddProp(Result, 'vTotOper', Self.DoubleToJsonValue(Source.vTotOper));
+    if Source.vDescIncondTotHasValue then
+      Json.ObjAddProp(Result, 'vDescIncondTot', Self.DoubleToJsonValue(Source.vDescIncondTot));
+    if Source.vDescCondTotHasValue then
+      Json.ObjAddProp(Result, 'vDescCondTot', Self.DoubleToJsonValue(Source.vDescCondTot));
+    if Source.dVencOrigHasValue then
+      Json.ObjAddProp(Result, 'dVencOrig', Self.TDateToJsonValue(Source.dVencOrig));
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TRTCLocacaoImovelToJson(Source: TRTCLocacaoImovel): string;
+var
+  JValue: TJSONValue;
+begin
+  JValue := TRTCLocacaoImovelToJsonValue(Source);
+  try
+    Result := JsonValueToJson(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TRTCLocacaoImovelFromJsonValue(Source: TJSONValue): TRTCLocacaoImovel;
+var
+  JValue: TJSONValue;
+begin
+  if not Json.IsObject(Source) then
+  begin
+    Result := nil;
+    Exit;
+  end;
+  Result := TRTCLocacaoImovel.Create;
+  try
+    if Json.ObjContains(Source, 'pCopropriedade', JValue) then
+      Result.pCopropriedade := Self.DoubleFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'vTotOper', JValue) then
+      Result.vTotOper := Self.DoubleFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'vDescIncondTot', JValue) then
+      Result.vDescIncondTot := Self.DoubleFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'vDescCondTot', JValue) then
+      Result.vDescCondTot := Self.DoubleFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'dVencOrig', JValue) then
+      Result.dVencOrig := Self.TDateFromJsonValue(JValue);
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TRTCLocacaoImovelFromJson(Source: string): TRTCLocacaoImovel;
+var
+  JValue: TJSONValue;
+begin
+  JValue := JsonToJsonValue(Source);
+  try
+    Result := TRTCLocacaoImovelFromJsonValue(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TEnderImovelToJsonValue(Source: TEnderImovel): TJSONValue;
+begin
+  if not Assigned(Source) then
+  begin
+    Result := Json.CreateNull;
+    Exit;
+  end;
+  Result := Json.CreateObject;
+  try
+    Json.ObjAddProp(Result, 'CEP', Self.stringToJsonValue(Source.CEP));
+    Json.ObjAddProp(Result, 'xLgr', Self.stringToJsonValue(Source.xLgr));
+    if Source.tpLgrHasValue then
+      Json.ObjAddProp(Result, 'tpLgr', Self.stringToJsonValue(Source.tpLgr));
+    Json.ObjAddProp(Result, 'nro', Self.stringToJsonValue(Source.nro));
+    if Source.xCplHasValue then
+      Json.ObjAddProp(Result, 'xCpl', Self.stringToJsonValue(Source.xCpl));
+    if Source.xBairroHasValue then
+      Json.ObjAddProp(Result, 'xBairro', Self.stringToJsonValue(Source.xBairro));
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TEnderImovelToJson(Source: TEnderImovel): string;
+var
+  JValue: TJSONValue;
+begin
+  JValue := TEnderImovelToJsonValue(Source);
+  try
+    Result := JsonValueToJson(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TEnderImovelFromJsonValue(Source: TJSONValue): TEnderImovel;
+var
+  JValue: TJSONValue;
+begin
+  if not Json.IsObject(Source) then
+  begin
+    Result := nil;
+    Exit;
+  end;
+  Result := TEnderImovel.Create;
+  try
+    if Json.ObjContains(Source, 'CEP', JValue) then
+      Result.CEP := Self.stringFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'xLgr', JValue) then
+      Result.xLgr := Self.stringFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'tpLgr', JValue) then
+      Result.tpLgr := Self.stringFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'nro', JValue) then
+      Result.nro := Self.stringFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'xCpl', JValue) then
+      Result.xCpl := Self.stringFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'xBairro', JValue) then
+      Result.xBairro := Self.stringFromJsonValue(JValue);
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TEnderImovelFromJson(Source: string): TEnderImovel;
+var
+  JValue: TJSONValue;
+begin
+  JValue := JsonToJsonValue(Source);
+  try
+    Result := TEnderImovelFromJsonValue(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TRTCValoresBCImoveisToJsonValue(Source: TRTCValoresBCImoveis): TJSONValue;
+begin
+  if not Assigned(Source) then
+  begin
+    Result := Json.CreateNull;
+    Exit;
+  end;
+  Result := Json.CreateObject;
+  try
+    Json.ObjAddProp(Result, 'tpAjusteBCLocImoveis', Self.stringToJsonValue(Source.tpAjusteBCLocImoveis));
+    if Source.xTpAjusteBCLocImoveisHasValue then
+      Json.ObjAddProp(Result, 'xTpAjusteBCLocImoveis', Self.stringToJsonValue(Source.xTpAjusteBCLocImoveis));
+    Json.ObjAddProp(Result, 'vAjusteBCLocImoveis', Self.DoubleToJsonValue(Source.vAjusteBCLocImoveis));
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TRTCValoresBCImoveisToJson(Source: TRTCValoresBCImoveis): string;
+var
+  JValue: TJSONValue;
+begin
+  JValue := TRTCValoresBCImoveisToJsonValue(Source);
+  try
+    Result := JsonValueToJson(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TRTCValoresBCImoveisFromJsonValue(Source: TJSONValue): TRTCValoresBCImoveis;
+var
+  JValue: TJSONValue;
+begin
+  if not Json.IsObject(Source) then
+  begin
+    Result := nil;
+    Exit;
+  end;
+  Result := TRTCValoresBCImoveis.Create;
+  try
+    if Json.ObjContains(Source, 'tpAjusteBCLocImoveis', JValue) then
+      Result.tpAjusteBCLocImoveis := Self.stringFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'xTpAjusteBCLocImoveis', JValue) then
+      Result.xTpAjusteBCLocImoveis := Self.stringFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'vAjusteBCLocImoveis', JValue) then
+      Result.vAjusteBCLocImoveis := Self.DoubleFromJsonValue(JValue);
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TRTCValoresBCImoveisFromJson(Source: string): TRTCValoresBCImoveis;
+var
+  JValue: TJSONValue;
+begin
+  JValue := JsonToJsonValue(Source);
+  try
+    Result := TRTCValoresBCImoveisFromJsonValue(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TRTCValoresBCImoveisListToJsonValue(Source: TRTCValoresBCImoveisList): TJSONValue;
+var
+  Index: Integer;
+begin
+  if not Assigned(Source) then
+  begin
+    Result := Json.CreateNull;
+    Exit;
+  end;
+  Result := Json.CreateArray;
+  try
+    for Index := 0 to Source.Count - 1 do
+      Json.ArrayAdd(Result, Self.TRTCValoresBCImoveisToJsonValue(Source[Index]));
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TRTCValoresBCImoveisListToJson(Source: TRTCValoresBCImoveisList): string;
+var
+  JValue: TJSONValue;
+begin
+  JValue := TRTCValoresBCImoveisListToJsonValue(Source);
+  try
+    Result := JsonValueToJson(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TRTCValoresBCImoveisListFromJsonValue(Source: TJSONValue): TRTCValoresBCImoveisList;
+var
+  Index: Integer;
+begin
+  if not Json.IsArray(Source) then
+  begin
+    Result := nil;
+    Exit;
+  end;
+  Result := TRTCValoresBCImoveisList.Create;
+  try
+    for Index := 0 to Json.ArrayLength(Source) - 1 do
+      Result.Add(Self.TRTCValoresBCImoveisFromJsonValue(Json.ArrayGet(Source, Index)));
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TRTCValoresBCImoveisListFromJson(Source: string): TRTCValoresBCImoveisList;
+var
+  JValue: TJSONValue;
+begin
+  JValue := JsonToJsonValue(Source);
+  try
+    Result := TRTCValoresBCImoveisListFromJsonValue(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TRTCUnidadesImobiliariasToJsonValue(Source: TRTCUnidadesImobiliarias): TJSONValue;
+begin
+  if not Assigned(Source) then
+  begin
+    Result := Json.CreateNull;
+    Exit;
+  end;
+  Result := Json.CreateObject;
+  try
+    if Source.inscImobFiscHasValue then
+      Json.ObjAddProp(Result, 'inscImobFisc', Self.stringToJsonValue(Source.inscImobFisc));
+    if Source.cCIBHasValue then
+      Json.ObjAddProp(Result, 'cCIB', Self.stringToJsonValue(Source.cCIB));
+    if Assigned(Source.&end) then
+      Json.ObjAddProp(Result, 'end', Self.TEnderImovelToJsonValue(Source.&end));
+    if Assigned(Source.gAjusteBCLocImoveis) then
+      Json.ObjAddProp(Result, 'gAjusteBCLocImoveis', Self.TRTCValoresBCImoveisListToJsonValue(Source.gAjusteBCLocImoveis));
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TRTCUnidadesImobiliariasToJson(Source: TRTCUnidadesImobiliarias): string;
+var
+  JValue: TJSONValue;
+begin
+  JValue := TRTCUnidadesImobiliariasToJsonValue(Source);
+  try
+    Result := JsonValueToJson(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TRTCUnidadesImobiliariasFromJsonValue(Source: TJSONValue): TRTCUnidadesImobiliarias;
+var
+  JValue: TJSONValue;
+begin
+  if not Json.IsObject(Source) then
+  begin
+    Result := nil;
+    Exit;
+  end;
+  Result := TRTCUnidadesImobiliarias.Create;
+  try
+    if Json.ObjContains(Source, 'inscImobFisc', JValue) then
+      Result.inscImobFisc := Self.stringFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'cCIB', JValue) then
+      Result.cCIB := Self.stringFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'end', JValue) then
+      Result.&end := Self.TEnderImovelFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'gAjusteBCLocImoveis', JValue) then
+      Result.gAjusteBCLocImoveis := Self.TRTCValoresBCImoveisListFromJsonValue(JValue);
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TRTCUnidadesImobiliariasFromJson(Source: string): TRTCUnidadesImobiliarias;
+var
+  JValue: TJSONValue;
+begin
+  JValue := JsonToJsonValue(Source);
+  try
+    Result := TRTCUnidadesImobiliariasFromJsonValue(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TRTCUnidadesImobiliariasListToJsonValue(Source: TRTCUnidadesImobiliariasList): TJSONValue;
+var
+  Index: Integer;
+begin
+  if not Assigned(Source) then
+  begin
+    Result := Json.CreateNull;
+    Exit;
+  end;
+  Result := Json.CreateArray;
+  try
+    for Index := 0 to Source.Count - 1 do
+      Json.ArrayAdd(Result, Self.TRTCUnidadesImobiliariasToJsonValue(Source[Index]));
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TRTCUnidadesImobiliariasListToJson(Source: TRTCUnidadesImobiliariasList): string;
+var
+  JValue: TJSONValue;
+begin
+  JValue := TRTCUnidadesImobiliariasListToJsonValue(Source);
+  try
+    Result := JsonValueToJson(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
+function TJsonConverter.TRTCUnidadesImobiliariasListFromJsonValue(Source: TJSONValue): TRTCUnidadesImobiliariasList;
+var
+  Index: Integer;
+begin
+  if not Json.IsArray(Source) then
+  begin
+    Result := nil;
+    Exit;
+  end;
+  Result := TRTCUnidadesImobiliariasList.Create;
+  try
+    for Index := 0 to Json.ArrayLength(Source) - 1 do
+      Result.Add(Self.TRTCUnidadesImobiliariasFromJsonValue(Json.ArrayGet(Source, Index)));
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+function TJsonConverter.TRTCUnidadesImobiliariasListFromJson(Source: string): TRTCUnidadesImobiliariasList;
+var
+  JValue: TJSONValue;
+begin
+  JValue := JsonToJsonValue(Source);
+  try
+    Result := TRTCUnidadesImobiliariasListFromJsonValue(JValue);
+  finally
+    JValue.Free;
+  end;
+end;
+
 function TJsonConverter.TRTCInfoImovelToJsonValue(Source: TRTCInfoImovel): TJSONValue;
 begin
   if not Assigned(Source) then
@@ -14518,6 +15461,12 @@ begin
   end;
   Result := Json.CreateObject;
   try
+    if Source.cMunHasValue then
+      Json.ObjAddProp(Result, 'cMun', Self.stringToJsonValue(Source.cMun));
+    if Assigned(Source.gLocacao) then
+      Json.ObjAddProp(Result, 'gLocacao', Self.TRTCLocacaoImovelToJsonValue(Source.gLocacao));
+    if Assigned(Source.gUnidImob) then
+      Json.ObjAddProp(Result, 'gUnidImob', Self.TRTCUnidadesImobiliariasListToJsonValue(Source.gUnidImob));
     if Source.inscImobFiscHasValue then
       Json.ObjAddProp(Result, 'inscImobFisc', Self.stringToJsonValue(Source.inscImobFisc));
     if Source.cCIBHasValue then
@@ -14553,6 +15502,12 @@ begin
   end;
   Result := TRTCInfoImovel.Create;
   try
+    if Json.ObjContains(Source, 'cMun', JValue) then
+      Result.cMun := Self.stringFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'gLocacao', JValue) then
+      Result.gLocacao := Self.TRTCLocacaoImovelFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'gUnidImob', JValue) then
+      Result.gUnidImob := Self.TRTCUnidadesImobiliariasListFromJsonValue(JValue);
     if Json.ObjContains(Source, 'inscImobFisc', JValue) then
       Result.inscImobFisc := Self.stringFromJsonValue(JValue);
     if Json.ObjContains(Source, 'cCIB', JValue) then
@@ -14577,7 +15532,7 @@ begin
   end;
 end;
 
-function TJsonConverter.TRTCListaDocDFeToJsonValue(Source: TRTCListaDocDFe): TJSONValue;
+function TJsonConverter.TRTCInfoBensMoveisToJsonValue(Source: TRTCInfoBensMoveis): TJSONValue;
 begin
   if not Assigned(Source) then
   begin
@@ -14586,21 +15541,20 @@ begin
   end;
   Result := Json.CreateObject;
   try
-    Json.ObjAddProp(Result, 'tipoChaveDFe', Self.IntegerToJsonValue(Source.tipoChaveDFe));
-    if Source.xTipoChaveDFeHasValue then
-      Json.ObjAddProp(Result, 'xTipoChaveDFe', Self.stringToJsonValue(Source.xTipoChaveDFe));
-    Json.ObjAddProp(Result, 'chaveDFe', Self.stringToJsonValue(Source.chaveDFe));
+    Json.ObjAddProp(Result, 'cNCMBemMovel', Self.stringToJsonValue(Source.cNCMBemMovel));
+    Json.ObjAddProp(Result, 'xNCMBemMovel', Self.stringToJsonValue(Source.xNCMBemMovel));
+    Json.ObjAddProp(Result, 'qtdNCMBemMovel', Self.IntegerToJsonValue(Source.qtdNCMBemMovel));
   except
     Result.Free;
     raise;
   end;
 end;
 
-function TJsonConverter.TRTCListaDocDFeToJson(Source: TRTCListaDocDFe): string;
+function TJsonConverter.TRTCInfoBensMoveisToJson(Source: TRTCInfoBensMoveis): string;
 var
   JValue: TJSONValue;
 begin
-  JValue := TRTCListaDocDFeToJsonValue(Source);
+  JValue := TRTCInfoBensMoveisToJsonValue(Source);
   try
     Result := JsonValueToJson(JValue);
   finally
@@ -14608,7 +15562,7 @@ begin
   end;
 end;
 
-function TJsonConverter.TRTCListaDocDFeFromJsonValue(Source: TJSONValue): TRTCListaDocDFe;
+function TJsonConverter.TRTCInfoBensMoveisFromJsonValue(Source: TJSONValue): TRTCInfoBensMoveis;
 var
   JValue: TJSONValue;
 begin
@@ -14617,55 +15571,56 @@ begin
     Result := nil;
     Exit;
   end;
-  Result := TRTCListaDocDFe.Create;
+  Result := TRTCInfoBensMoveis.Create;
   try
-    if Json.ObjContains(Source, 'tipoChaveDFe', JValue) then
-      Result.tipoChaveDFe := Self.IntegerFromJsonValue(JValue);
-    if Json.ObjContains(Source, 'xTipoChaveDFe', JValue) then
-      Result.xTipoChaveDFe := Self.stringFromJsonValue(JValue);
-    if Json.ObjContains(Source, 'chaveDFe', JValue) then
-      Result.chaveDFe := Self.stringFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'cNCMBemMovel', JValue) then
+      Result.cNCMBemMovel := Self.stringFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'xNCMBemMovel', JValue) then
+      Result.xNCMBemMovel := Self.stringFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'qtdNCMBemMovel', JValue) then
+      Result.qtdNCMBemMovel := Self.IntegerFromJsonValue(JValue);
   except
     Result.Free;
     raise;
   end;
 end;
 
-function TJsonConverter.TRTCListaDocDFeFromJson(Source: string): TRTCListaDocDFe;
+function TJsonConverter.TRTCInfoBensMoveisFromJson(Source: string): TRTCInfoBensMoveis;
 var
   JValue: TJSONValue;
 begin
   JValue := JsonToJsonValue(Source);
   try
-    Result := TRTCListaDocDFeFromJsonValue(JValue);
+    Result := TRTCInfoBensMoveisFromJsonValue(JValue);
   finally
     JValue.Free;
   end;
 end;
 
-function TJsonConverter.TRTCListaDocFiscalOutroToJsonValue(Source: TRTCListaDocFiscalOutro): TJSONValue;
+function TJsonConverter.TRTCInfoBensMoveisListToJsonValue(Source: TRTCInfoBensMoveisList): TJSONValue;
+var
+  Index: Integer;
 begin
   if not Assigned(Source) then
   begin
     Result := Json.CreateNull;
     Exit;
   end;
-  Result := Json.CreateObject;
+  Result := Json.CreateArray;
   try
-    Json.ObjAddProp(Result, 'cMunDocFiscal', Self.IntegerToJsonValue(Source.cMunDocFiscal));
-    Json.ObjAddProp(Result, 'nDocFiscal', Self.stringToJsonValue(Source.nDocFiscal));
-    Json.ObjAddProp(Result, 'xDocFiscal', Self.stringToJsonValue(Source.xDocFiscal));
+    for Index := 0 to Source.Count - 1 do
+      Json.ArrayAdd(Result, Self.TRTCInfoBensMoveisToJsonValue(Source[Index]));
   except
     Result.Free;
     raise;
   end;
 end;
 
-function TJsonConverter.TRTCListaDocFiscalOutroToJson(Source: TRTCListaDocFiscalOutro): string;
+function TJsonConverter.TRTCInfoBensMoveisListToJson(Source: TRTCInfoBensMoveisList): string;
 var
   JValue: TJSONValue;
 begin
-  JValue := TRTCListaDocFiscalOutroToJsonValue(Source);
+  JValue := TRTCInfoBensMoveisListToJsonValue(Source);
   try
     Result := JsonValueToJson(JValue);
   finally
@@ -14673,98 +15628,32 @@ begin
   end;
 end;
 
-function TJsonConverter.TRTCListaDocFiscalOutroFromJsonValue(Source: TJSONValue): TRTCListaDocFiscalOutro;
+function TJsonConverter.TRTCInfoBensMoveisListFromJsonValue(Source: TJSONValue): TRTCInfoBensMoveisList;
 var
-  JValue: TJSONValue;
+  Index: Integer;
 begin
-  if not Json.IsObject(Source) then
+  if not Json.IsArray(Source) then
   begin
     Result := nil;
     Exit;
   end;
-  Result := TRTCListaDocFiscalOutro.Create;
+  Result := TRTCInfoBensMoveisList.Create;
   try
-    if Json.ObjContains(Source, 'cMunDocFiscal', JValue) then
-      Result.cMunDocFiscal := Self.IntegerFromJsonValue(JValue);
-    if Json.ObjContains(Source, 'nDocFiscal', JValue) then
-      Result.nDocFiscal := Self.stringFromJsonValue(JValue);
-    if Json.ObjContains(Source, 'xDocFiscal', JValue) then
-      Result.xDocFiscal := Self.stringFromJsonValue(JValue);
+    for Index := 0 to Json.ArrayLength(Source) - 1 do
+      Result.Add(Self.TRTCInfoBensMoveisFromJsonValue(Json.ArrayGet(Source, Index)));
   except
     Result.Free;
     raise;
   end;
 end;
 
-function TJsonConverter.TRTCListaDocFiscalOutroFromJson(Source: string): TRTCListaDocFiscalOutro;
+function TJsonConverter.TRTCInfoBensMoveisListFromJson(Source: string): TRTCInfoBensMoveisList;
 var
   JValue: TJSONValue;
 begin
   JValue := JsonToJsonValue(Source);
   try
-    Result := TRTCListaDocFiscalOutroFromJsonValue(JValue);
-  finally
-    JValue.Free;
-  end;
-end;
-
-function TJsonConverter.TRTCListaDocOutroToJsonValue(Source: TRTCListaDocOutro): TJSONValue;
-begin
-  if not Assigned(Source) then
-  begin
-    Result := Json.CreateNull;
-    Exit;
-  end;
-  Result := Json.CreateObject;
-  try
-    Json.ObjAddProp(Result, 'nDoc', Self.stringToJsonValue(Source.nDoc));
-    Json.ObjAddProp(Result, 'xDoc', Self.stringToJsonValue(Source.xDoc));
-  except
-    Result.Free;
-    raise;
-  end;
-end;
-
-function TJsonConverter.TRTCListaDocOutroToJson(Source: TRTCListaDocOutro): string;
-var
-  JValue: TJSONValue;
-begin
-  JValue := TRTCListaDocOutroToJsonValue(Source);
-  try
-    Result := JsonValueToJson(JValue);
-  finally
-    JValue.Free;
-  end;
-end;
-
-function TJsonConverter.TRTCListaDocOutroFromJsonValue(Source: TJSONValue): TRTCListaDocOutro;
-var
-  JValue: TJSONValue;
-begin
-  if not Json.IsObject(Source) then
-  begin
-    Result := nil;
-    Exit;
-  end;
-  Result := TRTCListaDocOutro.Create;
-  try
-    if Json.ObjContains(Source, 'nDoc', JValue) then
-      Result.nDoc := Self.stringFromJsonValue(JValue);
-    if Json.ObjContains(Source, 'xDoc', JValue) then
-      Result.xDoc := Self.stringFromJsonValue(JValue);
-  except
-    Result.Free;
-    raise;
-  end;
-end;
-
-function TJsonConverter.TRTCListaDocOutroFromJson(Source: string): TRTCListaDocOutro;
-var
-  JValue: TJSONValue;
-begin
-  JValue := JsonToJsonValue(Source);
-  try
-    Result := TRTCListaDocOutroFromJsonValue(JValue);
+    Result := TRTCInfoBensMoveisListFromJsonValue(JValue);
   finally
     JValue.Free;
   end;
@@ -15190,8 +16079,10 @@ begin
   end;
   Result := Json.CreateObject;
   try
-    Json.ObjAddProp(Result, 'CST', Self.stringToJsonValue(Source.CST));
-    Json.ObjAddProp(Result, 'cClassTrib', Self.stringToJsonValue(Source.cClassTrib));
+    if Source.CSTHasValue then
+      Json.ObjAddProp(Result, 'CST', Self.stringToJsonValue(Source.CST));
+    if Source.cClassTribHasValue then
+      Json.ObjAddProp(Result, 'cClassTrib', Self.stringToJsonValue(Source.cClassTrib));
     if Source.cCredPresHasValue then
       Json.ObjAddProp(Result, 'cCredPres', Self.stringToJsonValue(Source.cCredPres));
     if Assigned(Source.gTribRegular) then
@@ -15264,7 +16155,12 @@ begin
   end;
   Result := Json.CreateObject;
   try
-    Json.ObjAddProp(Result, 'gIBSCBS', Self.TRTCInfoTributosSitClasToJsonValue(Source.gIBSCBS));
+    if Source.CSTHasValue then
+      Json.ObjAddProp(Result, 'CST', Self.stringToJsonValue(Source.CST));
+    if Source.cClassTribHasValue then
+      Json.ObjAddProp(Result, 'cClassTrib', Self.stringToJsonValue(Source.cClassTrib));
+    if Assigned(Source.gIBSCBS) then
+      Json.ObjAddProp(Result, 'gIBSCBS', Self.TRTCInfoTributosSitClasToJsonValue(Source.gIBSCBS));
   except
     Result.Free;
     raise;
@@ -15294,6 +16190,10 @@ begin
   end;
   Result := TRTCInfoTributosIBSCBS.Create;
   try
+    if Json.ObjContains(Source, 'CST', JValue) then
+      Result.CST := Self.stringFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'cClassTrib', JValue) then
+      Result.cClassTrib := Self.stringFromJsonValue(JValue);
     if Json.ObjContains(Source, 'gIBSCBS', JValue) then
       Result.gIBSCBS := Self.TRTCInfoTributosSitClasFromJsonValue(JValue);
   except
@@ -15682,9 +16582,11 @@ begin
   end;
   Result := Json.CreateObject;
   try
-    Json.ObjAddProp(Result, 'finNFSe', Self.IntegerToJsonValue(Source.finNFSe));
+    if Source.finNFSeHasValue then
+      Json.ObjAddProp(Result, 'finNFSe', Self.IntegerToJsonValue(Source.finNFSe));
     Json.ObjAddProp(Result, 'indFinal', Self.IntegerToJsonValue(Source.indFinal));
-    Json.ObjAddProp(Result, 'cIndOp', Self.stringToJsonValue(Source.cIndOp));
+    if Source.cIndOpHasValue then
+      Json.ObjAddProp(Result, 'cIndOp', Self.stringToJsonValue(Source.cIndOp));
     if Source.tpOperHasValue then
       Json.ObjAddProp(Result, 'tpOper', Self.IntegerToJsonValue(Source.tpOper));
     if Assigned(Source.gRefNFSe) then
@@ -15696,6 +16598,8 @@ begin
       Json.ObjAddProp(Result, 'dest', Self.TRTCInfoDestToJsonValue(Source.dest));
     if Assigned(Source.imovel) then
       Json.ObjAddProp(Result, 'imovel', Self.TRTCInfoImovelToJsonValue(Source.imovel));
+    if Assigned(Source.bensMoveis) then
+      Json.ObjAddProp(Result, 'bensMoveis', Self.TRTCInfoBensMoveisListToJsonValue(Source.bensMoveis));
     Json.ObjAddProp(Result, 'valores', Self.TRTCInfoValoresIBSCBSToJsonValue(Source.valores));
   except
     Result.Free;
@@ -15744,6 +16648,8 @@ begin
       Result.dest := Self.TRTCInfoDestFromJsonValue(JValue);
     if Json.ObjContains(Source, 'imovel', JValue) then
       Result.imovel := Self.TRTCInfoImovelFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'bensMoveis', JValue) then
+      Result.bensMoveis := Self.TRTCInfoBensMoveisListFromJsonValue(JValue);
     if Json.ObjContains(Source, 'valores', JValue) then
       Result.valores := Self.TRTCInfoValoresIBSCBSFromJsonValue(JValue);
   except
@@ -15786,6 +16692,8 @@ begin
       Json.ObjAddProp(Result, 'dCompet', Self.TDateToJsonValue(Source.dCompet));
     if Source.cMotivoEmisTIHasValue then
       Json.ObjAddProp(Result, 'cMotivoEmisTI', Self.IntegerToJsonValue(Source.cMotivoEmisTI));
+    if Source.finNFSeHasValue then
+      Json.ObjAddProp(Result, 'finNFSe', Self.IntegerToJsonValue(Source.finNFSe));
     if Source.chNFSeRejHasValue then
       Json.ObjAddProp(Result, 'chNFSeRej', Self.stringToJsonValue(Source.chNFSeRej));
     if Assigned(Source.subst) then
@@ -15842,6 +16750,8 @@ begin
       Result.dCompet := Self.TDateFromJsonValue(JValue);
     if Json.ObjContains(Source, 'cMotivoEmisTI', JValue) then
       Result.cMotivoEmisTI := Self.IntegerFromJsonValue(JValue);
+    if Json.ObjContains(Source, 'finNFSe', JValue) then
+      Result.finNFSe := Self.IntegerFromJsonValue(JValue);
     if Json.ObjContains(Source, 'chNFSeRej', JValue) then
       Result.chNFSeRej := Self.stringFromJsonValue(JValue);
     if Json.ObjContains(Source, 'subst', JValue) then

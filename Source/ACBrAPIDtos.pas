@@ -139,9 +139,16 @@ type
   TServ = class;
   TVServPrest = class;
   TVDescCondIncond = class;
+  TRTCListaDocDFe = class;
+  TRTCListaDocFiscalOutro = class;
+  TRTCListaDocOutro = class;
+  TInfoFornecDocDedRed = class;
+  TDocAjusteBC = class;
+  TDocAjusteBCList = class;
+  TListaDocAjusteBC = class;
+  TInfoAjusteBC = class;
   TDocOutNFSe = class;
   TDocNFNFS = class;
-  TInfoFornecDocDedRed = class;
   TDocDedRed = class;
   TDocDedRedList = class;
   TListaDocDedRed = class;
@@ -158,10 +165,15 @@ type
   TInfoValores = class;
   TInfoRefNFSe = class;
   TRTCInfoDest = class;
+  TRTCLocacaoImovel = class;
+  TEnderImovel = class;
+  TRTCValoresBCImoveis = class;
+  TRTCValoresBCImoveisList = class;
+  TRTCUnidadesImobiliarias = class;
+  TRTCUnidadesImobiliariasList = class;
   TRTCInfoImovel = class;
-  TRTCListaDocDFe = class;
-  TRTCListaDocFiscalOutro = class;
-  TRTCListaDocOutro = class;
+  TRTCInfoBensMoveis = class;
+  TRTCInfoBensMoveisList = class;
   TRTCListaDocFornec = class;
   TRTCListaDoc = class;
   TRTCListaDocList = class;
@@ -4978,6 +4990,7 @@ type
     FIE: string;
     FIEHasValue: Boolean;
     FxNome: string;
+    FxNomeHasValue: Boolean;
     Fend: TEndereco;
     Ffone: string;
     FfoneHasValue: Boolean;
@@ -4991,6 +5004,7 @@ type
     procedure SetCAEPF(const Value: string);
     procedure SetIM(const Value: string);
     procedure SetIE(const Value: string);
+    procedure SetxNome(const Value: string);
     procedure Setend(const Value: TEndereco);
     procedure Setfone(const Value: string);
     procedure Setemail(const Value: string);
@@ -5046,7 +5060,8 @@ type
     /// <summary>
     /// Nome/Nome Empresarial.
     /// </summary>
-    property xNome: string read FxNome write FxNome;
+    property xNome: string read FxNome write SetxNome;
+    property xNomeHasValue: Boolean read FxNomeHasValue write FxNomeHasValue;
     property &end: TEndereco read Fend write Setend;
     /// <summary>
     /// Número do telefone do prestador:
@@ -5082,6 +5097,7 @@ type
     FIE: string;
     FIEHasValue: Boolean;
     FxNome: string;
+    FxNomeHasValue: Boolean;
     Fend: TEndereco;
     Ffone: string;
     FfoneHasValue: Boolean;
@@ -5094,6 +5110,7 @@ type
     procedure SetCAEPF(const Value: string);
     procedure SetIM(const Value: string);
     procedure SetIE(const Value: string);
+    procedure SetxNome(const Value: string);
     procedure Setend(const Value: TEndereco);
     procedure Setfone(const Value: string);
     procedure Setemail(const Value: string);
@@ -5142,7 +5159,8 @@ type
     /// <summary>
     /// Nome/Nome Empresarial.
     /// </summary>
-    property xNome: string read FxNome write FxNome;
+    property xNome: string read FxNome write SetxNome;
+    property xNomeHasValue: Boolean read FxNomeHasValue write FxNomeHasValue;
     property &end: TEndereco read Fend write Setend;
     /// <summary>
     /// Número do telefone do prestador:
@@ -5739,49 +5757,71 @@ type
   end;
   
   /// <summary>
-  /// Grupo de informações de Outras NFS-e (Padrão anterior de NFS-e).
+  /// Grupo de informações de documentos fiscais eletrônicos que se encontram no repositório nacional.
   /// </summary>
-  TDocOutNFSe = class
+  TRTCListaDocDFe = class
   private
-    FcMunNFSeMun: string;
-    FnNFSeMun: Int64;
-    FcVerifNFSeMun: string;
+    FtipoChaveDFe: Integer;
+    FxTipoChaveDFe: string;
+    FxTipoChaveDFeHasValue: Boolean;
+    FchaveDFe: string;
+    procedure SetxTipoChaveDFe(const Value: string);
   public
     /// <summary>
-    /// Código Município emissor da nota eletrônica municipal (Tabela do IBGE).
+    /// Documento fiscal a que se refere a chaveDfe que seja um dos documentos do Repositório Nacional.
     /// </summary>
-    property cMunNFSeMun: string read FcMunNFSeMun write FcMunNFSeMun;
+    property tipoChaveDFe: Integer read FtipoChaveDFe write FtipoChaveDFe;
     /// <summary>
-    /// Número da nota eletrônica municipal.
+    /// Descrição da DF-e a que se refere a chaveDfe que seja um dos documentos do Repositório Nacional
+    /// Deve ser preenchido apenas quando "tipoChaveDFe = 9 (Outro)".
     /// </summary>
-    property nNFSeMun: Int64 read FnNFSeMun write FnNFSeMun;
+    property xTipoChaveDFe: string read FxTipoChaveDFe write SetxTipoChaveDFe;
+    property xTipoChaveDFeHasValue: Boolean read FxTipoChaveDFeHasValue write FxTipoChaveDFeHasValue;
     /// <summary>
-    /// Código de Verificação da nota eletrônica municipal.
+    /// Chave do Documento Fiscal eletrônico do repositório nacional referenciado para os casos de operações já tributadas.
     /// </summary>
-    property cVerifNFSeMun: string read FcVerifNFSeMun write FcVerifNFSeMun;
+    property chaveDFe: string read FchaveDFe write FchaveDFe;
   end;
   
   /// <summary>
-  /// Grupo de informações de NF ou NFS (Modelo não eletrônico).
+  /// Grupo de informações de documento fiscais, eletrônicos ou não, que não se encontram no repositório nacional.
   /// </summary>
-  TDocNFNFS = class
+  TRTCListaDocFiscalOutro = class
   private
-    FnNFS: Integer;
-    FmodNFS: Int64;
-    FserieNFS: string;
+    FcMunDocFiscal: Integer;
+    FnDocFiscal: string;
+    FxDocFiscal: string;
   public
     /// <summary>
-    /// Número da Nota Fiscal NF ou NFS.
+    /// Código do município emissor do documento fiscal que não se encontra no repositório nacional.
     /// </summary>
-    property nNFS: Integer read FnNFS write FnNFS;
+    property cMunDocFiscal: Integer read FcMunDocFiscal write FcMunDocFiscal;
     /// <summary>
-    /// Modelo da Nota Fiscal NF ou NFS.
+    /// Número do documento fiscal que não se encontra no repositório nacional.
     /// </summary>
-    property modNFS: Int64 read FmodNFS write FmodNFS;
+    property nDocFiscal: string read FnDocFiscal write FnDocFiscal;
     /// <summary>
-    /// Série Nota Fiscal NF ou NFS.
+    /// Descrição do documento fiscal.
     /// </summary>
-    property serieNFS: string read FserieNFS write FserieNFS;
+    property xDocFiscal: string read FxDocFiscal write FxDocFiscal;
+  end;
+  
+  /// <summary>
+  /// Grupo de informações de documento não fiscal.
+  /// </summary>
+  TRTCListaDocOutro = class
+  private
+    FnDoc: string;
+    FxDoc: string;
+  public
+    /// <summary>
+    /// Número do documento não fiscal.
+    /// </summary>
+    property nDoc: string read FnDoc write FnDoc;
+    /// <summary>
+    /// Descrição do documento não fiscal.
+    /// </summary>
+    property xDoc: string read FxDoc write FxDoc;
   end;
   
   /// <summary>
@@ -5804,6 +5844,7 @@ type
     FIE: string;
     FIEHasValue: Boolean;
     FxNome: string;
+    FxNomeHasValue: Boolean;
     Fend: TEndereco;
     Ffone: string;
     FfoneHasValue: Boolean;
@@ -5816,6 +5857,7 @@ type
     procedure SetCAEPF(const Value: string);
     procedure SetIM(const Value: string);
     procedure SetIE(const Value: string);
+    procedure SetxNome(const Value: string);
     procedure Setend(const Value: TEndereco);
     procedure Setfone(const Value: string);
     procedure Setemail(const Value: string);
@@ -5864,7 +5906,8 @@ type
     /// <summary>
     /// Nome/Nome Empresarial.
     /// </summary>
-    property xNome: string read FxNome write FxNome;
+    property xNome: string read FxNome write SetxNome;
+    property xNomeHasValue: Boolean read FxNomeHasValue write FxNomeHasValue;
     property &end: TEndereco read Fend write Setend;
     /// <summary>
     /// Número do telefone do prestador:
@@ -5878,6 +5921,157 @@ type
     /// </summary>
     property email: string read Femail write Setemail;
     property emailHasValue: Boolean read FemailHasValue write FemailHasValue;
+  end;
+  
+  /// <summary>
+  /// Grupo de informações de documento utilizado para ajuste dos valores de base de cálculo (ISSQN e/ou IBS/CBS).
+  /// </summary>
+  TDocAjusteBC = class
+  private
+    FtpAjusteBC: Integer;
+    FxTpAjusteBC: string;
+    FxTpAjusteBCHasValue: Boolean;
+    FvTotDoc: Double;
+    FvAjusteAplic: Double;
+    FdtEmiDoc: TDate;
+    FdtEmiDocHasValue: Boolean;
+    FdtCompDoc: TDate;
+    FdtCompDocHasValue: Boolean;
+    FdFeNacional: TRTCListaDocDFe;
+    FdocFiscalOutro: TRTCListaDocFiscalOutro;
+    FdocOutro: TRTCListaDocOutro;
+    Ffornec: TInfoFornecDocDedRed;
+    procedure SetxTpAjusteBC(const Value: string);
+    procedure SetdtEmiDoc(const Value: TDate);
+    procedure SetdtCompDoc(const Value: TDate);
+    procedure SetdFeNacional(const Value: TRTCListaDocDFe);
+    procedure SetdocFiscalOutro(const Value: TRTCListaDocFiscalOutro);
+    procedure SetdocOutro(const Value: TRTCListaDocOutro);
+    procedure Setfornec(const Value: TInfoFornecDocDedRed);
+  public
+    destructor Destroy; override;
+    /// <summary>
+    /// Tipo de Ajuste.
+    /// </summary>
+    property tpAjusteBC: Integer read FtpAjusteBC write FtpAjusteBC;
+    /// <summary>
+    /// Descrição do ajuste quando o tipo informado exige detalhamento.
+    /// </summary>
+    property xTpAjusteBC: string read FxTpAjusteBC write SetxTpAjusteBC;
+    property xTpAjusteBCHasValue: Boolean read FxTpAjusteBCHasValue write FxTpAjusteBCHasValue;
+    /// <summary>
+    /// Valor monetário total do documento informado (R$).
+    /// </summary>
+    property vTotDoc: Double read FvTotDoc write FvTotDoc;
+    /// <summary>
+    /// Valor monetário efetivamente utilizado para ajuste de base(s) de cálculo do valor do serviço da NFS-e que está sendo emitida (R$).
+    /// </summary>
+    property vAjusteAplic: Double read FvAjusteAplic write FvAjusteAplic;
+    /// <summary>
+    /// Data da emissão do documento dedutível. Ano, mês e dia (AAAA-MM-DD).
+    /// </summary>
+    property dtEmiDoc: TDate read FdtEmiDoc write SetdtEmiDoc;
+    property dtEmiDocHasValue: Boolean read FdtEmiDocHasValue write FdtEmiDocHasValue;
+    /// <summary>
+    /// Data da competência do documento dedutível. Ano, mês e dia (AAAA-MM-DD).
+    /// </summary>
+    property dtCompDoc: TDate read FdtCompDoc write SetdtCompDoc;
+    property dtCompDocHasValue: Boolean read FdtCompDocHasValue write FdtCompDocHasValue;
+    property dFeNacional: TRTCListaDocDFe read FdFeNacional write SetdFeNacional;
+    property docFiscalOutro: TRTCListaDocFiscalOutro read FdocFiscalOutro write SetdocFiscalOutro;
+    property docOutro: TRTCListaDocOutro read FdocOutro write SetdocOutro;
+    property fornec: TInfoFornecDocDedRed read Ffornec write Setfornec;
+  end;
+  
+  TDocAjusteBCList = class(TObjectList<TDocAjusteBC>)
+  end;
+  
+  /// <summary>
+  /// Grupo de informações de documento utilizado para ajuste dos valores de base de cálculo (ISSQN e/ou IBS/CBS).
+  /// </summary>
+  TListaDocAjusteBC = class
+  private
+    FdocAjusteBC: TDocAjusteBCList;
+    procedure SetdocAjusteBC(const Value: TDocAjusteBCList);
+  public
+    constructor Create;
+    destructor Destroy; override;
+    property docAjusteBC: TDocAjusteBCList read FdocAjusteBC write SetdocAjusteBC;
+  end;
+  
+  /// <summary>
+  /// Grupo de informações relativas ao valores para ajuste dos valores de base de cálculo.
+  /// *Disponível a partir da NT 009 (leiaute 009.1.01).*
+  /// </summary>
+  TInfoAjusteBC = class
+  private
+    FpAjusteBCISSQN: Double;
+    FpAjusteBCISSQNHasValue: Boolean;
+    FvAjusteBCISSQN: Double;
+    FvAjusteBCISSQNHasValue: Boolean;
+    Fdocumentos: TListaDocAjusteBC;
+    procedure SetpAjusteBCISSQN(const Value: Double);
+    procedure SetvAjusteBCISSQN(const Value: Double);
+    procedure Setdocumentos(const Value: TListaDocAjusteBC);
+  public
+    destructor Destroy; override;
+    /// <summary>
+    /// Valor percentual padrão para ajuste dos valores de base de cálculo do ISSQN.
+    /// </summary>
+    property pAjusteBCISSQN: Double read FpAjusteBCISSQN write SetpAjusteBCISSQN;
+    property pAjusteBCISSQNHasValue: Boolean read FpAjusteBCISSQNHasValue write FpAjusteBCISSQNHasValue;
+    /// <summary>
+    /// Valor monetário padrão para ajuste dos valores de base de cálculo do ISSQN.
+    /// </summary>
+    property vAjusteBCISSQN: Double read FvAjusteBCISSQN write SetvAjusteBCISSQN;
+    property vAjusteBCISSQNHasValue: Boolean read FvAjusteBCISSQNHasValue write FvAjusteBCISSQNHasValue;
+    property documentos: TListaDocAjusteBC read Fdocumentos write Setdocumentos;
+  end;
+  
+  /// <summary>
+  /// Grupo de informações de Outras NFS-e (Padrão anterior de NFS-e).
+  /// </summary>
+  TDocOutNFSe = class
+  private
+    FcMunNFSeMun: string;
+    FnNFSeMun: Int64;
+    FcVerifNFSeMun: string;
+  public
+    /// <summary>
+    /// Código Município emissor da nota eletrônica municipal (Tabela do IBGE).
+    /// </summary>
+    property cMunNFSeMun: string read FcMunNFSeMun write FcMunNFSeMun;
+    /// <summary>
+    /// Número da nota eletrônica municipal.
+    /// </summary>
+    property nNFSeMun: Int64 read FnNFSeMun write FnNFSeMun;
+    /// <summary>
+    /// Código de Verificação da nota eletrônica municipal.
+    /// </summary>
+    property cVerifNFSeMun: string read FcVerifNFSeMun write FcVerifNFSeMun;
+  end;
+  
+  /// <summary>
+  /// Grupo de informações de NF ou NFS (Modelo não eletrônico).
+  /// </summary>
+  TDocNFNFS = class
+  private
+    FnNFS: Integer;
+    FmodNFS: Int64;
+    FserieNFS: string;
+  public
+    /// <summary>
+    /// Número da Nota Fiscal NF ou NFS.
+    /// </summary>
+    property nNFS: Integer read FnNFS write FnNFS;
+    /// <summary>
+    /// Modelo da Nota Fiscal NF ou NFS.
+    /// </summary>
+    property modNFS: Int64 read FmodNFS write FmodNFS;
+    /// <summary>
+    /// Série Nota Fiscal NF ou NFS.
+    /// </summary>
+    property serieNFS: string read FserieNFS write FserieNFS;
   end;
   
   /// <summary>
@@ -5987,6 +6181,11 @@ type
   end;
   
   /// <summary>
+  /// `Deprecated`
+  /// 
+  /// **Propriedade depreciada** a partir da NT 009 (leiaute 009.1.01).
+  /// 
+  /// *Utilize `valores.vAjusteBC`*.
   /// Grupo de informações relativas ao valores para dedução/redução do valor da base de cálculo (valor do serviço).
   /// </summary>
   TInfoDedRed = class
@@ -6443,10 +6642,12 @@ type
   private
     FvServPrest: TVServPrest;
     FvDescCondIncond: TVDescCondIncond;
+    FvAjusteBC: TInfoAjusteBC;
     FvDedRed: TInfoDedRed;
     Ftrib: TInfoTributacao;
     procedure SetvServPrest(const Value: TVServPrest);
     procedure SetvDescCondIncond(const Value: TVDescCondIncond);
+    procedure SetvAjusteBC(const Value: TInfoAjusteBC);
     procedure SetvDedRed(const Value: TInfoDedRed);
     procedure Settrib(const Value: TInfoTributacao);
   public
@@ -6454,6 +6655,7 @@ type
     destructor Destroy; override;
     property vServPrest: TVServPrest read FvServPrest write SetvServPrest;
     property vDescCondIncond: TVDescCondIncond read FvDescCondIncond write SetvDescCondIncond;
+    property vAjusteBC: TInfoAjusteBC read FvAjusteBC write SetvAjusteBC;
     property vDedRed: TInfoDedRed read FvDedRed write SetvDedRed;
     property trib: TInfoTributacao read Ftrib write Settrib;
   end;
@@ -6545,18 +6747,147 @@ type
   end;
   
   /// <summary>
-  /// Grupo de informações de operações relacionadas a bens imóveis, exceto obras.
+  /// Grupo de informações relativas às operações de locação, cessão onerosa ou arrendamento de bens imóveis.
+  /// *Disponível a partir da NT 009 (leiaute 009.1.01).*
   /// </summary>
-  TRTCInfoImovel = class
+  TRTCLocacaoImovel = class
+  private
+    FpCopropriedade: Double;
+    FvTotOper: Double;
+    FvDescIncondTot: Double;
+    FvDescIncondTotHasValue: Boolean;
+    FvDescCondTot: Double;
+    FvDescCondTotHasValue: Boolean;
+    FdVencOrig: TDate;
+    FdVencOrigHasValue: Boolean;
+    procedure SetvDescIncondTot(const Value: Double);
+    procedure SetvDescCondTot(const Value: Double);
+    procedure SetdVencOrig(const Value: TDate);
+  public
+    /// <summary>
+    /// Percentual de Copropriedade (Caso só haja um locador, cedente ou arrendador, informar o Percentual de Copropriedade de 100%%).
+    /// </summary>
+    property pCopropriedade: Double read FpCopropriedade write FpCopropriedade;
+    /// <summary>
+    /// Valor total da operação com bem imóvel (Informar o valor total da operação de locação, cessão onerosa ou arrendamento de bens imóveis, associado ao aluguel, renda ou equivalente, conforme art. 255 da LC 214/2025). Não deverá ser inserido neste campo o valor proporcional do coproprietário.
+    /// </summary>
+    property vTotOper: Double read FvTotOper write FvTotOper;
+    /// <summary>
+    /// Valor total do Desconto Incondicionado (Informar o valor total do desconto incondicionado na operação de locação, cessão onerosa ou arrendamento de bens imóveis).
+    /// </summary>
+    property vDescIncondTot: Double read FvDescIncondTot write SetvDescIncondTot;
+    property vDescIncondTotHasValue: Boolean read FvDescIncondTotHasValue write FvDescIncondTotHasValue;
+    /// <summary>
+    /// Valor total do Desconto Condicionado (Informar o valor total do desconto incondicionado na operação de locação, cessão onerosa ou arrendamento de bens imóveis).
+    /// </summary>
+    property vDescCondTot: Double read FvDescCondTot write SetvDescCondTot;
+    property vDescCondTotHasValue: Boolean read FvDescCondTotHasValue write FvDescCondTotHasValue;
+    /// <summary>
+    /// Data de vencimento original Ano, Mês e Dia (AAAA-MM-DD) (Informar data de vencimento original do aluguel, renda ou equivalente na operação de locação, cessão onerosa ou arrendamento de bens imóveis).
+    /// </summary>
+    property dVencOrig: TDate read FdVencOrig write SetdVencOrig;
+    property dVencOrigHasValue: Boolean read FdVencOrigHasValue write FdVencOrigHasValue;
+  end;
+  
+  /// <summary>
+  /// Grupo de informações do endereço do imóvel.
+  /// </summary>
+  TEnderImovel = class
+  private
+    FCEP: string;
+    FxLgr: string;
+    FtpLgr: string;
+    FtpLgrHasValue: Boolean;
+    Fnro: string;
+    FxCpl: string;
+    FxCplHasValue: Boolean;
+    FxBairro: string;
+    FxBairroHasValue: Boolean;
+    procedure SettpLgr(const Value: string);
+    procedure SetxCpl(const Value: string);
+    procedure SetxBairro(const Value: string);
+  public
+    /// <summary>
+    /// Código numérico do Endereçamento Postal nacional (CEP) do endereço do imóvel.
+    /// </summary>
+    property CEP: string read FCEP write FCEP;
+    /// <summary>
+    /// Tipo e nome do logradouro do endereço do imóvel.
+    /// </summary>
+    property xLgr: string read FxLgr write FxLgr;
+    /// <summary>
+    /// Tipo do Logradouro.
+    /// 
+    /// **Atenção**: Para emissões pelo Sistema Nacional NFS-e, esse campo é ignorado.
+    /// </summary>
+    property tpLgr: string read FtpLgr write SettpLgr;
+    property tpLgrHasValue: Boolean read FtpLgrHasValue write FtpLgrHasValue;
+    /// <summary>
+    /// Número no logradouro do endereço do imóvel.
+    /// </summary>
+    property nro: string read Fnro write Fnro;
+    /// <summary>
+    /// Complemento do endereço do imóvel.
+    /// </summary>
+    property xCpl: string read FxCpl write SetxCpl;
+    property xCplHasValue: Boolean read FxCplHasValue write FxCplHasValue;
+    /// <summary>
+    /// Bairro do endereço do imóvel.
+    /// </summary>
+    property xBairro: string read FxBairro write SetxBairro;
+    property xBairroHasValue: Boolean read FxBairroHasValue write FxBairroHasValue;
+  end;
+  
+  /// <summary>
+  /// Grupo de informações relativas a valores de ajuste (dedução/redução) da Base de Cálculo do IBS e da CBS referentes às operações de locação, cessão onerosa ou arrendamento de bens imóveis.
+  /// </summary>
+  TRTCValoresBCImoveis = class
+  private
+    FtpAjusteBCLocImoveis: string;
+    FxTpAjusteBCLocImoveis: string;
+    FxTpAjusteBCLocImoveisHasValue: Boolean;
+    FvAjusteBCLocImoveis: Double;
+    procedure SetxTpAjusteBCLocImoveis(const Value: string);
+  public
+    /// <summary>
+    /// Tipo de parcela não integrante da base de cálculo do IBS e da CBS
+    /// * 01 - Tributos inclusos no aluguel ou equivalente (Ex.: IPTU, Contribuição de melhoria) - apenas para NBS 1.1002.10.00 ou 1.1002.20.00
+    /// * 02 - Emolumento incluso no aluguel ou equivalente - apenas para NBS 1.1002.10.00 ou 1.1002.20.00
+    /// * 03 - Condomínio incluso no aluguel ou equivalente - apenas para NBS 1.1002.10.00 ou 1.1002.20.00
+    /// * 04 - Redutor Social - apenas para a NBS 1.1002.10.00
+    /// * 99 - Outras parcelas inclusas no aluguel ou equivalente
+    /// </summary>
+    property tpAjusteBCLocImoveis: string read FtpAjusteBCLocImoveis write FtpAjusteBCLocImoveis;
+    /// <summary>
+    /// Descrição do tipo de parcela não integrante da base de cálculo do IBS e da CBS quando a opção for "99  = Outras parcelas inclusas no aluguel ou equivalente".
+    /// </summary>
+    property xTpAjusteBCLocImoveis: string read FxTpAjusteBCLocImoveis write SetxTpAjusteBCLocImoveis;
+    property xTpAjusteBCLocImoveisHasValue: Boolean read FxTpAjusteBCLocImoveisHasValue write FxTpAjusteBCLocImoveisHasValue;
+    /// <summary>
+    /// Valor monetário utilizado para não inclusão na base de cálculo do IBS e da CBS da NFS-e que está sendo emitida (R$). (Informar o valor total da parcela não integrante da base de cálculo - IPTU, Condomínio, Redutor social, etc. -, não devendo ser inserido o valor proporcional do coproprietário).
+    /// </summary>
+    property vAjusteBCLocImoveis: Double read FvAjusteBCLocImoveis write FvAjusteBCLocImoveis;
+  end;
+  
+  TRTCValoresBCImoveisList = class(TObjectList<TRTCValoresBCImoveis>)
+  end;
+  
+  /// <summary>
+  /// Grupo de informações relativas às unidades imobiliárias objeto da operação.
+  /// *Disponível a partir da NT 009 (leiaute 009.1.01).*
+  /// </summary>
+  TRTCUnidadesImobiliarias = class
   private
     FinscImobFisc: string;
     FinscImobFiscHasValue: Boolean;
     FcCIB: string;
     FcCIBHasValue: Boolean;
-    Fend: TEnderObraEvento;
+    Fend: TEnderImovel;
+    FgAjusteBCLocImoveis: TRTCValoresBCImoveisList;
     procedure SetinscImobFisc(const Value: string);
     procedure SetcCIB(const Value: string);
-    procedure Setend(const Value: TEnderObraEvento);
+    procedure Setend(const Value: TEnderImovel);
+    procedure SetgAjusteBCLocImoveis(const Value: TRTCValoresBCImoveisList);
   public
     destructor Destroy; override;
     /// <summary>
@@ -6569,75 +6900,91 @@ type
     /// </summary>
     property cCIB: string read FcCIB write SetcCIB;
     property cCIBHasValue: Boolean read FcCIBHasValue write FcCIBHasValue;
+    property &end: TEnderImovel read Fend write Setend;
+    property gAjusteBCLocImoveis: TRTCValoresBCImoveisList read FgAjusteBCLocImoveis write SetgAjusteBCLocImoveis;
+  end;
+  
+  TRTCUnidadesImobiliariasList = class(TObjectList<TRTCUnidadesImobiliarias>)
+  end;
+  
+  /// <summary>
+  /// Grupo de informações de operações relacionadas a bens imóveis, exceto obras.
+  /// </summary>
+  TRTCInfoImovel = class
+  private
+    FcMun: string;
+    FcMunHasValue: Boolean;
+    FgLocacao: TRTCLocacaoImovel;
+    FgUnidImob: TRTCUnidadesImobiliariasList;
+    FinscImobFisc: string;
+    FinscImobFiscHasValue: Boolean;
+    FcCIB: string;
+    FcCIBHasValue: Boolean;
+    Fend: TEnderObraEvento;
+    procedure SetcMun(const Value: string);
+    procedure SetgLocacao(const Value: TRTCLocacaoImovel);
+    procedure SetgUnidImob(const Value: TRTCUnidadesImobiliariasList);
+    procedure SetinscImobFisc(const Value: string);
+    procedure SetcCIB(const Value: string);
+    procedure Setend(const Value: TEnderObraEvento);
+  public
+    destructor Destroy; override;
+    /// <summary>
+    /// Código do município do endereço do imóvel (Tabela do IBGE).
+    /// *Disponível a partir da NT 009 (leiaute 009.1.01).*
+    /// </summary>
+    property cMun: string read FcMun write SetcMun;
+    property cMunHasValue: Boolean read FcMunHasValue write FcMunHasValue;
+    property gLocacao: TRTCLocacaoImovel read FgLocacao write SetgLocacao;
+    property gUnidImob: TRTCUnidadesImobiliariasList read FgUnidImob write SetgUnidImob;
+    /// <summary>
+    /// `Deprecated`
+    /// 
+    /// **Propriedade depreciada** a partir da NT 009 (leiaute 009.1.01).
+    /// 
+    /// *Utilize `IBSCBS.imovel.gUnidImob[].inscImobFisc`*.
+    /// Inscrição imobiliária fiscal (código fornecido pela Prefeitura Municipal para a identificação da obra ou para fins de recolhimento do IPTU).
+    /// </summary>
+    property inscImobFisc: string read FinscImobFisc write SetinscImobFisc;
+    property inscImobFiscHasValue: Boolean read FinscImobFiscHasValue write FinscImobFiscHasValue;
+    /// <summary>
+    /// `Deprecated`
+    /// 
+    /// **Propriedade depreciada** a partir da NT 009 (leiaute 009.1.01).
+    /// 
+    /// *Utilize `IBSCBS.imovel.gUnidImob[].cCIB`*.
+    /// Código do Cadastro Imobiliário Brasileiro - CIB.
+    /// </summary>
+    property cCIB: string read FcCIB write SetcCIB;
+    property cCIBHasValue: Boolean read FcCIBHasValue write FcCIBHasValue;
     property &end: TEnderObraEvento read Fend write Setend;
   end;
   
   /// <summary>
-  /// Grupo de informações de documentos fiscais eletrônicos que se encontram no repositório nacional.
+  /// Grupo de informações relativas aos bens móveis objetos de locação.
+  /// *Disponível a partir da NT 009 (leiaute 009.1.01).*
   /// </summary>
-  TRTCListaDocDFe = class
+  TRTCInfoBensMoveis = class
   private
-    FtipoChaveDFe: Integer;
-    FxTipoChaveDFe: string;
-    FxTipoChaveDFeHasValue: Boolean;
-    FchaveDFe: string;
-    procedure SetxTipoChaveDFe(const Value: string);
+    FcNCMBemMovel: string;
+    FxNCMBemMovel: string;
+    FqtdNCMBemMovel: Integer;
   public
     /// <summary>
-    /// Documento fiscal a que se refere a chaveDfe que seja um dos documentos do Repositório Nacional.
+    /// Código da Nomenclatura Comum do Mercosul (NCM) do bem móvel objeto da locação.
     /// </summary>
-    property tipoChaveDFe: Integer read FtipoChaveDFe write FtipoChaveDFe;
+    property cNCMBemMovel: string read FcNCMBemMovel write FcNCMBemMovel;
     /// <summary>
-    /// Descrição da DF-e a que se refere a chaveDfe que seja um dos documentos do Repositório Nacional
-    /// Deve ser preenchido apenas quando "tipoChaveDFe = 9 (Outro)".
+    /// Descrição do Bem Móvel objeto da locação.
     /// </summary>
-    property xTipoChaveDFe: string read FxTipoChaveDFe write SetxTipoChaveDFe;
-    property xTipoChaveDFeHasValue: Boolean read FxTipoChaveDFeHasValue write FxTipoChaveDFeHasValue;
+    property xNCMBemMovel: string read FxNCMBemMovel write FxNCMBemMovel;
     /// <summary>
-    /// Chave do Documento Fiscal eletrônico do repositório nacional referenciado para os casos de operações já tributadas.
+    /// Quantidade do Bem Móvel objeto da locação.
     /// </summary>
-    property chaveDFe: string read FchaveDFe write FchaveDFe;
+    property qtdNCMBemMovel: Integer read FqtdNCMBemMovel write FqtdNCMBemMovel;
   end;
   
-  /// <summary>
-  /// Grupo de informações de documento fiscais, eletrônicos ou não, que não se encontram no repositório nacional.
-  /// </summary>
-  TRTCListaDocFiscalOutro = class
-  private
-    FcMunDocFiscal: Integer;
-    FnDocFiscal: string;
-    FxDocFiscal: string;
-  public
-    /// <summary>
-    /// Código do município emissor do documento fiscal que não se encontra no repositório nacional.
-    /// </summary>
-    property cMunDocFiscal: Integer read FcMunDocFiscal write FcMunDocFiscal;
-    /// <summary>
-    /// Número do documento fiscal que não se encontra no repositório nacional.
-    /// </summary>
-    property nDocFiscal: string read FnDocFiscal write FnDocFiscal;
-    /// <summary>
-    /// Descrição do documento fiscal.
-    /// </summary>
-    property xDocFiscal: string read FxDocFiscal write FxDocFiscal;
-  end;
-  
-  /// <summary>
-  /// Grupo de informações de documento não fiscal.
-  /// </summary>
-  TRTCListaDocOutro = class
-  private
-    FnDoc: string;
-    FxDoc: string;
-  public
-    /// <summary>
-    /// Número do documento não fiscal.
-    /// </summary>
-    property nDoc: string read FnDoc write FnDoc;
-    /// <summary>
-    /// Descrição do documento não fiscal.
-    /// </summary>
-    property xDoc: string read FxDoc write FxDoc;
+  TRTCInfoBensMoveisList = class(TObjectList<TRTCInfoBensMoveis>)
   end;
   
   /// <summary>
@@ -6747,6 +7094,11 @@ type
   end;
   
   /// <summary>
+  /// `Deprecated`
+  /// 
+  /// **Propriedade depreciada** a partir da NT 009 (leiaute 009.1.01).
+  /// 
+  /// *Utilize `valores.vAjusteBC.documentos` (tipos de ajuste 101 a 104 e 199)*.
   /// Grupo de informações relativas a valores incluídos neste documento e recebidos por motivo de estarem relacionadas
   /// a operações de terceiros, objeto de reembolso, repasse ou ressarcimento pelo recebedor, já tributados e aqui referenciados.
   /// </summary>
@@ -6807,24 +7159,40 @@ type
   TRTCInfoTributosSitClas = class
   private
     FCST: string;
+    FCSTHasValue: Boolean;
     FcClassTrib: string;
+    FcClassTribHasValue: Boolean;
     FcCredPres: string;
     FcCredPresHasValue: Boolean;
     FgTribRegular: TRTCInfoTributosTribRegular;
     FgDif: TRTCInfoTributosDif;
+    procedure SetCST(const Value: string);
+    procedure SetcClassTrib(const Value: string);
     procedure SetcCredPres(const Value: string);
     procedure SetgTribRegular(const Value: TRTCInfoTributosTribRegular);
     procedure SetgDif(const Value: TRTCInfoTributosDif);
   public
     destructor Destroy; override;
     /// <summary>
+    /// `Deprecated`
+    /// 
+    /// **Propriedade depreciada** a partir da NT 009 (leiaute 009.1.01).
+    /// 
+    /// *Utilize `IBSCBS.valores.trib.CST`*.
     /// Código de Situação Tributária do IBS e da CBS.
     /// </summary>
-    property CST: string read FCST write FCST;
+    property CST: string read FCST write SetCST;
+    property CSTHasValue: Boolean read FCSTHasValue write FCSTHasValue;
     /// <summary>
+    /// `Deprecated`
+    /// 
+    /// **Propriedade depreciada** a partir da NT 009 (leiaute 009.1.01).
+    /// 
+    /// *Utilize `IBSCBS.valores.trib.cClassTrib`*.
     /// Código de Classificação Tributária do IBS e da CBS.
     /// </summary>
-    property cClassTrib: string read FcClassTrib write FcClassTrib;
+    property cClassTrib: string read FcClassTrib write SetcClassTrib;
+    property cClassTribHasValue: Boolean read FcClassTribHasValue write FcClassTribHasValue;
     /// <summary>
     /// Código e Classificação do Crédito Presumido: IBS e CBS.
     /// </summary>
@@ -6839,11 +7207,28 @@ type
   /// </summary>
   TRTCInfoTributosIBSCBS = class
   private
+    FCST: string;
+    FCSTHasValue: Boolean;
+    FcClassTrib: string;
+    FcClassTribHasValue: Boolean;
     FgIBSCBS: TRTCInfoTributosSitClas;
+    procedure SetCST(const Value: string);
+    procedure SetcClassTrib(const Value: string);
     procedure SetgIBSCBS(const Value: TRTCInfoTributosSitClas);
   public
-    constructor Create;
     destructor Destroy; override;
+    /// <summary>
+    /// Código de Situação Tributária do IBS e da CBS.
+    /// *Disponível a partir da NT 009 (leiaute 009.1.01).*
+    /// </summary>
+    property CST: string read FCST write SetCST;
+    property CSTHasValue: Boolean read FCSTHasValue write FCSTHasValue;
+    /// <summary>
+    /// Código de Classificação Tributária do IBS e da CBS.
+    /// *Disponível a partir da NT 009 (leiaute 009.1.01).*
+    /// </summary>
+    property cClassTrib: string read FcClassTrib write SetcClassTrib;
+    property cClassTribHasValue: Boolean read FcClassTribHasValue write FcClassTribHasValue;
     property gIBSCBS: TRTCInfoTributosSitClas read FgIBSCBS write SetgIBSCBS;
   end;
   
@@ -7036,8 +7421,10 @@ type
   TRTCInfoIBSCBS = class
   private
     FfinNFSe: Integer;
+    FfinNFSeHasValue: Boolean;
     FindFinal: Integer;
     FcIndOp: string;
+    FcIndOpHasValue: Boolean;
     FtpOper: Integer;
     FtpOperHasValue: Boolean;
     FgRefNFSe: TInfoRefNFSe;
@@ -7046,21 +7433,31 @@ type
     FindDest: Integer;
     Fdest: TRTCInfoDest;
     Fimovel: TRTCInfoImovel;
+    FbensMoveis: TRTCInfoBensMoveisList;
     Fvalores: TRTCInfoValoresIBSCBS;
+    procedure SetfinNFSe(const Value: Integer);
+    procedure SetcIndOp(const Value: string);
     procedure SettpOper(const Value: Integer);
     procedure SetgRefNFSe(const Value: TInfoRefNFSe);
     procedure SettpEnteGov(const Value: Integer);
     procedure Setdest(const Value: TRTCInfoDest);
     procedure Setimovel(const Value: TRTCInfoImovel);
+    procedure SetbensMoveis(const Value: TRTCInfoBensMoveisList);
     procedure Setvalores(const Value: TRTCInfoValoresIBSCBS);
   public
     constructor Create;
     destructor Destroy; override;
     /// <summary>
+    /// `Deprecated`
+    /// 
+    /// **Propriedade depreciada** a partir da NT 009 (leiaute 009.1.01).
+    /// 
+    /// *Utilize `infDPS.finNFSe`*.
     /// Indicador da finalidade da emissão de NFS-e:
     /// * 0 - NFS-e regular.
     /// </summary>
-    property finNFSe: Integer read FfinNFSe write FfinNFSe;
+    property finNFSe: Integer read FfinNFSe write SetfinNFSe;
+    property finNFSeHasValue: Boolean read FfinNFSeHasValue write FfinNFSeHasValue;
     /// <summary>
     /// Indica operação de uso ou consumo pessoal (art. 57):
     /// * 0 - Não;
@@ -7070,7 +7467,8 @@ type
     /// <summary>
     /// Código indicador da operação de fornecimento, conforme tabela "código indicador de operação".
     /// </summary>
-    property cIndOp: string read FcIndOp write FcIndOp;
+    property cIndOp: string read FcIndOp write SetcIndOp;
+    property cIndOpHasValue: Boolean read FcIndOpHasValue write FcIndOpHasValue;
     /// <summary>
     /// Tipo de Operação com Entes Governamentais ou outros serviços sobre bens imóveis:
     /// * 1 - Fornecimento com pagamento posterior;
@@ -7100,6 +7498,7 @@ type
     property indDest: Integer read FindDest write FindDest;
     property dest: TRTCInfoDest read Fdest write Setdest;
     property imovel: TRTCInfoImovel read Fimovel write Setimovel;
+    property bensMoveis: TRTCInfoBensMoveisList read FbensMoveis write SetbensMoveis;
     property valores: TRTCInfoValoresIBSCBS read Fvalores write Setvalores;
   end;
   
@@ -7121,6 +7520,8 @@ type
     FdCompetHasValue: Boolean;
     FcMotivoEmisTI: Integer;
     FcMotivoEmisTIHasValue: Boolean;
+    FfinNFSe: Integer;
+    FfinNFSeHasValue: Boolean;
     FchNFSeRej: string;
     FchNFSeRejHasValue: Boolean;
     Fsubst: TSubstituicao;
@@ -7136,6 +7537,7 @@ type
     procedure SetnDPS(const Value: string);
     procedure SetdCompet(const Value: TDate);
     procedure SetcMotivoEmisTI(const Value: Integer);
+    procedure SetfinNFSe(const Value: Integer);
     procedure SetchNFSeRej(const Value: string);
     procedure Setsubst(const Value: TSubstituicao);
     procedure Setprest(const Value: TInfoPrestador);
@@ -7194,6 +7596,15 @@ type
     /// </summary>
     property cMotivoEmisTI: Integer read FcMotivoEmisTI write SetcMotivoEmisTI;
     property cMotivoEmisTIHasValue: Boolean read FcMotivoEmisTIHasValue write FcMotivoEmisTIHasValue;
+    /// <summary>
+    /// Indicador da finalidade da emissão de NFS-e:
+    /// * 0 - NFS-e regular.
+    /// 
+    /// Caso não seja informado, será utilizado o valor de `IBSCBS.finNFSe` ou, na ausência dele, `0`.
+    /// *Disponível a partir da NT 009 (leiaute 009.1.01).*
+    /// </summary>
+    property finNFSe: Integer read FfinNFSe write SetfinNFSe;
+    property finNFSeHasValue: Boolean read FfinNFSeHasValue write FfinNFSeHasValue;
     /// <summary>
     /// Chave de Acesso da NFS-e rejeitada pelo Tomador/Intermediário.
     /// </summary>
@@ -36049,6 +36460,12 @@ begin
   FIEHasValue := True;
 end;
 
+procedure TInfoTomador.SetxNome(const Value: string);
+begin
+  FxNome := Value;
+  FxNomeHasValue := True;
+end;
+
 procedure TInfoTomador.Setend(const Value: TEndereco);
 begin
   if Value <> Fend then
@@ -36118,6 +36535,12 @@ procedure TInfoIntermediario.SetIE(const Value: string);
 begin
   FIE := Value;
   FIEHasValue := True;
+end;
+
+procedure TInfoIntermediario.SetxNome(const Value: string);
+begin
+  FxNome := Value;
+  FxNomeHasValue := True;
 end;
 
 procedure TInfoIntermediario.Setend(const Value: TEndereco);
@@ -36512,6 +36935,14 @@ begin
   FvDescCondHasValue := True;
 end;
 
+{ TRTCListaDocDFe }
+
+procedure TRTCListaDocDFe.SetxTipoChaveDFe(const Value: string);
+begin
+  FxTipoChaveDFe := Value;
+  FxTipoChaveDFeHasValue := True;
+end;
+
 { TInfoFornecDocDedRed }
 
 destructor TInfoFornecDocDedRed.Destroy;
@@ -36562,6 +36993,12 @@ begin
   FIEHasValue := True;
 end;
 
+procedure TInfoFornecDocDedRed.SetxNome(const Value: string);
+begin
+  FxNome := Value;
+  FxNomeHasValue := True;
+end;
+
 procedure TInfoFornecDocDedRed.Setend(const Value: TEndereco);
 begin
   if Value <> Fend then
@@ -36581,6 +37018,123 @@ procedure TInfoFornecDocDedRed.Setemail(const Value: string);
 begin
   Femail := Value;
   FemailHasValue := True;
+end;
+
+{ TDocAjusteBC }
+
+destructor TDocAjusteBC.Destroy;
+begin
+  Ffornec.Free;
+  FdocOutro.Free;
+  FdocFiscalOutro.Free;
+  FdFeNacional.Free;
+  inherited;
+end;
+
+procedure TDocAjusteBC.SetxTpAjusteBC(const Value: string);
+begin
+  FxTpAjusteBC := Value;
+  FxTpAjusteBCHasValue := True;
+end;
+
+procedure TDocAjusteBC.SetdtEmiDoc(const Value: TDate);
+begin
+  FdtEmiDoc := Value;
+  FdtEmiDocHasValue := True;
+end;
+
+procedure TDocAjusteBC.SetdtCompDoc(const Value: TDate);
+begin
+  FdtCompDoc := Value;
+  FdtCompDocHasValue := True;
+end;
+
+procedure TDocAjusteBC.SetdFeNacional(const Value: TRTCListaDocDFe);
+begin
+  if Value <> FdFeNacional then
+  begin
+    FdFeNacional.Free;
+    FdFeNacional := Value;
+  end;
+end;
+
+procedure TDocAjusteBC.SetdocFiscalOutro(const Value: TRTCListaDocFiscalOutro);
+begin
+  if Value <> FdocFiscalOutro then
+  begin
+    FdocFiscalOutro.Free;
+    FdocFiscalOutro := Value;
+  end;
+end;
+
+procedure TDocAjusteBC.SetdocOutro(const Value: TRTCListaDocOutro);
+begin
+  if Value <> FdocOutro then
+  begin
+    FdocOutro.Free;
+    FdocOutro := Value;
+  end;
+end;
+
+procedure TDocAjusteBC.Setfornec(const Value: TInfoFornecDocDedRed);
+begin
+  if Value <> Ffornec then
+  begin
+    Ffornec.Free;
+    Ffornec := Value;
+  end;
+end;
+
+{ TListaDocAjusteBC }
+
+constructor TListaDocAjusteBC.Create;
+begin
+  inherited;
+  FdocAjusteBC := TDocAjusteBCList.Create;
+end;
+
+destructor TListaDocAjusteBC.Destroy;
+begin
+  FdocAjusteBC.Free;
+  inherited;
+end;
+
+procedure TListaDocAjusteBC.SetdocAjusteBC(const Value: TDocAjusteBCList);
+begin
+  if Value <> FdocAjusteBC then
+  begin
+    FdocAjusteBC.Free;
+    FdocAjusteBC := Value;
+  end;
+end;
+
+{ TInfoAjusteBC }
+
+destructor TInfoAjusteBC.Destroy;
+begin
+  Fdocumentos.Free;
+  inherited;
+end;
+
+procedure TInfoAjusteBC.SetpAjusteBCISSQN(const Value: Double);
+begin
+  FpAjusteBCISSQN := Value;
+  FpAjusteBCISSQNHasValue := True;
+end;
+
+procedure TInfoAjusteBC.SetvAjusteBCISSQN(const Value: Double);
+begin
+  FvAjusteBCISSQN := Value;
+  FvAjusteBCISSQNHasValue := True;
+end;
+
+procedure TInfoAjusteBC.Setdocumentos(const Value: TListaDocAjusteBC);
+begin
+  if Value <> Fdocumentos then
+  begin
+    Fdocumentos.Free;
+    Fdocumentos := Value;
+  end;
 end;
 
 { TDocDedRed }
@@ -36965,6 +37519,7 @@ destructor TInfoValores.Destroy;
 begin
   Ftrib.Free;
   FvDedRed.Free;
+  FvAjusteBC.Free;
   FvDescCondIncond.Free;
   FvServPrest.Free;
   inherited;
@@ -36985,6 +37540,15 @@ begin
   begin
     FvDescCondIncond.Free;
     FvDescCondIncond := Value;
+  end;
+end;
+
+procedure TInfoValores.SetvAjusteBC(const Value: TInfoAjusteBC);
+begin
+  if Value <> FvAjusteBC then
+  begin
+    FvAjusteBC.Free;
+    FvAjusteBC := Value;
   end;
 end;
 
@@ -37082,12 +37646,125 @@ begin
   FemailHasValue := True;
 end;
 
+{ TRTCLocacaoImovel }
+
+procedure TRTCLocacaoImovel.SetvDescIncondTot(const Value: Double);
+begin
+  FvDescIncondTot := Value;
+  FvDescIncondTotHasValue := True;
+end;
+
+procedure TRTCLocacaoImovel.SetvDescCondTot(const Value: Double);
+begin
+  FvDescCondTot := Value;
+  FvDescCondTotHasValue := True;
+end;
+
+procedure TRTCLocacaoImovel.SetdVencOrig(const Value: TDate);
+begin
+  FdVencOrig := Value;
+  FdVencOrigHasValue := True;
+end;
+
+{ TEnderImovel }
+
+procedure TEnderImovel.SettpLgr(const Value: string);
+begin
+  FtpLgr := Value;
+  FtpLgrHasValue := True;
+end;
+
+procedure TEnderImovel.SetxCpl(const Value: string);
+begin
+  FxCpl := Value;
+  FxCplHasValue := True;
+end;
+
+procedure TEnderImovel.SetxBairro(const Value: string);
+begin
+  FxBairro := Value;
+  FxBairroHasValue := True;
+end;
+
+{ TRTCValoresBCImoveis }
+
+procedure TRTCValoresBCImoveis.SetxTpAjusteBCLocImoveis(const Value: string);
+begin
+  FxTpAjusteBCLocImoveis := Value;
+  FxTpAjusteBCLocImoveisHasValue := True;
+end;
+
+{ TRTCUnidadesImobiliarias }
+
+destructor TRTCUnidadesImobiliarias.Destroy;
+begin
+  FgAjusteBCLocImoveis.Free;
+  Fend.Free;
+  inherited;
+end;
+
+procedure TRTCUnidadesImobiliarias.SetinscImobFisc(const Value: string);
+begin
+  FinscImobFisc := Value;
+  FinscImobFiscHasValue := True;
+end;
+
+procedure TRTCUnidadesImobiliarias.SetcCIB(const Value: string);
+begin
+  FcCIB := Value;
+  FcCIBHasValue := True;
+end;
+
+procedure TRTCUnidadesImobiliarias.Setend(const Value: TEnderImovel);
+begin
+  if Value <> Fend then
+  begin
+    Fend.Free;
+    Fend := Value;
+  end;
+end;
+
+procedure TRTCUnidadesImobiliarias.SetgAjusteBCLocImoveis(const Value: TRTCValoresBCImoveisList);
+begin
+  if Value <> FgAjusteBCLocImoveis then
+  begin
+    FgAjusteBCLocImoveis.Free;
+    FgAjusteBCLocImoveis := Value;
+  end;
+end;
+
 { TRTCInfoImovel }
 
 destructor TRTCInfoImovel.Destroy;
 begin
   Fend.Free;
+  FgUnidImob.Free;
+  FgLocacao.Free;
   inherited;
+end;
+
+procedure TRTCInfoImovel.SetcMun(const Value: string);
+begin
+  FcMun := Value;
+  FcMunHasValue := True;
+end;
+
+procedure TRTCInfoImovel.SetgLocacao(const Value: TRTCLocacaoImovel);
+begin
+  if Value <> FgLocacao then
+  begin
+    FgLocacao.Free;
+    FgLocacao := Value;
+  end;
+end;
+
+procedure TRTCInfoImovel.SetgUnidImob(const Value: TRTCUnidadesImobiliariasList);
+begin
+  if Value <> FgUnidImob then
+  begin
+    FgUnidImob.Free;
+    FgUnidImob := Value;
+  end;
 end;
 
 procedure TRTCInfoImovel.SetinscImobFisc(const Value: string);
@@ -37109,14 +37786,6 @@ begin
     Fend.Free;
     Fend := Value;
   end;
-end;
-
-{ TRTCListaDocDFe }
-
-procedure TRTCListaDocDFe.SetxTipoChaveDFe(const Value: string);
-begin
-  FxTipoChaveDFe := Value;
-  FxTipoChaveDFeHasValue := True;
 end;
 
 { TRTCListaDocFornec }
@@ -37230,6 +37899,18 @@ begin
   inherited;
 end;
 
+procedure TRTCInfoTributosSitClas.SetCST(const Value: string);
+begin
+  FCST := Value;
+  FCSTHasValue := True;
+end;
+
+procedure TRTCInfoTributosSitClas.SetcClassTrib(const Value: string);
+begin
+  FcClassTrib := Value;
+  FcClassTribHasValue := True;
+end;
+
 procedure TRTCInfoTributosSitClas.SetcCredPres(const Value: string);
 begin
   FcCredPres := Value;
@@ -37256,16 +37937,22 @@ end;
 
 { TRTCInfoTributosIBSCBS }
 
-constructor TRTCInfoTributosIBSCBS.Create;
-begin
-  inherited;
-  FgIBSCBS := TRTCInfoTributosSitClas.Create;
-end;
-
 destructor TRTCInfoTributosIBSCBS.Destroy;
 begin
   FgIBSCBS.Free;
   inherited;
+end;
+
+procedure TRTCInfoTributosIBSCBS.SetCST(const Value: string);
+begin
+  FCST := Value;
+  FCSTHasValue := True;
+end;
+
+procedure TRTCInfoTributosIBSCBS.SetcClassTrib(const Value: string);
+begin
+  FcClassTrib := Value;
+  FcClassTribHasValue := True;
 end;
 
 procedure TRTCInfoTributosIBSCBS.SetgIBSCBS(const Value: TRTCInfoTributosSitClas);
@@ -37458,10 +38145,23 @@ end;
 destructor TRTCInfoIBSCBS.Destroy;
 begin
   Fvalores.Free;
+  FbensMoveis.Free;
   Fimovel.Free;
   Fdest.Free;
   FgRefNFSe.Free;
   inherited;
+end;
+
+procedure TRTCInfoIBSCBS.SetfinNFSe(const Value: Integer);
+begin
+  FfinNFSe := Value;
+  FfinNFSeHasValue := True;
+end;
+
+procedure TRTCInfoIBSCBS.SetcIndOp(const Value: string);
+begin
+  FcIndOp := Value;
+  FcIndOpHasValue := True;
 end;
 
 procedure TRTCInfoIBSCBS.SettpOper(const Value: Integer);
@@ -37500,6 +38200,15 @@ begin
   begin
     Fimovel.Free;
     Fimovel := Value;
+  end;
+end;
+
+procedure TRTCInfoIBSCBS.SetbensMoveis(const Value: TRTCInfoBensMoveisList);
+begin
+  if Value <> FbensMoveis then
+  begin
+    FbensMoveis.Free;
+    FbensMoveis := Value;
   end;
 end;
 
@@ -37568,6 +38277,12 @@ procedure TInfDPS.SetcMotivoEmisTI(const Value: Integer);
 begin
   FcMotivoEmisTI := Value;
   FcMotivoEmisTIHasValue := True;
+end;
+
+procedure TInfDPS.SetfinNFSe(const Value: Integer);
+begin
+  FfinNFSe := Value;
+  FfinNFSeHasValue := True;
 end;
 
 procedure TInfDPS.SetchNFSeRej(const Value: string);
